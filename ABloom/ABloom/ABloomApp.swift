@@ -14,8 +14,8 @@ struct ABloomApp: App {
     MainViewFeature()
   }
   var body: some Scene {
-        WindowGroup {
-          MainView(store: ABloomApp.store)
-        }
+    WindowGroup {
+      MainView(store: ABloomApp.store)
     }
+  }
 }

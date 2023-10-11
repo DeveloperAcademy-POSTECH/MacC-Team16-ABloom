@@ -5,8 +5,8 @@
 //  Created by yun on 10/11/23.
 //
 
-import SwiftUI
 import ComposableArchitecture
+import SwiftUI
 
 struct MainViewFeature: Reducer {
   struct State: Equatable {
