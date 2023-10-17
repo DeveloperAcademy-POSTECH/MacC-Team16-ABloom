@@ -75,7 +75,6 @@ line_length:
   ignores_urls: true # URL에 대해 행 길이 제한 미적용
   ignores_comments: true # 코멘트에 대해 행 길이 제한 미적용
   ignores_interpolated_strings: true # 보간된 문자열 행 길이 제한 미적용
-  warning: 110
 
 # 파일 열 길이 정의
 file_length:
