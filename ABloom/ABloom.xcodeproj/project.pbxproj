@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		605541152ADE1A9D00AD5625 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605541142ADE1A9D00AD5625 /* TabBarView.swift */; };
+		605541172ADE1ACF00AD5625 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605541162ADE1ACF00AD5625 /* Tab.swift */; };
 		AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AE2BB5F32AD650680003CD85 /* .swiftlint.yml */; };
 		AE2BB5F92AD66D850003CD85 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2BB5F82AD66D850003CD85 /* MainView.swift */; };
 		AE7EE4E12AD6409000E0A573 /* ABloomApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7EE4E02AD6409000E0A573 /* ABloomApp.swift */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		605541142ADE1A9D00AD5625 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		605541162ADE1ACF00AD5625 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		AE2BB5F32AD650680003CD85 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		AE2BB5F82AD66D850003CD85 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		AE2BB5FC2AD673080003CD85 /* DataFolderMD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DataFolderMD.md; sourceTree = "<group>"; };
@@ -76,6 +80,8 @@
 			isa = PBXGroup;
 			children = (
 				AE2BB6022AD674D40003CD85 /* TabBarMD.md */,
+				605541142ADE1A9D00AD5625 /* TabBarView.swift */,
+				605541162ADE1ACF00AD5625 /* Tab.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -219,7 +225,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE2BB5F92AD66D850003CD85 /* MainView.swift in Sources */,
+				605541152ADE1A9D00AD5625 /* TabBarView.swift in Sources */,
 				AE7EE4E12AD6409000E0A573 /* ABloomApp.swift in Sources */,
+				605541172ADE1ACF00AD5625 /* Tab.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
