@@ -1,15 +1,13 @@
 //
-//  MainView.swift
+//  HomeView.swift
 //  ABloom
 //
 //  Created by yun on 10/11/23.
 //
 
-// Example MainView in TCA
-
 import SwiftUI
 
-struct MainView: View {
+struct HomeView: View {
   var body: some View {
     return ZStack {
       Text("Hello ABloom 화이팅 :)")
@@ -19,5 +17,5 @@ struct MainView: View {
 }
 
 #Preview {
-  MainView()
+  HomeView()
 }

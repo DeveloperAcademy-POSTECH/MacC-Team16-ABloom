@@ -15,7 +15,7 @@ struct TabBarView: View {
       ForEach(Tab.allCases, id: \.self) { tab in
         switch tab {
         case .main:
-          MainView()
+          HomeView()
             .tabItem {
               Image(systemName: tab.icon)
               Text(tab.title)
