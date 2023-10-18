@@ -62,9 +62,9 @@ identifier_name:
     - id
     - URL
     - GlobalAPIKey
-  allowed_symbols:
+#  allowed_symbols:
 #    - $
-    - _
+#    - _
 
 # 콜론 커스텀 정의
 colon:
