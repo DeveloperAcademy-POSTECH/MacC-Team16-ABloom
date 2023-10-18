@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-
-
-
 extension Shape {
   
   /***
@@ -83,5 +80,4 @@ extension Shape {
       .shadow(.drop(color: Color.stone200.opacity(1), radius: 40, x: 0, y: 20))
     )
   }
-  
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension View{
+extension View {
   
   /***
    Customized GradientColors
@@ -31,11 +31,11 @@ extension View{
   public func blueGradient43() -> some View {
     LinearGradient(colors: [.blue400, .biBlue], startPoint: .bottomLeading, endPoint: .topTrailing)
   }
-  /// Plue500 - Plue400 Gradient
+  /// Pink500 - Pink400 Gradient
   public func pinkGradient54() -> some View {
     LinearGradient(colors: [.pink500, .pink400], startPoint: .bottomLeading, endPoint: .topTrailing)
   }
-  /// Plue400 - Plue300 Gradient
+  /// Pink400 - Pink300 Gradient
   public func pinkGradient43() -> some View {
     LinearGradient(colors: [.pink400, .biPink], startPoint: .bottomLeading, endPoint: .topTrailing)
   }

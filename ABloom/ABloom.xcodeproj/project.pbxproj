@@ -22,7 +22,6 @@
 		AE8D3C5C2ADE1A08009899A7 /* SpoqaHanSansNeo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8D3C572ADE1A08009899A7 /* SpoqaHanSansNeo-Medium.ttf */; };
 		AE8D3C5F2ADE3890009899A7 /* GradientColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D3C5E2ADE3890009899A7 /* GradientColors.swift */; };
 		AE8D3C612ADE3C73009899A7 /* Shadows.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D3C602ADE3C73009899A7 /* Shadows.swift */; };
-		AE8D3C632ADED816009899A7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D3C622ADED816009899A7 /* Colors.swift */; };
 		AEAB19332ADF642E0057BC43 /* DesignSystemEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAB19322ADF642E0057BC43 /* DesignSystemEx.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,7 +48,6 @@
 		AE8D3C5D2ADE1A22009899A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AE8D3C5E2ADE3890009899A7 /* GradientColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientColors.swift; sourceTree = "<group>"; };
 		AE8D3C602ADE3C73009899A7 /* Shadows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadows.swift; sourceTree = "<group>"; };
-		AE8D3C622ADED816009899A7 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		AEAB19322ADF642E0057BC43 /* DesignSystemEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemEx.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,7 +151,6 @@
 		AE8D3C4F2ADE19B4009899A7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				AE8D3C622ADED816009899A7 /* Colors.swift */,
 				AE8D3C502ADE19E0009899A7 /* CustomFonts.swift */,
 				AE8D3C5E2ADE3890009899A7 /* GradientColors.swift */,
 				AE8D3C602ADE3C73009899A7 /* Shadows.swift */,
@@ -268,7 +265,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint --fix && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint #--fix && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -278,7 +275,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE8D3C512ADE19E0009899A7 /* CustomFonts.swift in Sources */,
-				AE8D3C632ADED816009899A7 /* Colors.swift in Sources */,
 				AEAB19332ADF642E0057BC43 /* DesignSystemEx.swift in Sources */,
 				AE8D3C612ADE3C73009899A7 /* Shadows.swift in Sources */,
 				AE2BB5F92AD66D850003CD85 /* MainView.swift in Sources */,
