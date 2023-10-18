@@ -32,7 +32,7 @@ extension Font {
   static let bodyBold: Font = .custom("SpoqaHanSansNeo-Medium", size: 17)
   static let calloutBold: Font = .custom("SpoqaHanSansNeo-Medium", size: 16)
   static let subHeadlineBold: Font = .custom("SpoqaHanSansNeo-Medium", size: 15)
-  static let footnoteBold: Font = .custom("SpoqaHanSansNeo-Regular", size: 13)
+  static let footnoteBold: Font = .custom("SpoqaHanSansNeo-Bold", size: 13)
   static let caption1Bold: Font = .custom("SpoqaHanSansNeo-Medium", size: 12)
   static let caption2Bold: Font = .custom("SpoqaHanSansNeo-Medium", size: 11)
 }
