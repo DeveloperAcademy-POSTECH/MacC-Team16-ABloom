@@ -16,7 +16,7 @@ disabled_rules:
   - large_tuple # 튜플 인자 수 제한
   - unused_control_flow_label # 미사용 제어 플로우 제거
   - trailing_comma # 배열 및 딕셔너리에서 후행 쉼표 조건 (적용 혹은 미적용)
-  - opening_brace # 중괄호 선언 조건 (중괄호 앞 단일 공백 및 선언과 같은 행)
+#  - opening_brace # 중괄호 선언 조건 (중괄호 앞 단일 공백 및 선언과 같은 행)
   - closure_parameter_position # 클로저 매개변수 위치 (중괄호와 같은 행)
   - for_where # for where 절 선호 (for 문 내 if 사용 대체)
   - inclusive_language # 포괄적 언어 사용 (인종, 성별, 사회경제적 지위를 나타내는 언어 사용금지)

@@ -9,10 +9,10 @@ import SwiftUI
 
 struct DesignSystemEx: View {
   var body: some View {
-    VStack{
+    VStack {
       // Font Modifier 예제
       Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        .fontWithTracking(fontStyle: .largeTitle.bold(), value: -0.4)
+        .fontWithTracking(fontStyle: .largeTitleBold, value: -0.4)
       
       // Shadow는 fill 함수의 특성상 Shape에만 적용되어, 우선으로 modifier가 적용되어야 함
       Rectangle()
@@ -23,7 +23,7 @@ struct DesignSystemEx: View {
       
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .background(blueGradient40())
+    .background(blueGradient43())
     .ignoresSafeArea(edges: .top)
     
   }
