@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-
-
 struct RegistrationView: View {
   @StateObject var registerVM = RegistrationViewModel()
   
