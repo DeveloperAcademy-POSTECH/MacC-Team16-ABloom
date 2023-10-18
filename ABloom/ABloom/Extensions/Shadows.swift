@@ -8,8 +8,28 @@
 import SwiftUI
 
 
+
+
 extension Shape {
   
+  /***
+   Customized Shadows
+   - Shape에 대한 Modifier로 적용
+   
+   총 7개의 함수 존재
+   1. clayMorpMDShadow()
+   2. clayMorpXLShadow()
+   3. mainImgShadow()
+   4. glassBG1Shadow()
+   5. clayMorpMDPinkShadow()
+   6. clayMorpBtnXLPinkShadow()
+   7. clayMorpBtnGrayShadow()
+   
+   사용예제
+   -
+   Rectangle()
+   .clayMorpMDShadow()
+   */
   public func clayMorpMDShadow() -> some View {
     self.fill(
       .shadow(.inner(color: Color.black.opacity(0.37), radius: 10, x: 0, y: -3))
@@ -34,11 +54,10 @@ extension Shape {
     )
   }
   
-  // TODO: chekeup
   public func glassBG1Shadow() -> some View {
     self.fill(
       .shadow(.drop(color: Color.black.opacity(0.15), radius: 34, x: 0, y: 4))
-    ).blur(radius: 6)
+    ).blur(radius: 60)
   }
   
   public func clayMorpMDPinkShadow() -> some View {

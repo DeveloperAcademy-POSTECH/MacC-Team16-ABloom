@@ -1,21 +1,6 @@
 import SwiftUI
 
-
-/// Custom Font 사용방법
-
-
-
-func checkFonts(){
-  
-  // font 확인
-  for family in UIFont.familyNames.sorted() {
-    let names = UIFont.fontNames(forFamilyName: family)
-    print("Family: \(family) Font names: \(names)")
-  }
-}
-
 extension Font {
-  
   // LargeTitle
   static let largeTitle: Font = .custom("SpoqaHanSansNeo-Regular", size: 34)
   
@@ -32,16 +17,20 @@ extension Font {
   static let footnote: Font = .custom("SpoqaHanSansNeo-Regular", size: 13)
   static let caption1: Font = .custom("SpoqaHanSansNeo-Regular", size: 12)
   static let caption2: Font = .custom("SpoqaHanSansNeo-Regular", size: 11)
-   
-  
 }
 
-struct CustomText: View{
-  var text: String
-  var value: CGFloat = 1
-  
-  var body: some View{
-    return Text(text)
+extension Text {
+  /**
+   Custom Font
+   1. bold체의 경우 .bold()를 폰트 뒤에 추가
+   2. 모든 Text는 자간이 1 혹은 -0.4 이므로 아래의 Modifier에 value가 1 혹은 -0.4로 적용되어야 함
+   
+   사용예제
+   -
+   .fontWithTracking(fontStyle: .largeTitle.bold(), value: 1)
+   */
+  func fontWithTracking(fontStyle: Font, value: CGFloat) -> Text {
+    self.font(fontStyle)
       .tracking(value)
   }
 }
