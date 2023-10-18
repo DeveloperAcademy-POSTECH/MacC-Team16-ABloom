@@ -10,9 +10,10 @@
 import SwiftUI
 
 struct MainView: View {
-  var body: some View{
-    return ZStack{
+  var body: some View {
+    return ZStack {
       Text("Hello ABloom 화이팅 :)")
+        .fontWithTracking(fontStyle: .title1Bold)
     }
   }
 }

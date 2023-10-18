@@ -14,6 +14,15 @@
 		AE7EE4E12AD6409000E0A573 /* ABloomApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7EE4E02AD6409000E0A573 /* ABloomApp.swift */; };
 		AE7EE4E52AD6409100E0A573 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE7EE4E42AD6409100E0A573 /* Assets.xcassets */; };
 		AE7EE4E82AD6409100E0A573 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE7EE4E72AD6409100E0A573 /* Preview Assets.xcassets */; };
+		AE8D3C512ADE19E0009899A7 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D3C502ADE19E0009899A7 /* CustomFonts.swift */; };
+		AE8D3C582ADE1A08009899A7 /* SpoqaHanSansNeo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8D3C532ADE1A07009899A7 /* SpoqaHanSansNeo-Bold.ttf */; };
+		AE8D3C592ADE1A08009899A7 /* SpoqaHanSansNeo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8D3C542ADE1A07009899A7 /* SpoqaHanSansNeo-Regular.ttf */; };
+		AE8D3C5A2ADE1A08009899A7 /* SpoqaHanSansNeo-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8D3C552ADE1A08009899A7 /* SpoqaHanSansNeo-Thin.ttf */; };
+		AE8D3C5B2ADE1A08009899A7 /* SpoqaHanSansNeo-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8D3C562ADE1A08009899A7 /* SpoqaHanSansNeo-Light.ttf */; };
+		AE8D3C5C2ADE1A08009899A7 /* SpoqaHanSansNeo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8D3C572ADE1A08009899A7 /* SpoqaHanSansNeo-Medium.ttf */; };
+		AE8D3C5F2ADE3890009899A7 /* GradientColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D3C5E2ADE3890009899A7 /* GradientColors.swift */; };
+		AE8D3C612ADE3C73009899A7 /* Shadows.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D3C602ADE3C73009899A7 /* Shadows.swift */; };
+		AEAB19332ADF642E0057BC43 /* DesignSystemEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAB19322ADF642E0057BC43 /* DesignSystemEx.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +39,16 @@
 		AE7EE4E02AD6409000E0A573 /* ABloomApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABloomApp.swift; sourceTree = "<group>"; };
 		AE7EE4E42AD6409100E0A573 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE7EE4E72AD6409100E0A573 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		AE8D3C502ADE19E0009899A7 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
+		AE8D3C532ADE1A07009899A7 /* SpoqaHanSansNeo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Bold.ttf"; sourceTree = "<group>"; };
+		AE8D3C542ADE1A07009899A7 /* SpoqaHanSansNeo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Regular.ttf"; sourceTree = "<group>"; };
+		AE8D3C552ADE1A08009899A7 /* SpoqaHanSansNeo-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Thin.ttf"; sourceTree = "<group>"; };
+		AE8D3C562ADE1A08009899A7 /* SpoqaHanSansNeo-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Light.ttf"; sourceTree = "<group>"; };
+		AE8D3C572ADE1A08009899A7 /* SpoqaHanSansNeo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Medium.ttf"; sourceTree = "<group>"; };
+		AE8D3C5D2ADE1A22009899A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AE8D3C5E2ADE3890009899A7 /* GradientColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientColors.swift; sourceTree = "<group>"; };
+		AE8D3C602ADE3C73009899A7 /* Shadows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadows.swift; sourceTree = "<group>"; };
+		AEAB19322ADF642E0057BC43 /* DesignSystemEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemEx.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +125,9 @@
 		AE7EE4DF2AD6409000E0A573 /* ABloom */ = {
 			isa = PBXGroup;
 			children = (
+				AE8D3C5D2ADE1A22009899A7 /* Info.plist */,
+				AE8D3C522ADE19F2009899A7 /* Fonts */,
+				AE8D3C4F2ADE19B4009899A7 /* Extensions */,
 				AE2BB5F72AD66C0F0003CD85 /* Components */,
 				AE2BB5F62AD66BFF0003CD85 /* Data */,
 				AE7EE4E42AD6409100E0A573 /* Assets.xcassets */,
@@ -124,6 +146,29 @@
 				AE7EE4E72AD6409100E0A573 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		AE8D3C4F2ADE19B4009899A7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AE8D3C502ADE19E0009899A7 /* CustomFonts.swift */,
+				AE8D3C5E2ADE3890009899A7 /* GradientColors.swift */,
+				AE8D3C602ADE3C73009899A7 /* Shadows.swift */,
+				AEAB19322ADF642E0057BC43 /* DesignSystemEx.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AE8D3C522ADE19F2009899A7 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				AE8D3C532ADE1A07009899A7 /* SpoqaHanSansNeo-Bold.ttf */,
+				AE8D3C562ADE1A08009899A7 /* SpoqaHanSansNeo-Light.ttf */,
+				AE8D3C572ADE1A08009899A7 /* SpoqaHanSansNeo-Medium.ttf */,
+				AE8D3C542ADE1A07009899A7 /* SpoqaHanSansNeo-Regular.ttf */,
+				AE8D3C552ADE1A08009899A7 /* SpoqaHanSansNeo-Thin.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,9 +234,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE8D3C5A2ADE1A08009899A7 /* SpoqaHanSansNeo-Thin.ttf in Resources */,
+				AE8D3C582ADE1A08009899A7 /* SpoqaHanSansNeo-Bold.ttf in Resources */,
+				AE8D3C5B2ADE1A08009899A7 /* SpoqaHanSansNeo-Light.ttf in Resources */,
 				AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */,
 				AE7EE4E82AD6409100E0A573 /* Preview Assets.xcassets in Resources */,
 				AE7EE4E52AD6409100E0A573 /* Assets.xcassets in Resources */,
+				AE8D3C5C2ADE1A08009899A7 /* SpoqaHanSansNeo-Medium.ttf in Resources */,
+				AE8D3C592ADE1A08009899A7 /* SpoqaHanSansNeo-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,7 +265,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint --fix && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint #--fix && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -224,10 +274,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE8D3C512ADE19E0009899A7 /* CustomFonts.swift in Sources */,
+				AEAB19332ADF642E0057BC43 /* DesignSystemEx.swift in Sources */,
+				AE8D3C612ADE3C73009899A7 /* Shadows.swift in Sources */,
 				AE2BB5F92AD66D850003CD85 /* MainView.swift in Sources */,
 				605541152ADE1A9D00AD5625 /* TabBarView.swift in Sources */,
 				AE7EE4E12AD6409000E0A573 /* ABloomApp.swift in Sources */,
 				605541172ADE1ACF00AD5625 /* Tab.swift in Sources */,
+				AE8D3C5F2ADE3890009899A7 /* GradientColors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +419,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ABloom/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -395,6 +450,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ABloom/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
