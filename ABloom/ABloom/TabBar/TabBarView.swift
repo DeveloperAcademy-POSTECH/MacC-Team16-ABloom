@@ -15,14 +15,14 @@ struct TabBarView: View {
       ForEach(Tab.allCases, id: \.self) { tab in
         switch tab {
         case .main:
-          Text("메인뷰")
+          MainView()
             .tabItem {
               Image(systemName: tab.icon)
               Text(tab.title)
             }
             .tag(tab)
         case .qna:
-          Text("문답뷰")
+          DesignSystemEx()
             .tabItem {
               Image(systemName: tab.icon)
               Text(tab.title)
