@@ -13,6 +13,7 @@ struct MainView: View {
   var body: some View{
     return ZStack{
       Text("Hello ABloom 화이팅 :)")
+        .fontWithTracking(fontStyle: .title.bold(), value: -0.4)
     }
   }
 }
