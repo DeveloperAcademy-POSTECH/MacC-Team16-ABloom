@@ -72,7 +72,7 @@ struct StoneSingleBtn: View {
   }
 }
 
-struct RectagleBtn: View {
+struct RectangleBtn: View {
   
   var body: some View {
     Image("return")
