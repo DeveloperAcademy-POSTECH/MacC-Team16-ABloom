@@ -63,7 +63,7 @@ extension View {
   
   /// BackgroundColorView
   public func backgroundDefault() -> some View {
-    Image("BackgroundDefault")
+    Image("BackgroundDefault").resizable().scaledToFill().ignoresSafeArea()
   }
   
   /// RoundedCorner struct를 활용하여 지정된 edge마다 지정된 radius 값으로 변환시키는 함수

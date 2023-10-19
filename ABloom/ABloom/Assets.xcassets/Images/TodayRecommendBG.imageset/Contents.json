@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "TodayRecommendQueation.png",
+      "filename" : "image 3.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "TodayRecommendQueation@2x.png",
+      "filename" : "image 3@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "TodayRecommendQueation@3x.png",
+      "filename" : "image 3@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -34,7 +34,7 @@ struct HomeView: View {
         
         Image(systemName: "")
           .resizable()
-          .aspectRatio(contentMode: .fill)
+          .aspectRatio(contentMode: .fit)
           .scaleEffect(0.2)
           .frame(height: 387)
           .overlay {
