@@ -17,7 +17,8 @@ struct ABloomApp: App {
   
   var body: some Scene {
     WindowGroup {
-      TabBarView()
+//      TabBarView()
+      LoginView()
     }
   }
 }
