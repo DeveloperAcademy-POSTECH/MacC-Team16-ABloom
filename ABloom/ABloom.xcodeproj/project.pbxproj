@@ -35,6 +35,8 @@
 		3DB6A5A52AE0BDF800C1369F /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5A42AE0BDF800C1369F /* FirebaseRemoteConfigSwift */; };
 		3DB6A5A72AE0BDF800C1369F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5A62AE0BDF800C1369F /* FirebaseStorage */; };
 		3DB6A5A92AE0BDF800C1369F /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5A82AE0BDF800C1369F /* FirebaseStorageCombine-Community */; };
+		3DB6A5AB2AE0C09800C1369F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6A5AA2AE0C09800C1369F /* LoginView.swift */; };
+		3DB6A5AE2AE0C12B00C1369F /* AppleLoginButtonViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6A5AD2AE0C12B00C1369F /* AppleLoginButtonViewRepresentable.swift */; };
 		6053F15B2ADEB7700064A6E0 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053F15A2ADEB7700064A6E0 /* RegistrationViewModel.swift */; };
 		6053F15F2ADF6C3B0064A6E0 /* Ex+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053F15E2ADF6C3B0064A6E0 /* Ex+View.swift */; };
 		6053F1622ADF6CDE0064A6E0 /* InputFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053F1612ADF6CDE0064A6E0 /* InputFieldModifier.swift */; };
@@ -59,6 +61,8 @@
 
 /* Begin PBXFileReference section */
 		3DB6A5712AE0BD7600C1369F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3DB6A5AA2AE0C09800C1369F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		3DB6A5AD2AE0C12B00C1369F /* AppleLoginButtonViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginButtonViewRepresentable.swift; sourceTree = "<group>"; };
 		6053F15A2ADEB7700064A6E0 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		6053F15E2ADF6C3B0064A6E0 /* Ex+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+View.swift"; sourceTree = "<group>"; };
 		6053F1612ADF6CDE0064A6E0 /* InputFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldModifier.swift; sourceTree = "<group>"; };
@@ -126,6 +130,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3DB6A5AC2AE0C0B700C1369F /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		3DB6A5AF2AE0C13800C1369F /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				3DB6A5AD2AE0C12B00C1369F /* AppleLoginButtonViewRepresentable.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
 		6053F1582ADEB7550064A6E0 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +198,8 @@
 			isa = PBXGroup;
 			children = (
 				AE2BB5FE2AD673890003CD85 /* LoginMD.md */,
+				3DB6A5AA2AE0C09800C1369F /* LoginView.swift */,
+				3DB6A5AF2AE0C13800C1369F /* SubViews */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -252,6 +273,7 @@
 				6053F1632ADF7F3D0064A6E0 /* Presentation */,
 				AE2BB6012AD674630003CD85 /* TabBar */,
 				AE2BB5F52AD66BF30003CD85 /* Login */,
+				3DB6A5AC2AE0C0B700C1369F /* Firebase */,
 				AE7EE4E62AD6409100E0A573 /* Preview Content */,
 			);
 			path = ABloom;
@@ -428,8 +450,10 @@
 				6055411A2ADE66B000AD5625 /* RegistrationView.swift in Sources */,
 				605541152ADE1A9D00AD5625 /* TabBarView.swift in Sources */,
 				AE7EE4E12AD6409000E0A573 /* ABloomApp.swift in Sources */,
+				3DB6A5AE2AE0C12B00C1369F /* AppleLoginButtonViewRepresentable.swift in Sources */,
 				6053F15F2ADF6C3B0064A6E0 /* Ex+View.swift in Sources */,
 				6053F1622ADF6CDE0064A6E0 /* InputFieldModifier.swift in Sources */,
+				3DB6A5AB2AE0C09800C1369F /* LoginView.swift in Sources */,
 				605541172ADE1ACF00AD5625 /* Tab.swift in Sources */,
 				AE8D3C5F2ADE3890009899A7 /* GradientColors.swift in Sources */,
 			);
