@@ -58,7 +58,7 @@
 		AE8D3C5A2ADE1A08009899A7 /* SpoqaHanSansNeo-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8D3C552ADE1A08009899A7 /* SpoqaHanSansNeo-Thin.ttf */; };
 		AE8D3C5B2ADE1A08009899A7 /* SpoqaHanSansNeo-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8D3C562ADE1A08009899A7 /* SpoqaHanSansNeo-Light.ttf */; };
 		AE8D3C5C2ADE1A08009899A7 /* SpoqaHanSansNeo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8D3C572ADE1A08009899A7 /* SpoqaHanSansNeo-Medium.ttf */; };
-		AE8D3C612ADE3C73009899A7 /* ExShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D3C602ADE3C73009899A7 /* ExShape.swift */; };
+		AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D3C602ADE3C73009899A7 /* Ex+Shape.swift */; };
 		AEAB19372ADF77210057BC43 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAB19362ADF77210057BC43 /* Buttons.swift */; };
 		AEFD01E02AE033E9001D2C30 /* ChatBubbles.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFD01DF2AE033E9001D2C30 /* ChatBubbles.swift */; };
 /* End PBXBuildFile section */
@@ -96,7 +96,7 @@
 		AE8D3C562ADE1A08009899A7 /* SpoqaHanSansNeo-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Light.ttf"; sourceTree = "<group>"; };
 		AE8D3C572ADE1A08009899A7 /* SpoqaHanSansNeo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Medium.ttf"; sourceTree = "<group>"; };
 		AE8D3C5D2ADE1A22009899A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		AE8D3C602ADE3C73009899A7 /* ExShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExShape.swift; sourceTree = "<group>"; };
+		AE8D3C602ADE3C73009899A7 /* Ex+Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Shape.swift"; sourceTree = "<group>"; };
 		AEAB19362ADF77210057BC43 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		AEFD01DF2AE033E9001D2C30 /* ChatBubbles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbles.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -299,7 +299,7 @@
 				6053F15E2ADF6C3B0064A6E0 /* Ex+View.swift */,
 				AE8D3C502ADE19E0009899A7 /* Ex+Font.swift */,
 				AE6ACF522AE0B45F0017088C /* Ex+Text.swift */,
-				AE8D3C602ADE3C73009899A7 /* ExShape.swift */,
+				AE8D3C602ADE3C73009899A7 /* Ex+Shape.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -449,7 +449,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE8D3C512ADE19E0009899A7 /* Ex+Font.swift in Sources */,
-				AE8D3C612ADE3C73009899A7 /* ExShape.swift in Sources */,
+				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
 				AEFD01E02AE033E9001D2C30 /* ChatBubbles.swift in Sources */,
 				AE2BB5F92AD66D850003CD85 /* MainView.swift in Sources */,
 				6053F15B2ADEB7700064A6E0 /* RegistrationViewModel.swift in Sources */,

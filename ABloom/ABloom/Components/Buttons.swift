@@ -135,15 +135,13 @@ struct TextBtn: View {
 
 #Preview {
   Group {
-    AppleLoginButton()
-      .padding()
     PinkSingleBtn(text: "버튼")
       .padding()
     Pink50SingleBtn(text: "버튼")
       .padding()
     StoneSingleBtn(text: "버튼")
       .padding()
-    RectagleBtn()
+    RectangleBtn()
       .padding()
     RectagleGrayBtn()
       .padding()
