@@ -72,6 +72,7 @@ colon:
 
 # 행 길이 커스텀 정의
 line_length:
+  warning: 200
   ignores_urls: true # URL에 대해 행 길이 제한 미적용
   ignores_comments: true # 코멘트에 대해 행 길이 제한 미적용
   ignores_interpolated_strings: true # 보간된 문자열 행 길이 제한 미적용
