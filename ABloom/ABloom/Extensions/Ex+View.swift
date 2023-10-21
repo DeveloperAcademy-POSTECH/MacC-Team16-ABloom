@@ -61,10 +61,10 @@ extension View {
     LinearGradient(colors: [.pink400, .biPink], startPoint: .bottomLeading, endPoint: .topTrailing)
   }
   
-//  /// BackgroundColorView => 이미지 에셋 받는데로 추가
-//  public func backgroundDefault() -> some View {
-//    Image("backgroundDefault")
-//  }
+  /// BackgroundColorView
+  public func backgroundDefault() -> some View {
+    Image("BackgroundDefault").resizable().scaledToFill().ignoresSafeArea()
+  }
   
   /// RoundedCorner struct를 활용하여 지정된 edge마다 지정된 radius 값으로 변환시키는 함수
   func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
