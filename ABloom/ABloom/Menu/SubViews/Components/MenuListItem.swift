@@ -24,7 +24,7 @@ struct MenuListItem<Content: View>: View {
     } label: {
       HStack {
         Text(title)
-          .font(.subHeadlineBold)
+          .fontWithTracking(fontStyle: .subHeadlineBold)
           .foregroundStyle(.stone800)
         
         Spacer()

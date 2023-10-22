@@ -37,7 +37,7 @@ extension MenuView {
   private var topTitle: some View {
     HStack {
       Text("메뉴")
-        .font(.title2Bold)
+        .fontWithTracking(fontStyle: .title2Bold)
         .foregroundStyle(.stone700)
       
       Spacer()
@@ -75,7 +75,7 @@ extension MenuView {
   private var versionInfo: some View {
     HStack {
       Text("버전 정보")
-        .font(.subHeadlineBold)
+        .fontWithTracking(fontStyle: .subHeadlineBold)
         .foregroundStyle(.stone800)
       
       Spacer()

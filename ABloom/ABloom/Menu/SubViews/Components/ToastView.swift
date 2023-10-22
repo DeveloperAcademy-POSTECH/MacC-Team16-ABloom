@@ -12,7 +12,7 @@ struct ToastView: View {
   
   var body: some View {
     Text(message)
-      .font(.footnoteR)
+      .fontWithTracking(fontStyle: .footnoteR)
       .padding(.horizontal, 12)
       .padding(.vertical, 8)
       .background(.stone400)

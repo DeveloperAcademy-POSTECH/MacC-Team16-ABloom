@@ -49,7 +49,7 @@ extension MyAccountConnectingView {
   private var headerContent: some View {
     HStack {
       Text("상대방과 연결하면 문답을 함께 작성해갈 수 있어요.\n내 초대코드를 복사해 연결할 상대방에게 알려주세요.")
-        .font(.footnoteR)
+        .fontWithTracking(fontStyle: .footnoteR)
         .foregroundStyle(.stone600)
       
       Spacer()
@@ -59,23 +59,24 @@ extension MyAccountConnectingView {
   private var myCodeBox: some View {
     VStack(alignment: .leading) {
       Text("나의 연결 코드")
-        .font(.subheadline)
+        .fontWithTracking(fontStyle: .subHeadlineR)
       
       HStack {
         Image(systemName: "clipboard.fill")
+          .font(.calloutBold)
         
         Text(myAccountConnectingVM.myCode ?? "코드를 불러오지 못했습니다.")
+          .fontWithTracking(fontStyle: .calloutBold)
         
         Spacer()
         
         Button(action: copyClipboard, label: {
           Text("복사")
-            .font(.caption1R)
+            .fontWithTracking(fontStyle: .caption1R)
             .padding(.trailing, 15)
         })
       }
       .foregroundStyle(.stone950)
-      .font(.calloutBold)
       .strokeInputFieldStyle(isValueValid: true, alignment: .leading)
     }
   }
@@ -83,7 +84,7 @@ extension MyAccountConnectingView {
   private var connectionCodeTextfield: some View {
     VStack(alignment: .leading) {
       Text("상대방의 연결 코드")
-        .font(.subheadline)
+        .fontWithTracking(fontStyle: .subHeadlineR)
       
       TextField("상대방의 연결코드를 입력해주세요.", text: $myAccountConnectingVM.codeInputText)
       .foregroundStyle(.stone950)
