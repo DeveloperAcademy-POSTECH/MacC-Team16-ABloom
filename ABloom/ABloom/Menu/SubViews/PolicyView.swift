@@ -30,11 +30,11 @@ extension PolicyView {
   private var menuList: some View {
     VStack(spacing: listItemPadding) {
       MenuListItem(title: "서비스 이용약관") {
-        Text("서비스 이용 약관")
+        EmbedWebView(viewTitle: "서비스 이용약관", urlString: "https://www.google.com")
       }
       
       MenuListItem(title: "개인정보 처리방침") {
-        Text("feef")
+        EmbedWebView(viewTitle: "개인정보 처리방침", urlString: "https://www.google.com")
       }
       
       Spacer()

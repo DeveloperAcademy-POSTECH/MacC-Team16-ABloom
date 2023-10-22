@@ -54,15 +54,15 @@ extension MenuView {
       }
       
       MenuListItem(title: "문답 연구소") {
-        Text("feef")
+        EmbedWebView(viewTitle: "문답연구소", urlString: "https://www.google.com")
       }
       
       MenuListItem(title: "문의하기") {
-        Text("feef")
+        EmbedWebView(viewTitle: "문의하기", urlString: "https://www.google.com")
       }
       
       MenuListItem(title: "약관과 정책") {
-        Text("feef")
+        PolicyView()
       }
       
       versionInfo
