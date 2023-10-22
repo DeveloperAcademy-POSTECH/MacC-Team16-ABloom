@@ -16,6 +16,10 @@ enum InputField {
 enum UserType: String, CaseIterable {
   case woman = "예비신부"
   case man = "예비신랑"
+  
+  var getBool: Bool {
+    self == .man ? true : false
+  }
 }
 
 enum RegisterField {
@@ -68,5 +72,11 @@ class RegistrationViewModel: ObservableObject {
     case .radio:
       return selectedType != nil && selectedType?.rawValue == value
     }
+  }
+  
+  func registerNewUser() throws {
+    let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
+    let user = DBUser(userId: userId, name: userName, sex: userType!.getBool, estimatedMarriageDate: weddingDate)
+    try UserManager.shared.createNewUser(user: user)
   }
 }

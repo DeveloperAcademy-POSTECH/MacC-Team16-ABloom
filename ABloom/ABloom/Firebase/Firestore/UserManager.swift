@@ -16,6 +16,13 @@ struct DBUser: Codable {
   let sex: Bool?
   let estimatedMarriageDate: Date?
   
+  init(userId: String, name: String, sex: Bool, estimatedMarriageDate: Date) {
+    self.userId = userId
+    self.name = name
+    self.sex = sex
+    self.estimatedMarriageDate = estimatedMarriageDate
+  }
+  
   init(auth: AuthDataResultModel) {
     self.userId = auth.uid
     self.name = auth.name

@@ -14,13 +14,6 @@ struct LoginView: View {
     VStack {
       Spacer()
       
-      if let user = loginVM.user {
-          Text("User Id \(user.uid)")
-        if let name = user.name {
-          Text("User Name \(name)")
-        }
-      }
-      
       Button {
         Task {
           try await loginVM.signInApple()
@@ -36,9 +29,14 @@ struct LoginView: View {
     .task {
       try? loginVM.loadCurrentUser()
     }
+    .navigationDestination(isPresented: $loginVM.isSignInSuccess) {
+      RegistrationView(registerVM: RegistrationViewModel())
+    }
   }
 }
 
 #Preview {
-  LoginView()
+  NavigationStack {
+    LoginView()
+  }
 }
