@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3DB6A5722AE0BD7600C1369F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DB6A5712AE0BD7600C1369F /* GoogleService-Info.plist */; };
+		3D4412432AE388DB00FD5A51 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4412422AE388DB00FD5A51 /* UserManager.swift */; };
+		3D4412492AE4C49700FD5A51 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4412482AE4C49700FD5A51 /* AuthenticationManager.swift */; };
+		3D44124B2AE4CF5400FD5A51 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D44124A2AE4CF5400FD5A51 /* GoogleService-Info.plist */; };
+		3D44124E2AE4DD2800FD5A51 /* ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44124D2AE4DD2800FD5A51 /* ConnectionView.swift */; };
 		3DB6A5752AE0BDF800C1369F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5742AE0BDF800C1369F /* FirebaseAnalytics */; };
 		3DB6A5772AE0BDF800C1369F /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5762AE0BDF800C1369F /* FirebaseAnalyticsOnDeviceConversion */; };
 		3DB6A5792AE0BDF800C1369F /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5782AE0BDF800C1369F /* FirebaseAnalyticsSwift */; };
@@ -66,7 +69,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3DB6A5712AE0BD7600C1369F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3D4412422AE388DB00FD5A51 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		3D4412482AE4C49700FD5A51 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		3D44124A2AE4CF5400FD5A51 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3D44124D2AE4DD2800FD5A51 /* ConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionView.swift; sourceTree = "<group>"; };
 		3DB6A5AA2AE0C09800C1369F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3DB6A5AD2AE0C12B00C1369F /* AppleLoginButtonViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginButtonViewRepresentable.swift; sourceTree = "<group>"; };
 		3DB6A5B02AE11C2D00C1369F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -142,9 +148,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D4412412AE388CC00FD5A51 /* Firestore */ = {
+			isa = PBXGroup;
+			children = (
+				3D4412422AE388DB00FD5A51 /* UserManager.swift */,
+			);
+			path = Firestore;
+			sourceTree = "<group>";
+		};
+		3D44124C2AE4DD1800FD5A51 /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				3D44124D2AE4DD2800FD5A51 /* ConnectionView.swift */,
+			);
+			path = Connection;
+			sourceTree = "<group>";
+		};
 		3DB6A5AC2AE0C0B700C1369F /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				3D4412412AE388CC00FD5A51 /* Firestore */,
 				3DB6A5B22AE11CBA00C1369F /* Authentication */,
 			);
 			path = Firebase;
@@ -162,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				3DB6A5B32AE11CCD00C1369F /* SignInAppleHelper.swift */,
+				3D4412482AE4C49700FD5A51 /* AuthenticationManager.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -185,6 +209,7 @@
 		6053F1632ADF7F3D0064A6E0 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				3D44124C2AE4DD1800FD5A51 /* Connection */,
 				605541182ADE669100AD5625 /* Registration */,
 			);
 			path = Presentation;
@@ -286,10 +311,10 @@
 			isa = PBXGroup;
 			children = (
 				3DB6A5B52AE1278D00C1369F /* ABloom.entitlements */,
+				3D44124A2AE4CF5400FD5A51 /* GoogleService-Info.plist */,
 				AE8D3C5D2ADE1A22009899A7 /* Info.plist */,
 				AE7EE4E42AD6409100E0A573 /* Assets.xcassets */,
 				AE2BB5F62AD66BFF0003CD85 /* Data */,
-				3DB6A5712AE0BD7600C1369F /* GoogleService-Info.plist */,
 				AE8D3C522ADE19F2009899A7 /* Fonts */,
 				AE8D3C4F2ADE19B4009899A7 /* Extensions */,
 				AE2BB5F72AD66C0F0003CD85 /* Components */,
@@ -429,7 +454,7 @@
 			files = (
 				AE8D3C5A2ADE1A08009899A7 /* SpoqaHanSansNeo-Thin.ttf in Resources */,
 				AE8D3C582ADE1A08009899A7 /* SpoqaHanSansNeo-Bold.ttf in Resources */,
-				3DB6A5722AE0BD7600C1369F /* GoogleService-Info.plist in Resources */,
+				3D44124B2AE4CF5400FD5A51 /* GoogleService-Info.plist in Resources */,
 				AE8D3C5B2ADE1A08009899A7 /* SpoqaHanSansNeo-Light.ttf in Resources */,
 				AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */,
 				AE7EE4E82AD6409100E0A573 /* Preview Assets.xcassets in Resources */,
@@ -468,9 +493,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE8D3C512ADE19E0009899A7 /* Ex+Font.swift in Sources */,
+				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
+				3D4412492AE4C49700FD5A51 /* AuthenticationManager.swift in Sources */,
 				6053F16E2AE179240064A6E0 /* HomeView.swift in Sources */,
 				AE8D3C512ADE19E0009899A7 /* Ex+Font.swift in Sources */,
-				AE8D3C612ADE3C73009899A7 /* ExShape.swift in Sources */,
+				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
 				6053F15B2ADEB7700064A6E0 /* RegistrationViewModel.swift in Sources */,
 				6055411A2ADE66B000AD5625 /* RegistrationView.swift in Sources */,
 				AE8D3C512ADE19E0009899A7 /* Ex+Font.swift in Sources */,
@@ -486,11 +514,13 @@
 				3DB6A5B12AE11C2D00C1369F /* LoginViewModel.swift in Sources */,
 				3DB6A5AE2AE0C12B00C1369F /* AppleLoginButtonViewRepresentable.swift in Sources */,
 				6053F15F2ADF6C3B0064A6E0 /* Ex+View.swift in Sources */,
+				3D44124E2AE4DD2800FD5A51 /* ConnectionView.swift in Sources */,
 				6053F1622ADF6CDE0064A6E0 /* InputFieldModifier.swift in Sources */,
 				6053F1742AE17A3A0064A6E0 /* HomeViewModel.swift in Sources */,
 				3DB6A5B42AE11CCD00C1369F /* SignInAppleHelper.swift in Sources */,
 				3DB6A5AB2AE0C09800C1369F /* LoginView.swift in Sources */,
 				605541172ADE1ACF00AD5625 /* Tab.swift in Sources */,
+				3D4412432AE388DB00FD5A51 /* UserManager.swift in Sources */,
 				AE6ACF552AE0B49E0017088C /* Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -107,6 +107,7 @@ extension RegistrationView {
   private var nextButton: some View {
     Button {
       // ConnectView()
+      try? registerVM.registerNewUser()
     } label: {
       if registerVM.isNextButtonEnabled {
         PinkSingleBtn(text: "다음")
@@ -117,6 +118,9 @@ extension RegistrationView {
       }
     }
     .disabled(!registerVM.isNextButtonEnabled)
+    .navigationDestination(isPresented: $registerVM.isSuccess) {
+      ConnectionView()
+    }
   }
 }
 
