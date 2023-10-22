@@ -50,7 +50,7 @@ extension MenuView {
       }
       
       MenuListItem(title: "연결 설정") {
-        Text("feef")
+        MyAccountConnectingView()
       }
       
       MenuListItem(title: "문답 연구소") {
