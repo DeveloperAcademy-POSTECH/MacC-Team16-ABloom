@@ -10,9 +10,7 @@ import SwiftUI
 struct MyAccountView: View {
   let avatarSize: CGFloat = 70
   
-  // ViewModel 생성 필요
-  let userName: String = "최지은"
-  let dDay: Int = 96
+  @StateObject var myAccountVM = MyAccountViewModel()
   
   var body: some View {
     VStack(alignment: .leading) {
@@ -23,6 +21,9 @@ struct MyAccountView: View {
       accountMenuList
       
       Spacer()
+    }
+    .task {
+      try? await myAccountVM.getMyInfo()
     }
     .navigationTitle("내 계정")
     .navigationBarTitleDisplayMode(.inline)
@@ -46,11 +47,11 @@ extension MyAccountView {
         .frame(width: avatarSize)
       
       VStack(alignment: .leading) {
-        Text(userName)
+        Text(myAccountVM.userName ?? "정보 없음")
           .font(.title3Bold)
           .foregroundStyle(.stone800)
         HStack {
-          Text("결혼까지 D-\(dDay)")
+          Text("결혼까지 D-\(myAccountVM.dDay ?? 0)")
           Spacer()
           Text("정보 수정하기 >")
         }
