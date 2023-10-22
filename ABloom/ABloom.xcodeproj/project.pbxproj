@@ -14,6 +14,7 @@
 		3D4412512AE4E58A00FD5A51 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4412502AE4E58A00FD5A51 /* MenuView.swift */; };
 		3D4412542AE4EE2C00FD5A51 /* MenuListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4412532AE4EE2C00FD5A51 /* MenuListItem.swift */; };
 		3D4412562AE4F31D00FD5A51 /* MyAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4412552AE4F31D00FD5A51 /* MyAccountView.swift */; };
+		3D4412582AE4F71000FD5A51 /* PolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4412572AE4F71000FD5A51 /* PolicyView.swift */; };
 		3DB6A5752AE0BDF800C1369F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5742AE0BDF800C1369F /* FirebaseAnalytics */; };
 		3DB6A5772AE0BDF800C1369F /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5762AE0BDF800C1369F /* FirebaseAnalyticsOnDeviceConversion */; };
 		3DB6A5792AE0BDF800C1369F /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5782AE0BDF800C1369F /* FirebaseAnalyticsSwift */; };
@@ -79,6 +80,7 @@
 		3D4412502AE4E58A00FD5A51 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		3D4412532AE4EE2C00FD5A51 /* MenuListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListItem.swift; sourceTree = "<group>"; };
 		3D4412552AE4F31D00FD5A51 /* MyAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountView.swift; sourceTree = "<group>"; };
+		3D4412572AE4F71000FD5A51 /* PolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyView.swift; sourceTree = "<group>"; };
 		3DB6A5AA2AE0C09800C1369F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3DB6A5AD2AE0C12B00C1369F /* AppleLoginButtonViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginButtonViewRepresentable.swift; sourceTree = "<group>"; };
 		3DB6A5B02AE11C2D00C1369F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			children = (
 				3D4412532AE4EE2C00FD5A51 /* MenuListItem.swift */,
 				3D4412552AE4F31D00FD5A51 /* MyAccountView.swift */,
+				3D4412572AE4F71000FD5A51 /* PolicyView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
 				AEFD01E02AE033E9001D2C30 /* ChatBubbles.swift in Sources */,
 				6053F15B2ADEB7700064A6E0 /* RegistrationViewModel.swift in Sources */,
+				3D4412582AE4F71000FD5A51 /* PolicyView.swift in Sources */,
 				6053F1712AE17A260064A6E0 /* HomeRecommendView.swift in Sources */,
 				6055411A2ADE66B000AD5625 /* RegistrationView.swift in Sources */,
 				AE6ACF532AE0B45F0017088C /* Ex+Text.swift in Sources */,
