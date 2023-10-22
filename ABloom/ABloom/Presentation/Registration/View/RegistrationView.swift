@@ -66,6 +66,9 @@ struct RegistrationView: View {
         Text("완료")
       }
     }
+    .navigationDestination(isPresented: $registerVM.isSuccess) {
+      ConnectionView()
+    }
   }
 }
 
