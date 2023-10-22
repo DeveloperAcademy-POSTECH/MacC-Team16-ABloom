@@ -95,4 +95,4 @@ fastlane/test_output
 iOSInjectionProject/
 
 # GoogleInfo
-GoogleService-Info.plist
+ABloom/ABloom/GoogleService-Info.plist

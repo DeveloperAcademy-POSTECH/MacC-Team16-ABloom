@@ -33,6 +33,9 @@ struct LoginView: View {
       .padding(.horizontal, 20)
       .padding(.bottom, 60)
     }
+    .task {
+      try? loginVM.loadCurrentUser()
+    }
   }
 }
 
