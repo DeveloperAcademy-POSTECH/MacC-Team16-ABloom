@@ -33,7 +33,7 @@ struct TabBarView: View {
             }
             .tag(tab)
         case .info:
-          Text("내정보뷰")
+          MenuView()
             .tabItem {
               Image(systemName: tab.icon)
               Text(tab.title)
