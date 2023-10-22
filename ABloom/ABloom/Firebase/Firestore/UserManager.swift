@@ -15,12 +15,14 @@ struct DBUser: Codable {
   let name: String?
   let sex: Bool?
   let estimatedMarriageDate: Date?
+  let invitationCode: String?
   
-  init(userId: String, name: String, sex: Bool, estimatedMarriageDate: Date) {
+  init(userId: String, name: String, sex: Bool, estimatedMarriageDate: Date, invitationCode: String) {
     self.userId = userId
     self.name = name
     self.sex = sex
     self.estimatedMarriageDate = estimatedMarriageDate
+    self.invitationCode = invitationCode
   }
   
   init(auth: AuthDataResultModel) {
@@ -28,6 +30,7 @@ struct DBUser: Codable {
     self.name = auth.name
     self.sex = nil
     self.estimatedMarriageDate = nil
+    self.invitationCode = nil
   }
   
   enum CodingKeys: String, CodingKey {
@@ -35,6 +38,7 @@ struct DBUser: Codable {
     case name = "name"
     case sex = "sex"
     case estimatedMarriageDate = "estimated_marriage_date"
+    case invitationCode = "invitation_code"
   }
   
   func encode(to encoder: Encoder) throws {
@@ -43,6 +47,7 @@ struct DBUser: Codable {
     try container.encode(self.name, forKey: .name)
     try container.encode(self.sex, forKey: .sex)
     try container.encode(self.estimatedMarriageDate, forKey: .estimatedMarriageDate)
+    try container.encode(self.invitationCode, forKey: .invitationCode)
   }
   
   init(from decoder: Decoder) throws {
@@ -51,6 +56,7 @@ struct DBUser: Codable {
     self.name = try container.decode(String.self, forKey: .name)
     self.sex = try container.decode(Bool.self, forKey: .sex)
     self.estimatedMarriageDate = try container.decode(Date.self, forKey: .estimatedMarriageDate)
+    self.invitationCode = try container.decode(String.self, forKey: .invitationCode)
   }
 }
 

@@ -76,7 +76,14 @@ class RegistrationViewModel: ObservableObject {
   
   func registerNewUser() throws {
     let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
-    let user = DBUser(userId: userId, name: userName, sex: userType!.getBool, estimatedMarriageDate: weddingDate)
+    let invitationCode = generateInviteCode(userId: userId)
+    let user = DBUser(userId: userId, name: userName, sex: userType!.getBool, estimatedMarriageDate: weddingDate, invitationCode: invitationCode)
     try UserManager.shared.createNewUser(user: user)
+  }
+  
+  /// 초대를 위한 초대 코드를 생성합니다.
+  /// - Returns: 랜덤한 초대 코드를 리턴합니다.
+  private func generateInviteCode(userId: String) -> String {
+    String((0..<10).map{ _ in userId.randomElement()!})
   }
 }
