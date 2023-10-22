@@ -59,17 +59,12 @@ class RegistrationViewModel: ObservableObject {
     isFieldValid(.radio, value: type.rawValue, selectedType: userType)
   }
   
-  private func isFieldValid(_ type: InputField, value: String?, selectedType: UserType? = nil) -> Bool {
+  private func isFieldValid(_ type: InputField, value: String, selectedType: UserType? = nil) -> Bool {
     switch type {
     case .datePicker:
       return isDatePickerTapped
     case .text:
-      if let text = value {
-        return !text.isEmpty
-      }
-      else {
-        return false
-      }
+      return !value.isEmpty
     case .radio:
       return selectedType != nil && selectedType?.rawValue == value
     }
