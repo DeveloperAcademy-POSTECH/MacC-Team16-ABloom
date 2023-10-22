@@ -25,13 +25,7 @@ struct StrokeInputFieldStyle: ViewModifier {
         
       content
         .foregroundStyle(isValueValid ? .stone900 : .stone400)
-        .padding(
-          EdgeInsets(
-            top: 0,
-            leading: 16,
-            bottom: 0,
-            trailing: 16)
-        )
+        .padding(.horizontal, 16)
     }
     .tint(.pink500)
   }

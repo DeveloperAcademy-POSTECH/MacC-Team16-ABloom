@@ -12,7 +12,6 @@ struct RegistrationView: View {
   
   var body: some View {
     VStack(alignment: .leading, spacing: 30) {
-      
       Spacer().frame(height: 98)
       
       nameInputField
@@ -23,40 +22,16 @@ struct RegistrationView: View {
       
       Spacer()
       
-      NavigationLink {
-        // ConnectView()
-      } label: {
-        if registerVM.isNextButtonEnabled {
-          PinkSingleBtn(text: "다음")
-            .frame(maxWidth: .infinity)
-        } else {
-          StoneSingleBtn(text: "다음")
-            .frame(maxWidth: .infinity)
-        }
-      }
-      .disabled(!registerVM.isNextButtonEnabled)
+      nextButton
       
       Spacer().frame(height: 60)
     }
     .padding(.horizontal, 20)
     .background(backgroundDefault())
+    .tint(.pink500)
     .ignoresSafeArea()
     .navigationTitle("가입하기")
     .navigationBarTitleDisplayMode(.inline)
-    .sheet(isPresented: $registerVM.isShowingDatePicker) {
-      DatePicker("", selection: $registerVM.weddingDate, displayedComponents: .date)
-        .datePickerStyle(.graphical)
-        .frame(width: 320)
-        .labelsHidden()
-        .presentationDetents([.medium])
-      Button {
-        registerVM.isDatePickerTapped = true
-        registerVM.isShowingDatePicker = false
-      } label: {
-        Text("완료")
-      }
-    }
-    .tint(.pink500)
   }
 }
 
@@ -65,6 +40,7 @@ extension RegistrationView {
     VStack(alignment: .leading, spacing: 6) {
       Text("이름")
         .fontWithTracking(fontStyle: .subHeadlineR)
+      
       ZStack(alignment: .leading) {
         if !registerVM.isUserNameValid {
           Text("홍길동")
@@ -112,6 +88,35 @@ extension RegistrationView {
           registerVM.isShowingDatePicker = true
         }
     }
+    
+    .sheet(isPresented: $registerVM.isShowingDatePicker) {
+      DatePicker("", selection: $registerVM.weddingDate, displayedComponents: .date)
+        .datePickerStyle(.graphical)
+        .frame(width: 320)
+        .labelsHidden()
+        .presentationDetents([.medium])
+      Button {
+        registerVM.isDatePickerTapped = true
+        registerVM.isShowingDatePicker = false
+      } label: {
+        Text("완료")
+      }
+    }
+  }
+  
+  private var nextButton: some View {
+    Button {
+      // ConnectView()
+    } label: {
+      if registerVM.isNextButtonEnabled {
+        PinkSingleBtn(text: "다음")
+          .frame(maxWidth: .infinity)
+      } else {
+        StoneSingleBtn(text: "다음")
+          .frame(maxWidth: .infinity)
+      }
+    }
+    .disabled(!registerVM.isNextButtonEnabled)
   }
 }
 
