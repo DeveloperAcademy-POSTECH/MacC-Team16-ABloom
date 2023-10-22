@@ -43,6 +43,7 @@ struct RegistrationView: View {
       
       Button {
         print("Complete")
+        try? registerVM.registerNewUser()
       } label: {
         Text("다음")
           .foregroundStyle(.white)

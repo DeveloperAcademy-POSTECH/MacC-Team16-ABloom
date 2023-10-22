@@ -11,20 +11,23 @@ import FirebaseAuth
 @MainActor
 final class LoginViewModel: ObservableObject {
   @Published var user: AuthDataResultModel? = nil
+  @Published var isSignInSuccess = false
   
   func loadCurrentUser() throws {
     let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
     self.user = authDataResult
+    self.isSignInSuccess = true
   }
   
   /// Apple ID로 로그인합니다.
   func signInApple() async throws {
+    // 유저 로그인
     let helper = SignInAppleHelper()
     let tokens = try await helper.startSignInWithAppleFlow()
     let authDataResult = try await AuthenticationManager.shared.signInWithApple(tokens: tokens)
     self.user = authDataResult
-    let user = DBUser(auth: authDataResult)
-    try UserManager.shared.createNewUser(user: user)
+    
+    self.isSignInSuccess = true
   }
 }
 
