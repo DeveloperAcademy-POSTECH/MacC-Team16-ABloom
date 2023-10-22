@@ -35,7 +35,6 @@ struct LoginView: View {
     }
     .task {
       try? loginVM.loadCurrentUser()
-      print(loginVM.user)
     }
   }
 }
