@@ -53,7 +53,7 @@ final class SignInAppleHelper: NSObject {
     
     let appleIDProvider = ASAuthorizationAppleIDProvider()
     let request = appleIDProvider.createRequest()
-    request.requestedScopes = [.fullName] // 애플 로그인을 통해 제공 받을 부분은 이름입니다.
+    request.requestedScopes = [.fullName, .email] // 애플 로그인을 통해 제공 받을 부분은 이름입니다.
     request.nonce = sha256(nonce)
     
     let authorizationController = ASAuthorizationController(authorizationRequests: [request])
