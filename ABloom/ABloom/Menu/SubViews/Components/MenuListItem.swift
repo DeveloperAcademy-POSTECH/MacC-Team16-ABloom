@@ -31,6 +31,7 @@ struct MenuListItem<Content: View>: View {
         
         Text(subContent)
           .foregroundStyle(.pink600)
+          .fontWithTracking(fontStyle: .caption1R)
           .padding(.trailing, 7.15)
         
         Image(systemName: "chevron.right")
