@@ -118,7 +118,7 @@ extension RegistrationView {
       }
     }
     .disabled(!registerVM.isNextButtonEnabled)
-    .navigationDestination(isPresented: $registerVM.isSuccess) {
+    .navigationDestination(isPresented: $registerVM.isSuccessCreateUser) {
       ConnectionView()
     }
   }

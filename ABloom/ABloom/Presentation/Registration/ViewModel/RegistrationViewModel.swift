@@ -34,7 +34,7 @@ class RegistrationViewModel: ObservableObject {
   @Published var weddingDate: Date = .now
   @Published var isDatePickerTapped: Bool = false
   @Published var isShowingDatePicker = false
-  @Published var isSuccess = false
+  @Published var isSuccessCreateUser = false
 
   var formattedWeddingDate: String {
     let formatter = DateFormatter()
@@ -75,7 +75,7 @@ class RegistrationViewModel: ObservableObject {
     let invitationCode = generateInviteCode(userId: userId)
     let user = DBUser(userId: userId, name: userName, sex: userType!.getBool, estimatedMarriageDate: weddingDate, invitationCode: invitationCode)
     try UserManager.shared.createNewUser(user: user)
-    isSuccess = true
+    isSuccessCreateUser = true
   }
   
   /// 초대를 위한 초대 코드를 생성합니다.

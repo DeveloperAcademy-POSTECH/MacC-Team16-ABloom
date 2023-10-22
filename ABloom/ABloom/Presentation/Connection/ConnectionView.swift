@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 final class ConnectionViewModel: ObservableObject {
   @Published var invitationCode: String?
   
