@@ -7,23 +7,6 @@
 
 import SwiftUI
 
-@MainActor
-final class MyAccountConnectingViewModel: ObservableObject {
-  @Published var codeInputText: String = ""
-  @Published var myCode: String?
-  @Published var showToast = false
-  
-  var isTargetCodeVaild: Bool {
-    !codeInputText.isEmpty
-  }
-  
-  func getMyCode() async throws {
-    let currentUser = try AuthenticationManager.shared.getAuthenticatedUser()
-    print("현재 유저 -> \(currentUser)")
-    self.myCode = try await UserManager.shared.getUser(userId: currentUser.uid).invitationCode
-  }
-}
-
 struct MyAccountConnectingView: View {
   @StateObject var myAccountConnectingVM = MyAccountConnectingViewModel()
   
