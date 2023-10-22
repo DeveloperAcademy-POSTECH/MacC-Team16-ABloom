@@ -9,10 +9,12 @@ import SwiftUI
 
 struct MenuListItem<Content: View>: View {
   let title: String
+  let subContent: String
   let destination: Content
   
-  init(title: String, @ViewBuilder destination: () -> Content) {
+  init(title: String, subContent: String = "", @ViewBuilder destination: () -> Content) {
     self.title = title
+    self.subContent = subContent
     self.destination = destination()
   }
   
@@ -26,6 +28,10 @@ struct MenuListItem<Content: View>: View {
           .foregroundStyle(.stone800)
         
         Spacer()
+        
+        Text(subContent)
+          .foregroundStyle(.pink600)
+          .padding(.trailing, 7.15)
         
         Image(systemName: "chevron.right")
           .foregroundStyle(.stone400)

@@ -13,6 +13,7 @@
 		3D44124E2AE4DD2800FD5A51 /* ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44124D2AE4DD2800FD5A51 /* ConnectionView.swift */; };
 		3D4412512AE4E58A00FD5A51 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4412502AE4E58A00FD5A51 /* MenuView.swift */; };
 		3D4412542AE4EE2C00FD5A51 /* MenuListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4412532AE4EE2C00FD5A51 /* MenuListItem.swift */; };
+		3D4412562AE4F31D00FD5A51 /* MyAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4412552AE4F31D00FD5A51 /* MyAccountView.swift */; };
 		3DB6A5752AE0BDF800C1369F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5742AE0BDF800C1369F /* FirebaseAnalytics */; };
 		3DB6A5772AE0BDF800C1369F /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5762AE0BDF800C1369F /* FirebaseAnalyticsOnDeviceConversion */; };
 		3DB6A5792AE0BDF800C1369F /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5782AE0BDF800C1369F /* FirebaseAnalyticsSwift */; };
@@ -77,6 +78,7 @@
 		3D44124D2AE4DD2800FD5A51 /* ConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionView.swift; sourceTree = "<group>"; };
 		3D4412502AE4E58A00FD5A51 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		3D4412532AE4EE2C00FD5A51 /* MenuListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListItem.swift; sourceTree = "<group>"; };
+		3D4412552AE4F31D00FD5A51 /* MyAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountView.swift; sourceTree = "<group>"; };
 		3DB6A5AA2AE0C09800C1369F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3DB6A5AD2AE0C12B00C1369F /* AppleLoginButtonViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginButtonViewRepresentable.swift; sourceTree = "<group>"; };
 		3DB6A5B02AE11C2D00C1369F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				3D4412532AE4EE2C00FD5A51 /* MenuListItem.swift */,
+				3D4412552AE4F31D00FD5A51 /* MyAccountView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 				3D4412512AE4E58A00FD5A51 /* MenuView.swift in Sources */,
 				3DB6A5B42AE11CCD00C1369F /* SignInAppleHelper.swift in Sources */,
 				3DB6A5AB2AE0C09800C1369F /* LoginView.swift in Sources */,
+				3D4412562AE4F31D00FD5A51 /* MyAccountView.swift in Sources */,
 				605541172ADE1ACF00AD5625 /* Tab.swift in Sources */,
 				3D4412432AE388DB00FD5A51 /* UserManager.swift in Sources */,
 				AE6ACF552AE0B49E0017088C /* Helpers.swift in Sources */,

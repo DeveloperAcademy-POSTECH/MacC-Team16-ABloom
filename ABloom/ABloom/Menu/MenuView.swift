@@ -46,7 +46,7 @@ extension MenuView {
   private var menuList: some View {
     VStack(spacing: listItemPadding) {
       MenuListItem(title: "내 계정") {
-        Text("feef")
+        MyAccountView()
       }
       
       MenuListItem(title: "연결 설정") {
