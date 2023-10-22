@@ -12,16 +12,17 @@ struct MenuView: View {
   let versionInfoText: String = "v1.0.0"
   
   var body: some View {
-    
-    VStack {
-      topTitle
-        .padding(.bottom, 40)
-        .padding(.top, 19)
-      
-      menuList
+    NavigationStack {
+      VStack {
+        topTitle
+          .padding(.bottom, 40)
+          .padding(.top, 19)
+        
+        menuList
+      }
+      .padding(.horizontal, 20)
+      .background(backgroundDefault())
     }
-    .padding(.horizontal, 20)
-    .background(backgroundDefault())
   }
 }
 

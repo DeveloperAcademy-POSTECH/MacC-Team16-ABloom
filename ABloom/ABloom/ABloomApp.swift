@@ -17,10 +17,10 @@ struct ABloomApp: App {
   
   var body: some Scene {
     WindowGroup {
-//      TabBarView()
-      NavigationStack {
-        LoginView()
-      }
+      TabBarView()
+//      NavigationStack {
+//        LoginView()
+//      }
     }
   }
 }

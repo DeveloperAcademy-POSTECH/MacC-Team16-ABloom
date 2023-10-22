@@ -6,13 +6,26 @@
 //
 
 import SwiftUI
-import UIKit
+
+@MainActor
+final class MyAccountConnectingViewModel: ObservableObject {
+  @Published var codeInputText: String = ""
+  @Published var myCode: String?
+  @Published var showToast = false
+  
+  var isTargetCodeVaild: Bool {
+    !codeInputText.isEmpty
+  }
+  
+  func getMyCode() async throws {
+    let currentUser = try AuthenticationManager.shared.getAuthenticatedUser()
+    print("현재 유저 -> \(currentUser)")
+    self.myCode = try await UserManager.shared.getUser(userId: currentUser.uid).invitationCode
+  }
+}
 
 struct MyAccountConnectingView: View {
-  // ViewModel 생성 필요
-  @State var inputText: String = ""
-  var myCode = "dnawidn2e1"
-  @State var showToast = false
+  @StateObject var myAccountConnectingVM = MyAccountConnectingViewModel()
   
   var body: some View {
     VStack(spacing: 30) {
@@ -25,7 +38,7 @@ struct MyAccountConnectingView: View {
       
       Spacer()
       
-      if showToast {
+      if myAccountConnectingVM.showToast {
         ToastView(message: "코드가 복사되었습니다")
           .padding(.bottom, 30)
       }
@@ -37,6 +50,9 @@ struct MyAccountConnectingView: View {
     .navigationBarTitleDisplayMode(.inline)
     .padding(.horizontal, 20)
     .background(backgroundDefault())
+    .task {
+      try? await myAccountConnectingVM.getMyCode()
+    }
   }
 }
 
@@ -65,7 +81,7 @@ extension MyAccountConnectingView {
       HStack {
         Image(systemName: "clipboard.fill")
         
-        Text(myCode)
+        Text(myAccountConnectingVM.myCode ?? "코드를 불러오지 못했습니다.")
         
         Spacer()
         
@@ -77,7 +93,7 @@ extension MyAccountConnectingView {
       }
       .foregroundStyle(.stone950)
       .font(.calloutBold)
-      .strokeInputFieldStyle(isValueValid: false, alignment: .leading)
+      .strokeInputFieldStyle(isValueValid: true, alignment: .leading)
     }
   }
   
@@ -86,24 +102,24 @@ extension MyAccountConnectingView {
       Text("상대방의 연결 코드")
         .font(.subheadline)
       
-      TextField("상대방의 연결코드를 입력해주세요.", text: $inputText)
+      TextField("상대방의 연결코드를 입력해주세요.", text: $myAccountConnectingVM.codeInputText)
       .foregroundStyle(.stone950)
       .font(.calloutR)
-      .strokeInputFieldStyle(isValueValid: false, alignment: .leading)
+      .strokeInputFieldStyle(isValueValid: myAccountConnectingVM.isTargetCodeVaild, alignment: .leading)
     }
   }
 }
 
 extension MyAccountConnectingView {
   private func copyClipboard() {
-    UIPasteboard.general.string = myCode
+    UIPasteboard.general.string = myAccountConnectingVM.myCode
     withAnimation {
-      showToast.toggle()
+      myAccountConnectingVM.showToast.toggle()
     }
     
     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
       withAnimation {
-        showToast = false
+        myAccountConnectingVM.showToast = false
       }
     }
   }
