@@ -10,19 +10,23 @@ import SwiftUI
 struct TabBarView: View {
   @State var selectedTab: Tab = .main
   
+  init() {
+    UITabBar.appearance().backgroundColor = UIColor.white
+  }
+  
   var body: some View {
     TabView(selection: $selectedTab) {
       ForEach(Tab.allCases, id: \.self) { tab in
         switch tab {
         case .main:
-          MainView()
+          HomeView()
             .tabItem {
               Image(systemName: tab.icon)
               Text(tab.title)
             }
             .tag(tab)
         case .qna:
-          DesignSystemEx()
+          Text("QNA")
             .tabItem {
               Image(systemName: tab.icon)
               Text(tab.title)
