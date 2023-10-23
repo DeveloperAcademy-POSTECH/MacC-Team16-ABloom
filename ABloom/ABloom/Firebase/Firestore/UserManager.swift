@@ -5,9 +5,9 @@
 //  Created by 정승균 on 10/21/23.
 //
 
-import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import Foundation
 
 /// DB에 저장될 User Model
 struct DBUser: Codable {

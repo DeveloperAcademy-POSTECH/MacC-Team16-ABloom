@@ -5,8 +5,8 @@
 //  Created by 정승균 on 10/19/23.
 //
 
-import Foundation
 import FirebaseAuth
+import Foundation
 
 @MainActor
 final class LoginViewModel: ObservableObject {
@@ -30,4 +30,3 @@ final class LoginViewModel: ObservableObject {
     self.isSignInSuccess = true
   }
 }
-

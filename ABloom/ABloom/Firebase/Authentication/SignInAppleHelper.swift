@@ -5,11 +5,9 @@
 //  Created by 정승균 on 10/19/23.
 //
 
-import Foundation
-
-import SwiftUI
 import AuthenticationServices
 import CryptoKit
+import SwiftUI
 
 /// 애플 로그인 성공시 리턴 받을 데이터입니다.
 struct SignInWithAppleResult {
