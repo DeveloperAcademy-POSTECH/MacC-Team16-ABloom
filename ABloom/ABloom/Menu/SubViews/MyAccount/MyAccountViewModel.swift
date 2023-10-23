@@ -12,6 +12,10 @@ final class MyAccountViewModel: ObservableObject {
   @Published var userName: String?
   @Published var dDay: Int?
   
+  func signOut() throws {
+    try AuthenticationManager.shared.signOut()
+  }
+  
   func getMyInfo() async throws {
     let currentUser = try AuthenticationManager.shared.getAuthenticatedUser()
     let user = try await UserManager.shared.getUser(userId: currentUser.uid)
