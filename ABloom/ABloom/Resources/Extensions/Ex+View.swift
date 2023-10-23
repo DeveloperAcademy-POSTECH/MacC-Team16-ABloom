@@ -88,4 +88,12 @@ extension View {
       CustomNavigationBarModifier(centerView: centerView, leftView: leftView, rightView: rightView)
     )
   }
+  
+  /// QnABackWall
+  func backWall() -> some View {
+    RoundedRectangle(cornerRadius: 20)
+      .glassBG1Shadow()
+      .foregroundStyle(glassGradient())
+      .ignoresSafeArea()
+  }
 }

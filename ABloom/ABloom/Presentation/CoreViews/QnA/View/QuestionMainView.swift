@@ -60,12 +60,7 @@ struct QuestionMainView: View {
         })
         
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(
-          RoundedRectangle(cornerRadius: 20)
-            .glassBG1Shadow()
-            .foregroundStyle(glassGradient())
-            .ignoresSafeArea()
-        )
+        .background(backWall())
       }
       .background(backgroundDefault())
     }

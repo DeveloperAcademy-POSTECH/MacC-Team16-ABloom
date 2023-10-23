@@ -4,15 +4,31 @@
 //
 //  Created by yun on 10/23/23.
 //
-
+// MARK: 디자인 수정 예정!!
 import SwiftUI
 
 struct SelectQuestionView: View {
   @Environment(\.dismiss) private var dismiss
   
+  @StateObject var questionVM = QuestionMainViewModel()
+  
   var body: some View {
     VStack {
-      Text("This is Selection View")
+      ScrollView(.horizontal) {
+        HStack(spacing: 16) {
+          ForEach(Categories.allCases, id: \.self) { item in
+            
+            Text(item.rawValue)
+              .fontWithTracking(fontStyle: .caption1R)
+              .foregroundStyle(.stone700)
+            
+              .onTapGesture(perform: {
+                print(item.hashValue)
+              })
+          }
+        }
+        .padding([.leading, .trailing], 20)
+      }
     }
     .customNavigationBar(
       centerView: {
