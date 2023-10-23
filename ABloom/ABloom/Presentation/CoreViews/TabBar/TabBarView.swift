@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TabBarView: View {
   @State var selectedTab: Tab = .main
+  @State var showLoginView = false
   
   init() {
     UITabBar.appearance().backgroundColor = UIColor.white
@@ -42,6 +43,15 @@ struct TabBarView: View {
         }
       }
     }
+    .onAppear {
+      let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
+      self.showLoginView = authUser == nil
+    }
+    .fullScreenCover(isPresented: $showLoginView, content: {
+      NavigationStack {
+        LoginView(showLoginView: $showLoginView)
+      }
+    })
   }
 }
 

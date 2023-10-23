@@ -81,6 +81,6 @@ class RegistrationViewModel: ObservableObject {
   /// 초대를 위한 초대 코드를 생성합니다.
   /// - Returns: 랜덤한 초대 코드를 리턴합니다.
   private func generateInviteCode(userId: String) -> String {
-    String((0..<10).map{ _ in userId.randomElement()!})
+    String((0..<10).map { _ in userId.randomElement()! })
   }
 }

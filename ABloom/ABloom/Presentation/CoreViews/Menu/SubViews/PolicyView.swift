@@ -29,11 +29,11 @@ struct PolicyView: View {
 extension PolicyView {
   private var menuList: some View {
     VStack(spacing: listItemPadding) {
-      MenuListItem(title: "서비스 이용약관") {
+      MenuListNavigationItem(title: "서비스 이용약관") {
         EmbedWebView(viewTitle: "서비스 이용약관", urlString: "https://www.google.com")
       }
       
-      MenuListItem(title: "개인정보 처리방침") {
+      MenuListNavigationItem(title: "개인정보 처리방침") {
         EmbedWebView(viewTitle: "개인정보 처리방침", urlString: "https://www.google.com")
       }
       

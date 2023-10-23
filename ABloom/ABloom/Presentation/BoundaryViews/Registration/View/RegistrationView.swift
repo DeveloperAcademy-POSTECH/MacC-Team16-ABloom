@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RegistrationView: View {
   @StateObject var registerVM = RegistrationViewModel()
+  @Binding var showLoginView: Bool
   
   var body: some View {
     VStack(alignment: .leading, spacing: 30) {
@@ -108,6 +109,7 @@ extension RegistrationView {
     Button {
       // ConnectView()
       try? registerVM.registerNewUser()
+      showLoginView = false
     } label: {
       if registerVM.isNextButtonEnabled {
         PinkSingleBtn(text: "다음")
@@ -126,6 +128,6 @@ extension RegistrationView {
 
 #Preview {
   NavigationStack {
-    RegistrationView()
+    RegistrationView(showLoginView: .constant(false))
   }
 }

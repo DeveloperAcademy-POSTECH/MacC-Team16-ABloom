@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
   @StateObject var loginVM = LoginViewModel()
+  @Binding var showLoginView: Bool
   
   var body: some View {
     VStack {
@@ -30,13 +31,14 @@ struct LoginView: View {
       try? loginVM.loadCurrentUser()
     }
     .navigationDestination(isPresented: $loginVM.isSignInSuccess) {
-      RegistrationView(registerVM: RegistrationViewModel())
+      RegistrationView(showLoginView: $showLoginView)
     }
+    .background(backgroundDefault())
   }
 }
 
 #Preview {
   NavigationStack {
-    LoginView()
+    LoginView(showLoginView: .constant(true))
   }
 }

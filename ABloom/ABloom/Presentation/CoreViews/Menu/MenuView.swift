@@ -46,23 +46,23 @@ extension MenuView {
   
   private var menuList: some View {
     VStack(spacing: listItemPadding) {
-      MenuListItem(title: "내 계정") {
+      MenuListNavigationItem(title: "내 계정") {
         MyAccountView()
       }
       
-      MenuListItem(title: "연결 설정") {
+      MenuListNavigationItem(title: "연결 설정") {
         MyAccountConnectingView()
       }
       
-      MenuListItem(title: "문답 연구소") {
+      MenuListNavigationItem(title: "문답 연구소") {
         EmbedWebView(viewTitle: "문답연구소", urlString: "https://www.google.com")
       }
       
-      MenuListItem(title: "문의하기") {
+      MenuListNavigationItem(title: "문의하기") {
         EmbedWebView(viewTitle: "문의하기", urlString: "https://www.google.com")
       }
       
-      MenuListItem(title: "약관과 정책") {
+      MenuListNavigationItem(title: "약관과 정책") {
         PolicyView()
       }
       

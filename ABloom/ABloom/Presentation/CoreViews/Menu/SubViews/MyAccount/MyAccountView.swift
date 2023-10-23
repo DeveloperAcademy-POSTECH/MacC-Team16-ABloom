@@ -69,11 +69,15 @@ extension MyAccountView {
       Text("내 계정 관리")
         .fontWithTracking(fontStyle: .headlineBold)
       
-      MenuListItem(title: "로그아웃") {
-        Text("로그아웃")
+      MenuListButtonItem(title: "로그아웃") {
+        do {
+          try myAccountVM.signOut()
+        } catch {
+          print(error.localizedDescription)
+        }
       }
       
-      MenuListItem(title: "회원탈퇴") {
+      MenuListNavigationItem(title: "회원탈퇴") {
         Text("회원탈퇴")
       }
     }

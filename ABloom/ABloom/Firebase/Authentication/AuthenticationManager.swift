@@ -5,8 +5,8 @@
 //  Created by 정승균 on 10/22/23.
 //
 
-import Foundation
 import FirebaseAuth
+import Foundation
 
 /// Firebase에 저장된 정보를 쉽게 가져올 수 있도록 생성한 구조체입니다.
 struct AuthDataResultModel {
@@ -33,9 +33,7 @@ final class AuthenticationManager {
   ///   - AuthDataResultModel: 유저의 정보를 리턴합니다.
   @discardableResult
   func signInWithApple(tokens: SignInWithAppleResult) async throws -> AuthDataResultModel {
-    let credential = OAuthProvider.appleCredential(withIDToken: tokens.token,
-                                                   rawNonce: tokens.nonce,
-                                                   fullName: tokens.fullName)
+    let credential = OAuthProvider.appleCredential(withIDToken: tokens.token, rawNonce: tokens.nonce, fullName: tokens.fullName)
     
     return try await signIn(credential: credential)
   }
