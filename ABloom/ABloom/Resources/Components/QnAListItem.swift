@@ -15,7 +15,7 @@ struct QnAListItem: View {
   
   var body: some View {
     HStack(spacing: 0) {
-      // TODO: 이미지 처리 이야기 진행 
+      // TODO: 이미지 쉐도우 확인
       Image(categoryImg)
         .resizable()
         .frame(width: 50, height: 50)
@@ -49,10 +49,11 @@ struct QnAListItem: View {
       Spacer()
       
     }
-    .frame(width: 350, height: 50)
+    .frame(width: .infinity, height: 50)
+    .padding([.leading, .trailing], 20)
   }
 }
 
-#Preview { // circleIcon_isometic_love_calender  circleIcon_isometic_health
+#Preview {
   QnAListItem(categoryImg: "squareIcon_isometric_sofa", question: "나와 결혼을 결심한 순간은 언제야?", date: "2023년 9월 18일", isAns: false)
 }
