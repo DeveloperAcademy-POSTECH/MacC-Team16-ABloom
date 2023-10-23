@@ -61,13 +61,31 @@ extension View {
     LinearGradient(colors: [.pink400, .biPink], startPoint: .bottomLeading, endPoint: .topTrailing)
   }
   
+  public func glassGradient() -> some ShapeStyle {
+    LinearGradient(colors: [.white, .white.opacity(0.0)], startPoint: .topLeading, endPoint: .bottomTrailing)
+  }
+  
   /// BackgroundColorView
   public func backgroundDefault() -> some View {
-    Image("backgroundDefault").resizable().scaledToFill().ignoresSafeArea()
+    Image("backgroundDefault")
+      .resizable()
+      .scaledToFill()
+      .ignoresSafeArea()
   }
   
   /// RoundedCorner struct를 활용하여 지정된 edge마다 지정된 radius 값으로 변환시키는 함수
   func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
     clipShape( RoundedCorner(radius: radius, corners: corners) )
+  }
+  
+  /// customNavigationBar
+  func customNavigationBar<C, L, R>(
+    centerView: @escaping (() -> C),
+    leftView: @escaping (() -> L),
+    rightView: @escaping (() -> R)
+  ) -> some View where C: View, L: View, R: View {
+    modifier(
+      CustomNavigationBarModifier(centerView: centerView, leftView: leftView, rightView: rightView)
+    )
   }
 }

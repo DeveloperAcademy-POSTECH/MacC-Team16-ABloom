@@ -26,7 +26,7 @@ struct TabBarView: View {
             }
             .tag(tab)
         case .qna:
-          Text("QNA")
+          QuestionMainView()
             .tabItem {
               Image(systemName: tab.icon)
               Text(tab.title)

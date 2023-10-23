@@ -53,8 +53,9 @@ extension Shape {
   
   public func glassBG1Shadow() -> some View {
     self.fill(
-      .shadow(.drop(color: Color.black.opacity(0.15), radius: 34, x: 0, y: 4))
-    ).blur(radius: 60)
+      .shadow(.drop(color: Color.black.opacity(0.05), radius: 12.5, x: 0, y: 4))
+    )
+    .blur(radius: 1)
   }
   
   public func clayMorpMDPinkShadow() -> some View {
