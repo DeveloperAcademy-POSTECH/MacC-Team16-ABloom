@@ -35,7 +35,7 @@ struct CategoryQuestionBox: View {
       RoundedRectangle(cornerRadius: 20)
         .foregroundStyle(.white)
     )
-    .padding([.leading, .trailing], 20)
+    .padding(.horizontal, 20)
   }
 }
 
