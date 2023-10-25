@@ -24,14 +24,14 @@ struct MenuListNavigationItem<Content: View>: View {
     } label: {
       HStack {
         Text(title)
-          .fontWithTracking(fontStyle: .subHeadlineBold)
+          .fontWithTracking(.subHeadlineBold)
           .foregroundStyle(.stone800)
         
         Spacer()
         
         Text(subContent)
           .foregroundStyle(.pink600)
-          .fontWithTracking(fontStyle: .caption1R)
+          .fontWithTracking(.caption1R)
           .padding(.trailing, 7.15)
         
         Image(systemName: "chevron.right")
@@ -57,14 +57,14 @@ struct MenuListButtonItem: View {
     Button(action: action, label: {
       HStack {
         Text(title)
-          .fontWithTracking(fontStyle: .subHeadlineBold)
+          .fontWithTracking(.subHeadlineBold)
           .foregroundStyle(.stone800)
         
         Spacer()
         
         Text(subContent)
           .foregroundStyle(.pink600)
-          .fontWithTracking(fontStyle: .caption1R)
+          .fontWithTracking(.caption1R)
           .padding(.trailing, 7.15)
         
         Image(systemName: "chevron.right")

@@ -55,7 +55,7 @@ struct AnswerCheckView: View {
     .customNavigationBar(
       centerView: {
         Text("우리의 문답")
-          .fontWithTracking(fontStyle: .title3R)
+          .fontWithTracking(.title3R)
           .foregroundStyle(.stone700)
       },
       leftView: {

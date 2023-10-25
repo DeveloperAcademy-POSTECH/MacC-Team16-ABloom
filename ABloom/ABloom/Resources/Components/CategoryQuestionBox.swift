@@ -20,13 +20,13 @@ struct CategoryQuestionBox: View {
           .resizable()
           .frame(width: 28, height: 28)
         Text(category)
-          .fontWithTracking(fontStyle: .subHeadlineBold)
+          .fontWithTracking(.subHeadlineBold)
         Spacer()
       }
       .padding(.top, 25)
       
       Text("\"\(question)\"")
-        .fontWithTracking(fontStyle: .subHeadlineR)
+        .fontWithTracking(.subHeadlineR)
         .padding(.bottom, 22)
     }
     .frame(maxWidth: .infinity)

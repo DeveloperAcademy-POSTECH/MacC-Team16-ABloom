@@ -19,7 +19,7 @@ struct SelectQuestionView: View {
           ForEach(Categories.allCases, id: \.self) { item in
             
             Text(item.rawValue)
-              .fontWithTracking(fontStyle: .caption1R)
+              .fontWithTracking(.caption1R)
               .foregroundStyle(.stone700)
             
               .onTapGesture(perform: {
@@ -33,7 +33,7 @@ struct SelectQuestionView: View {
     .customNavigationBar(
       centerView: {
         Text("질문 선택하기")
-          .fontWithTracking(fontStyle: .title3R)
+          .fontWithTracking(.title3R)
           .foregroundStyle(.stone700)
       },
       leftView: {
