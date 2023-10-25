@@ -43,7 +43,7 @@ struct AnswerCheckView: View {
           // TODO: 답변 유무와 성별에 따라서 다른 컴포넌트 활용,,
           LeftBlueChatBubble(text: "상대방의 답변을 기다리고 있어요.")
         }
-      
+        
         Spacer()
       }
       .padding(.horizontal, 20)
