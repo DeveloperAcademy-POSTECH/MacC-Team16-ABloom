@@ -25,7 +25,7 @@ struct LeftBlueChatBubble: View {
   var body: some View {
     HStack {
       Text(text)
-        .fontWithTracking(fontStyle: .footnoteR, value: -0.4)
+        .fontWithTracking(.footnoteR, tracking: -0.4)
         .foregroundStyle(.stone900)
         .padding(13)
         .background(
@@ -49,7 +49,7 @@ struct RightBlueChatBubble: View {
       Spacer()
       
       Text(text)
-        .fontWithTracking(fontStyle: .footnoteR, value: -0.4)
+        .fontWithTracking(.footnoteR, tracking: -0.4)
         .foregroundStyle(.stone900)
         .padding(13)
         .background(
@@ -70,7 +70,7 @@ struct LeftPinkChatBubble: View {
     HStack {
       
       Text(text)
-        .fontWithTracking(fontStyle: .footnoteR, value: -0.4)
+        .fontWithTracking(.footnoteR, tracking: -0.4)
         .foregroundStyle(.stone900)
         .padding(13)
         .background(
@@ -94,7 +94,7 @@ struct RightPinkChatBubble: View {
       Spacer()
       
       Text(text)
-        .fontWithTracking(fontStyle: .footnoteR, value: -0.4)
+        .fontWithTracking(.footnoteR, tracking: -0.4)
         .foregroundStyle(.stone900)
         .padding(13)
         .background(
@@ -113,7 +113,7 @@ struct BlueChatBubbleTextField: View {
   
   var body: some View {
     Text(text)
-      .fontWithTracking(fontStyle: .caption1R, value: -0.4)
+      .fontWithTracking(.caption1R, tracking: -0.4)
       .foregroundStyle(.white)
       .frame(width: 242, alignment: .center)
       .frame(minHeight: 36, alignment: .center)
@@ -131,7 +131,7 @@ struct PinkChatBubbleTextField: View {
   
   var body: some View {
     Text(text)
-      .fontWithTracking(fontStyle: .caption1R, value: -0.4)
+      .fontWithTracking(.caption1R, tracking: -0.4)
       .foregroundStyle(.white)
       .frame(width: 242, alignment: .center)
       .frame(minHeight: 36, alignment: .center)

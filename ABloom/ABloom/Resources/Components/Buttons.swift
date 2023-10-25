@@ -29,7 +29,7 @@ struct PinkSingleBtn: View {
   
   var body: some View {
     Text(text)
-      .fontWithTracking(fontStyle: .headlineBold)
+      .fontWithTracking(.headlineBold)
       .foregroundStyle(.white)
       .background(
         RoundedRectangle(cornerRadius: 20)
@@ -45,7 +45,7 @@ struct Pink50SingleBtn: View {
   
   var body: some View {
     Text(text)
-      .fontWithTracking(fontStyle: .headlineBold)
+      .fontWithTracking(.headlineBold)
       .foregroundStyle(.pink500)
       .background(
         RoundedRectangle(cornerRadius: 20)
@@ -61,7 +61,7 @@ struct StoneSingleBtn: View {
   
   var body: some View {
     Text(text)
-      .fontWithTracking(fontStyle: .headlineBold)
+      .fontWithTracking(.headlineBold)
       .foregroundStyle(.white)
       .background(
         RoundedRectangle(cornerRadius: 20)
@@ -127,7 +127,7 @@ struct CicleGrayBtn: View {
 struct TextBtn: View {
   var body: some View {
     Text("연결없이 시작하기")
-      .fontWithTracking(fontStyle: .calloutR)
+      .fontWithTracking(.calloutR)
       .foregroundStyle(.pink500)
   }
 }

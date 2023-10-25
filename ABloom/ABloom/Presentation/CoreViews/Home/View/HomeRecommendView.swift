@@ -28,10 +28,10 @@ struct HomeRecommendView: View {
           .background(.stone200)
         VStack(alignment: .leading, spacing: 6) {
           Text("오늘의 추천 질문")
-            .fontWithTracking(fontStyle: .subHeadlineBold)
+            .fontWithTracking(.subHeadlineBold)
             .foregroundStyle(.stone800)
           Text("\"\(recommendQuestion)\"")
-            .fontWithTracking(fontStyle: .footnoteR, value: -0.4)
+            .fontWithTracking(.footnoteR, tracking: -0.4)
             .foregroundStyle(.stone600)
         }
         Spacer()

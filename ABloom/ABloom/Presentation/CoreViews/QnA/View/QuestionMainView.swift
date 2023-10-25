@@ -20,7 +20,7 @@ struct QuestionMainView: View {
         
         HStack {
           Text("우리의 문답")
-            .fontWithTracking(fontStyle: .title3Bold)
+            .fontWithTracking(.title3Bold)
             .padding([.leading], 20)
           Spacer()
           // FIXME: 다른 뷰로 전환 시에는 다른 방식으로 처리해야함
