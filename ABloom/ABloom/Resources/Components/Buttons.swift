@@ -24,6 +24,24 @@ struct AppleLoginButton: View {
   }
 }
 
+
+struct PurpleSingleBtn: View {
+  let text: String
+  
+  var body: some View {
+    Text(text)
+      .fontWithTracking(fontStyle: .headlineBold)
+      .foregroundStyle(.white)
+      .frame(maxWidth: .infinity)
+      .frame(height: 52)
+      .background(
+        RoundedRectangle(cornerRadius: 20)
+          .clayMorpBtnXLPurpleShadow()
+          .foregroundStyle(purpleGradient65())
+      )
+  }
+}
+
 struct PinkSingleBtn: View {
   let text: String
   
@@ -31,11 +49,12 @@ struct PinkSingleBtn: View {
     Text(text)
       .fontWithTracking(fontStyle: .headlineBold)
       .foregroundStyle(.white)
+      .frame(maxWidth: .infinity)
+      .frame(height: 52)
       .background(
         RoundedRectangle(cornerRadius: 20)
           .clayMorpBtnXLPinkShadow()
           .foregroundStyle(pinkGradient54())
-          .frame(width: 350, height: 52)
       )
   }
 }
@@ -47,11 +66,12 @@ struct Pink50SingleBtn: View {
     Text(text)
       .fontWithTracking(fontStyle: .headlineBold)
       .foregroundStyle(.pink500)
+      .frame(maxWidth: .infinity)
+      .frame(height: 52)
       .background(
         RoundedRectangle(cornerRadius: 20)
           .clayMorpBtnXLPinkShadow()
           .foregroundStyle(.pink50)
-          .frame(width: 350, height: 52)
       )
   }
 }
@@ -63,11 +83,13 @@ struct StoneSingleBtn: View {
     Text(text)
       .fontWithTracking(fontStyle: .headlineBold)
       .foregroundStyle(.white)
+      .frame(maxWidth: .infinity)
+      .frame(height: 52)
       .background(
         RoundedRectangle(cornerRadius: 20)
           .clayMorpBtnGrayShadow()
+          .shadow(color: Color.stone200.opacity(1), radius: 10, x: 0, y: 20)
           .foregroundStyle(.stone300)
-          .frame(width: 350, height: 52)
       )
   }
 }
@@ -127,14 +149,16 @@ struct CicleGrayBtn: View {
 struct TextBtn: View {
   var body: some View {
     Text("연결없이 시작하기")
-      .fontWithTracking(fontStyle: .calloutR)
-      .foregroundStyle(.pink500)
+      .fontWithTracking(fontStyle: .calloutBold)
+      .foregroundStyle(.purple600)
   }
 }
 
 
 #Preview {
   Group {
+    PurpleSingleBtn(text: "PurpleSingleBtn")
+      .padding()
     PinkSingleBtn(text: "버튼")
       .padding()
     Pink50SingleBtn(text: "버튼")
