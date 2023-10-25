@@ -16,8 +16,10 @@ extension Text {
    -
    .fontWithTracking(fontStyle: .largeTitleBold, value: 1)
    */
-  func fontWithTracking(fontStyle: Font, value: CGFloat = 1) -> Text {
-    self.font(fontStyle)
+  func fontWithTracking(fontStyle: Font, value: CGFloat = 1) -> some View {
+    self
+      .font(fontStyle)
+      .lineSpacing(5)
       .tracking(value)
   }
 
