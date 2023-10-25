@@ -7,32 +7,117 @@
 
 import SwiftUI
 
-@MainActor
-final class ConnectionViewModel: ObservableObject {
-  @Published var invitationCode: String?
-  
-  func getInvitationCode() async throws {
-    let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
-    self.invitationCode = try await UserManager.shared.getUser(userId: userId).invitationCode
-    
-  }
-}
-
 struct ConnectionView: View {
+
+  @Environment(\.dismiss) private var dismiss
   @StateObject var connectionVM = ConnectionViewModel()
+  @Binding var showLoginView: Bool
+
   var body: some View {
-    VStack {
-      Text("나의 연결 코드")
-      if let invitationCode = connectionVM.invitationCode {
-        Text("\(invitationCode)")
+    VStack(spacing: 30) {
+      headerContent
+        .padding(.top, 30)
+      
+      myCodeBox
+      
+      connectionCodeTextfield
+      
+      Spacer()
+      
+      if connectionVM.showToast {
+        ToastView(message: "코드가 복사되었습니다")
+          .padding(.bottom, 30)
       }
+      
+      withoutConnectButton
+      
+      connectButton
     }
+    .padding(.horizontal, 20)
+    .background(backgroundDefault())
     .task {
-      try? await connectionVM.getInvitationCode()
+      try? await connectionVM.getMyCode()
     }
+    .customNavigationBar(
+      centerView: {
+        Text("상대방과 연결")
+          .fontWithTracking(fontStyle: .title3R)
+          .foregroundStyle(.stone700)
+      },
+      leftView: {
+        Button(action: {dismiss()}, label: {
+          Image("angle-left")
+            .frame(width: 20, height: 20)
+        })
+      },
+      rightView: {
+        EmptyView()
+      })
   }
 }
 
 #Preview {
-  ConnectionView()
+  ConnectionView(showLoginView: .constant(true))
+}
+
+extension ConnectionView {
+  private var headerContent: some View {
+    HStack {
+      Text("상대방과 연결하면 문답을 함께 작성해갈 수 있어요.\n내 초대코드를 복사해 연결할 상대방에게 알려주세요.")
+        .fontWithTracking(fontStyle: .footnoteR, value: -0.4)
+        .foregroundStyle(.stone600)
+      
+      Spacer()
+    }
+  }
+  
+  private var myCodeBox: some View {
+    VStack(alignment: .leading, spacing: 6) {
+      Text("나의 연결 코드")
+        .fontWithTracking(fontStyle: .subHeadlineR)
+      
+      CopyStrokeInputField(myCode: connectionVM.myCode, copyAction: connectionVM.copyClipboard)
+    }
+  }
+  
+  private var connectionCodeTextfield: some View {
+    VStack(alignment: .leading, spacing: 6) {
+      Text("상대방의 연결 코드")
+        .fontWithTracking(fontStyle: .subHeadlineR)
+      
+      ConnectCodeStrokeInputField(codeInputText: $connectionVM.codeInputText, isTargetCodeValid: connectionVM.isTargetCodeInputVaild)
+    }
+  }
+  
+  private var withoutConnectButton: some View {
+    Button(action: {
+      showLoginView = false
+    }, label: {
+      TextBtn()
+    })
+    .padding(.bottom, -10)
+  }
+  
+  private var connectButton: some View {
+    Button(action: {
+      connectionVM.tryConnect()
+      if connectionVM.isConnectAble {
+        showLoginView = false
+      }
+    }, label: {
+      if connectionVM.isTargetCodeInputVaild {
+        PurpleSingleBtn(text: "상대방과 연결하기")
+      } else {
+        StoneSingleBtn(text: "상대방과 연결하기")
+      }
+    })
+    .disabled(!connectionVM.isTargetCodeInputVaild)
+    .padding(.bottom, 40)
+    
+    .alert("연결에 실패했어요", isPresented: $connectionVM.showAlert, actions: {
+      Button("확인") { }
+    }, message: {
+      Text("상대방의 코드를 올바르게 입력했는지 확인해주세요.")
+    })
+  }
 }
