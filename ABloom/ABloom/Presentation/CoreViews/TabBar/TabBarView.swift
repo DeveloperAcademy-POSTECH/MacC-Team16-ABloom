@@ -13,6 +13,7 @@ struct TabBarView: View {
   
   init() {
     UITabBar.appearance().backgroundColor = UIColor.white
+    UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = .purple500
   }
   
   var body: some View {
