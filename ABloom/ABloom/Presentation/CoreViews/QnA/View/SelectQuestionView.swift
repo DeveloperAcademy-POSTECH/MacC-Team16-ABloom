@@ -27,7 +27,7 @@ struct SelectQuestionView: View {
               })
           }
         }
-        .padding([.leading, .trailing], 20)
+        .padding(.horizontal, 20)
       }
     }
     .customNavigationBar(
