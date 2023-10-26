@@ -48,16 +48,16 @@ extension MyAccountView {
       
       VStack(alignment: .leading) {
         Text(myAccountVM.userName ?? "정보 없음")
-          .fontWithTracking(fontStyle: .title3Bold)
+          .fontWithTracking(.title3Bold)
           .foregroundStyle(.stone800)
         HStack {
           Text("결혼까지 D-\(myAccountVM.dDay ?? 0)")
-            .fontWithTracking(fontStyle: .footnoteR)
+            .fontWithTracking(.footnoteR)
           
           Spacer()
           
           Text("정보 수정하기 >")
-            .fontWithTracking(fontStyle: .footnoteR)
+            .fontWithTracking(.footnoteR)
         }
         .foregroundStyle(.stone500)
       }
@@ -67,7 +67,7 @@ extension MyAccountView {
   private var accountMenuList: some View {
     VStack(alignment: .leading, spacing: 30) {
       Text("내 계정 관리")
-        .fontWithTracking(fontStyle: .headlineBold)
+        .fontWithTracking(.headlineBold)
       
       MenuListButtonItem(title: "로그아웃") {
         do {

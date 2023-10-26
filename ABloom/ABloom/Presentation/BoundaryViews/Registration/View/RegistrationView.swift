@@ -47,7 +47,7 @@ extension RegistrationView {
   private var nameInputField: some View {
     VStack(alignment: .leading, spacing: 6) {
       Text("이름")
-        .fontWithTracking(fontStyle: .subHeadlineR)
+        .fontWithTracking(.subHeadlineR)
       
       ZStack(alignment: .leading) {
         if !registerVM.isUserNameValid {
@@ -64,7 +64,7 @@ extension RegistrationView {
   private var typeInputField: some View {
     VStack(alignment: .leading, spacing: 6) {
       Text("가입유형")
-        .fontWithTracking(fontStyle: .subHeadlineR)
+        .fontWithTracking(.subHeadlineR)
       
       HStack(spacing: 18) {
         ForEach(UserType.allCases, id: \.self) { user in
@@ -72,7 +72,7 @@ extension RegistrationView {
             registerVM.userType = user
           } label: {
             Text("\(user.rawValue)")
-              .fontWithTracking(fontStyle: .calloutR, value: -0.4)
+              .fontWithTracking(.calloutR, tracking: -0.4)
               .multilineTextAlignment(.center)
               .strokeInputFieldStyle(
                 isValueValid: registerVM.isUserTypeValid(type: user),
@@ -87,10 +87,10 @@ extension RegistrationView {
   private var marriageDateInputField: some View {
     VStack(alignment: .leading, spacing: 6) {
       Text("결혼 예정일")
-        .fontWithTracking(fontStyle: .subHeadlineR)
+        .fontWithTracking(.subHeadlineR)
       
       Text("\(registerVM.formattedWeddingDate)")
-        .fontWithTracking(fontStyle: .calloutR, value: -0.4)
+        .fontWithTracking(.calloutR, tracking: -0.4)
         .strokeInputFieldStyle(isValueValid: registerVM.isWeddingDateValid, alignment: .leading)
         .onTapGesture {
           registerVM.isShowingDatePicker = true

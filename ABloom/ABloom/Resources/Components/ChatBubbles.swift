@@ -8,7 +8,7 @@
 import SwiftUI
 
 /*
-Customized Chat Bubble structs
+ Customized Chat Bubble structs
  
  - 가로 길이는 고정, 세로 길이는 글자 입력에 따라 늘어날 수 있도록 조정
  - 텍스트 중앙 정렬, 여러 줄일 때는 leading
@@ -23,16 +23,21 @@ struct LeftBlueChatBubble: View {
   let text: String
   
   var body: some View {
-    Text(text)
-      .fontWithTracking(fontStyle: .footnoteR, value: -0.4)
-      .foregroundStyle(.stone900)
-      .frame(width: 199, alignment: .center)
-      .frame(minHeight: 37, alignment: .center)
-      .background(
-        Rectangle()
-          .foregroundStyle(.blue100)
-          .cornerRadius(10, corners: [.topRight, .bottomRight, .bottomLeft])
-      )
+    HStack {
+      Text(text)
+        .fontWithTracking(.footnoteR, tracking: -0.4)
+        .foregroundStyle(.stone900)
+        .padding(13)
+        .background(
+          Rectangle()
+            .foregroundStyle(.blue100)
+            .cornerRadius(10, corners: [.topRight, .bottomRight, .bottomLeft])
+        )
+        .frame(minHeight: 16, alignment: .center)
+        .frame(maxWidth: 270, alignment: .leading)
+      
+      Spacer()
+    }
   }
 }
 
@@ -40,16 +45,21 @@ struct RightBlueChatBubble: View {
   let text: String
   
   var body: some View {
-    Text(text)
-      .fontWithTracking(fontStyle: .footnoteR, value: -0.4)
-      .foregroundStyle(.stone900)
-      .frame(width: 199, alignment: .center)
-      .frame(minHeight: 37, alignment: .center)
-      .background(
-        Rectangle()
-          .foregroundStyle(.blue100)
-          .cornerRadius(10, corners: [.topLeft, .bottomRight, .bottomLeft])
-      )
+    HStack {
+      Spacer()
+      
+      Text(text)
+        .fontWithTracking(.footnoteR, tracking: -0.4)
+        .foregroundStyle(.stone900)
+        .padding(13)
+        .background(
+          Rectangle()
+            .foregroundStyle(.blue100)
+            .cornerRadius(10, corners: [.topLeft, .bottomRight, .bottomLeft])
+        )
+        .frame(minHeight: 16, alignment: .center)
+        .frame(maxWidth: 270, alignment: .trailing)
+    }
   }
 }
 
@@ -57,16 +67,22 @@ struct LeftPinkChatBubble: View {
   let text: String
   
   var body: some View {
-    Text(text)
-      .fontWithTracking(fontStyle: .footnoteR, value: -0.4)
-      .foregroundStyle(.stone900)
-      .frame(width: 199, alignment: .center)
-      .frame(minHeight: 37, alignment: .center)
-      .background(
-        Rectangle()
-          .foregroundStyle(.pink100)
-          .cornerRadius(10, corners: [.topRight, .bottomRight, .bottomLeft])
-      )
+    HStack {
+      
+      Text(text)
+        .fontWithTracking(.footnoteR, tracking: -0.4)
+        .foregroundStyle(.stone900)
+        .padding(13)
+        .background(
+          Rectangle()
+            .foregroundStyle(.pink100)
+            .cornerRadius(10, corners: [.topRight, .bottomRight, .bottomLeft])
+        )
+        .frame(minHeight: 16, alignment: .center)
+        .frame(maxWidth: 270, alignment: .leading)
+      
+      Spacer()
+    }
   }
 }
 
@@ -74,16 +90,21 @@ struct RightPinkChatBubble: View {
   let text: String
   
   var body: some View {
-    Text(text)
-      .fontWithTracking(fontStyle: .footnoteR, value: -0.4)
-      .foregroundStyle(.stone900)
-      .frame(width: 199, alignment: .center)
-      .frame(minHeight: 37, alignment: .center)
-      .background(
-        Rectangle()
-          .foregroundStyle(.pink100)
-          .cornerRadius(10, corners: [.topLeft, .bottomRight, .bottomLeft])
-      )
+    HStack {
+      Spacer()
+      
+      Text(text)
+        .fontWithTracking(.footnoteR, tracking: -0.4)
+        .foregroundStyle(.stone900)
+        .padding(13)
+        .background(
+          Rectangle()
+            .foregroundStyle(.pink100)
+            .cornerRadius(10, corners: [.topLeft, .bottomRight, .bottomLeft])
+        )
+        .frame(minHeight: 16, alignment: .center)
+        .frame(maxWidth: 270, alignment: .trailing)
+    }
   }
 }
 
@@ -92,7 +113,7 @@ struct BlueChatBubbleTextField: View {
   
   var body: some View {
     Text(text)
-      .fontWithTracking(fontStyle: .caption1R, value: -0.4)
+      .fontWithTracking(.caption1R, tracking: -0.4)
       .foregroundStyle(.white)
       .frame(width: 242, alignment: .center)
       .frame(minHeight: 36, alignment: .center)
@@ -110,7 +131,7 @@ struct PinkChatBubbleTextField: View {
   
   var body: some View {
     Text(text)
-      .fontWithTracking(fontStyle: .caption1R, value: -0.4)
+      .fontWithTracking(.caption1R, tracking: -0.4)
       .foregroundStyle(.white)
       .frame(width: 242, alignment: .center)
       .frame(minHeight: 36, alignment: .center)

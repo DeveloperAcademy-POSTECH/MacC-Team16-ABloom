@@ -20,11 +20,11 @@ struct HomeView: View {
           VStack(alignment: .leading, spacing: 6) {
             Text(homeVM.isConnected ? "\(homeVM.partnerName)님과 결혼까지" : "\(homeVM.partnerType.rawValue)님과")
               .foregroundStyle(.stone800)
-              .fontWithTracking(fontStyle: .headlineR)
+              .fontWithTracking(.headlineR)
             
             Text(homeVM.isConnected ? "\(homeVM.untilWeddingDate)일, \(homeVM.qnaCount)개의 문답" : "연결해주세요")
               .foregroundStyle(.stone700)
-              .fontWithTracking(fontStyle: .title1Bold)
+              .fontWithTracking(.title1Bold)
           }
           .multilineTextAlignment(.leading)
           Spacer()

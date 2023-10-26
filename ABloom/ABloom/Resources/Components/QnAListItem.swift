@@ -33,23 +33,22 @@ struct QnAListItem: View {
       VStack(spacing: 4) {
         HStack {
           Text(question)
-            .fontWithTracking(fontStyle: .caption1Bold)
+            .fontWithTracking(.caption1Bold)
             .foregroundStyle(.black)
           Spacer()
         }
         HStack {
           Text(date)
-            .fontWithTracking(fontStyle: .caption2R)
+            .fontWithTracking(.caption2R)
           Spacer()
           Text(isAns ? "" : "답변을 기다리고 있어요 >")
-            .fontWithTracking(fontStyle: .caption2R)
+            .fontWithTracking(.caption2R)
         }
         .foregroundStyle(.stone500)
       }
       Spacer()
       
     }
-    .frame(width: .infinity, height: 50)
     .padding([.leading, .trailing], 20)
   }
 }
