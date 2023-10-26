@@ -10,14 +10,13 @@ import SwiftUI
 struct QuestionMainView: View {
   @StateObject var questionVM = QuestionMainViewModel()
   
-  //  @State var path: [ViewContent] = []
   
   var body: some View {
-    // TODO: path struct 정의 필요 -> Data 구조화 필요
+    
     NavigationStack {
       VStack {
-        // MARK: - Header
         
+        // 헤더
         HStack {
           Text("우리의 문답")
             .fontWithTracking(.title3Bold)
@@ -35,22 +34,21 @@ struct QuestionMainView: View {
         Spacer()
           .frame(height: 34)
         
-        // MARK: - Question List
-        
+        // 질문 목록
         ScrollView(.vertical) {
           LazyVStack(spacing: 30) {
             Spacer()
               .frame(height: 0)
             ForEach(1..<10) { num in
               NavigationLink(value: num) {
+                
                 // TODO: 해당 정보란을 데이터로 가져와야함
                 QnAListItem(categoryImg: "squareIcon_isometric_sofa", question: "나와 결혼을 결심한 순간은 언제야?\(num)", date: "2023년 9월 18일", isAns: false)
               }
             }
           }
         }
-        // value에 따른 네비게이션
-        // 같은 뷰 다른 데이터일 경우 struct 채택
+        
         .navigationDestination(for: Int.self, destination: { content in
           if content == 0 {
             SelectQuestionView()

@@ -49,7 +49,6 @@ struct QnAListItem: View {
       Spacer()
       
     }
-    .frame(width: .infinity, height: 50)
     .padding([.leading, .trailing], 20)
   }
 }
