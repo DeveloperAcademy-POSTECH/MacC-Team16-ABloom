@@ -26,6 +26,11 @@ extension Shape {
    -
    Rectangle()
    .clayMorpMDShadow()
+   
+   피그마와 다르게 적용할 점
+   - radius = radius / 2
+   - drop은 self.fill()에 외부에 작성
+   - 실행시켜보고 다르게 보인다면 최대한 비슷하도록 수치 조정
    */
   public func clayMorpMDShadow() -> some View {
     self.fill(
