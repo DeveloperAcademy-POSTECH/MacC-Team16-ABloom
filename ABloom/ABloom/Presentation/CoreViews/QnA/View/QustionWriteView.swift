@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct AnswerWriteView: View {
-  var question: DBStaticQuestion
   @StateObject var answerVM = AnswerWriteViewModel()
-  
   @Environment(\.dismiss) private var dismiss
   
   var body: some View {
@@ -50,6 +48,8 @@ struct AnswerWriteView: View {
             .foregroundStyle(.stone700)
         }
       })
+    
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
     .background(backgroundDefault())
   }
 }
@@ -63,11 +63,15 @@ extension AnswerWriteView {
         .frame(width: 34, height: 34)
       
       VStack {
-        LeftPinkChatBubble(text: question.content)
+        LeftPinkChatBubble(text: "반려동물,,")
         LeftPinkChatBubble(text: "너의 생각을 알려줘")
       }
       Spacer()
     }
     .padding(.horizontal, 22)
   }
+}
+
+#Preview {
+  AnswerWriteView()
 }

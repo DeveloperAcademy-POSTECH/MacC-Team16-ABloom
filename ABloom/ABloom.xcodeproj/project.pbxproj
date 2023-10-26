@@ -70,6 +70,7 @@
 		AE1AE9FF2AE557E00010089F /* AnswerCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AE9FE2AE557E00010089F /* AnswerCheckView.swift */; };
 		AE1AEA012AE55A0C0010089F /* QuestionMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AEA002AE55A0C0010089F /* QuestionMainViewModel.swift */; };
 		AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AE2BB5F32AD650680003CD85 /* .swiftlint.yml */; };
+		AE5EFD292AEACCC200D48397 /* AnswerWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EFD282AEACCC200D48397 /* AnswerWriteViewModel.swift */; };
 		AE66978E2AE8FC100004B56C /* SelectQuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE66978D2AE8FC100004B56C /* SelectQuestionViewModel.swift */; };
 		AE6697902AE904F80004B56C /* AnswerWriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE66978F2AE904F80004B56C /* AnswerWriteView.swift */; };
 		AE6ACF552AE0B49E0017088C /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6ACF542AE0B49E0017088C /* Helpers.swift */; };
@@ -86,6 +87,7 @@
 		AEB502622AE5F5340056E439 /* SelectQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB502612AE5F5340056E439 /* SelectQuestionView.swift */; };
 		AEB502642AE5FA840056E439 /* CustomNavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB502632AE5FA840056E439 /* CustomNavigationBarModifier.swift */; };
 		AEB5026B2AE64B8D0056E439 /* CategoryQuestionBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB5026A2AE64B8D0056E439 /* CategoryQuestionBox.swift */; };
+		AEC260612AEA5A8000DF7CD5 /* StaticQuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */; };
 		AEFD01E02AE033E9001D2C30 /* ChatBubbles.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFD01DF2AE033E9001D2C30 /* ChatBubbles.swift */; };
 		AEFEF18A2AEA03E2000DB253 /* AnswerWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFEF1892AEA03E2000DB253 /* AnswerWriteViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -130,6 +132,7 @@
 		AE2BB5F32AD650680003CD85 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		AE2BB5FE2AD673890003CD85 /* LoginMD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LoginMD.md; sourceTree = "<group>"; };
 		AE2BB6022AD674D40003CD85 /* TabBarMD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TabBarMD.md; sourceTree = "<group>"; };
+		AE5EFD282AEACCC200D48397 /* AnswerWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerWriteViewModel.swift; sourceTree = "<group>"; };
 		AE66978D2AE8FC100004B56C /* SelectQuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionViewModel.swift; sourceTree = "<group>"; };
 		AE66978F2AE904F80004B56C /* AnswerWriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerWriteView.swift; sourceTree = "<group>"; };
 		AE6ACF542AE0B49E0017088C /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
@@ -148,6 +151,7 @@
 		AEB502612AE5F5340056E439 /* SelectQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionView.swift; sourceTree = "<group>"; };
 		AEB502632AE5FA840056E439 /* CustomNavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBarModifier.swift; sourceTree = "<group>"; };
 		AEB5026A2AE64B8D0056E439 /* CategoryQuestionBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryQuestionBox.swift; sourceTree = "<group>"; };
+		AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticQuestionManager.swift; sourceTree = "<group>"; };
 		AEFD01DF2AE033E9001D2C30 /* ChatBubbles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbles.swift; sourceTree = "<group>"; };
 		AEFEF1892AEA03E2000DB253 /* AnswerWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerWriteViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -194,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				3D4412422AE388DB00FD5A51 /* UserManager.swift */,
+				AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */,
 			);
 			path = Firestore;
 			sourceTree = "<group>";
@@ -367,6 +372,7 @@
 				AE1AEA002AE55A0C0010089F /* QuestionMainViewModel.swift */,
 				AE66978D2AE8FC100004B56C /* SelectQuestionViewModel.swift */,
 				AEFEF1892AEA03E2000DB253 /* AnswerWriteViewModel.swift */,
+				AE5EFD282AEACCC200D48397 /* AnswerWriteViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -413,6 +419,13 @@
 				605541162ADE1ACF00AD5625 /* Tab.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		AE5EFD2A2AEACD9100D48397 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		AE7EE4D42AD6409000E0A573 = {
@@ -493,6 +506,7 @@
 		AEB502672AE61D5E0056E439 /* CoreViews */ = {
 			isa = PBXGroup;
 			children = (
+				AE5EFD2A2AEACD9100D48397 /* New Group */,
 				AE2BB6012AD674630003CD85 /* TabBar */,
 				AE2BB5FF2AD673CC0003CD85 /* Home */,
 				AE1AE9F52AE50B440010089F /* QnA */,
@@ -670,6 +684,7 @@
 				6053F1712AE17A260064A6E0 /* HomeRecommendView.swift in Sources */,
 				6055411A2ADE66B000AD5625 /* RegistrationView.swift in Sources */,
 				AEAB19372ADF77210057BC43 /* Buttons.swift in Sources */,
+				AE5EFD292AEACCC200D48397 /* AnswerWriteViewModel.swift in Sources */,
 				605541152ADE1A9D00AD5625 /* TabBarView.swift in Sources */,
 				3D44125C2AE4F91900FD5A51 /* EmbedWebView.swift in Sources */,
 				AE7EE4E12AD6409000E0A573 /* ABloomApp.swift in Sources */,
@@ -687,6 +702,7 @@
 				3D4412642AE50E8E00FD5A51 /* MyAccountViewModel.swift in Sources */,
 				3D4412562AE4F31D00FD5A51 /* MyAccountView.swift in Sources */,
 				AE1AE9FF2AE557E00010089F /* AnswerCheckView.swift in Sources */,
+				AEC260612AEA5A8000DF7CD5 /* StaticQuestionManager.swift in Sources */,
 				605541172ADE1ACF00AD5625 /* Tab.swift in Sources */,
 				3D4412432AE388DB00FD5A51 /* UserManager.swift in Sources */,
 				AEFEF18A2AEA03E2000DB253 /* AnswerWriteViewModel.swift in Sources */,

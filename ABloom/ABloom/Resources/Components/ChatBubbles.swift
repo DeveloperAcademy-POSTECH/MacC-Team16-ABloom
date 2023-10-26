@@ -30,13 +30,14 @@ struct LeftBlueChatBubble: View {
         .fontWithTracking(.footnoteR, tracking: -0.4)
         .foregroundStyle(.stone900)
         .padding(paddingV)
+        .multilineTextAlignment(.leading)
         .background(
           Rectangle()
             .foregroundStyle(.blue100)
             .cornerRadius(10, corners: [.topRight, .bottomRight, .bottomLeft])
         )
-        .frame(minHeight: 16, alignment: .center)
-        .frame(maxWidth: 270, alignment: .leading)
+        .frame(minHeight: 20, alignment: .center)
+        .frame(maxWidth: .infinity, alignment: .leading)
       
       Spacer()
     }

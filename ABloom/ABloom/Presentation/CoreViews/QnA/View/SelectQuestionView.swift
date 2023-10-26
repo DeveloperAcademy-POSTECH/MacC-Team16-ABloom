@@ -17,38 +17,14 @@ struct SelectQuestionView: View {
       
       categoryBar
       
-      VStack(spacing: 0) {
-        HStack {
-          Text("\(selectQVM.selectedCategory.type) 문답")
-            .fontWithTracking(.headlineR)
-            .foregroundStyle(.stone700)
-          
-          Spacer()
-        }
-        .padding(.horizontal, 22)
-        .padding(.top, 34)
-        .padding(.bottom, 26)
-        
-        
-        ScrollView {
-          ForEach(12..<20) { num in
-            // TODO: 데이터 작업 필요
-            NavigationLink(value: Color.accentColor) {
-              LeftBlueChatBubble(text: "나와 결혼을 결심한 순간은 언제야?\(num)")
-                .padding(.bottom, 12)
-                .padding(.horizontal, 20)
-            }
-          }
-        }
-        Spacer()
-      }
-      // 네비게이션
-      .navigationDestination(for: Color.self, destination: { content in
-        // TODO: 차후 구현
-        AnswerWriteView()
-      })
-      .frame(maxWidth: .infinity, maxHeight: .infinity)
-      .background(backWall())
+      questionListView
+        .navigationDestination(for: DBStaticQuestion.self, destination: { content in
+          AnswerWriteView(question: content)
+        })
+        .background(backWall())
+    }
+    .task {
+      try? await selectQVM.fetchQuestions()
     }
     
     // 네비게이션바
@@ -67,7 +43,7 @@ struct SelectQuestionView: View {
       rightView: {
         EmptyView()
       })
-    .frame(maxWidth: .infinity, maxHeight: .infinity)
+    // 배경화면
     .background(backgroundDefault())
   }
 }
@@ -75,7 +51,6 @@ struct SelectQuestionView: View {
 extension SelectQuestionView {
   
   private var categoryBar: some View {
-    
     ScrollView(.horizontal, showsIndicators: false) {
       HStack(spacing: 16) {
         ForEach(Category.allCases, id: \.self) { category in
@@ -94,7 +69,33 @@ extension SelectQuestionView {
         }
       }
       .padding(.horizontal, 22)
-      .padding(.bottom, 15)
+      .padding(.vertical, 15)
+    }
+  }
+  
+  private var questionListView: some View {
+    VStack(spacing: 0) {
+      HStack {
+        Text("\(selectQVM.selectedCategory.type) 문답")
+          .fontWithTracking(.headlineR)
+          .foregroundStyle(.stone700)
+        
+        Spacer()
+      }
+      .padding(.horizontal, 22)
+      .padding(.top, 34)
+      .padding(.bottom, 26)
+      
+      ScrollView {
+        ForEach(selectQVM.filteredLists, id: \.self) { question in
+          NavigationLink(value: question) {
+            LeftBlueChatBubble(text: question.content)
+              .padding(.bottom, 12)
+              .padding(.horizontal, 20)
+          }
+        }
+      }
+      Spacer()
     }
   }
 }
