@@ -22,4 +22,8 @@ final class MyAccountConnectingViewModel: ObservableObject {
     print("현재 유저 -> \(currentUser)")
     self.myCode = try await UserManager.shared.getUser(userId: currentUser.uid).invitationCode
   }
+  
+  func connect() async throws {
+    try await UserManager.shared.connectFiance(connectionCode: codeInputText)
+  }
 }

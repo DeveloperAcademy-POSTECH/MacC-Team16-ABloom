@@ -26,6 +26,14 @@ struct MyAccountConnectingView: View {
           .padding(.bottom, 30)
       }
       
+      Button {
+        Task {
+          try await myAccountConnectingVM.connect()
+        }
+      } label: {
+        Text("연결 ㄱㄱ")
+      }
+      
       PinkSingleBtn(text: "상대방과 연결하기")
         .padding(.bottom, 60)
     }
