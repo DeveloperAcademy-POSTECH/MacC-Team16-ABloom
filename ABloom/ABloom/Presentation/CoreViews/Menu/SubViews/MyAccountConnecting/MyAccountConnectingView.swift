@@ -31,11 +31,9 @@ struct MyAccountConnectingView: View {
           try await myAccountConnectingVM.connect()
         }
       } label: {
-        Text("연결 ㄱㄱ")
+        PinkSingleBtn(text: "상대방과 연결하기")
+          .padding(.bottom, 60)
       }
-      
-      PinkSingleBtn(text: "상대방과 연결하기")
-        .padding(.bottom, 60)
     }
     .navigationTitle("상대방과 연결")
     .navigationBarTitleDisplayMode(.inline)
