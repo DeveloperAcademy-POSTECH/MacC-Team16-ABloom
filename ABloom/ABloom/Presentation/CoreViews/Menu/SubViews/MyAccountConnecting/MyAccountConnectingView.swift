@@ -37,7 +37,7 @@ struct MyAccountConnectingView: View {
     .customNavigationBar(
       centerView: {
         Text("상대방과 연결")
-          .fontWithTracking(fontStyle: .title3R)
+          .fontWithTracking(.title3R)
           .foregroundStyle(.stone700)
       },
       leftView: {
@@ -62,7 +62,7 @@ extension MyAccountConnectingView {
   private var headerContent: some View {
     HStack {
       Text("상대방과 연결하면 문답을 함께 작성해갈 수 있어요.\n내 초대코드를 복사해 연결할 상대방에게 알려주세요.")
-        .fontWithTracking(.footnoteR, value: -0.4)
+        .fontWithTracking(.footnoteR, tracking: -0.4)
         .foregroundStyle(.stone600)
       
       Spacer()

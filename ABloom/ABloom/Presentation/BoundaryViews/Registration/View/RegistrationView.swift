@@ -31,7 +31,7 @@ struct RegistrationView: View {
     .customNavigationBar(
       centerView: {
         Text("가입하기")
-          .fontWithTracking(fontStyle: .title3R)
+          .fontWithTracking(.title3R)
           .foregroundStyle(.stone700)
       },
       leftView: {
