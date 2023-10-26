@@ -45,7 +45,7 @@ struct SelectQuestionView: View {
       // 네비게이션
       .navigationDestination(for: Color.self, destination: { content in
         // TODO: 차후 구현
-        QuestionWriteView()
+        AnswerWriteView()
       })
       .frame(maxWidth: .infinity, maxHeight: .infinity)
       .background(backWall())
@@ -96,9 +96,7 @@ extension SelectQuestionView {
       .padding(.horizontal, 22)
       .padding(.bottom, 15)
     }
-    
   }
-  
 }
 
 #Preview {
