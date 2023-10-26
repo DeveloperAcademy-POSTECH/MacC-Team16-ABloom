@@ -18,13 +18,13 @@ struct CopyStrokeInputField: View {
         .font(.calloutR)
      
       Text(myCode ?? "코드를 불러오지 못했습니다")
-        .fontWithTracking(fontStyle: .calloutBold, value: -0.4)
+        .fontWithTracking(.calloutBold, tracking: -0.4)
       
       Spacer()
       
       Button(action: copyAction, label: {
         Text("복사")
-          .fontWithTracking(fontStyle: .caption1R, value: -0.4)
+          .fontWithTracking(.caption1R, tracking: -0.4)
           .foregroundStyle(.black)
       })
     }

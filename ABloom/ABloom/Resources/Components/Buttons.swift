@@ -30,7 +30,7 @@ struct PurpleSingleBtn: View {
   
   var body: some View {
     Text(text)
-      .fontWithTracking(fontStyle: .headlineBold)
+      .fontWithTracking(.headlineBold)
       .foregroundStyle(.white)
       .frame(maxWidth: .infinity)
       .frame(height: 52)

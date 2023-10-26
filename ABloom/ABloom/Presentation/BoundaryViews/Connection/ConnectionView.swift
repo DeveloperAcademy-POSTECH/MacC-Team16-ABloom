@@ -41,7 +41,7 @@ struct ConnectionView: View {
     .customNavigationBar(
       centerView: {
         Text("상대방과 연결")
-          .fontWithTracking(fontStyle: .title3R)
+          .fontWithTracking(.title3R)
           .foregroundStyle(.stone700)
       },
       leftView: {
@@ -64,7 +64,7 @@ extension ConnectionView {
   private var headerContent: some View {
     HStack {
       Text("상대방과 연결하면 문답을 함께 작성해갈 수 있어요.\n내 초대코드를 복사해 연결할 상대방에게 알려주세요.")
-        .fontWithTracking(fontStyle: .footnoteR, value: -0.4)
+        .fontWithTracking(.footnoteR, tracking: -0.4)
         .foregroundStyle(.stone600)
       
       Spacer()
@@ -74,7 +74,7 @@ extension ConnectionView {
   private var myCodeBox: some View {
     VStack(alignment: .leading, spacing: 6) {
       Text("나의 연결 코드")
-        .fontWithTracking(fontStyle: .subHeadlineR)
+        .fontWithTracking(.subHeadlineR)
       
       CopyStrokeInputField(myCode: connectionVM.myCode, copyAction: connectionVM.copyClipboard)
     }
@@ -83,7 +83,7 @@ extension ConnectionView {
   private var connectionCodeTextfield: some View {
     VStack(alignment: .leading, spacing: 6) {
       Text("상대방의 연결 코드")
-        .fontWithTracking(fontStyle: .subHeadlineR)
+        .fontWithTracking(.subHeadlineR)
       
       ConnectCodeStrokeInputField(codeInputText: $connectionVM.codeInputText, isTargetCodeValid: connectionVM.isTargetCodeInputVaild)
     }
