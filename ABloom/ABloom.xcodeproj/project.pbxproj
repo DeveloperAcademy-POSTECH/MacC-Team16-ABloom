@@ -59,6 +59,8 @@
 		6053F16E2AE179240064A6E0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053F16D2AE179240064A6E0 /* HomeView.swift */; };
 		6053F1712AE17A260064A6E0 /* HomeRecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053F1702AE17A260064A6E0 /* HomeRecommendView.swift */; };
 		6053F1742AE17A3A0064A6E0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053F1732AE17A3A0064A6E0 /* HomeViewModel.swift */; };
+		6053F1762AE899320064A6E0 /* InputFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053F1752AE899320064A6E0 /* InputFields.swift */; };
+		6053F1782AE954760064A6E0 /* ConnectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053F1772AE954760064A6E0 /* ConnectionViewModel.swift */; };
 		605541152ADE1A9D00AD5625 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605541142ADE1A9D00AD5625 /* TabBarView.swift */; };
 		605541172ADE1ACF00AD5625 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605541162ADE1ACF00AD5625 /* Tab.swift */; };
 		6055411A2ADE66B000AD5625 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605541192ADE66B000AD5625 /* RegistrationView.swift */; };
@@ -113,6 +115,8 @@
 		6053F16D2AE179240064A6E0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		6053F1702AE17A260064A6E0 /* HomeRecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecommendView.swift; sourceTree = "<group>"; };
 		6053F1732AE17A3A0064A6E0 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		6053F1752AE899320064A6E0 /* InputFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFields.swift; sourceTree = "<group>"; };
+		6053F1772AE954760064A6E0 /* ConnectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewModel.swift; sourceTree = "<group>"; };
 		605541142ADE1A9D00AD5625 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		605541162ADE1ACF00AD5625 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		605541192ADE66B000AD5625 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				3D44124D2AE4DD2800FD5A51 /* ConnectionView.swift */,
+				6053F1772AE954760064A6E0 /* ConnectionViewModel.swift */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
@@ -368,6 +373,7 @@
 			isa = PBXGroup;
 			children = (
 				6053F1612ADF6CDE0064A6E0 /* InputFieldModifier.swift */,
+				6053F1752AE899320064A6E0 /* InputFields.swift */,
 				AEAB19362ADF77210057BC43 /* Buttons.swift */,
 				AEFD01DF2AE033E9001D2C30 /* ChatBubbles.swift */,
 				AE1AE9FA2AE51BF00010089F /* QnAListItem.swift */,
@@ -632,6 +638,7 @@
 				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
 				6053F15B2ADEB7700064A6E0 /* RegistrationViewModel.swift in Sources */,
 				6055411A2ADE66B000AD5625 /* RegistrationView.swift in Sources */,
+				6053F1762AE899320064A6E0 /* InputFields.swift in Sources */,
 				AE1AE9FB2AE51BF00010089F /* QnAListItem.swift in Sources */,
 				AE8D3C512ADE19E0009899A7 /* Ex+Font.swift in Sources */,
 				AEB502622AE5F5340056E439 /* SelectQuestionView.swift in Sources */,
@@ -669,6 +676,7 @@
 				3D4412432AE388DB00FD5A51 /* UserManager.swift in Sources */,
 				AE6ACF552AE0B49E0017088C /* Helpers.swift in Sources */,
 				AE1AE9F92AE50BBC0010089F /* QuestionMainView.swift in Sources */,
+				6053F1782AE954760064A6E0 /* ConnectionViewModel.swift in Sources */,
 				AE1AEA012AE55A0C0010089F /* QuestionMainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

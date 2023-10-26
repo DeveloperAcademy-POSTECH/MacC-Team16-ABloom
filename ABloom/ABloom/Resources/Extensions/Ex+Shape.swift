@@ -26,6 +26,11 @@ extension Shape {
    -
    Rectangle()
    .clayMorpMDShadow()
+   
+   피그마와 다르게 적용할 점
+   - radius = radius / 2
+   - drop은 self.fill()에 외부에 작성
+   - 실행시켜보고 다르게 보인다면 최대한 비슷하도록 수치 조정
    */
   public func clayMorpMDShadow() -> some View {
     self.fill(
@@ -76,9 +81,17 @@ extension Shape {
   
   public func clayMorpBtnGrayShadow() -> some View {
     self.fill(
-      .shadow(.inner(color: Color.black.opacity(0.03), radius: 10, x: 0, y: -3))
-      .shadow(.inner(color: Color.white.opacity(0.5), radius: 15, x: 3, y: 1))
-      .shadow(.drop(color: Color.stone200.opacity(1), radius: 40, x: 0, y: 20))
+      .shadow(.inner(color: Color.black.opacity(0.08), radius: 5, x: 0, y: -3))
+      .shadow(.inner(color: Color.white.opacity(0.5), radius: 7.5, x: 3, y: 1))
     )
+    .shadow(color: Color.stone200.opacity(1), radius: 20, x: 0, y: 20)
+  }
+  
+  public func clayMorpBtnXLPurpleShadow() -> some View {
+    self.fill(
+      .shadow(.inner(color: Color.black.opacity(0.3), radius: 5, x: 0, y: -3))
+      .shadow(.inner(color: Color.white.opacity(0.5), radius: 7.5, x: 3, y: 1))
+    )
+    .shadow(color: Color.purple200.opacity(1), radius: 20, x: 0, y: 20)
   }
 }

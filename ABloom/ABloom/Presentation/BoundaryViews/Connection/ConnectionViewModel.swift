@@ -1,19 +1,20 @@
 //
-//  MyAccountConnectingViewModel.swift
+//  ConnectionViewModel.swift
 //  ABloom
 //
-//  Created by 정승균 on 10/22/23.
+//  Created by Lee Jinhee on 10/25/23.
 //
 
 import SwiftUI
 
-final class MyAccountConnectingViewModel: ObservableObject {
+final class ConnectionViewModel: ObservableObject {
+
   @Published var codeInputText: String = ""
   @Published var myCode: String?
   @Published var isConnectAble: Bool = false
   @Published var showToast = false
   @Published var showAlert = false
-  
+
   // TODO: 연결시도가능, 유효가능 구분
   var isTargetCodeInputVaild: Bool {
     !codeInputText.isEmpty
@@ -28,9 +29,8 @@ final class MyAccountConnectingViewModel: ObservableObject {
   }
   
   func getMyCode() async throws {
-    let currentUser = try AuthenticationManager.shared.getAuthenticatedUser()
-    print("현재 유저 -> \(currentUser)")
-    self.myCode = try await UserManager.shared.getUser(userId: currentUser.uid).invitationCode
+    let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
+    self.myCode = try await UserManager.shared.getUser(userId: userId).invitationCode
   }
   
   func copyClipboard() {

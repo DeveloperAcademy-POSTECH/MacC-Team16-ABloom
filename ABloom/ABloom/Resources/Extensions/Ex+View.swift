@@ -60,6 +60,10 @@ extension View {
   public func pinkGradient43() -> some ShapeStyle {
     LinearGradient(colors: [.pink400, .biPink], startPoint: .bottomLeading, endPoint: .topTrailing)
   }
+  /// Purple600 - Purple500 Gradient
+  public func purpleGradient65() -> some ShapeStyle {
+    LinearGradient(colors: [.purple600, .purple500], startPoint: .bottomLeading, endPoint: .topTrailing)
+  }
   
   public func glassGradient() -> some ShapeStyle {
     LinearGradient(colors: [.white, .white.opacity(0.0)], startPoint: .topLeading, endPoint: .bottomTrailing)
