@@ -148,16 +148,26 @@ extension LoginView {
       .multilineTextAlignment(.center)
       
       HStack(spacing: 24) {
-        Button(action: {}, label: {
+        Button(action: {
+          loginVM.privacyPolicyTapped()
+        }, label: {
           Text("개인정보처리방침").underline()
         })
-        Button(action: {}, label: {
+        Button(action: {
+          loginVM.termsOfUseTapped()
+        }, label: {
           Text("이용약관").underline()
         })
       }
       .fontWithTracking(.caption1R, tracking: -0.4)
       .foregroundStyle(.stone600)
       .padding(.bottom, 36)
+    }
+    .sheet(isPresented: $loginVM.showPrivacyPolicy) {
+      WebView(urlString: ServiceWebURL.privacyPolicy.rawValue)
+    }
+    .sheet(isPresented: $loginVM.showTermsOfUse) {
+      WebView(urlString: ServiceWebURL.termsOfuse.rawValue)
     }
   }
 }
