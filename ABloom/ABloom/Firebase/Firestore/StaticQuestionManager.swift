@@ -44,11 +44,7 @@ final class StaticQuestionManager {
   static let shared = StaticQuestionManager()
   
   private let questionCollection = Firestore.firestore().collection("questions")
-  
-//  private func questionDocument(questionID: String) -> DocumentReference {
-//    questionCollection.document(questionID)
-//  }
-  
+
   // MARK: GET Method
   func getAllQuestions() async throws -> [DBStaticQuestion] {
     let snapshot = try await questionCollection.getDocuments()
