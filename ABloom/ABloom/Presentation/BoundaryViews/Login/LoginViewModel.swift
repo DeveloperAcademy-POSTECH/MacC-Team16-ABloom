@@ -12,6 +12,16 @@ import Foundation
 final class LoginViewModel: ObservableObject {
   @Published var user: AuthDataResultModel? = nil
   @Published var isSignInSuccess = false
+  @Published var showPrivacyPolicy = false
+  @Published var showTermsOfUse = false
+  
+  func privacyPolicyTapped() {
+    showPrivacyPolicy = true
+  }
+  
+  func termsOfUseTapped() {
+    showTermsOfUse = true
+  }
   
   func loadCurrentUser() throws {
     let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
