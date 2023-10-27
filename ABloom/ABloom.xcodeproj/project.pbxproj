@@ -20,8 +20,11 @@
 		3D4412602AE503FD00FD5A51 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44125F2AE503FD00FD5A51 /* ToastView.swift */; };
 		3D4412622AE509C600FD5A51 /* MyAccountConnectingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4412612AE509C600FD5A51 /* MyAccountConnectingViewModel.swift */; };
 		3D4412642AE50E8E00FD5A51 /* MyAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4412632AE50E8E00FD5A51 /* MyAccountViewModel.swift */; };
-		3D4412692AE5F9D100FD5A51 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D4412682AE5F9D100FD5A51 /* GoogleService-Info.plist */; };
 		3D44126B2AE6246100FD5A51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D44126A2AE6246100FD5A51 /* Assets.xcassets */; };
+		3D44127A2AEAB34000FD5A51 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D4412792AEAB34000FD5A51 /* GoogleService-Info.plist */; };
+		3D44127C2AEAC3C000FD5A51 /* ConnectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44127B2AEAC3C000FD5A51 /* ConnectedView.swift */; };
+		3D44127E2AEAC57500FD5A51 /* ConnectionWaypointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44127D2AEAC57500FD5A51 /* ConnectionWaypointView.swift */; };
+		3D4412802AEACA2A00FD5A51 /* ConnectionWaypointViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44127F2AEACA2A00FD5A51 /* ConnectionWaypointViewModel.swift */; };
 		3D4412782AE9F5E600FD5A51 /* ServiceWebURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4412772AE9F5E600FD5A51 /* ServiceWebURL.swift */; };
 		3DB6A5752AE0BDF800C1369F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5742AE0BDF800C1369F /* FirebaseAnalytics */; };
 		3DB6A5772AE0BDF800C1369F /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5762AE0BDF800C1369F /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -105,8 +108,11 @@
 		3D44125F2AE503FD00FD5A51 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		3D4412612AE509C600FD5A51 /* MyAccountConnectingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountConnectingViewModel.swift; sourceTree = "<group>"; };
 		3D4412632AE50E8E00FD5A51 /* MyAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewModel.swift; sourceTree = "<group>"; };
-		3D4412682AE5F9D100FD5A51 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D44126A2AE6246100FD5A51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3D4412792AEAB34000FD5A51 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3D44127B2AEAC3C000FD5A51 /* ConnectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedView.swift; sourceTree = "<group>"; };
+		3D44127D2AEAC57500FD5A51 /* ConnectionWaypointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionWaypointView.swift; sourceTree = "<group>"; };
+		3D44127F2AEACA2A00FD5A51 /* ConnectionWaypointViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionWaypointViewModel.swift; sourceTree = "<group>"; };
 		3D4412772AE9F5E600FD5A51 /* ServiceWebURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceWebURL.swift; sourceTree = "<group>"; };
 		3DB6A5AA2AE0C09800C1369F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3DB6A5AD2AE0C12B00C1369F /* AppleLoginButtonViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginButtonViewRepresentable.swift; sourceTree = "<group>"; };
@@ -242,8 +248,11 @@
 		3D4412662AE50EAA00FD5A51 /* MyAccountConnecting */ = {
 			isa = PBXGroup;
 			children = (
+				3D44127D2AEAC57500FD5A51 /* ConnectionWaypointView.swift */,
+				3D44127F2AEACA2A00FD5A51 /* ConnectionWaypointViewModel.swift */,
 				3D44125D2AE4FB7400FD5A51 /* MyAccountConnectingView.swift */,
 				3D4412612AE509C600FD5A51 /* MyAccountConnectingViewModel.swift */,
+				3D44127B2AEAC3C000FD5A51 /* ConnectedView.swift */,
 			);
 			path = MyAccountConnecting;
 			sourceTree = "<group>";
@@ -447,7 +456,7 @@
 			children = (
 				3DB6A5B52AE1278D00C1369F /* ABloom.entitlements */,
 				AE8D3C5D2ADE1A22009899A7 /* Info.plist */,
-				3D4412682AE5F9D100FD5A51 /* GoogleService-Info.plist */,
+				3D4412792AEAB34000FD5A51 /* GoogleService-Info.plist */,
 				AE7EE4E02AD6409000E0A573 /* ABloomApp.swift */,
 				AEB502652AE61AD70056E439 /* Resources */,
 				6053F1632ADF7F3D0064A6E0 /* Presentation */,
@@ -615,7 +624,7 @@
 			files = (
 				AE8D3C5A2ADE1A08009899A7 /* SpoqaHanSansNeo-Thin.ttf in Resources */,
 				AE8D3C582ADE1A08009899A7 /* SpoqaHanSansNeo-Bold.ttf in Resources */,
-				3D4412692AE5F9D100FD5A51 /* GoogleService-Info.plist in Resources */,
+				3D44127A2AEAB34000FD5A51 /* GoogleService-Info.plist in Resources */,
 				AE8D3C5B2ADE1A08009899A7 /* SpoqaHanSansNeo-Light.ttf in Resources */,
 				AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */,
 				AE7EE4E82AD6409100E0A573 /* Preview Assets.xcassets in Resources */,
@@ -683,6 +692,7 @@
 				AEAB19372ADF77210057BC43 /* Buttons.swift in Sources */,
 				605541152ADE1A9D00AD5625 /* TabBarView.swift in Sources */,
 				3D44125C2AE4F91900FD5A51 /* EmbedWebView.swift in Sources */,
+				3D44127E2AEAC57500FD5A51 /* ConnectionWaypointView.swift in Sources */,
 				AE7EE4E12AD6409000E0A573 /* ABloomApp.swift in Sources */,
 				3D44125E2AE4FB7400FD5A51 /* MyAccountConnectingView.swift in Sources */,
 				3DB6A5B12AE11C2D00C1369F /* LoginViewModel.swift in Sources */,
@@ -696,11 +706,14 @@
 				3DB6A5B42AE11CCD00C1369F /* SignInAppleHelper.swift in Sources */,
 				3DB6A5AB2AE0C09800C1369F /* LoginView.swift in Sources */,
 				3D4412642AE50E8E00FD5A51 /* MyAccountViewModel.swift in Sources */,
+				3D4412802AEACA2A00FD5A51 /* ConnectionWaypointViewModel.swift in Sources */,
 				3D4412562AE4F31D00FD5A51 /* MyAccountView.swift in Sources */,
 				AE1AE9FF2AE557E00010089F /* AnswerCheckView.swift in Sources */,
 				AEC260612AEA5A8000DF7CD5 /* StaticQuestionManager.swift in Sources */,
 				605541172ADE1ACF00AD5625 /* Tab.swift in Sources */,
 				3D4412432AE388DB00FD5A51 /* UserManager.swift in Sources */,
+				3D44127C2AEAC3C000FD5A51 /* ConnectedView.swift in Sources */,
+				AEFEF18A2AEA03E2000DB253 /* AnswerWriteViewModel.swift in Sources */,
 				AE6ACF552AE0B49E0017088C /* Helpers.swift in Sources */,
 				AE5693252AEAD982009F3400 /* AnswerWriteViewModel.swift in Sources */,
 				AE1AE9F92AE50BBC0010089F /* QuestionMainView.swift in Sources */,

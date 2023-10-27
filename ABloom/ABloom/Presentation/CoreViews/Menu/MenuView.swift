@@ -51,7 +51,8 @@ extension MenuView {
       }
       
       MenuListNavigationItem(title: "연결 설정") {
-        MyAccountConnectingView()
+//        MyAccountConnectingView()
+        ConnectionWaypointView()
       }
       
       MenuListNavigationItem(title: "문답 연구소") {
