@@ -116,14 +116,16 @@ struct BlueChatBubbleTextField: View {
   
   var body: some View {
     
-    TextField("나의 생각은...", text: $text, axis: .vertical)
-    // BUG
-    // fontWithTracking 적용시, 텍스트 미입력 시 커서 사이즈가 default 값으로 진행되어, 텍스트를 입력하면 챗버블의 height가 조절됩니다.
-    // 아래처럼 풀어서 기재할 시 해당 버그가 나타나지 않아서 아래와 같이 작성했습니다.
+    TextField("", text: $text, axis: .vertical)
+      .placeholder(when: text.isEmpty, placeholder: {
+        Text("답변을 작성해주세요. (150자 이내)")
+          .font(.custom("SpoqaHanSansNeo-Regular", size: 12))
+          .tracking(-0.4)
+          .foregroundStyle(.stone300)
+      })
     
       .font(.custom("SpoqaHanSansNeo-Regular", size: 12))
       .tracking(-0.4)
-     
       .foregroundStyle(.white)
       .multilineTextAlignment(.leading)
       .padding(paddingV)

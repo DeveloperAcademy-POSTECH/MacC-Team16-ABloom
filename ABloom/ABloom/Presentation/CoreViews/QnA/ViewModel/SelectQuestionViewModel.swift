@@ -9,7 +9,7 @@ import SwiftUI
 
 
 @MainActor
-class SelectQuestionViewModel: ObservableObject {
+final class SelectQuestionViewModel: ObservableObject {
   @Published var questionLists = [DBStaticQuestion]()
   @Published var filteredLists = [DBStaticQuestion]()
   @Published var selectedCategory: Category = Category.values
