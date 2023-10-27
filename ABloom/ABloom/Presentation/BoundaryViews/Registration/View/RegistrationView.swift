@@ -13,7 +13,7 @@ struct RegistrationView: View {
   
   var body: some View {
     VStack(alignment: .leading, spacing: 30) {
-      Spacer().frame(height: 98)
+      Spacer().frame(height: 10)
       
       nameInputField
       
@@ -24,15 +24,22 @@ struct RegistrationView: View {
       Spacer()
       
       nextButton
-      
-      Spacer().frame(height: 60)
     }
     .padding(.horizontal, 20)
     .background(backgroundDefault())
-    .tint(.pink500)
-    .ignoresSafeArea()
-    .navigationTitle("가입하기")
-    .navigationBarTitleDisplayMode(.inline)
+    .tint(.purple600)
+    .customNavigationBar(
+      centerView: {
+        Text("가입하기")
+          .fontWithTracking(.title3R)
+          .foregroundStyle(.stone700)
+      },
+      leftView: {
+        EmptyView()
+      },
+      rightView: {
+        EmptyView()
+      })
   }
 }
 
@@ -107,21 +114,19 @@ extension RegistrationView {
   
   private var nextButton: some View {
     Button {
-      // ConnectView()
       try? registerVM.registerNewUser()
-      showLoginView = false
+      registerVM.isSuccessCreateUser = true
     } label: {
       if registerVM.isNextButtonEnabled {
-        PinkSingleBtn(text: "다음")
-          .frame(maxWidth: .infinity)
+        PurpleSingleBtn(text: "다음")
       } else {
         StoneSingleBtn(text: "다음")
-          .frame(maxWidth: .infinity)
       }
     }
+    .padding(.bottom, 40)
     .disabled(!registerVM.isNextButtonEnabled)
     .navigationDestination(isPresented: $registerVM.isSuccessCreateUser) {
-      ConnectionView()
+      ConnectionView(showLoginView: $showLoginView)
     }
   }
 }

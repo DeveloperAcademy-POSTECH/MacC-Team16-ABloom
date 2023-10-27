@@ -19,6 +19,8 @@ import SwiftUI
  - Figma에 Radius가 명시되어 있지 않아 확정 필요
  */
 
+let paddingV = 10.0
+
 struct LeftBlueChatBubble: View {
   let text: String
   
@@ -27,7 +29,7 @@ struct LeftBlueChatBubble: View {
       Text(text)
         .fontWithTracking(.footnoteR, tracking: -0.4)
         .foregroundStyle(.stone900)
-        .padding(13)
+        .padding(paddingV)
         .background(
           Rectangle()
             .foregroundStyle(.blue100)
@@ -51,7 +53,7 @@ struct RightBlueChatBubble: View {
       Text(text)
         .fontWithTracking(.footnoteR, tracking: -0.4)
         .foregroundStyle(.stone900)
-        .padding(13)
+        .padding(paddingV)
         .background(
           Rectangle()
             .foregroundStyle(.blue100)
@@ -72,7 +74,7 @@ struct LeftPinkChatBubble: View {
       Text(text)
         .fontWithTracking(.footnoteR, tracking: -0.4)
         .foregroundStyle(.stone900)
-        .padding(13)
+        .padding(paddingV)
         .background(
           Rectangle()
             .foregroundStyle(.pink100)
@@ -96,7 +98,7 @@ struct RightPinkChatBubble: View {
       Text(text)
         .fontWithTracking(.footnoteR, tracking: -0.4)
         .foregroundStyle(.stone900)
-        .padding(13)
+        .padding(paddingV)
         .background(
           Rectangle()
             .foregroundStyle(.pink100)
@@ -109,39 +111,55 @@ struct RightPinkChatBubble: View {
 }
 
 struct BlueChatBubbleTextField: View {
-  let text: String
+  @Binding var text: String
   
   var body: some View {
-    Text(text)
-      .fontWithTracking(.caption1R, tracking: -0.4)
+    
+    TextField("나의 생각은...", text: $text, axis: .vertical)
+    // BUG
+    // fontWithTracking 적용시, 텍스트 미입력 시 커서 사이즈가 default 값으로 진행되어, 텍스트를 입력하면 챗버블의 height가 조절됩니다.
+    // 아래처럼 풀어서 기재할 시 해당 버그가 나타나지 않아서 아래와 같이 작성했습니다.
+    
+      .font(.custom("SpoqaHanSansNeo-Regular", size: 12))
+      .tracking(-0.4)
+     
       .foregroundStyle(.white)
-      .frame(width: 242, alignment: .center)
-      .frame(minHeight: 36, alignment: .center)
+      .multilineTextAlignment(.leading)
+      .padding(paddingV)
       .background(
         Rectangle()
           .clayMorpMDShadow()
           .foregroundStyle(.blue500)
           .cornerRadius(10, corners: [.topLeft, .bottomRight, .bottomLeft])
       )
+      .frame(minHeight: 30, alignment: .center)
+      .frame(width: 242, alignment: .center)
+     
   }
 }
 
 struct PinkChatBubbleTextField: View {
-  let text: String
+  @Binding var text: String
   
   var body: some View {
-    Text(text)
-      .fontWithTracking(.caption1R, tracking: -0.4)
+    
+    TextField("나의 생각은...", text: $text, axis: .vertical)
+      .font(.custom("SpoqaHanSansNeo-Regular", size: 12))
+      .tracking(-0.4)
       .foregroundStyle(.white)
+      .padding(paddingV)
       .frame(width: 242, alignment: .center)
-      .frame(minHeight: 36, alignment: .center)
+      .frame(minHeight: 30, alignment: .center)
       .background(
         Rectangle()
           .clayMorpMDShadow()
           .foregroundStyle(.pink500)
           .cornerRadius(10, corners: [.topLeft, .bottomRight, .bottomLeft])
       )
+      .frame(minHeight: 30, alignment: .center)
+      .frame(width: 242, alignment: .center)
   }
+  
 }
 
 #Preview {
@@ -153,10 +171,6 @@ struct PinkChatBubbleTextField: View {
     LeftPinkChatBubble(text: "얼마나 자주 데이트를 하고 싶어?")
       .padding()
     RightPinkChatBubble(text: "얼마나 자주 데이트를 하고 싶어?")
-      .padding()
-    BlueChatBubbleTextField(text: "어렸을 때 강아지를 키웠었고 엄청 사랑했니??")
-      .padding()
-    PinkChatBubbleTextField(text: "어렸을 때 강아지를 키웠었고 엄청 사랑했니??")
       .padding()
   }
   

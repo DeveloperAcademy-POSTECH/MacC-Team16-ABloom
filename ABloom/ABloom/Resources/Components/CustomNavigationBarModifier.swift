@@ -20,7 +20,7 @@ struct CustomNavigationBarModifier<C, L, R>: ViewModifier where C: View, L: View
   }
   
   func body(content: Content) -> some View {
-    VStack {
+    VStack(spacing: 0) {
       ZStack {
         HStack {
           self.leftView?()
@@ -29,7 +29,7 @@ struct CustomNavigationBarModifier<C, L, R>: ViewModifier where C: View, L: View
           
           self.rightView?()
         }
-        .frame(height: 44)
+        .frame(height: 25)
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 16)
         
