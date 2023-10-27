@@ -10,7 +10,7 @@ import SwiftUI
 enum Category: String, CaseIterable {
   case values
   case health
-  case economy
+  case finance
   case family
   case couple
   case past
@@ -21,7 +21,7 @@ enum Category: String, CaseIterable {
     switch self {
     case .values: return "가치관"
     case .health: return "건강"
-    case .economy: return "경제"
+    case .finance: return "경제"
     case .family: return "가족"
     case .couple: return "부부관계"
     case .past: return "과거"
@@ -36,7 +36,7 @@ enum Category: String, CaseIterable {
       return "circleIcon_isometic_star"
     case .health:
       return "circleIcon_isometic_health"
-    case .economy:
+    case .finance:
       return "circleIcon_isometic_money"
     case .family:
       return "circleIcon_isometic_sofa"
