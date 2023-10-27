@@ -15,17 +15,16 @@ struct AnswerCheckView: View {
   
   var body: some View {
     VStack {
-      // MARK: Header
+      
       CategoryQuestionBox(
         question: "반려동물을 기르고 싶어?",
         category: "경제 질문",
         categoryImg: "squareIcon_isometric_health"
       )
+      .padding(.vertical, 30)
       
       Spacer()
-        .frame(height: 40)
-      
-      // MARK: Content
+        .frame(height: 10)
       
       // TODO: 데이터의 타임 스탬프를 비교하여, 먼저 작성한 답변이 위로 보여야 함
       VStack(spacing: 20) {
@@ -47,11 +46,9 @@ struct AnswerCheckView: View {
         Spacer()
       }
       .padding(.horizontal, 20)
-      .frame(maxWidth: .infinity, maxHeight: .infinity)
       .background(backWall())
     }
     
-    // MARK: NavigationBar
     .customNavigationBar(
       centerView: {
         Text("우리의 문답")

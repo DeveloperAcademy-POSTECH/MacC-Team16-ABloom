@@ -98,33 +98,28 @@ extension View {
     RoundedRectangle(cornerRadius: 20)
       .glassBG1Shadow()
       .foregroundStyle(glassGradient())
-      .ignoresSafeArea()
   }
   
   /**
    Custom Font
    - 모든 Text는 자간이 1 혹은 -0.4 이므로 아래의 Modifier에 value가 1 혹은 -0.4로 적용되어야 함
-   
-   사용예제
-   -
-   .fontWithTracking(fontStyle: .largeTitleBold, value: 1)
    */
-  func fontWithTracking(_ fontStyle: Font, tracking: CGFloat = 1) -> some View {
+  func fontWithTracking(_ fontStyle: Font, tracking: CGFloat = 1, lineSpacing: CGFloat = 5) -> some View {
     self
       .font(fontStyle)
-      .lineSpacing(5)
+      .lineSpacing(lineSpacing)
       .tracking(tracking)
   }
   
   /// textField Placeholder customize
   func placeholder<Content: View>(
-          when shouldShow: Bool,
-          alignment: Alignment = .leading,
-          @ViewBuilder placeholder: () -> Content) -> some View {
-
-          ZStack(alignment: alignment) {
-              placeholder().opacity(shouldShow ? 1 : 0)
-              self
-          }
+    when shouldShow: Bool,
+    alignment: Alignment = .leading,
+    @ViewBuilder placeholder: () -> Content) -> some View {
+      
+      ZStack(alignment: alignment) {
+        placeholder().opacity(shouldShow ? 1 : 0)
+        self
       }
+    }
 }
