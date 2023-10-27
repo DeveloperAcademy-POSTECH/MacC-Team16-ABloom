@@ -24,6 +24,8 @@ final class MyAccountConnectingViewModel: ObservableObject {
     self.isConnectAble = isTargetCodeInputVaild && codeInputText.count == 3
     if !isConnectAble {
       self.showAlert = true
+    } else {
+      connect()
     }
   }
   
@@ -33,6 +35,9 @@ final class MyAccountConnectingViewModel: ObservableObject {
     self.myCode = try await UserManager.shared.getUser(userId: currentUser.uid).invitationCode
   }
   
+  func connect() async throws {
+    try await UserManager.shared.connectFiance(connectionCode: codeInputText)
+    
   func copyClipboard() {
     UIPasteboard.general.string = myCode
     withAnimation {
