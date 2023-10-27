@@ -16,13 +16,15 @@ struct DBUser: Codable {
   let sex: Bool?
   let estimatedMarriageDate: Date?
   let invitationCode: String?
+  let fiance: String?
   
-  init(userId: String, name: String, sex: Bool, estimatedMarriageDate: Date, invitationCode: String) {
+  init(userId: String, name: String, sex: Bool, estimatedMarriageDate: Date, invitationCode: String, fiance: String? = nil) {
     self.userId = userId
     self.name = name
     self.sex = sex
     self.estimatedMarriageDate = estimatedMarriageDate
     self.invitationCode = invitationCode
+    self.fiance = fiance
   }
   
   init(auth: AuthDataResultModel) {
@@ -31,6 +33,7 @@ struct DBUser: Codable {
     self.sex = nil
     self.estimatedMarriageDate = nil
     self.invitationCode = nil
+    self.fiance = nil
   }
   
   enum CodingKeys: String, CodingKey {
@@ -39,6 +42,7 @@ struct DBUser: Codable {
     case sex = "sex"
     case estimatedMarriageDate = "estimated_marriage_date"
     case invitationCode = "invitation_code"
+    case fiance = "fiance"
   }
   
   func encode(to encoder: Encoder) throws {
@@ -48,6 +52,7 @@ struct DBUser: Codable {
     try container.encode(self.sex, forKey: .sex)
     try container.encode(self.estimatedMarriageDate, forKey: .estimatedMarriageDate)
     try container.encode(self.invitationCode, forKey: .invitationCode)
+    try container.encode(self.fiance, forKey: .fiance)
   }
   
   init(from decoder: Decoder) throws {
@@ -57,6 +62,7 @@ struct DBUser: Codable {
     self.sex = try container.decode(Bool.self, forKey: .sex)
     self.estimatedMarriageDate = try container.decode(Date.self, forKey: .estimatedMarriageDate)
     self.invitationCode = try container.decode(String.self, forKey: .invitationCode)
+    self.fiance = try container.decodeIfPresent(String.self, forKey: .fiance)
   }
 }
 
@@ -78,5 +84,19 @@ final class UserManager {
   // MARK: POST Method
   func createNewUser(user: DBUser) throws {
     try userDocument(userId: user.userId).setData(from: user, merge: false)
+  }
+  
+  func connectFiance(connectionCode: String) async throws {
+    let snapshot = try await userCollection.whereField(DBUser.CodingKeys.invitationCode.rawValue, isEqualTo: connectionCode).getDocuments()
+    
+    guard let target = snapshot.documents.first else {
+      throw URLError(.badServerResponse)
+    }
+    
+    let targetId = try target.data(as: DBUser.self).userId
+    let myId = try AuthenticationManager.shared.getAuthenticatedUser().uid
+    
+    try await userDocument(userId: targetId).updateData([DBUser.CodingKeys.fiance.rawValue:myId])
+    try await userDocument(userId: myId).updateData([DBUser.CodingKeys.fiance.rawValue:targetId])
   }
 }
