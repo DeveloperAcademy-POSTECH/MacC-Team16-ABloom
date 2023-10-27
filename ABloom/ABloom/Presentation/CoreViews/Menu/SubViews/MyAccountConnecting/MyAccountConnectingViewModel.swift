@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 final class MyAccountConnectingViewModel: ObservableObject {
   @Published var codeInputText: String = ""
   @Published var myCode: String?
@@ -20,12 +21,12 @@ final class MyAccountConnectingViewModel: ObservableObject {
   }
   
   // TODO: 연결 가능 확인 로직 수정
-  func tryConnect() {
-    self.isConnectAble = isTargetCodeInputVaild && codeInputText.count == 3
+  func tryConnect() async throws {
+    self.isConnectAble = isTargetCodeInputVaild && codeInputText.count == 10
     if !isConnectAble {
       self.showAlert = true
     } else {
-      connect()
+      try await connect()
     }
   }
   
@@ -37,7 +38,8 @@ final class MyAccountConnectingViewModel: ObservableObject {
   
   func connect() async throws {
     try await UserManager.shared.connectFiance(connectionCode: codeInputText)
-    
+  }
+  
   func copyClipboard() {
     UIPasteboard.general.string = myCode
     withAnimation {

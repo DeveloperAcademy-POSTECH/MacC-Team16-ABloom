@@ -29,26 +29,12 @@ struct MyAccountConnectingView: View {
      
       connectButton
     }
+    .navigationTitle("상대방과 연결")
     .padding(.horizontal, 20)
     .background(backgroundDefault())
     .task {
       try? await myAccountConnectingVM.getMyCode()
     }
-    .customNavigationBar(
-      centerView: {
-        Text("상대방과 연결")
-          .fontWithTracking(.title3R)
-          .foregroundStyle(.stone700)
-      },
-      leftView: {
-        Button(action: {dismiss()}, label: {
-          Image("angle-left")
-            .frame(width: 20, height: 20)
-        })
-      },
-      rightView: {
-        EmptyView()
-      })
   }
 }
 
@@ -74,7 +60,9 @@ extension MyAccountConnectingView {
       Text("나의 연결 코드")
         .fontWithTracking(.subHeadlineR)
       
-      CopyStrokeInputField(myCode: myAccountConnectingVM.myCode, copyAction: myAccountConnectingVM.copyClipboard)
+      CopyStrokeInputField(myCode: myAccountConnectingVM.myCode) {
+        myAccountConnectingVM.copyClipboard()
+      }
     }
   }
   
@@ -89,9 +77,8 @@ extension MyAccountConnectingView {
   
   private var connectButton: some View {
     Button(action: {
-      myAccountConnectingVM.tryConnect()
-      if myAccountConnectingVM.isConnectAble {
-        // TODO: 연결 완료 시 (05-3A 메뉴 - 연결 설정 완료)로 이동
+      Task {
+        try? await myAccountConnectingVM.tryConnect()
       }
     }, label: {
       if myAccountConnectingVM.isTargetCodeInputVaild {
