@@ -62,6 +62,9 @@ struct HomeView: View {
       .padding(.horizontal, 20)
     }
     .ignoresSafeArea()
+    .task {
+      try? await homeVM.setInfo()
+    }
   }
 }
 
