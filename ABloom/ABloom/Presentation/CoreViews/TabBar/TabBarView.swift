@@ -73,10 +73,10 @@ extension TabBarView {
       }
       
       Rectangle()
-        .frame(height: 20)
+        .frame(height: UIApplication.shared.windows.first?.safeAreaInsets.bottom == 0 ? 0 : 20)
         .foregroundStyle(.white)
     }
-    .frame(height: 112)
+    .frame(height: UIApplication.shared.windows.first?.safeAreaInsets.bottom == 0 ? 80 : 112)
     .frame(maxWidth: .infinity)
     .background(.white)
     .cornerRadius(32, corners: [.topLeft, .topRight])
