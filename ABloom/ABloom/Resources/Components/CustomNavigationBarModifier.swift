@@ -46,7 +46,7 @@ struct CustomNavigationBarModifier<C, L, R>: ViewModifier where C: View, L: View
       
       Spacer()
     }
-    .padding(.vertical, 10)
+    .padding(.top, 10)
     .navigationBarBackButtonHidden(true)
   }
 }

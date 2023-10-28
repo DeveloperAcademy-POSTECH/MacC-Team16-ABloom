@@ -47,8 +47,8 @@ extension QuestionMainView {
       // FIXME: 다른 뷰로 전환 시에는 다른 방식으로 처리해야함
       NavigationLink(value: 0) {
         Image("pencil_write_fill")
-          .padding([.trailing], 17)
       }
+      .padding([.trailing], 17)
     }
     .padding([.top], 20)
     .foregroundStyle(.stone700)

@@ -50,7 +50,7 @@ struct QnAListItem: View {
       }
       Spacer()
     }
-    .padding([.leading, .trailing], 20)
+    .padding(.horizontal, 20)
   }
 }
 

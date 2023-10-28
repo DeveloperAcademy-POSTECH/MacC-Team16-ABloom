@@ -71,7 +71,7 @@ extension SelectQuestionView {
         }
       }
       .padding([.horizontal, .bottom], 22)
-      .padding(.top, 30)
+      .padding(.top, 36)
       
     }
   }
@@ -94,9 +94,9 @@ extension SelectQuestionView {
         ForEach(selectQVM.filteredLists, id: \.self) { question in
           NavigationLink(value: question) {
             LeftBlueChatBubble(text: question.content)
-              .padding(.horizontal, 20)
-              .padding(.bottom, 12)
           }
+          .padding(.horizontal, 20)
+          .padding(.bottom, 12)
         }
       }
     }
