@@ -16,6 +16,7 @@ final class MyAccountViewModel: ObservableObject {
   @Published var nameChangeTextfield: String = ""
   @Published var showDatePicker: Bool = false
   @Published var merriageDate: Date = .now
+  @Published var showSignOutCheckAlert: Bool = false
   
   func signOut() throws {
     try AuthenticationManager.shared.signOut()

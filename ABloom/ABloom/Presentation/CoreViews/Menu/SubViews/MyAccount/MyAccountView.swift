@@ -84,6 +84,7 @@ extension MyAccountView {
     }
     // 이름 변경 Alert
     .alert("이름 변경하기", isPresented: $myAccountVM.showNameChangeAlert) {
+      // TODO: 버튼 UI 수정
       TextField(text: $myAccountVM.nameChangeTextfield) {
         Text("홍길동")
       }
@@ -94,7 +95,7 @@ extension MyAccountView {
         Text("취소")
       }
       
-      Button("확인", role: .cancel) {
+      Button("확인") {
         Task {
           try? myAccountVM.updateMyName(name: myAccountVM.nameChangeTextfield)
           try? await myAccountVM.getMyInfo()
@@ -129,16 +130,25 @@ extension MyAccountView {
         .fontWithTracking(.headlineBold)
       
       MenuListButtonItem(title: "로그아웃") {
-        do {
-          try myAccountVM.signOut()
-        } catch {
-          print(error.localizedDescription)
-        }
+        myAccountVM.showSignOutCheckAlert = true
       }
       
       MenuListNavigationItem(title: "회원탈퇴") {
         Text("회원탈퇴")
       }
+    }
+    .alert("로그아웃 하시겠어요?", isPresented: $myAccountVM.showSignOutCheckAlert) {
+      // TODO: 버튼 UI 수정
+      Button("취소") {
+        myAccountVM.showSignOutCheckAlert = false
+      }
+      
+      Button("로그아웃") {
+        try? myAccountVM.signOut()
+        myAccountVM.showSignOutCheckAlert = false
+      }
+    } message: {
+      Text("다시 로그인해도 정보가 유지되니\n안심하고 로그아웃하셔도 돼요.")
     }
   }
 }
