@@ -11,10 +11,10 @@ enum TabTitle: String {
   case info = "내 정보"
 }
 
-enum TabIcon: String {
-  case main = "house.fill"
-  case qna = "doc.plaintext.fill"
-  case info = "person.fill"
+enum TabImage: String {
+  case main = "home"
+  case qna = "order"
+  case info = "user.alt"
 }
 
 enum Tab: CaseIterable {
@@ -22,14 +22,14 @@ enum Tab: CaseIterable {
   case qna
   case info
   
-  var icon: String {
+  var image: String {
     switch self {
     case .main:
-      return TabIcon.main.rawValue
+      return TabImage.main.rawValue
     case .qna:
-      return TabIcon.qna.rawValue
+      return TabImage.qna.rawValue
     case .info:
-      return TabIcon.info.rawValue
+      return TabImage.info.rawValue
     }
   }
   
