@@ -17,30 +17,32 @@ struct TabBarView: View {
   }
   
   var body: some View {
-    TabView(selection: $selectedTab) {
-      ForEach(Tab.allCases, id: \.self) { tab in
-        switch tab {
-        case .main:
-          HomeView()
-            .tabItem {
-              Image(systemName: tab.icon)
-              Text(tab.title)
-            }
-            .tag(tab)
-        case .qna:
-          QuestionMainView()
-            .tabItem {
-              Image(systemName: tab.icon)
-              Text(tab.title)
-            }
-            .tag(tab)
-        case .info:
-          MenuView()
-            .tabItem {
-              Image(systemName: tab.icon)
-              Text(tab.title)
-            }
-            .tag(tab)
+    NavigationStack {
+      TabView(selection: $selectedTab) {
+        ForEach(Tab.allCases, id: \.self) { tab in
+          switch tab {
+          case .main:
+            HomeView()
+              .tabItem {
+                Image(systemName: tab.icon)
+                Text(tab.title)
+              }
+              .tag(tab)
+          case .qna:
+            QuestionMainView()
+              .tabItem {
+                Image(systemName: tab.icon)
+                Text(tab.title)
+              }
+              .tag(tab)
+          case .info:
+            MenuView()
+              .tabItem {
+                Image(systemName: tab.icon)
+                Text(tab.title)
+              }
+              .tag(tab)
+          }
         }
       }
     }
