@@ -53,11 +53,13 @@ extension MyAccountView {
         HStack {
           Text("결혼까지 D-\(myAccountVM.dDay ?? 0)")
             .fontWithTracking(.footnoteR)
+            .foregroundStyle(.stone500)
           
           Spacer()
           
           Text("정보 수정하기 >")
             .fontWithTracking(.footnoteR)
+            .foregroundStyle(.stone500)
         }
         .foregroundStyle(.stone500)
       }
