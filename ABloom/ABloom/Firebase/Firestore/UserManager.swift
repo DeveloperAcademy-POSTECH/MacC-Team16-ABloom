@@ -92,6 +92,16 @@ final class UserManager {
     try userDocument(userId: user.userId).setData(from: user, merge: false)
   }
   
+  func updateUserName(userId: String, name: String) throws {
+    let data: [String: Any] = [DBUser.CodingKeys.name.rawValue:name]
+    userDocument(userId: userId).updateData(data)
+  }
+  
+  func updateMarriageDate(userId: String, date: Date) throws {
+    let data: [String: Any] = [DBUser.CodingKeys.estimatedMarriageDate.rawValue:date]
+    userDocument(userId: userId).updateData(data)
+  }
+  
   func connectFiance(connectionCode: String) async throws {
     let snapshot = try await userCollection.whereField(DBUser.CodingKeys.invitationCode.rawValue, isEqualTo: connectionCode).getDocuments()
     

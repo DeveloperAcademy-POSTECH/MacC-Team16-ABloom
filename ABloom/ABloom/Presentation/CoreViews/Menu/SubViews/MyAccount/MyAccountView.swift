@@ -29,6 +29,20 @@ struct MyAccountView: View {
     .navigationBarTitleDisplayMode(.inline)
     .padding(.horizontal, 25)
     .background(backgroundDefault())
+    .confirmationDialog("정보 변경", isPresented: $myAccountVM.showActionSheet, titleVisibility: .hidden) {
+      Button("이름 변경하기", role: .none) {
+        myAccountVM.showNameChangeAlert = true
+      }
+      
+      Button("결혼예정일 수정하기", role: .none) {
+        myAccountVM.showDatePicker = true
+      }
+      
+      Button("취소", role: .cancel) {
+        myAccountVM.showActionSheet = false
+      }
+    }
+    .tint(.purple600)
   }
 }
 
@@ -52,14 +66,57 @@ extension MyAccountView {
           .foregroundStyle(.stone800)
         HStack {
           Text("결혼까지 D-\(myAccountVM.dDay ?? 0)")
-            .fontWithTracking(.footnoteR)
           
           Spacer()
           
-          Text("정보 수정하기 >")
-            .fontWithTracking(.footnoteR)
+          Button {
+            myAccountVM.showActionSheet = true
+          } label: {
+            Text("정보 수정하기 >")
+          }
         }
+        .fontWithTracking(.footnoteR)
         .foregroundStyle(.stone500)
+      }
+    }
+    // 이름 변경 Alert
+    .alert("이름 변경하기", isPresented: $myAccountVM.showNameChangeAlert) {
+      // TODO: 버튼 UI 수정
+      TextField(text: $myAccountVM.nameChangeTextfield) {
+        Text("홍길동")
+      }
+      
+      Button {
+        myAccountVM.showNameChangeAlert = false
+      } label: {
+        Text("취소")
+      }
+      
+      Button("확인") {
+        Task {
+          try? myAccountVM.updateMyName(name: myAccountVM.nameChangeTextfield)
+          try? await myAccountVM.getMyInfo()
+        }
+      }
+    } message: {
+      Text("변경할 이름을 입력해주세요.")
+    }
+    // 결혼 날짜 변경 모달
+    .sheet(isPresented: $myAccountVM.showDatePicker) {
+      DatePicker("", selection: $myAccountVM.marriageDate, displayedComponents: .date)
+        .datePickerStyle(.graphical)
+        .frame(width: 320)
+        .labelsHidden()
+        .presentationDetents([.medium])
+      
+      Button {
+        Task {
+          try? myAccountVM.updateMyMarriageDate(date: myAccountVM.marriageDate)
+          try? await myAccountVM.getMyInfo()
+          myAccountVM.showDatePicker = false
+        }
+      } label: {
+        Text("완료")
       }
     }
   }
@@ -70,16 +127,25 @@ extension MyAccountView {
         .fontWithTracking(.headlineBold)
       
       MenuListButtonItem(title: "로그아웃") {
-        do {
-          try myAccountVM.signOut()
-        } catch {
-          print(error.localizedDescription)
-        }
+        myAccountVM.showSignOutCheckAlert = true
       }
       
       MenuListNavigationItem(title: "회원탈퇴") {
         Text("회원탈퇴")
       }
+    }
+    .alert("로그아웃 하시겠어요?", isPresented: $myAccountVM.showSignOutCheckAlert) {
+      // TODO: 버튼 UI 수정
+      Button("취소") {
+        myAccountVM.showSignOutCheckAlert = false
+      }
+      
+      Button("로그아웃") {
+        try? myAccountVM.signOut()
+        myAccountVM.showSignOutCheckAlert = false
+      }
+    } message: {
+      Text("다시 로그인해도 정보가 유지되니\n안심하고 로그아웃하셔도 돼요.")
     }
   }
 }
