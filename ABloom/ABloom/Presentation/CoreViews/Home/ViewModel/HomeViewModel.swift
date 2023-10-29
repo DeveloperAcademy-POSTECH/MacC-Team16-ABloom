@@ -15,6 +15,11 @@ final class HomeViewModel: ObservableObject {
   @Published var isConnected: Bool = false
   @Published var partnerType: UserType = .woman
   @Published var recommendQuestion: String = "추천질문입니다"
+  @Published var isConnectButtonTapped = false
+  
+  func connectButtonTapped() {
+    isConnectButtonTapped = true
+  }
   
   func setInfo() async throws {
     let dbUser = try await UserManager.shared.getCurrentUser()
