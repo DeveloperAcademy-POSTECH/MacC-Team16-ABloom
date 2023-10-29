@@ -35,37 +35,14 @@ struct MyAccountView: View {
       }
       
       Button("결혼예정일 수정하기", role: .none) {
-        
+        myAccountVM.showDatePicker = true
       }
       
       Button("취소", role: .cancel) {
         myAccountVM.showActionSheet = false
       }
     }
-    .alert("이름 변경하기", isPresented: $myAccountVM.showNameChangeAlert) {
-      TextField(text: $myAccountVM.nameChangeTextfield) {
-        Text("홍길동")
-      }
-      
-      Button {
-        myAccountVM.showNameChangeAlert = false
-      } label: {
-        Text("취소")
-      }
-      
-      Button {
-        Task {
-          try? myAccountVM.updateMyName(name: myAccountVM.nameChangeTextfield)
-          try? await myAccountVM.getMyInfo()
-        }
-      } label: {
-        Text("확인")
-      }
-      
-    } message: {
-      Text("변경할 이름을 입력해주세요.")
-    }
-
+    .tint(.purple600)
   }
 }
 
@@ -103,6 +80,45 @@ extension MyAccountView {
           }
         }
         .foregroundStyle(.stone500)
+      }
+    }
+    // 이름 변경 Alert
+    .alert("이름 변경하기", isPresented: $myAccountVM.showNameChangeAlert) {
+      TextField(text: $myAccountVM.nameChangeTextfield) {
+        Text("홍길동")
+      }
+      
+      Button {
+        myAccountVM.showNameChangeAlert = false
+      } label: {
+        Text("취소")
+      }
+      
+      Button("확인", role: .cancel) {
+        Task {
+          try? myAccountVM.updateMyName(name: myAccountVM.nameChangeTextfield)
+          try? await myAccountVM.getMyInfo()
+        }
+      }
+    } message: {
+      Text("변경할 이름을 입력해주세요.")
+    }
+    // 결혼 날짜 변경 모달
+    .sheet(isPresented: $myAccountVM.showDatePicker) {
+      DatePicker("", selection: $myAccountVM.merriageDate, displayedComponents: .date)
+        .datePickerStyle(.graphical)
+        .frame(width: 320)
+        .labelsHidden()
+        .presentationDetents([.medium])
+      
+      Button {
+        Task {
+          try? myAccountVM.updateMyMarriageDate(date: myAccountVM.merriageDate)
+          try? await myAccountVM.getMyInfo()
+          myAccountVM.showDatePicker = false
+        }
+      } label: {
+        Text("완료")
       }
     }
   }

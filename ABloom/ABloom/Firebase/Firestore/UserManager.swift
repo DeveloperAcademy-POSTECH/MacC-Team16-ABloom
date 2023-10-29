@@ -93,7 +93,12 @@ final class UserManager {
   }
   
   func updateUserName(userId: String, name: String) throws {
-    let data: [String:Any] = [DBUser.CodingKeys.name.rawValue : name]
+    let data: [String: Any] = [DBUser.CodingKeys.name.rawValue:name]
+    userDocument(userId: userId).updateData(data)
+  }
+  
+  func updateMarriageDate(userId: String, date: Date) throws {
+    let data: [String: Any] = [DBUser.CodingKeys.estimatedMarriageDate.rawValue:date]
     userDocument(userId: userId).updateData(data)
   }
   

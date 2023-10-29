@@ -14,6 +14,8 @@ final class MyAccountViewModel: ObservableObject {
   @Published var showActionSheet: Bool = false
   @Published var showNameChangeAlert: Bool = false
   @Published var nameChangeTextfield: String = ""
+  @Published var showDatePicker: Bool = false
+  @Published var merriageDate: Date = .now
   
   func signOut() throws {
     try AuthenticationManager.shared.signOut()
@@ -30,6 +32,11 @@ final class MyAccountViewModel: ObservableObject {
   func updateMyName(name: String) throws {
     let myId: String = try AuthenticationManager.shared.getAuthenticatedUser().uid
     try UserManager.shared.updateUserName(userId: myId, name: name)
+  }
+  
+  func updateMyMarriageDate(date: Date) throws {
+    let myId: String = try AuthenticationManager.shared.getAuthenticatedUser().uid
+    try UserManager.shared.updateMarriageDate(userId: myId, date: date)
   }
   
   private func calculateDDay(estimatedMarriageDate: Date) -> Int {
