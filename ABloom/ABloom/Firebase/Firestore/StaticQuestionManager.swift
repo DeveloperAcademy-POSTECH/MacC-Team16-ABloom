@@ -61,8 +61,12 @@ final class StaticQuestionManager {
   }
   
   func getAnswerdQuestions(questionIds: [Int]) async throws -> [DBStaticQuestion] {
-    return try await questionCollection
+    try await questionCollection
       .whereField(DBStaticQuestion.CodingKeys.questionID.rawValue, in: questionIds)
       .getDocuments(as: DBStaticQuestion.self)
+  }
+  
+  func getQuestionById(id: Int) async throws -> DBStaticQuestion {
+    try await questionCollection.document("\(id)").getDocument(as: DBStaticQuestion.self)
   }
 }

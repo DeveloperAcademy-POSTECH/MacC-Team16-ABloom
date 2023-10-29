@@ -27,7 +27,7 @@ struct QuestionMainView: View {
             if content == 0 {
               SelectQuestionView()
             } else {
-              AnswerCheckView(num: content)
+              AnswerCheckView(answerCheckVM: .init(questionId: content))
             }
           })
           .background(backWall())
