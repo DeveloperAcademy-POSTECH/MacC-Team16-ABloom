@@ -9,6 +9,11 @@ import SwiftUI
 
 class AnswerWriteViewModel: ObservableObject {
   @Published var answerText: String = ""
+  @Published var isAlertOn: Bool = false
+  
+  func moveToBack() {
+    isAlertOn.toggle()
+  }
   
   // 문답 저장
   func saveAns() {
