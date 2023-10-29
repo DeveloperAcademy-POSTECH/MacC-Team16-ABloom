@@ -14,7 +14,7 @@ struct QnAListItem: View {
   let isAns: Bool
   
   var body: some View {
-    HStack(spacing: 0) {
+    HStack(spacing: 15) {
       
       Image(categoryImg)
         .resizable()
@@ -25,7 +25,6 @@ struct QnAListItem: View {
             .clayMorpMDShadow()
             .foregroundStyle(.white)
         )
-        .padding(.trailing, 15)
       
       VStack(spacing: 4) {
         HStack {
@@ -35,7 +34,6 @@ struct QnAListItem: View {
           
           Spacer()
         }
-        
         HStack {
           Text(date)
             .fontWithTracking(.caption2R)
@@ -46,7 +44,6 @@ struct QnAListItem: View {
             .fontWithTracking(.caption2R)
         }
         .foregroundStyle(.stone500)
-        
       }
       Spacer()
     }

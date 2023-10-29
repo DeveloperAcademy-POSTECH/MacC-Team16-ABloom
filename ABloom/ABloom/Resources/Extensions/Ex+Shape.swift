@@ -7,16 +7,6 @@
 
 import SwiftUI
 
-extension Color {
-  public func exampleShadow() -> some ShapeStyle {
-    self
-      .shadow(.inner(color: Color.black.opacity(0.15), radius: 10, x: 0, y: -3))
-      .shadow(.inner(color: Color.white.opacity(0.25), radius: 15, x: 3, y: 1))
-      .shadow(.drop(color: Color.black.opacity(0.015), radius: 20, x: 0, y: 7))
-  }
-  
-}
-
 extension Shape {
   
   /***
@@ -45,7 +35,7 @@ extension Shape {
   // 완료
   public func clayMorpMDShadow() -> some View {
     self.fill(
-      .shadow(.inner(color: Color.black.opacity(0.36), radius: 5, x: 0, y: -3))
+      .shadow(.inner(color: Color.black.opacity(0.03), radius: 5, x: 0, y: -3))
       .shadow(.inner(color: Color.white.opacity(0.5), radius: 7.5, x: 3, y: 1))
       .shadow(.drop(color: Color.black.opacity(0.03), radius: 10, x: 0, y: 7))
     )
