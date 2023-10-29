@@ -51,7 +51,7 @@ enum Category: String, CaseIterable {
 }
 @MainActor
 final class QuestionMainViewModel: ObservableObject {
-  @Published var myAnwsers: [AnswerModel] = []
+  @Published var myAnwsers: [DBAnswer] = []
   @Published var questions: [DBStaticQuestion] = []
   
   func getMyAnswers() async throws {
