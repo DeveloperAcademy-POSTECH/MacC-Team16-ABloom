@@ -26,6 +26,7 @@
 		3D44127C2AEAC3C000FD5A51 /* ConnectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44127B2AEAC3C000FD5A51 /* ConnectedView.swift */; };
 		3D44127E2AEAC57500FD5A51 /* ConnectionWaypointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44127D2AEAC57500FD5A51 /* ConnectionWaypointView.swift */; };
 		3D4412802AEACA2A00FD5A51 /* ConnectionWaypointViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44127F2AEACA2A00FD5A51 /* ConnectionWaypointViewModel.swift */; };
+		3D957E872AEE5C5800D565E9 /* Ex+ Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D957E862AEE5C5800D565E9 /* Ex+ Query.swift */; };
 		3DB6A5752AE0BDF800C1369F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5742AE0BDF800C1369F /* FirebaseAnalytics */; };
 		3DB6A5772AE0BDF800C1369F /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5762AE0BDF800C1369F /* FirebaseAnalyticsOnDeviceConversion */; };
 		3DB6A5792AE0BDF800C1369F /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5782AE0BDF800C1369F /* FirebaseAnalyticsSwift */; };
@@ -114,6 +115,7 @@
 		3D44127B2AEAC3C000FD5A51 /* ConnectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedView.swift; sourceTree = "<group>"; };
 		3D44127D2AEAC57500FD5A51 /* ConnectionWaypointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionWaypointView.swift; sourceTree = "<group>"; };
 		3D44127F2AEACA2A00FD5A51 /* ConnectionWaypointViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionWaypointViewModel.swift; sourceTree = "<group>"; };
+		3D957E862AEE5C5800D565E9 /* Ex+ Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+ Query.swift"; sourceTree = "<group>"; };
 		3DB6A5AA2AE0C09800C1369F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3DB6A5AD2AE0C12B00C1369F /* AppleLoginButtonViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginButtonViewRepresentable.swift; sourceTree = "<group>"; };
 		3DB6A5B02AE11C2D00C1369F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -474,6 +476,7 @@
 				6053F15E2ADF6C3B0064A6E0 /* Ex+View.swift */,
 				AE8D3C502ADE19E0009899A7 /* Ex+Font.swift */,
 				AE8D3C602ADE3C73009899A7 /* Ex+Shape.swift */,
+				3D957E862AEE5C5800D565E9 /* Ex+ Query.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D957E872AEE5C5800D565E9 /* Ex+ Query.swift in Sources */,
 				3D4412782AE9F5E600FD5A51 /* ServiceWebURL.swift in Sources */,
 				AE8D3C512ADE19E0009899A7 /* Ex+Font.swift in Sources */,
 				3D4412542AE4EE2C00FD5A51 /* MenuListNavigationItem.swift in Sources */,
