@@ -146,7 +146,13 @@ struct PinkChatBubbleTextField: View {
   
   var body: some View {
     
-    TextField("나의 생각은...", text: $text, axis: .vertical)
+    TextField("", text: $text, axis: .vertical)
+      .placeholder(when: text.isEmpty, placeholder: {
+        Text("답변을 작성해주세요. (150자 이내)")
+          .font(.custom("SpoqaHanSansNeo-Regular", size: 12))
+          .tracking(-0.4)
+          .foregroundStyle(.stone300)
+      })
       .font(.custom("SpoqaHanSansNeo-Regular", size: 12))
       .tracking(-0.4)
       .foregroundStyle(.white)
