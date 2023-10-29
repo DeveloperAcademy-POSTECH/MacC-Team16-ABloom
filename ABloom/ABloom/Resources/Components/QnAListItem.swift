@@ -10,8 +10,14 @@ import SwiftUI
 struct QnAListItem: View {
   let categoryImg: String
   let question: String
-  let date: String
+  let date: Date
   let isAns: Bool
+  
+  var formattedWeddingDate: String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy년 MM월 dd일"
+    return formatter.string(from: date)
+  }
   
   var body: some View {
     HStack(spacing: 15) {
@@ -31,11 +37,12 @@ struct QnAListItem: View {
           Text(question)
             .fontWithTracking(.caption1Bold)
             .foregroundStyle(.black)
+            .lineLimit(1)
           
           Spacer()
         }
         HStack {
-          Text(date)
+          Text(formattedWeddingDate)
             .fontWithTracking(.caption2R)
           
           Spacer()
@@ -52,5 +59,5 @@ struct QnAListItem: View {
 }
 
 #Preview {
-  QnAListItem(categoryImg: "squareIcon_isometric_health", question: "나와 결혼을 결심한 순간은 언제야?", date: "2023년 9월 18일", isAns: false)
+  QnAListItem(categoryImg: "squareIcon_isometric_health", question: "나와 결혼을 결심한 순간은 언제야?", date: .now, isAns: false)
 }

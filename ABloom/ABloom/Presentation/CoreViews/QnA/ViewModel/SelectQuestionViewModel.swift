@@ -29,7 +29,8 @@ final class SelectQuestionViewModel: ObservableObject {
   }
   
   func fetchQuestions() async throws {
-    self.questionLists = try await StaticQuestionManager.shared.getAllQuestions()
+    let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
+    self.questionLists = try await StaticQuestionManager.shared.getAllQuestions(userId: userId)
     filterQuestion()
   }
 }

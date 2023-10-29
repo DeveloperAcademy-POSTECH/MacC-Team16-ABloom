@@ -10,31 +10,33 @@ import SwiftUI
 struct QuestionMainView: View {
   @StateObject var questionVM = QuestionMainViewModel()
   
-  
   var body: some View {
-    
     VStack {
       headerView
       
       Spacer()
         .frame(height: 34)
       
-      // if empty
-      emptyListView
-      
-      // else
-      // answeredQScroll
-      
-        .navigationDestination(for: Int.self, destination: { content in
-          if content == 0 {
-            SelectQuestionView()
-          } else {
-            AnswerCheckView(num: content)
-          }
-        })
-        .background(backWall())
+      if questionVM.myAnwsers.isEmpty {
+        emptyListView
+          .background(backWall())
+          
+      } else {
+        answeredQScroll
+          .navigationDestination(for: Int.self, destination: { content in
+            if content == 0 {
+              SelectQuestionView()
+            } else {
+              AnswerCheckView(num: content)
+            }
+          })
+          .background(backWall())
+      }
     }
     .background(backgroundDefault())
+    .task {
+      try? await questionVM.getMyAnswers()
+    }
   }
 }
 
@@ -64,10 +66,14 @@ extension QuestionMainView {
         Spacer()
           .frame(height: 0)
         
-        ForEach(1..<3) { num in
-          NavigationLink(value: num) {
+        ForEach(questionVM.questions, id: \.questionID) { question in
+          NavigationLink(value: question.questionID) {
             // TODO: 해당 정보란을 데이터로 가져와야함
-            QnAListItem(categoryImg: "squareIcon_isometric_sofa", question: "나와 결혼을 결심한 순간은 언제야?\(num)", date: "2023년 9월 18일", isAns: false)
+            QnAListItem(
+              categoryImg: (Category(rawValue: question.category)?.imgName)!,
+              question: question.content,
+              date: (questionVM.myAnwsers.first(where: { $0.questionId == question.questionID })?.date)!,
+              isAns: false)
           }
         }
       }

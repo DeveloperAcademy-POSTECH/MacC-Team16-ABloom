@@ -133,6 +133,11 @@ final class UserManager {
     
     try? document.setData(from: data, merge: false)
   }
+  
+  func getMyAnswers(userId: String) async throws -> [AnswerModel] {
+    let collection = userAnswerCollection(userId: userId)
+    return try await collection.getDocuments(as: AnswerModel.self)
+  }
 }
 
 
