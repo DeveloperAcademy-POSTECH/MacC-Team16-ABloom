@@ -69,10 +69,15 @@ struct DBUser: Codable {
 final class UserManager {
   static let shared = UserManager()
   
+  // MARK: 사용 객체
   private let userCollection = Firestore.firestore().collection("users")
   
   private func userDocument(userId: String) -> DocumentReference {
     userCollection.document(userId)
+  }
+  
+  private func userAnswerCollection(userId: String) -> CollectionReference {
+    userDocument(userId: userId).collection("answers")
   }
   
   // MARK: GET Method
@@ -117,5 +122,48 @@ final class UserManager {
     
     try await userDocument(userId: targetId).updateData([DBUser.CodingKeys.fiance.rawValue:myId])
     try await userDocument(userId: myId).updateData([DBUser.CodingKeys.fiance.rawValue:targetId])
+  }
+  
+  // MARK: Answer
+  func creatAnswer(userId: String, questionId: Int, content: String) throws {
+    let collection = userAnswerCollection(userId: userId)
+    let document = collection.document()
+    
+    let data = AnswerModel(questionId: questionId, answerContent: content)
+    
+    try? document.setData(from: data, merge: false)
+  }
+}
+
+
+struct AnswerModel: Codable {
+  let questionId: Int
+  let date: Date
+  let answerContent: String
+  
+  init(questionId: Int, date: Date = .now, answerContent: String) {
+    self.questionId = questionId
+    self.date = date
+    self.answerContent = answerContent
+  }
+  
+  enum CodingKeys: String, CodingKey {
+    case questionId = "q_id"
+    case date = "date"
+    case answerContent = "answer_content"
+  }
+  
+  init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.questionId = try container.decode(Int.self, forKey: .questionId)
+    self.date = try container.decode(Date.self, forKey: .date)
+    self.answerContent = try container.decode(String.self, forKey: .answerContent)
+  }
+  
+  func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.questionId, forKey: .questionId)
+    try container.encode(self.date, forKey: .date)
+    try container.encode(self.answerContent, forKey: .answerContent)
   }
 }

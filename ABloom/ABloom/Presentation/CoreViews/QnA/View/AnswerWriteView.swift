@@ -41,9 +41,9 @@ struct AnswerWriteView: View {
         })
       },
       rightView: {
-        NavigationLink {
-          // popToRoot 구현 => NavigationStack path 설정 필요
-          // QuestionMainView()
+        Button {
+          try? answerVM.createAnswer(questionId: question.questionID)
+          dismiss()
         } label: {
           Text("완료")
             .fontWithTracking(.headlineR)
@@ -70,4 +70,8 @@ extension AnswerWriteView {
     }
     .padding(.horizontal, 22)
   }
+}
+
+#Preview {
+  AnswerWriteView(question: .init(questionID: 1, category: "values", content: "반려동물을 기르고싶어?"))
 }
