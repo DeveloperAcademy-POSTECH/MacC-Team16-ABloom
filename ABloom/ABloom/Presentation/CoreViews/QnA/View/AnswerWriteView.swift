@@ -109,7 +109,9 @@ extension AnswerWriteView {
       PinkChatBubbleTextField(text: $answerVM.answerText)
       
         .onChange(of: answerVM.answerText, perform: { newValue in
-          answerVM.answerText = String(newValue.prefix(150))
+        if newValue.count > 150 {
+            answerVM.answerText = String(newValue.prefix(150))
+        }
         })
         .padding(.horizontal, 22)
     }
