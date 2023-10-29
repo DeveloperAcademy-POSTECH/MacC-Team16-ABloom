@@ -12,7 +12,7 @@ class AnswerWriteViewModel: ObservableObject {
   @Published var isAlertOn: Bool = false
   
   func moveToBack() {
-    isAlertOn.toggle()
+    isAlertOn = true
   }
   
   // 문답 저장
