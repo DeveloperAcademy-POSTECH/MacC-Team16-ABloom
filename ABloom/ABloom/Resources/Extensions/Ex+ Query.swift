@@ -14,7 +14,7 @@ extension Query {
     // query snapshot
     let snapshot = try await self.getDocuments()
     
-    // 2. 고급 함수를 이용하여 구현하기
+    // 고급 함수를 이용하여 구현하기
     return try snapshot.documents.map { document in
       return try document.data(as: T.self)
     }

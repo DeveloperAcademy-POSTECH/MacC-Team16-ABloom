@@ -47,14 +47,6 @@ final class StaticQuestionManager {
 
   // MARK: GET Method
   func getAllQuestions() async throws -> [DBStaticQuestion] {
-    let snapshot = try await questionCollection.getDocuments()
-    
-    var questions: [DBStaticQuestion] = []
-    
-    for document in snapshot.documents {
-      let question = try document.data(as: DBStaticQuestion.self)
-      questions.append(question)
-    }
-    return questions
+    try await questionCollection.getDocuments(as: DBStaticQuestion.self)
   }
 }
