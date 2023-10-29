@@ -12,6 +12,9 @@ final class AnswerCheckViewModel: ObservableObject {
   @Published var question: DBStaticQuestion? = nil
   @Published var fianceAnswer: String = ""
   @Published var myAnswer: String = ""
+  @Published var isNoFiance = false
+  @Published var isNoMyAnswer = false
+  @Published var isNoFianceAnswer = false
   let questionId: Int
   
   init(fianceAnswer: String = "", myAnswer: String = "", questionId: Int) {
@@ -21,29 +24,42 @@ final class AnswerCheckViewModel: ObservableObject {
   }
   
   func getAnswers() {
-    // TODO: 나의 응답, 상대방 응답
+    // TODO: 상대방 응답
     Task {
       try? await getQuestion(by: self.questionId)
       try? await getMyAnswer()
-      getFianceAnswer()
+      try? await getFianceAnswer()
     }
   }
   
   private func getMyAnswer() async throws {
-    // TODO: 내 응답 불러오기
     let myId = try AuthenticationManager.shared.getAuthenticatedUser().uid
-    let myAnswer = try await UserManager.shared.getAnswer(userId: myId, questionId: questionId)
     
-    self.myAnswer = myAnswer.answerContent
+    do {
+      let myAnswer = try await UserManager.shared.getAnswer(userId: myId, questionId: questionId)
+      self.myAnswer = myAnswer.answerContent
+    } catch {
+      self.isNoMyAnswer = true
+      throw URLError(.badURL)
+    }
   }
   
-  private func getFianceAnswer() {
-    // TODO: 상대방 응답 불러오기
+  private func getFianceAnswer() async throws {
+    guard let fianceId = try await UserManager.shared.getCurrentUser().fiance else {
+      self.isNoFiance = true
+      throw URLError(.badServerResponse)
+    }
     
+    do {
+      let fianceAnswer = try await UserManager.shared.getAnswer(userId: fianceId, questionId: questionId)
+      self.fianceAnswer = fianceAnswer.answerContent
+    } catch {
+      self.isNoFianceAnswer = true
+      throw URLError(.badURL)
+    }
   }
   
   private func getQuestion(by id: Int) async throws {
-    // TODO: 질문 불러오기
     self.question = try await StaticQuestionManager.shared.getQuestionById(id: id)
   }
 }

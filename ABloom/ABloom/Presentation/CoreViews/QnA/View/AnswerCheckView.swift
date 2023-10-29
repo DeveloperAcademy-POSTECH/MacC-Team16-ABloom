@@ -38,8 +38,21 @@ struct AnswerCheckView: View {
             .resizable()
             .frame(width: 34, height: 34)
           
-          // TODO: 답변 유무와 성별에 따라서 다른 컴포넌트 활용,,
+          // TODO: 성별에 따른 색상 구분
           LeftBlueChatBubble(text: answerCheckVM.fianceAnswer.isEmpty ? "상대방의 답변을 기다리고 있어요." : answerCheckVM.fianceAnswer)
+          
+          // TODO: 답변 상태에 따른 메세지 로직 구현 필요 @Lia
+          if answerCheckVM.isNoFiance {
+            LeftBlueChatBubble(text: "상대 없음")
+          }
+          
+          if answerCheckVM.isNoFianceAnswer {
+            LeftBlueChatBubble(text: "상대 답변 없음 ")
+          }
+          
+          if answerCheckVM.isNoMyAnswer {
+            LeftBlueChatBubble(text: "내 답변 없음")
+          }
         }
         
         Spacer()
