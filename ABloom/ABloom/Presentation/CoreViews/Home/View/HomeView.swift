@@ -28,6 +28,10 @@ struct HomeView: View {
     }
     .padding(.horizontal, 20)
     .background(backgroundDefault())
+    //.ignoresSafeArea()
+    .task {
+      try? await homeVM.setInfo()
+    }
   }
 }
 

@@ -76,6 +76,12 @@ final class UserManager {
   }
   
   // MARK: GET Method
+  func getCurrentUser() async throws -> DBUser {
+    let currentUser = try AuthenticationManager.shared.getAuthenticatedUser()
+    
+    return try await getUser(userId: currentUser.uid)
+  }
+  
   func getUser(userId: String) async throws -> DBUser {
     try await userDocument(userId: userId).getDocument(as: DBUser.self)
   }
@@ -93,6 +99,9 @@ final class UserManager {
       throw URLError(.badServerResponse)
     }
     
+    // TODO: 에러처리
+    // 1. 상대방이 이미 연결되어 있는 경우
+    // 2. 없는 코드에 접근한 경우
     let targetId = try target.data(as: DBUser.self).userId
     let myId = try AuthenticationManager.shared.getAuthenticatedUser().uid
     

@@ -23,6 +23,7 @@ struct SelectQuestionView: View {
         })
         .background(backWall())
     }
+    
     .task {
       try? await selectQVM.fetchQuestions()
     }
@@ -43,8 +44,9 @@ struct SelectQuestionView: View {
       rightView: {
         EmptyView()
       })
-    // 배경화면
+    
     .background(backgroundDefault())
+    .ignoresSafeArea(.all, edges: .bottom)
   }
 }
 
@@ -68,13 +70,15 @@ extension SelectQuestionView {
           })
         }
       }
-      .padding(.horizontal, 22)
-      .padding(.vertical, 15)
+      .padding([.horizontal, .bottom], 22)
+      .padding(.top, 36)
+      
     }
   }
   
   private var questionListView: some View {
     VStack(spacing: 0) {
+
       HStack {
         Text("\(selectQVM.selectedCategory.type) 문답")
           .fontWithTracking(.headlineR)
@@ -86,16 +90,15 @@ extension SelectQuestionView {
       .padding(.top, 34)
       .padding(.bottom, 26)
       
-      ScrollView {
+      ScrollView(.vertical) {
         ForEach(selectQVM.filteredLists, id: \.self) { question in
           NavigationLink(value: question) {
             LeftBlueChatBubble(text: question.content)
-              .padding(.bottom, 12)
-              .padding(.horizontal, 20)
           }
+          .padding(.horizontal, 20)
+          .padding(.bottom, 12)
         }
       }
-      Spacer()
     }
   }
 }
