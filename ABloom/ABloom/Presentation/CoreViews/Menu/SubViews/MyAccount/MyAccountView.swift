@@ -66,8 +66,6 @@ extension MyAccountView {
           .foregroundStyle(.stone800)
         HStack {
           Text("결혼까지 D-\(myAccountVM.dDay ?? 0)")
-            .fontWithTracking(.footnoteR)
-            .foregroundStyle(.stone500)
           
           Spacer()
           
@@ -75,10 +73,9 @@ extension MyAccountView {
             myAccountVM.showActionSheet = true
           } label: {
             Text("정보 수정하기 >")
-              .fontWithTracking(.footnoteR)
-              .foregroundStyle(.stone500)
           }
         }
+        .fontWithTracking(.footnoteR)
         .foregroundStyle(.stone500)
       }
     }
@@ -106,7 +103,7 @@ extension MyAccountView {
     }
     // 결혼 날짜 변경 모달
     .sheet(isPresented: $myAccountVM.showDatePicker) {
-      DatePicker("", selection: $myAccountVM.merriageDate, displayedComponents: .date)
+      DatePicker("", selection: $myAccountVM.marriageDate, displayedComponents: .date)
         .datePickerStyle(.graphical)
         .frame(width: 320)
         .labelsHidden()
@@ -114,7 +111,7 @@ extension MyAccountView {
       
       Button {
         Task {
-          try? myAccountVM.updateMyMarriageDate(date: myAccountVM.merriageDate)
+          try? myAccountVM.updateMyMarriageDate(date: myAccountVM.marriageDate)
           try? await myAccountVM.getMyInfo()
           myAccountVM.showDatePicker = false
         }

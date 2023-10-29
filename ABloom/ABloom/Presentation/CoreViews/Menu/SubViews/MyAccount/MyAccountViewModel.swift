@@ -15,7 +15,7 @@ final class MyAccountViewModel: ObservableObject {
   @Published var showNameChangeAlert: Bool = false
   @Published var nameChangeTextfield: String = ""
   @Published var showDatePicker: Bool = false
-  @Published var merriageDate: Date = .now
+  @Published var marriageDate: Date = .now
   @Published var showSignOutCheckAlert: Bool = false
   
   func signOut() throws {
