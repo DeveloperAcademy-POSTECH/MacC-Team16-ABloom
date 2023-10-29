@@ -22,7 +22,7 @@ final class StaticQuestionManager {
   }
   
   func getMyAnswersId(userId: String) async throws -> [Int] {
-    let myAnswers = try await UserManager.shared.getMyAnswers(userId: userId)
+    let myAnswers = try await UserManager.shared.getAnswers(userId: userId)
     
     return myAnswers.map { answer in answer.questionId }
   }

@@ -77,8 +77,19 @@ final class UserManager {
     try? document.setData(from: data, merge: false)
   }
   
-  func getMyAnswers(userId: String) async throws -> [DBAnswer] {
+  func getAnswers(userId: String) async throws -> [DBAnswer] {
     let collection = userAnswerCollection(userId: userId)
     return try await collection.getDocuments(as: DBAnswer.self)
+  }
+  
+  func getAnswer(userId: String, questionId: Int) async throws -> DBAnswer {
+    let collection = userAnswerCollection(userId: userId)
+    let userAnsewer = try await collection
+      .whereField(DBAnswer.CodingKeys.questionId.rawValue, isEqualTo: questionId)
+      .getDocuments(as: DBAnswer.self)
+    
+    guard let answer = userAnsewer.first else { throw URLError(.badServerResponse)}
+    
+    return answer
   }
 }

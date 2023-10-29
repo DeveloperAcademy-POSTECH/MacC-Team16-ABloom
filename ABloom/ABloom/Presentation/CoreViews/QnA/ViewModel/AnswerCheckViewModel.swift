@@ -24,17 +24,22 @@ final class AnswerCheckViewModel: ObservableObject {
     // TODO: 나의 응답, 상대방 응답
     Task {
       try? await getQuestion(by: self.questionId)
-      getMyAnswer()
+      try? await getMyAnswer()
       getFianceAnswer()
     }
   }
   
-  private func getMyAnswer() {
+  private func getMyAnswer() async throws {
     // TODO: 내 응답 불러오기
+    let myId = try AuthenticationManager.shared.getAuthenticatedUser().uid
+    let myAnswer = try await UserManager.shared.getAnswer(userId: myId, questionId: questionId)
+    
+    self.myAnswer = myAnswer.answerContent
   }
   
   private func getFianceAnswer() {
     // TODO: 상대방 응답 불러오기
+    
   }
   
   private func getQuestion(by id: Int) async throws {
