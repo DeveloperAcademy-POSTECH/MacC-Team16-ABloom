@@ -38,19 +38,16 @@ struct AnswerWriteView: View {
       Text("지금 뒤로 나가면 작성했던 답변이\n삭제되고, 복구할 수 없어요.")
     })
     
-    // 네비게이션바
     .customNavigationBar(
       centerView: {
         Text("문답 작성하기")
-          .fontWithTracking(.title3R)
-          .foregroundStyle(.stone700)
       },
       leftView: {
-        Button(action: answerVM.moveToBack,
-               label: {
-          Image("angle-left")
-            .frame(width: 20, height: 20)
-        })
+        Button {
+          answerVM.moveToBack()
+        } label: {
+          NavigationArrowLeft()
+        }
       },
       rightView: {
         Button {
