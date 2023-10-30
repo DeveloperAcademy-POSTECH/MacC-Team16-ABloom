@@ -9,8 +9,8 @@ import SwiftUI
 
 struct AnswerWriteView: View {
   var question: DBStaticQuestion
-  @StateObject var answerVM = AnswerWriteViewModel()
   
+  @StateObject var answerVM = AnswerWriteViewModel()
   @Environment(\.dismiss) private var dismiss
   
   var body: some View {
@@ -38,16 +38,20 @@ struct AnswerWriteView: View {
       Text("지금 뒤로 나가면 작성했던 답변이\n삭제되고, 복구할 수 없어요.")
     })
     
+    .task {
+      try? await answerVM.getUserSex()
+    }
+    
+    // 네비게이션바
     .customNavigationBar(
       centerView: {
         Text("문답 작성하기")
       },
       leftView: {
-        Button {
-          answerVM.moveToBack()
-        } label: {
-          NavigationArrowLeft()
-        }
+        Button(action: answerVM.moveToBack, label: {
+          Image("angle-left")
+            .frame(width: 20, height: 20)
+        })
       },
       rightView: {
         Button {
@@ -70,24 +74,25 @@ extension AnswerWriteView {
     HStack(alignment: .top, spacing: 11) {
       
       // 유저가 남성일 때,
-      //      Image("avatar_Female circle GradientBG")
-      //        .resizable()
-      //        .frame(width: 34, height: 34)
-      //
-      //      VStack {
-      //        LeftPinkChatBubble(text: question.content)
-      //        LeftPinkChatBubble(text: "너의 생각을 알려줘")
-      //      }
-      
-      
-      // 유저가 여성일 떄,
-      Image("avatar_Male circle GradientBG")
-        .resizable()
-        .frame(width: 34, height: 34)
-      
-      VStack {
-        LeftBlueChatBubble(text: question.content)
-        LeftBlueChatBubble(text: "너의 생각을 알려줘")
+      if answerVM.sex {
+        Image("avatar_Female circle GradientBG")
+          .resizable()
+          .frame(width: 34, height: 34)
+        
+        VStack {
+          LeftPinkChatBubble(text: question.content)
+          LeftPinkChatBubble(text: "너의 생각을 알려줘")
+        }
+        // 유저가 여성일 떄,
+      } else {
+        Image("avatar_Male circle GradientBG")
+          .resizable()
+          .frame(width: 34, height: 34)
+        
+        VStack {
+          LeftBlueChatBubble(text: question.content)
+          LeftBlueChatBubble(text: "너의 생각을 알려줘")
+        }
       }
       
       Spacer()
@@ -99,18 +104,24 @@ extension AnswerWriteView {
     HStack {
       Spacer()
       
-      // 유저가 남성일 때,
-      // BlueChatBubbleTextField(text: $answerVM.answerText)
+      if answerVM.sex {
+        BlueChatBubbleTextField(text: $answerVM.answerText)
+          .onChange(of: answerVM.answerText, perform: { newValue in
+            if newValue.count > 150 {
+              answerVM.answerText = String(newValue.prefix(150))
+            }
+          })
+          .padding(.horizontal, 22)
+      } else {
+        PinkChatBubbleTextField(text: $answerVM.answerText)
+          .onChange(of: answerVM.answerText, perform: { newValue in
+            if newValue.count > 150 {
+              answerVM.answerText = String(newValue.prefix(150))
+            }
+          })
+          .padding(.horizontal, 22)
+      }
       
-      // 유저가 여성일 떄,
-      PinkChatBubbleTextField(text: $answerVM.answerText)
-      
-        .onChange(of: answerVM.answerText, perform: { newValue in
-        if newValue.count > 150 {
-            answerVM.answerText = String(newValue.prefix(150))
-        }
-        })
-        .padding(.horizontal, 22)
     }
   }
 }
