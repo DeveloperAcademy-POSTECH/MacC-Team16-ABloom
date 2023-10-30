@@ -57,8 +57,8 @@ final class QuestionMainViewModel: ObservableObject {
   func getMyAnswers() async throws {
     let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
     
-    let myAnswers = try await UserManager.shared.getMyAnswers(userId: userId)
-    let questions = try await StaticQuestionManager.shared.getAnswerdQuestions(questionIds: myAnswers.map({ $0.questionId }))
+    let myAnswers = try await UserManager.shared.getAnswers(userId: userId)
+    let questions = try await StaticQuestionManager.shared.getAnsweredQuestions(questionIds: myAnswers.map({ $0.questionId }))
     
     self.myAnwsers = myAnswers
     self.questions = questions

@@ -27,7 +27,7 @@ final class MyAccountViewModel: ObservableObject {
     let user = try await UserManager.shared.getUser(userId: currentUser.uid)
     
     self.userName = user.name
-    self.dDay = calculateDDay(estimatedMarriageDate: user.estimatedMarriageDate ?? .now)
+    self.dDay = calculateDDay(estimatedMarriageDate: user.marriageDate ?? .now)
   }
   
   func updateMyName(name: String) throws {

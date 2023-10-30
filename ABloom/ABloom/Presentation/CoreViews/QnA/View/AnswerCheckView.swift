@@ -30,7 +30,7 @@ struct AnswerCheckView: View {
         Spacer()
           .frame(height: 14)
         
-        RightPinkChatBubble(text: "나는 고양이가 좋아! 아픈 길고양이들을 보면 데려와서 키우고 싶다는 생각도 종종 들어 ㅎㅎ\n우리도 함께 키우다보면 예쁜 추억들이 더 많이 생길 거 같아!!")
+        RightPinkChatBubble(text: answerCheckVM.myAnswer)
         
         
         HStack(alignment: .top, spacing: 13) {
@@ -38,8 +38,21 @@ struct AnswerCheckView: View {
             .resizable()
             .frame(width: 34, height: 34)
           
-          // TODO: 답변 유무와 성별에 따라서 다른 컴포넌트 활용,,
-          LeftBlueChatBubble(text: "상대방의 답변을 기다리고 있어요.")
+          // TODO: 성별에 따른 색상 구분
+          LeftBlueChatBubble(text: answerCheckVM.fianceAnswer.isEmpty ? "상대방의 답변을 기다리고 있어요." : answerCheckVM.fianceAnswer)
+          
+          // TODO: 답변 상태에 따른 메세지 로직 구현 필요 @Lia
+          if answerCheckVM.isNoFiance {
+            LeftBlueChatBubble(text: "상대 없음")
+          }
+          
+          if answerCheckVM.isNoFianceAnswer {
+            LeftBlueChatBubble(text: "상대 답변 없음 ")
+          }
+          
+          if answerCheckVM.isNoMyAnswer {
+            LeftBlueChatBubble(text: "내 답변 없음")
+          }
         }
         
         Spacer()

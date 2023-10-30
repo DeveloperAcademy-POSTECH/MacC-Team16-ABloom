@@ -73,7 +73,7 @@ class RegistrationViewModel: ObservableObject {
   func registerNewUser() throws {
     let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
     let invitationCode = generateInviteCode(userId: userId)
-    let user = DBUser(userId: userId, name: userName, sex: userType!.getBool, estimatedMarriageDate: weddingDate, invitationCode: invitationCode)
+    let user = DBUser(userId: userId, name: userName, sex: userType!.getBool, marriageDate: weddingDate, invitationCode: invitationCode)
     try UserManager.shared.createNewUser(user: user)
     isSuccessCreateUser = true
   }

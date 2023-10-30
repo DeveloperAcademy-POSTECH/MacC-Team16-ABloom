@@ -37,7 +37,7 @@ final class HomeViewModel: ObservableObject {
   }
   
   private func getMarrigeDate(user: DBUser) throws {
-    guard let marrigeDate = user.estimatedMarriageDate else { throw URLError(.badServerResponse) }
+    guard let marrigeDate = user.marriageDate else { throw URLError(.badServerResponse) }
     self.untilWeddingDate = calculateDDay(estimatedMarriageDate: marrigeDate)
   }
   
