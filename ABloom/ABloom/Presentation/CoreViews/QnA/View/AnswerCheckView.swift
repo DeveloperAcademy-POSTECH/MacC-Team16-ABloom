@@ -72,9 +72,9 @@ extension AnswerCheckView {
         if !answerCheckVM.isNoMyAnswer {
           RightBlueChatBubble(text: answerCheckVM.myAnswer)
         }
-        LeftPinkChatBubbleWithImg(text: "아직 상대방과 연결되어 있지 않아요. 지금 연결하고, 상대방의 문답을 확인해주세요.")
+        LeftPinkChatBubbleWithImg(text: answerCheckVM.notConnectedText)
         NavigationLink {
-          // 연결하는 뷰로 이동
+          MyAccountConnectingView()
         } label: {
           LeftPinkChatBubble(text: "연결하기  >", isBold: true)
         }
@@ -82,12 +82,12 @@ extension AnswerCheckView {
         // if 내가 먼저 답하고, 상대방의 답변을 기다릴 경우
       } else if answerCheckVM.isNoFianceAnswer && !answerCheckVM.isNoMyAnswer {
         RightBlueChatBubble(text: answerCheckVM.myAnswer)
-        LeftPinkChatBubbleWithImg(text: "상대방의 답변을 기다리고 있어요.")
+        LeftPinkChatBubbleWithImg(text: answerCheckVM.waitText )
       }
       
       // if 상대방이 답하고, 상대방이 내 답변을 기다릴 경우 => 내비게이션 연결
       else if !answerCheckVM.isNoFianceAnswer && answerCheckVM.isNoMyAnswer {
-        LeftPinkChatBubbleWithImg(text: "(상대방 이름)님이 답변을 등록했어요. 답변을 확인해보려면 나의 문답을 작성해주세요.")
+        LeftPinkChatBubbleWithImg(text: "\(answerCheckVM.fianceName)님이 답변을 등록했어요. 답변을 확인해보려면 나의 문답을 작성해주세요.")
         NavigationLink {
           if let question = answerCheckVM.question {
             AnswerWriteView(question: question)
@@ -120,9 +120,9 @@ extension AnswerCheckView {
         if !answerCheckVM.isNoMyAnswer {
           RightPinkChatBubble(text: answerCheckVM.myAnswer)
         }
-        LeftBlueChatBubbleWithImg(text: "아직 상대방과 연결되어 있지 않아요. 지금 연결하고, 상대방의 문답을 확인해주세요.")
+        LeftBlueChatBubbleWithImg(text: answerCheckVM.notConnectedText)
         NavigationLink {
-          // TODO: 연결하는 뷰로 이동
+          MyAccountConnectingView()
         } label: {
           LeftBlueChatBubble(text: "연결하기  >", isBold: true)
         }
@@ -130,12 +130,12 @@ extension AnswerCheckView {
         // if 내가 먼저 답하고, 상대방의 답변을 기다릴 경우
       } else if answerCheckVM.isNoFianceAnswer && !answerCheckVM.isNoMyAnswer {
         RightPinkChatBubble(text: answerCheckVM.myAnswer)
-        LeftBlueChatBubbleWithImg(text: "상대방의 답변을 기다리고 있어요.")
+        LeftBlueChatBubbleWithImg(text: answerCheckVM.waitText)
       }
       
       // if 상대방이 답하고, 상대방이 내 답변을 기다릴 경우 => 내비게이션 연결
       else if !answerCheckVM.isNoFianceAnswer && answerCheckVM.isNoMyAnswer {
-        LeftBlueChatBubbleWithImg(text: "(상대방 이름)님이 답변을 등록했어요. 답변을 확인해보려면 나의 문답을 작성해주세요.")
+        LeftBlueChatBubbleWithImg(text: "\(answerCheckVM.fianceName) 님이 답변을 등록했어요. 답변을 확인해보려면 나의 문답을 작성해주세요.")
         NavigationLink {
           if let question = answerCheckVM.question {
             AnswerWriteView(question: question)

@@ -11,11 +11,16 @@ import Foundation
 final class AnswerCheckViewModel: ObservableObject {
   @Published var question: DBStaticQuestion? = nil
   @Published var fianceAnswer: String = ""
+  @Published var fianceName: String = ""
   @Published var myAnswer: String = ""
   @Published var isNoFiance = false
   @Published var isNoMyAnswer = false
   @Published var isNoFianceAnswer = false
   let questionId: Int
+  
+  let notConnectedText = "아직 상대방과 연결되어 있지 않아요. 지금 연결하고, 상대방의 문답을 확인해주세요."
+  let waitText = "상대방의 답변을 기다리고 있어요."
+  
   
   init(fianceAnswer: String = "", myAnswer: String = "", questionId: Int) {
     self.fianceAnswer = fianceAnswer
@@ -49,10 +54,12 @@ final class AnswerCheckViewModel: ObservableObject {
       self.isNoFiance = true
       throw URLError(.badServerResponse)
     }
-    
     do {
       let fianceAnswer = try await UserManager.shared.getAnswer(userId: fianceId, questionId: questionId)
       self.fianceAnswer = fianceAnswer.answerContent
+      if let fianceName = try await UserManager.shared.getUser(userId: fianceId).name {
+        self.fianceName = fianceName
+      }
     } catch {
       self.isNoFianceAnswer = true
       throw URLError(.badURL)

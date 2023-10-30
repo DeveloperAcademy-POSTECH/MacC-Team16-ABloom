@@ -28,6 +28,7 @@ struct CategoryQuestionBox: View {
       Text("\"\(question)\"")
         .fontWithTracking(.subHeadlineR)
         .multilineTextAlignment(.center)
+        .padding(.horizontal, 10)
         .padding(.bottom, 22)
     }
     .frame(maxWidth: .infinity)
