@@ -85,9 +85,13 @@ final class UserManager {
   func getAnswerWithId(userId: String, filter: [Any]) async throws -> [DBAnswer] {
     let collection = userAnswerCollection(userId: userId)
     
-    return try await collection
-      .whereField(DBAnswer.CodingKeys.questionId.rawValue, in: filter)
-      .getDocuments(as: DBAnswer.self)
+    if filter.isEmpty {
+      return []
+    } else {
+      return try await collection
+        .whereField(DBAnswer.CodingKeys.questionId.rawValue, in: filter)
+        .getDocuments(as: DBAnswer.self)
+    }
   }
   
   func getAnswer(userId: String, questionId: Int) async throws -> DBAnswer {
