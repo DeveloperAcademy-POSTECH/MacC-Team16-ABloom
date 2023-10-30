@@ -30,7 +30,7 @@ final class SelectQuestionViewModel: ObservableObject {
   
   func fetchQuestions() async throws {
     let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
-    self.questionLists = try await StaticQuestionManager.shared.getAllQuestions(userId: userId)
+    self.questionLists = try await StaticQuestionManager.shared.getQuestionsWithoutAnswers(userId: userId)
     filterQuestion()
   }
 }

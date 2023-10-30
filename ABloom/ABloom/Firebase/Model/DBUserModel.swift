@@ -11,15 +11,15 @@ struct DBUser: Codable {
   let userId: String
   let name: String?
   let sex: Bool?
-  let estimatedMarriageDate: Date?
+  let marriageDate: Date?
   let invitationCode: String?
   let fiance: String?
   
-  init(userId: String, name: String, sex: Bool, estimatedMarriageDate: Date, invitationCode: String, fiance: String? = nil) {
+  init(userId: String, name: String, sex: Bool, marriageDate: Date, invitationCode: String, fiance: String? = nil) {
     self.userId = userId
     self.name = name
     self.sex = sex
-    self.estimatedMarriageDate = estimatedMarriageDate
+    self.marriageDate = marriageDate
     self.invitationCode = invitationCode
     self.fiance = fiance
   }
@@ -28,7 +28,7 @@ struct DBUser: Codable {
     self.userId = auth.uid
     self.name = auth.name
     self.sex = nil
-    self.estimatedMarriageDate = nil
+    self.marriageDate = nil
     self.invitationCode = nil
     self.fiance = nil
   }
@@ -37,7 +37,7 @@ struct DBUser: Codable {
     case userId = "user_id"
     case name = "name"
     case sex = "sex"
-    case estimatedMarriageDate = "estimated_marriage_date"
+    case marriageDate = "marriage_date"
     case invitationCode = "invitation_code"
     case fiance = "fiance"
   }
@@ -47,7 +47,7 @@ struct DBUser: Codable {
     try container.encode(self.userId, forKey: .userId)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.sex, forKey: .sex)
-    try container.encode(self.estimatedMarriageDate, forKey: .estimatedMarriageDate)
+    try container.encode(self.marriageDate, forKey: .marriageDate)
     try container.encode(self.invitationCode, forKey: .invitationCode)
     try container.encode(self.fiance, forKey: .fiance)
   }
@@ -57,7 +57,7 @@ struct DBUser: Codable {
     self.userId = try container.decode(String.self, forKey: .userId)
     self.name = try container.decode(String.self, forKey: .name)
     self.sex = try container.decode(Bool.self, forKey: .sex)
-    self.estimatedMarriageDate = try container.decode(Date.self, forKey: .estimatedMarriageDate)
+    self.marriageDate = try container.decode(Date.self, forKey: .marriageDate)
     self.invitationCode = try container.decode(String.self, forKey: .invitationCode)
     self.fiance = try container.decodeIfPresent(String.self, forKey: .fiance)
   }
