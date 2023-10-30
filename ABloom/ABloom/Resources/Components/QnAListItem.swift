@@ -7,11 +7,18 @@
 
 import SwiftUI
 
+enum AnswerStatus {
+  case both
+  case onlyMe
+  case onlyFinace
+  case nobody
+}
+
 struct QnAListItem: View {
   let categoryImg: String
   let question: String
   let date: Date
-  let isAns: Bool
+  let isAns: AnswerStatus
   
   var formattedWeddingDate: String {
     let formatter = DateFormatter()
@@ -47,8 +54,16 @@ struct QnAListItem: View {
           
           Spacer()
           
-          Text(isAns ? "" : "답변을 기다리고 있어요 >")
-            .fontWithTracking(.caption2R)
+          switch isAns {
+          case .onlyMe:
+            Text("답변을 기다리고 있어요 >")
+              .fontWithTracking(.caption2R)
+          case .onlyFinace:
+            Text("답변해주세요 >")
+              .fontWithTracking(.caption2R)
+          case .nobody, .both:
+            EmptyView()
+          }
         }
         .foregroundStyle(.stone500)
       }
@@ -56,8 +71,4 @@ struct QnAListItem: View {
     }
     .padding(.horizontal, 20)
   }
-}
-
-#Preview {
-  QnAListItem(categoryImg: "squareIcon_isometric_health", question: "나와 결혼을 결심한 순간은 언제야?", date: .now, isAns: false)
 }

@@ -72,7 +72,7 @@ final class UserManager {
     let collection = userAnswerCollection(userId: userId)
     let document = collection.document()
     
-    let data = DBAnswer(questionId: questionId, answerContent: content)
+    let data = DBAnswer(questionId: questionId, userId: userId, answerContent: content)
     
     try? document.setData(from: data, merge: false)
   }
