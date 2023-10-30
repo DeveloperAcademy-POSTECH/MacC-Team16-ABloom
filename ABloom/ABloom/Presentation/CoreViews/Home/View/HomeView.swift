@@ -27,7 +27,9 @@ struct HomeView: View {
       
       Spacer().frame(maxHeight: 40)
       
-      HomeRecommendView(recommendQuestion: homeVM.recommendQuestion)
+      NavigationLink(value: homeVM.recommendQuestion) {
+        HomeRecommendView(recommendQuestion: homeVM.recommendQuestion.content)
+      }
       
       Spacer()
     }
@@ -35,6 +37,10 @@ struct HomeView: View {
     .background(backgroundDefault())
     .task {
       try? await homeVM.setInfo()
+    }
+    
+    .navigationDestination(for: DBStaticQuestion.self) { question in
+      AnswerWriteView(question: question)
     }
   }
 }
@@ -48,7 +54,7 @@ extension HomeView {
   private var titleArea: some View {
     HStack {
       VStack(alignment: .leading, spacing: 6) {
-        Text(homeVM.isConnected ? "\(homeVM.partnerName)님과 결혼까지" : "\(homeVM.partnerType.rawValue)님과")
+        Text(homeVM.isConnected ? "\(homeVM.fianceName)님과 결혼까지" : "\(homeVM.fianceSexType.rawValue)님과")
           .foregroundStyle(.stone800)
           .fontWithTracking(.headlineR)
         HStack(spacing: 12) {
