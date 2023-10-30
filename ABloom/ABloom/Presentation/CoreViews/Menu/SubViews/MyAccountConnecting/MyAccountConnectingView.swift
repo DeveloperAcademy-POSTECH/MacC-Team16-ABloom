@@ -103,7 +103,7 @@ extension MyAccountConnectingView {
     .alert("연결에 실패했어요", isPresented: $myAccountConnectingVM.showAlert, actions: {
       Button("확인") { }
     }, message: {
-      Text("상대방의 코드를 올바르게 입력했는지 확인해주세요.")
+      Text(myAccountConnectingVM.errorMessage)
     })
   }
 }
