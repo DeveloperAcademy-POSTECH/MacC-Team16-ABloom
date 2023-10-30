@@ -29,12 +29,22 @@ struct MyAccountConnectingView: View {
      
       connectButton
     }
-    .navigationTitle("상대방과 연결")
     .padding(.horizontal, 20)
-    .background(backgroundDefault())
     .task {
       try? await myAccountConnectingVM.getMyCode()
     }
+    .customNavigationBar {
+      Text("상대방과 연결")
+    } leftView: {
+      Button {
+        dismiss()
+      } label: {
+        NavigationArrowLeft()
+      }
+    } rightView: {
+      EmptyView()
+    }
+    .background(backgroundDefault())
   }
 }
 

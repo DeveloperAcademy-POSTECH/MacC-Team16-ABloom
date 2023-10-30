@@ -5,6 +5,7 @@
 //  Created by Lee Jinhee on 10/19/23.
 //
 
+import PhotosUI
 import SwiftUI
 
 @MainActor
@@ -16,6 +17,40 @@ final class HomeViewModel: ObservableObject {
   @Published var partnerType: UserType = .woman
   @Published var recommendQuestion: String = "추천질문입니다"
   @Published var isConnectButtonTapped = false
+  
+  @Published var showDialog = false
+  @Published var showPhotosPicker = false
+  
+  // MARK: 메인 이미지 관련
+  let manager = ImageFileManager.shared
+
+  private let defaultImageName = "HomeDefaultImage"
+  private let saveImageName = "save_main_image"
+  
+  @Published var selectedItem: PhotosPickerItem? = nil
+  @Published var selectedImageData: Data? = nil
+  @Published var savedImage: UIImage? = nil
+  
+  var defaultImage: UIImage {
+    UIImage(named: defaultImageName)!
+  }
+  
+  private var status: PHAuthorizationStatus {
+    PHPhotoLibrary.authorizationStatus(for: .readWrite)
+  }
+  
+  init() {
+    getImageFromFileManager()
+  }
+  
+  func cameraButtonTapped() {
+    showDialog = true
+  }
+  
+  func addImageDialogTapped() {
+    requestAuthorization()
+    showPhotosPicker = true
+  }
   
   func connectButtonTapped() {
     isConnectButtonTapped = true
@@ -47,5 +82,38 @@ final class HomeViewModel: ObservableObject {
     guard let days = Calendar.current.dateComponents([.day], from: today, to: estimatedMarriageDate).day else { return 0 }
     
     return days + 1
+  }
+  
+  // MARK: - 메인 이미지 관련
+  private func requestAuthorization() {
+    guard status == .notDetermined else { return }
+    PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+      // TODO: 요청권한에 따른 처리
+    }
+  }
+  
+  // 파일에서 이미지 가져오기
+  private func getImageFromFileManager() {
+    if let image = manager.loadImage(name: saveImageName) {
+      self.savedImage = image
+    }
+  }
+  
+  func getImageFromPhotosPicker() {
+    if let image = UIImage(data: selectedImageData!) {
+      self.savedImage = image
+    }
+  }
+  
+  func saveImage() {
+    guard let image = savedImage else { return }
+    manager.saveImage(image: image, name: saveImageName)
+  }
+  
+  func deleteImage() {
+    selectedItem = nil
+    selectedImageData = nil
+    savedImage = nil
+    manager.deleteImage(name: saveImageName)
   }
 }
