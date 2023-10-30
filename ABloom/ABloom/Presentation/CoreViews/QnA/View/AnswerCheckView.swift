@@ -67,14 +67,13 @@ struct AnswerCheckView: View {
     .customNavigationBar(
       centerView: {
         Text("우리의 문답")
-          .fontWithTracking(.title3R)
-          .foregroundStyle(.stone700)
       },
       leftView: {
-        Button(action: {dismiss()}, label: {
-          Image("angle-left")
-            .frame(width: 20, height: 20)
-        })
+        Button {
+          dismiss()
+        } label: {
+          NavigationArrowLeft()
+        }
       },
       rightView: {
         EmptyView()

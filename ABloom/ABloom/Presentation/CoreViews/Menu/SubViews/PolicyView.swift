@@ -9,13 +9,23 @@ import SwiftUI
 
 struct PolicyView: View {
   let listItemPadding: CGFloat = 32
-  
+  @Environment(\.dismiss) private var dismiss
+
   var body: some View {
     menuList
-      .navigationTitle("약관과 정책")
-      .navigationBarTitleDisplayMode(.inline)
       .padding(.horizontal, 20)
       .padding(.top, 24)
+      .customNavigationBar {
+        Text("약관과 정책")
+      } leftView: {
+        Button {
+          dismiss()
+        } label: {
+          NavigationArrowLeft()
+        }
+      } rightView: {
+        EmptyView()
+      }
       .background(backgroundDefault())
   }
 }
