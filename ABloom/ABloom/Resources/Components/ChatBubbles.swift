@@ -7,27 +7,30 @@
 
 import SwiftUI
 
-/*
- Customized Chat Bubble structs
- 
- - 가로 길이는 고정, 세로 길이는 글자 입력에 따라 늘어날 수 있도록 조정
- - 텍스트 중앙 정렬, 여러 줄일 때는 leading
- 
- <참고사항>
- - background()와의 간격을 위해 background() 이전 padding(5) 고려
- => 디자인 사이즈 조절로 벤틀리와 상의 후 추가 예정
- - Figma에 Radius가 명시되어 있지 않아 확정 필요
- */
+// Customized Chat Bubbles
 
 let paddingV = 10.0
 
 struct LeftBlueChatBubble: View {
   let text: String
+  let isBold: Bool
+  
+  init(text: String) {
+    self.text = text
+    self.isBold = false
+  }
+  
+  init(text: String, isBold: Bool) {
+    self.text = text
+    self.isBold = isBold
+  }
   
   var body: some View {
     HStack {
+      Spacer()
+      
       Text(text)
-        .fontWithTracking(.footnoteR, tracking: -0.4)
+        .fontWithTracking(isBold ? .footnoteBold : .footnoteR, tracking: -0.4)
         .foregroundStyle(.stone900)
         .padding(paddingV)
         .multilineTextAlignment(.leading)
@@ -44,15 +47,61 @@ struct LeftBlueChatBubble: View {
   }
 }
 
-struct RightBlueChatBubble: View {
+struct LeftPinkChatBubble: View {
   let text: String
+  let isBold: Bool
+  
+  init(text: String) {
+    self.text = text
+    self.isBold = false
+  }
+  
+  init(text: String, isBold: Bool) {
+    self.text = text
+    self.isBold = isBold
+  }
   
   var body: some View {
     HStack {
       Spacer()
       
       Text(text)
-        .fontWithTracking(.footnoteR, tracking: -0.4)
+        .fontWithTracking(isBold ? .footnoteBold : .footnoteR, tracking: -0.4)
+        .foregroundStyle(.stone900)
+        .padding(paddingV)
+        .background(
+          Rectangle()
+            .foregroundStyle(.pink100)
+            .cornerRadius(10, corners: [.topRight, .bottomRight, .bottomLeft])
+        )
+        .frame(minHeight: 20, alignment: .center)
+        .frame(maxWidth: .infinity, alignment: .leading)
+      
+      Spacer()
+    }
+  }
+}
+
+struct RightBlueChatBubble: View {
+  let text: String
+  let isBold: Bool
+  
+  init(text: String) {
+    self.text = text
+    self.isBold = false
+  }
+  
+  init(text: String, isBold: Bool) {
+    self.text = text
+    self.isBold = isBold
+  }
+  
+  var body: some View {
+    HStack {
+      Spacer()
+      
+      Text(text)
+        .fontWithTracking(isBold ? .footnoteBold : .footnoteR, tracking: -0.4)
         .foregroundStyle(.stone900)
         .padding(paddingV)
         .background(
@@ -66,38 +115,27 @@ struct RightBlueChatBubble: View {
   }
 }
 
-struct LeftPinkChatBubble: View {
-  let text: String
-  
-  var body: some View {
-    HStack {
-      
-      Text(text)
-        .fontWithTracking(.footnoteR, tracking: -0.4)
-        .foregroundStyle(.stone900)
-        .padding(paddingV)
-        .background(
-          Rectangle()
-            .foregroundStyle(.pink100)
-            .cornerRadius(10, corners: [.topRight, .bottomRight, .bottomLeft])
-        )
-        .frame(minHeight: 16, alignment: .center)
-        .frame(maxWidth: 270, alignment: .leading)
-      
-      Spacer()
-    }
-  }
-}
-
 struct RightPinkChatBubble: View {
   let text: String
+  let isBold: Bool
+  
+  init(text: String) {
+    self.text = text
+    self.isBold = false
+  }
+  
+  init(text: String, isBold: Bool) {
+    self.text = text
+    self.isBold = isBold
+  }
+  
   
   var body: some View {
     HStack {
       Spacer()
       
       Text(text)
-        .fontWithTracking(.footnoteR, tracking: -0.4)
+        .fontWithTracking(isBold ? .footnoteBold : .footnoteR, tracking: -0.4)
         .foregroundStyle(.stone900)
         .padding(paddingV)
         .background(
@@ -110,6 +148,36 @@ struct RightPinkChatBubble: View {
     }
   }
 }
+
+// MARK: - ChatBubbles with Imgs
+
+struct LeftPinkChatBubbleWithImg: View {
+  let text: String
+  
+  var body: some View {
+    HStack(alignment: .top, spacing: 13) {
+      Image("avatar_Female circle GradientBG")
+        .resizable()
+        .frame(width: 34, height: 34)
+      LeftPinkChatBubble(text: text)
+    }
+  }
+}
+
+struct LeftBlueChatBubbleWithImg: View {
+  let text: String
+  
+  var body: some View {
+    HStack(alignment: .top, spacing: 13) {
+      Image("avatar_Male circle GradientBG")
+        .resizable()
+        .frame(width: 34, height: 34)
+      LeftBlueChatBubble(text: text)
+    }
+  }
+}
+
+// MARK: - TextField ChatBubbles
 
 struct BlueChatBubbleTextField: View {
   @Binding var text: String
@@ -137,7 +205,7 @@ struct BlueChatBubbleTextField: View {
       )
       .frame(minHeight: 30, alignment: .center)
       .frame(width: 242, alignment: .center)
-     
+    
   }
 }
 
@@ -168,7 +236,6 @@ struct PinkChatBubbleTextField: View {
       .frame(minHeight: 30, alignment: .center)
       .frame(width: 242, alignment: .center)
   }
-  
 }
 
 #Preview {

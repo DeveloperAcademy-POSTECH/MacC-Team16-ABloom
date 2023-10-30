@@ -7,9 +7,22 @@
 
 import SwiftUI
 
-class AnswerWriteViewModel: ObservableObject {
+@MainActor
+final class AnswerWriteViewModel: ObservableObject {
   @Published var answerText: String = ""
   @Published var isAlertOn: Bool = false
+  @Published var sex = Bool()
+  
+  
+  func getUserSex() async throws {
+    let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
+    
+    let sex = try await UserManager.shared.getUser(userId: userId).sex
+    
+    // 0 = female, 1 = male
+    self.sex = sex!
+  }
+  
   
   func moveToBack() {
     isAlertOn = true
