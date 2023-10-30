@@ -78,7 +78,7 @@ extension AnswerWriteView {
   
   private var questionText: some View {
     
-    HStack(alignment: .top, spacing: 11) {
+    HStack(alignment: .top, spacing: 6) {
       
       // 유저가 남성일 때,
       if answerVM.sex {

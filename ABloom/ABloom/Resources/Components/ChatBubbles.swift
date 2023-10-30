@@ -155,7 +155,7 @@ struct LeftPinkChatBubbleWithImg: View {
   let text: String
   
   var body: some View {
-    HStack(alignment: .top, spacing: 13) {
+    HStack(alignment: .top, spacing: 6) {
       Image("avatar_Female circle GradientBG")
         .resizable()
         .frame(width: 34, height: 34)
@@ -168,7 +168,7 @@ struct LeftBlueChatBubbleWithImg: View {
   let text: String
   
   var body: some View {
-    HStack(alignment: .top, spacing: 13) {
+    HStack(alignment: .top, spacing: 6) {
       Image("avatar_Male circle GradientBG")
         .resizable()
         .frame(width: 34, height: 34)
