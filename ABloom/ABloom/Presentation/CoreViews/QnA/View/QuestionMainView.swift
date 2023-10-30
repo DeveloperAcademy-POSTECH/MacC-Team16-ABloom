@@ -20,14 +20,14 @@ struct QuestionMainView: View {
       if questionVM.myAnwsers.isEmpty {
         emptyListView
           .background(backWall())
-          
+        
       } else {
         answeredQScroll
           .navigationDestination(for: Int.self, destination: { content in
             if content == 0 {
-              SelectQuestionView()
+              SelectQuestionView(gender: questionVM.gender)
             } else {
-              AnswerCheckView(answerCheckVM: .init(questionId: content))
+              AnswerCheckView(answerCheckVM: .init(questionId: content), gender: questionVM.gender)
             }
           })
           .background(backWall())
@@ -35,7 +35,9 @@ struct QuestionMainView: View {
     }
     .background(backgroundDefault())
     .task {
+      try? await questionVM.getUserGender()
       try? await questionVM.getMyAnswers()
+      
     }
   }
 }

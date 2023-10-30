@@ -27,10 +27,11 @@ struct CategoryQuestionBox: View {
       
       Text("\"\(question)\"")
         .fontWithTracking(.subHeadlineR)
+        .multilineTextAlignment(.center)
         .padding(.bottom, 22)
     }
     .frame(maxWidth: .infinity)
-    .frame(height: 104)
+    .frame(minHeight: 104)
     .background(
       RoundedRectangle(cornerRadius: 20)
         .foregroundStyle(.white)

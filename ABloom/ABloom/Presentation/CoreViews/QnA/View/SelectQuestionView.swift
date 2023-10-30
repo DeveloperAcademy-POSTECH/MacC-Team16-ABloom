@@ -9,8 +9,9 @@ import SwiftUI
 
 struct SelectQuestionView: View {
   @Environment(\.dismiss) private var dismiss
-  
   @StateObject var selectQVM = SelectQuestionViewModel()
+  
+  let gender: Bool
   
   var body: some View {
     VStack {
@@ -55,11 +56,14 @@ extension SelectQuestionView {
   private var categoryBar: some View {
     ScrollView(.horizontal, showsIndicators: false) {
       HStack(spacing: 16) {
+        
         ForEach(Category.allCases, id: \.self) { category in
           VStack(alignment: .center, spacing: 6) {
+            
             Image(category.imgName)
               .resizable()
               .frame(width: 64, height: 64)
+            
             Text(category.type)
               .fontWithTracking(selectQVM.selectedCategory == category ? .caption1Bold : .caption1R)
               .foregroundStyle(.stone700)
@@ -93,7 +97,11 @@ extension SelectQuestionView {
       ScrollView(.vertical) {
         ForEach(selectQVM.filteredLists, id: \.self) { question in
           NavigationLink(value: question) {
-            LeftBlueChatBubble(text: question.content)
+            if gender {
+              LeftPinkChatBubble(text: question.content)
+            } else {
+              LeftBlueChatBubble(text: question.content)
+            }
           }
           .padding(.horizontal, 20)
           .padding(.bottom, 12)
@@ -104,5 +112,5 @@ extension SelectQuestionView {
 }
 
 #Preview {
-  SelectQuestionView()
+  SelectQuestionView(gender: false)
 }
