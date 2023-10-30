@@ -9,7 +9,8 @@ import SwiftUI
 
 struct MyAccountView: View {
   let avatarSize: CGFloat = 70
-  
+  @Environment(\.dismiss) private var dismiss
+
   @StateObject var myAccountVM = MyAccountViewModel()
   
   var body: some View {
@@ -25,10 +26,8 @@ struct MyAccountView: View {
     .task {
       try? await myAccountVM.getMyInfo()
     }
-    .navigationTitle("내 계정")
-    .navigationBarTitleDisplayMode(.inline)
+    .tint(.purple600)
     .padding(.horizontal, 25)
-    .background(backgroundDefault())
     .confirmationDialog("정보 변경", isPresented: $myAccountVM.showActionSheet, titleVisibility: .hidden) {
       Button("이름 변경하기", role: .none) {
         myAccountVM.showNameChangeAlert = true
@@ -42,7 +41,18 @@ struct MyAccountView: View {
         myAccountVM.showActionSheet = false
       }
     }
-    .tint(.purple600)
+    .customNavigationBar {
+      Text("내 계정")
+    } leftView: {
+      Button {
+        dismiss()
+      } label: {
+        NavigationArrowLeft()
+      }
+    } rightView: {
+      EmptyView()
+    }
+    .background(backgroundDefault())
   }
 }
 

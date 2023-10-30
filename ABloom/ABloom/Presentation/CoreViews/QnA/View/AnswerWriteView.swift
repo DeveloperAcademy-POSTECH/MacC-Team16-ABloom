@@ -46,14 +46,13 @@ struct AnswerWriteView: View {
     .customNavigationBar(
       centerView: {
         Text("문답 작성하기")
-          .fontWithTracking(.title3R)
-          .foregroundStyle(.stone700)
       },
       leftView: {
-        Button(action: answerVM.moveToBack, label: {
-          Image("angle-left")
-            .frame(width: 20, height: 20)
-        })
+        Button {
+          answerVM.moveToBack()
+        } label: {
+          NavigationArrowLeft()
+        }
       },
       rightView: {
         Button {

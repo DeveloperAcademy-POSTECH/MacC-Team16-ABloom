@@ -34,25 +34,24 @@ struct ConnectionView: View {
       connectButton
     }
     .padding(.horizontal, 20)
-    .background(backgroundDefault())
     .task {
       try? await connectionVM.getMyCode()
     }
     .customNavigationBar(
       centerView: {
         Text("상대방과 연결")
-          .fontWithTracking(.title3R)
-          .foregroundStyle(.stone700)
       },
       leftView: {
-        Button(action: {dismiss()}, label: {
-          Image("angle-left")
-            .frame(width: 20, height: 20)
-        })
+        Button { 
+          dismiss()
+        } label: {
+          NavigationArrowLeft()
+        }
       },
       rightView: {
         EmptyView()
       })
+    .background(backgroundDefault())
   }
 }
 
