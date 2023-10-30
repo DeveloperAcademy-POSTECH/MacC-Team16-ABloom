@@ -74,6 +74,7 @@
 		605541172ADE1ACF00AD5625 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605541162ADE1ACF00AD5625 /* Tab.swift */; };
 		6055411A2ADE66B000AD5625 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605541192ADE66B000AD5625 /* RegistrationView.swift */; };
 		607DA20E2AEF48AE005AE11C /* NavigationArrowLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA20D2AEF48AE005AE11C /* NavigationArrowLeft.swift */; };
+		607DA20C2AEE5028005AE11C /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA20B2AEE5028005AE11C /* ImageFileManager.swift */; };
 		AE1AE9F92AE50BBC0010089F /* QuestionMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AE9F82AE50BBC0010089F /* QuestionMainView.swift */; };
 		AE1AE9FB2AE51BF00010089F /* QnAListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AE9FA2AE51BF00010089F /* QnAListItem.swift */; };
 		AE1AE9FF2AE557E00010089F /* AnswerCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AE9FE2AE557E00010089F /* AnswerCheckView.swift */; };
@@ -142,6 +143,7 @@
 		605541162ADE1ACF00AD5625 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		605541192ADE66B000AD5625 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		607DA20D2AEF48AE005AE11C /* NavigationArrowLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationArrowLeft.swift; sourceTree = "<group>"; };
+		607DA20B2AEE5028005AE11C /* ImageFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
 		AE1AE9F82AE50BBC0010089F /* QuestionMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionMainView.swift; sourceTree = "<group>"; };
 		AE1AE9FA2AE51BF00010089F /* QnAListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnAListItem.swift; sourceTree = "<group>"; };
 		AE1AE9FE2AE557E00010089F /* AnswerCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCheckView.swift; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 			children = (
 				6053F16C2AE178E20064A6E0 /* View */,
 				6053F16F2AE179E50064A6E0 /* ViewModel */,
+				607DA20B2AEE5028005AE11C /* ImageFileManager.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -698,6 +701,7 @@
 				AE1AE9FB2AE51BF00010089F /* QnAListItem.swift in Sources */,
 				AE8D3C512ADE19E0009899A7 /* Ex+Font.swift in Sources */,
 				AEB5026B2AE64B8D0056E439 /* CategoryQuestionBox.swift in Sources */,
+				607DA20C2AEE5028005AE11C /* ImageFileManager.swift in Sources */,
 				AEEA8DD12AEB82290068550E /* SelectQuestionView.swift in Sources */,
 				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
 				AE6697902AE904F80004B56C /* AnswerWriteView.swift in Sources */,
@@ -881,6 +885,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ABloom/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "이미지를 화면에 보여주기 위해 사진 라이브러리 사용 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -914,6 +919,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ABloom/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "이미지를 화면에 보여주기 위해 사진 라이브러리 사용 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
