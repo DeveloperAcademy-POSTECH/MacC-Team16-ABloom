@@ -15,8 +15,8 @@ class AnswerWriteViewModel: ObservableObject {
     isAlertOn = true
   }
   
-  // 문답 저장
-  func saveAns() {
-    
+  func createAnswer(questionId: Int) throws {
+    let user = try AuthenticationManager.shared.getAuthenticatedUser()
+    try UserManager.shared.creatAnswer(userId: user.uid, questionId: questionId, content: answerText)
   }
 }

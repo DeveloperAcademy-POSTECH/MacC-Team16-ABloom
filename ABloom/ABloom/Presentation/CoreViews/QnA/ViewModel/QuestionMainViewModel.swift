@@ -49,7 +49,18 @@ enum Category: String, CaseIterable {
     }
   }
 }
-
-class QuestionMainViewModel: ObservableObject {
-
+@MainActor
+final class QuestionMainViewModel: ObservableObject {
+  @Published var myAnwsers: [DBAnswer] = []
+  @Published var questions: [DBStaticQuestion] = []
+  
+  func getMyAnswers() async throws {
+    let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
+    
+    let myAnswers = try await UserManager.shared.getMyAnswers(userId: userId)
+    let questions = try await StaticQuestionManager.shared.getAnswerdQuestions(questionIds: myAnswers.map({ $0.questionId }))
+    
+    self.myAnwsers = myAnswers
+    self.questions = questions
+  }
 }

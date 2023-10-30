@@ -9,19 +9,18 @@ import SwiftUI
 
 struct AnswerCheckView: View {
   @Environment(\.dismiss) private var dismiss
-  
-  // 차후에 데이터를 받아올 변수 => 현재는 임의로 지정
-  let num: Int
+  @StateObject var answerCheckVM: AnswerCheckViewModel
   
   var body: some View {
     VStack {
-      
-      CategoryQuestionBox(
-        question: "반려동물을 기르고 싶어?",
-        category: "경제 질문",
-        categoryImg: "squareIcon_isometric_health"
-      )
-      .padding(.vertical, 30)
+      if let question = answerCheckVM.question {
+        CategoryQuestionBox(
+          question: question.content,
+          category: "\((Category(rawValue: question.category)?.type)!) 질문",
+          categoryImg: (Category(rawValue: question.category)?.imgName)!
+        )
+        .padding(.vertical, 30)
+      }
       
       Spacer()
         .frame(height: 10)
@@ -48,6 +47,9 @@ struct AnswerCheckView: View {
       .padding(.horizontal, 20)
       .background(backWall())
     }
+    .onAppear {
+      answerCheckVM.getAnswers()
+    }
     
     .customNavigationBar(
       centerView: {
@@ -71,5 +73,5 @@ struct AnswerCheckView: View {
 }
 
 #Preview {
-  AnswerCheckView(num: 1)
+  AnswerCheckView(answerCheckVM: .init(questionId: 1))
 }
