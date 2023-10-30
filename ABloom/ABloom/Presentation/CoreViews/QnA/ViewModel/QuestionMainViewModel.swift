@@ -116,12 +116,8 @@ final class QuestionMainViewModel: ObservableObject {
     let myAnswers = try await UserManager.shared.getAnswers(userId: userId)
     let questions = try await StaticQuestionManager.shared.getAnsweredQuestions(questionIds: myAnswers.map({ $0.questionId }))
     
-    myAnswers.forEach { answer in
-      self.answers.append(answer)
-    }
-    questions.forEach { question in
-      self.questions.append(question)
-    }
+    self.answers += myAnswers
+    self.questions += questions
   }
   
   private func getFianceAnswers() async throws {
@@ -130,12 +126,7 @@ final class QuestionMainViewModel: ObservableObject {
     let fianceAnswers = try await UserManager.shared.getAnswers(userId: userId)
     let questions = try await StaticQuestionManager.shared.getAnsweredQuestions(questionIds: fianceAnswers.map({ $0.questionId }))
     
-    fianceAnswers.forEach { answer in
-      self.answers.append(answer)
-    }
-    
-    questions.forEach { question in
-      self.questions.append(question)
-    }
+    self.answers += fianceAnswers
+    self.questions += questions
   }
 }
