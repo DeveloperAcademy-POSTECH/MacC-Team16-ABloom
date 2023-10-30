@@ -23,8 +23,7 @@ final class AnswerWriteViewModel: ObservableObject {
     self.sex = sex!
   }
   
-  
-  func moveToBack() {
+  func setAlert() {
     isAlertOn = true
   }
   

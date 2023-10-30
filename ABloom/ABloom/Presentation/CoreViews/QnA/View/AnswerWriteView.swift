@@ -48,10 +48,16 @@ struct AnswerWriteView: View {
         Text("문답 작성하기")
       },
       leftView: {
-        Button(action: answerVM.moveToBack, label: {
+        Button {
+          if answerVM.answerText == "" {
+            dismiss()
+          } else {
+            answerVM.setAlert()
+          }
+        } label: {
           Image("angle-left")
             .frame(width: 20, height: 20)
-        })
+        }
       },
       rightView: {
         Button {
@@ -62,6 +68,7 @@ struct AnswerWriteView: View {
             .fontWithTracking(.headlineR)
             .foregroundStyle(.stone700)
         }
+        .disabled(answerVM.answerText == "")
       })
     .background(backgroundDefault())
   }
