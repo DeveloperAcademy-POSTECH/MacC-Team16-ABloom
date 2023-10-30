@@ -60,6 +60,7 @@ final class HomeViewModel: ObservableObject {
     let dbUser = try await UserManager.shared.getCurrentUser()
     try await getFiance(user: dbUser)
     try getMarrigeDate(user: dbUser)
+    try await getQnACount(user: dbUser)
     self.isConnected = true
   }
   
@@ -82,6 +83,17 @@ final class HomeViewModel: ObservableObject {
     guard let days = Calendar.current.dateComponents([.day], from: today, to: estimatedMarriageDate).day else { return 0 }
     
     return days + 1
+  }
+  
+  private func getQnACount(user: DBUser) async throws {
+    guard let fiance = user.fiance else { throw URLError(.badURL)}
+    
+    let myAnswers = try await UserManager.shared.getAnswers(userId: user.userId)
+    let myAnswerIds = myAnswers.map { $0.questionId }
+    
+    let bothAnswerd = try await UserManager.shared.getAnswerWithId(userId: fiance, filter: myAnswerIds)
+    
+    self.qnaCount = bothAnswerd.count
   }
   
   // MARK: - 메인 이미지 관련
