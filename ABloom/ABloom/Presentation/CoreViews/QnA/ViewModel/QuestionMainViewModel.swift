@@ -56,6 +56,7 @@ final class QuestionMainViewModel: ObservableObject {
   @Published var questions: [DBStaticQuestion] = []
   
   func getInfo() {
+    clearAll()
     Task {
       try? await getMyAnswers()
       try? await getFianceAnswers()
@@ -64,20 +65,37 @@ final class QuestionMainViewModel: ObservableObject {
     }
   }
   
-  func sortAnswers() {
-    self.answers.sort { answer1, answer2 in
-      answer1.date > answer2.date
+  func checkAnswerStatus(qid: Int) -> AnswerStatus {
+    let filteredAnswers = answers.filter { $0.questionId == qid }
+    
+    if filteredAnswers.count == 1 {
+      guard let myId = try? AuthenticationManager.shared.getAuthenticatedUser().uid else { return .nobody }
+      
+      if filteredAnswers.first!.userId == myId {
+        return .onlyMe
+      } else {
+        return .onlyFinace
+      }
+    } else if filteredAnswers.count == 2 {
+      return .both
+    } else {
+      return .nobody
     }
+  }
+  
+  private func clearAll() {
+    self.answers = []
+    self.questions = []
+  }
+  
+  private func sortAnswers() {
+    self.answers.sort { $0.date > $1.date }
     
-    let id = answers.map { answer in
-      answer.questionId
-    }
+    let id = answers.map { $0.questionId }.uniqued()
     
-    let distinctId = id.uniqued()
+    var newArray: [DBStaticQuestion] = []
     
-    var newArray:[DBStaticQuestion] = []
-    
-    for i in distinctId {
+    for i in id {
       for j in self.questions {
         if i == j.questionID {
           newArray.append(j)
@@ -88,7 +106,7 @@ final class QuestionMainViewModel: ObservableObject {
     self.questions = newArray
   }
   
-  func distinctQuestions() {
+  private func distinctQuestions() {
     self.questions = self.questions.uniqued()
   }
   
@@ -107,7 +125,7 @@ final class QuestionMainViewModel: ObservableObject {
   }
   
   private func getFianceAnswers() async throws {
-    guard let userId = try await UserManager.shared.getCurrentUser().fiance else { throw URLError(.badURL)}
+    guard let userId = try await UserManager.shared.getCurrentUser().fiance else { throw URLError(.badURL) }
     
     let fianceAnswers = try await UserManager.shared.getAnswers(userId: userId)
     let questions = try await StaticQuestionManager.shared.getAnsweredQuestions(questionIds: fianceAnswers.map({ $0.questionId }))
