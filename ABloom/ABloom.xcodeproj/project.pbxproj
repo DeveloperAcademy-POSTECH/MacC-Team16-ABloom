@@ -74,8 +74,9 @@
 		605541152ADE1A9D00AD5625 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605541142ADE1A9D00AD5625 /* TabBarView.swift */; };
 		605541172ADE1ACF00AD5625 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605541162ADE1ACF00AD5625 /* Tab.swift */; };
 		6055411A2ADE66B000AD5625 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605541192ADE66B000AD5625 /* RegistrationView.swift */; };
-		607DA20E2AEF48AE005AE11C /* NavigationArrowLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA20D2AEF48AE005AE11C /* NavigationArrowLeft.swift */; };
 		607DA20C2AEE5028005AE11C /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA20B2AEE5028005AE11C /* ImageFileManager.swift */; };
+		607DA20E2AEF48AE005AE11C /* NavigationArrowLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA20D2AEF48AE005AE11C /* NavigationArrowLeft.swift */; };
+		607DA2122AEF5C96005AE11C /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2112AEF5C96005AE11C /* DeleteAccountView.swift */; };
 		AE1AE9F92AE50BBC0010089F /* QuestionMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AE9F82AE50BBC0010089F /* QuestionMainView.swift */; };
 		AE1AE9FB2AE51BF00010089F /* QnAListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AE9FA2AE51BF00010089F /* QnAListItem.swift */; };
 		AE1AE9FF2AE557E00010089F /* AnswerCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AE9FE2AE557E00010089F /* AnswerCheckView.swift */; };
@@ -144,8 +145,9 @@
 		605541142ADE1A9D00AD5625 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		605541162ADE1ACF00AD5625 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		605541192ADE66B000AD5625 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
-		607DA20D2AEF48AE005AE11C /* NavigationArrowLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationArrowLeft.swift; sourceTree = "<group>"; };
 		607DA20B2AEE5028005AE11C /* ImageFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
+		607DA20D2AEF48AE005AE11C /* NavigationArrowLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationArrowLeft.swift; sourceTree = "<group>"; };
+		607DA2112AEF5C96005AE11C /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
 		AE1AE9F82AE50BBC0010089F /* QuestionMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionMainView.swift; sourceTree = "<group>"; };
 		AE1AE9FA2AE51BF00010089F /* QnAListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnAListItem.swift; sourceTree = "<group>"; };
 		AE1AE9FE2AE557E00010089F /* AnswerCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCheckView.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 			children = (
 				3D4412552AE4F31D00FD5A51 /* MyAccountView.swift */,
 				3D4412632AE50E8E00FD5A51 /* MyAccountViewModel.swift */,
+				607DA2112AEF5C96005AE11C /* DeleteAccountView.swift */,
 			);
 			path = MyAccount;
 			sourceTree = "<group>";
@@ -735,6 +738,7 @@
 				3D4412512AE4E58A00FD5A51 /* MenuView.swift in Sources */,
 				3DB6A5B42AE11CCD00C1369F /* SignInAppleHelper.swift in Sources */,
 				3DB6A5AB2AE0C09800C1369F /* LoginView.swift in Sources */,
+				607DA2122AEF5C96005AE11C /* DeleteAccountView.swift in Sources */,
 				3D4412642AE50E8E00FD5A51 /* MyAccountViewModel.swift in Sources */,
 				3D4412802AEACA2A00FD5A51 /* ConnectionWaypointViewModel.swift in Sources */,
 				607DA20E2AEF48AE005AE11C /* NavigationArrowLeft.swift in Sources */,
