@@ -38,11 +38,6 @@ struct QuestionMainView: View {
     .onAppear {
       questionVM.getInfo()
     }
-    
-    .task {
-      try? await questionVM.getUserSex()
-      try? await questionVM.getMyAnswers()
-    }
   }
 }
 
