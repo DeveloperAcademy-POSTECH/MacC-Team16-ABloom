@@ -5,6 +5,7 @@
 //  Created by Lee Jinhee on 10/19/23.
 //
 
+import PhotosUI
 import SwiftUI
 
 struct HomeView: View {
@@ -18,7 +19,11 @@ struct HomeView: View {
       
       Spacer().frame(maxHeight: 32)
       
-      mainImageArea
+      if homeVM.savedImage == nil {
+        defaultImage
+      } else {
+        savedImage
+      }
       
       Spacer().frame(maxHeight: 40)
       
@@ -28,7 +33,6 @@ struct HomeView: View {
     }
     .padding(.horizontal, 20)
     .background(backgroundDefault())
-    //.ignoresSafeArea()
     .task {
       try? await homeVM.setInfo()
     }
@@ -86,11 +90,28 @@ extension HomeView {
     }
   }
   
-  private var mainImageArea: some View {
-    Image("HomeDefaultImage")
+  private var savedImage: some View {
+    Image(uiImage: homeVM.savedImage!)
       .resizable()
-      .frame(height: 387)
       .scaledToFill()
+      .frame(maxHeight: 387)
+      .overlay {
+        Color.biPink.opacity(0.2)
+      }
+      .clipShape(RoundedRectangle(cornerRadius: 28))
+      .shadow(color: Color.purple200, radius: 20, x: 0, y: 20)
+      .overlay(alignment: .topTrailing) {
+        ZStack(alignment: .topTrailing) {
+          cameraButton
+        }
+      }
+  }
+  
+  private var defaultImage: some View {
+    Image(uiImage: homeVM.defaultImage)
+      .resizable()
+      .scaledToFit()
+      .frame(maxHeight: 387)
       .clipShape(RoundedRectangle(cornerRadius: 28))
       .shadow(color: Color.purple200, radius: 20, x: 0, y: 20)
       .overlay(alignment: .topTrailing) {
@@ -103,13 +124,39 @@ extension HomeView {
   
   private var cameraButton: some View {
     Button {
-      // TODO: 사진 적용 기능 구현
+      homeVM.cameraButtonTapped()
     } label: {
       Image("camera.filled.circle_outline")
         .resizable()
         .frame(width: 26, height: 26)
+        .padding(.all, 14)
     }
-    .padding(.all, 14)
+    
+    .confirmationDialog("사진", isPresented: $homeVM.showDialog) {
+      Button("사진 추가하기", role: .none) {
+        homeVM.addImageDialogTapped()
+      }
+      
+      Button("사진 삭제하기", role: .destructive) {
+        homeVM.deleteImage()
+      }
+      
+      Button("취소", role: .cancel) {
+        homeVM.showDialog = false
+      }
+    }
+    
+    .photosPicker(isPresented: $homeVM.showPhotosPicker, selection: $homeVM.selectedItem, matching: .all(of: [.images]), photoLibrary: .shared())
+    
+    .onChange(of: homeVM.selectedItem) { newItem in
+      Task {
+        if let data = try? await newItem?.loadTransferable(type: Data.self) {
+          homeVM.selectedImageData = data
+          homeVM.getImageFromPhotosPicker()
+          homeVM.saveImage()
+        }
+      }
+    }
   }
   
   private var cameraChatBubble: some View {
