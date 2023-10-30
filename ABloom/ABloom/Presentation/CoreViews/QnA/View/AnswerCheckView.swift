@@ -147,8 +147,8 @@ extension AnswerCheckView {
       
       // 둘 다 작성했을 경우 => 내 답변이 먼저 보이기
       else {
-        RightBlueChatBubble(text: answerCheckVM.myAnswer)
-        LeftPinkChatBubbleWithImg(text: answerCheckVM.fianceAnswer)
+        RightPinkChatBubble(text: answerCheckVM.myAnswer)
+        LeftBlueChatBubbleWithImg(text: answerCheckVM.fianceAnswer)
       }
       Spacer()
     }

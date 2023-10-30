@@ -177,7 +177,7 @@ struct LeftBlueChatBubbleWithImg: View {
   }
 }
 
-// MARK: -TextField ChatBubbles
+// MARK: - TextField ChatBubbles
 
 struct BlueChatBubbleTextField: View {
   @Binding var text: String
