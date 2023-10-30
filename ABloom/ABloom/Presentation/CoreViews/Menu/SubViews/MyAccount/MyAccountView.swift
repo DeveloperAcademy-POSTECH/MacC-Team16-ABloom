@@ -141,7 +141,7 @@ extension MyAccountView {
       }
       
       MenuListNavigationItem(title: "회원탈퇴") {
-        Text("회원탈퇴")
+        DeleteAccountView()
       }
     }
     .alert("로그아웃 하시겠어요?", isPresented: $myAccountVM.showSignOutCheckAlert) {
