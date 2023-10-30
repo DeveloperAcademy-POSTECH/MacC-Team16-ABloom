@@ -17,7 +17,7 @@ struct QuestionMainView: View {
       Spacer()
         .frame(height: 34)
       
-      if questionVM.myAnwsers.isEmpty {
+      if questionVM.answers.isEmpty {
         emptyListView
           .background(backWall())
           
@@ -34,8 +34,8 @@ struct QuestionMainView: View {
       }
     }
     .background(backgroundDefault())
-    .task {
-      try? await questionVM.getMyAnswers()
+    .onAppear {
+      questionVM.getInfo()
     }
   }
 }
@@ -72,7 +72,7 @@ extension QuestionMainView {
             QnAListItem(
               categoryImg: (Category(rawValue: question.category)?.imgName)!,
               question: question.content,
-              date: (questionVM.myAnwsers.first(where: { $0.questionId == question.questionID })?.date)!,
+              date: (questionVM.answers.last(where: { $0.questionId == question.questionID })?.date)!,
               isAns: false)
           }
         }

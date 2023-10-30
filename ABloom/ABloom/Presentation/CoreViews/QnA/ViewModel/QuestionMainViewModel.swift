@@ -49,18 +49,75 @@ enum Category: String, CaseIterable {
     }
   }
 }
+
 @MainActor
 final class QuestionMainViewModel: ObservableObject {
-  @Published var myAnwsers: [DBAnswer] = []
+  @Published var answers: [DBAnswer] = []
   @Published var questions: [DBStaticQuestion] = []
   
-  func getMyAnswers() async throws {
+  func getInfo() {
+    Task {
+      try? await getMyAnswers()
+      try? await getFianceAnswers()
+      distinctQuestions()
+      sortAnswers()
+    }
+  }
+  
+  func sortAnswers() {
+    self.answers.sort { answer1, answer2 in
+      answer1.date > answer2.date
+    }
+    
+    let id = answers.map { answer in
+      answer.questionId
+    }
+    
+    let distinctId = id.uniqued()
+    
+    var newArray:[DBStaticQuestion] = []
+    
+    for i in distinctId {
+      for j in self.questions {
+        if i == j.questionID {
+          newArray.append(j)
+        }
+      }
+    }
+    
+    self.questions = newArray
+  }
+  
+  func distinctQuestions() {
+    self.questions = self.questions.uniqued()
+  }
+  
+  private func getMyAnswers() async throws {
     let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
     
     let myAnswers = try await UserManager.shared.getAnswers(userId: userId)
     let questions = try await StaticQuestionManager.shared.getAnsweredQuestions(questionIds: myAnswers.map({ $0.questionId }))
     
-    self.myAnwsers = myAnswers
-    self.questions = questions
+    myAnswers.forEach { answer in
+      self.answers.append(answer)
+    }
+    questions.forEach { question in
+      self.questions.append(question)
+    }
+  }
+  
+  private func getFianceAnswers() async throws {
+    guard let userId = try await UserManager.shared.getCurrentUser().fiance else { throw URLError(.badURL)}
+    
+    let fianceAnswers = try await UserManager.shared.getAnswers(userId: userId)
+    let questions = try await StaticQuestionManager.shared.getAnsweredQuestions(questionIds: fianceAnswers.map({ $0.questionId }))
+    
+    fianceAnswers.forEach { answer in
+      self.answers.append(answer)
+    }
+    
+    questions.forEach { question in
+      self.questions.append(question)
+    }
   }
 }
