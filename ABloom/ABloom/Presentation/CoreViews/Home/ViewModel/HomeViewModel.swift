@@ -58,9 +58,15 @@ final class HomeViewModel: ObservableObject {
   
   func setInfo() async throws {
     let dbUser = try await UserManager.shared.getCurrentUser()
+    try getMySex(user: dbUser)
     try await getFiance(user: dbUser)
     try getMarrigeDate(user: dbUser)
     self.isConnected = true
+  }
+  
+  private func getMySex(user: DBUser) throws {
+    guard let userSex = user.sex else { throw URLError(.badServerResponse) }
+    self.partnerType = userSex ? .woman : .man
   }
   
   private func getFiance(user: DBUser) async throws {
