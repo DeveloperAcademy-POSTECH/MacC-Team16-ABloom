@@ -85,7 +85,7 @@ final class HomeViewModel: ObservableObject {
   }
   
   // MARK: - 메인 이미지 관련
-  func requestAuthorization() {
+  private func requestAuthorization() {
     guard status == .notDetermined else { return }
     PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
       // TODO: 요청권한에 따른 처리
@@ -93,7 +93,7 @@ final class HomeViewModel: ObservableObject {
   }
   
   // 파일에서 이미지 가져오기
-  func getImageFromFileManager() {
+  private func getImageFromFileManager() {
     if let image = manager.loadImage(name: saveImageName) {
       self.savedImage = image
     }
@@ -107,13 +107,13 @@ final class HomeViewModel: ObservableObject {
   
   func saveImage() {
     guard let image = savedImage else { return }
-    _ = manager.saveImage(image: image, name: saveImageName)
+    manager.saveImage(image: image, name: saveImageName)
   }
   
   func deleteImage() {
     selectedItem = nil
     selectedImageData = nil
     savedImage = nil
-    _ = manager.deleteImage(name: saveImageName)
+    manager.deleteImage(name: saveImageName)
   }
 }

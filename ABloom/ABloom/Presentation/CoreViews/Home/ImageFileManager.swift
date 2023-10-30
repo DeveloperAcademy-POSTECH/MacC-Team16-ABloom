@@ -7,7 +7,7 @@
 
 import PhotosUI
 
-class ImageFileManager {
+final class ImageFileManager {
   static let shared = ImageFileManager()
   private let cachePathName: String = "Mery_Images"
   
@@ -37,6 +37,7 @@ class ImageFileManager {
     }
   }
   
+  @discardableResult
   func deleteFolder() -> String {
     guard
       let path = FileManager
@@ -57,6 +58,7 @@ class ImageFileManager {
     }
   }
   
+  @discardableResult
   func saveImage(image: UIImage, name: String) -> String {
     guard let data = image.pngData(), let path = getPathForImage(name: name) else {
       return "ERROR GETTING PATH"
@@ -82,6 +84,7 @@ class ImageFileManager {
     return UIImage(contentsOfFile: path)
   }
   
+  @discardableResult
   func deleteImage(name: String) -> String {
     guard
       let path = getPathForImage(name: name),

@@ -140,6 +140,10 @@ extension HomeView {
       Button("사진 삭제하기", role: .destructive) {
         homeVM.deleteImage()
       }
+      
+      Button("취소", role: .cancel) {
+        homeVM.showDialog = false
+      }
     }
     
     .photosPicker(isPresented: $homeVM.showPhotosPicker, selection: $homeVM.selectedItem, matching: .all(of: [.images]), photoLibrary: .shared())
