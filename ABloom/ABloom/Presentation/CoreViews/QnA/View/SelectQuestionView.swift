@@ -11,7 +11,7 @@ struct SelectQuestionView: View {
   @Environment(\.dismiss) private var dismiss
   @StateObject var selectQVM = SelectQuestionViewModel()
   
-  let gender: Bool
+  let sex: Bool
   
   var body: some View {
     VStack {
@@ -24,10 +24,17 @@ struct SelectQuestionView: View {
         })
         .background(backWall())
     }
-    
+    .onAppear(perform: {
+      if NavigationModel.shared.isPopToMain {
+        NavigationModel.shared.popToMainToggle()
+        dismiss()
+      }
+    })
+  
     .task {
       try? await selectQVM.fetchQuestions()
     }
+    
     
     // 네비게이션바
     .customNavigationBar(
@@ -96,7 +103,7 @@ extension SelectQuestionView {
       ScrollView(.vertical) {
         ForEach(selectQVM.filteredLists, id: \.self) { question in
           NavigationLink(value: question) {
-            if gender {
+            if sex {
               LeftPinkChatBubble(text: question.content)
             } else {
               LeftBlueChatBubble(text: question.content)
@@ -111,5 +118,5 @@ extension SelectQuestionView {
 }
 
 #Preview {
-  SelectQuestionView(gender: false)
+  SelectQuestionView(sex: false)
 }

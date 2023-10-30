@@ -28,7 +28,7 @@ struct QuestionMainView: View {
     }
     .navigationDestination(for: Int.self, destination: { content in
       if content == 0 {
-        SelectQuestionView(gender: questionVM.sex)
+        SelectQuestionView(sex: questionVM.sex)
       } else {
         AnswerCheckView(answerCheckVM: .init(questionId: content), sex: questionVM.sex)
       }
@@ -69,7 +69,6 @@ extension QuestionMainView {
         
         ForEach(questionVM.questions, id: \.questionID) { question in
           NavigationLink(value: question.questionID) {
-            // TODO: 해당 정보란을 데이터로 가져와야함
             QnAListItem(
               categoryImg: (Category(rawValue: question.category)?.imgName)!,
               question: question.content,
