@@ -53,16 +53,16 @@ enum Category: String, CaseIterable {
 final class QuestionMainViewModel: ObservableObject {
   @Published var myAnwsers: [DBAnswer] = []
   @Published var questions: [DBStaticQuestion] = []
-  @Published var gender = Bool()
+  @Published var sex = Bool()
   
   
-  func getUserGender() async throws {
+  func getUserSex() async throws {
     let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
     
-    let gender = try await UserManager.shared.getUser(userId: userId).sex
+    let sex = try await UserManager.shared.getUser(userId: userId).sex
     
     // 0 = female, 1 = male
-    self.gender = gender!
+    self.sex = sex!
   }
   
   func getMyAnswers() async throws {

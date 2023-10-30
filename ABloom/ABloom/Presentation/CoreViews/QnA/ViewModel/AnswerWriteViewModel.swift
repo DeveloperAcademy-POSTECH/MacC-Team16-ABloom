@@ -11,16 +11,16 @@ import SwiftUI
 final class AnswerWriteViewModel: ObservableObject {
   @Published var answerText: String = ""
   @Published var isAlertOn: Bool = false
-  @Published var gender = Bool()
+  @Published var sex = Bool()
   
   
-  func getUserGender() async throws {
+  func getUserSex() async throws {
     let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
     
-    let gender = try await UserManager.shared.getUser(userId: userId).sex
+    let sex = try await UserManager.shared.getUser(userId: userId).sex
     
     // 0 = female, 1 = male
-    self.gender = gender!
+    self.sex = sex!
   }
   
   

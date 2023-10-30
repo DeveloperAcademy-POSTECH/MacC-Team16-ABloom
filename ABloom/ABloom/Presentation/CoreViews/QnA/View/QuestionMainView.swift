@@ -23,19 +23,19 @@ struct QuestionMainView: View {
         
       } else {
         answeredQScroll
-          .navigationDestination(for: Int.self, destination: { content in
-            if content == 0 {
-              SelectQuestionView(gender: questionVM.gender)
-            } else {
-              AnswerCheckView(answerCheckVM: .init(questionId: content), gender: questionVM.gender)
-            }
-          })
           .background(backWall())
       }
     }
+    .navigationDestination(for: Int.self, destination: { content in
+      if content == 0 {
+        SelectQuestionView(gender: questionVM.sex)
+      } else {
+        AnswerCheckView(answerCheckVM: .init(questionId: content), sex: questionVM.sex)
+      }
+    })
     .background(backgroundDefault())
     .task {
-      try? await questionVM.getUserGender()
+      try? await questionVM.getUserSex()
       try? await questionVM.getMyAnswers()
       
     }

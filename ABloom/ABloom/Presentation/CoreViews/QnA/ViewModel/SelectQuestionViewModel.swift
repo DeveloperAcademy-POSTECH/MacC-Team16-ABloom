@@ -14,18 +14,16 @@ final class SelectQuestionViewModel: ObservableObject {
   @Published var filteredLists = [DBStaticQuestion]()
   @Published var selectedCategory: Category = Category.values
   
-  @Published var gender = Bool()
+  @Published var sex = Bool()
   
-  
-  func getUserGender() async throws {
+  func getUserSex() async throws {
     let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
     
-    let gender = try await UserManager.shared.getUser(userId: userId).sex
+    let sex = try await UserManager.shared.getUser(userId: userId).sex
     
     // 0 = female, 1 = male
-    self.gender = gender!
+    self.sex = sex!
   }
-  
   
   func selectCategory(seleted: Category) {
     selectedCategory = seleted

@@ -11,7 +11,7 @@ struct AnswerCheckView: View {
   @Environment(\.dismiss) private var dismiss
   @StateObject var answerCheckVM: AnswerCheckViewModel
   
-  let gender: Bool
+  let sex: Bool
   
   var body: some View {
     VStack {
@@ -30,7 +30,7 @@ struct AnswerCheckView: View {
         .frame(height: 10)
       
       // 남성 일 경우
-      if gender {
+      if sex {
         malePart
       } else { // 여성 일 경우
         femalePart
@@ -98,8 +98,7 @@ extension AnswerCheckView {
         }
       }
       
-      // 둘 다 작성했을 경우
-      // TODO: 누구의 답변이 먼저인지 로직 파악 필요
+      // 둘 다 작성했을 경우 => 내 답변이 먼저 보이기
       else {
         RightBlueChatBubble(text: answerCheckVM.myAnswer)
         LeftPinkChatBubbleWithImg(text: answerCheckVM.fianceAnswer)
@@ -147,8 +146,7 @@ extension AnswerCheckView {
         }
       }
       
-      // 둘 다 작성했을 경우
-      // TODO: 누구의 답변이 먼저인지 로직 파악 필요
+      // 둘 다 작성했을 경우 => 내 답변이 먼저 보이기
       else {
         RightBlueChatBubble(text: answerCheckVM.myAnswer)
         LeftPinkChatBubbleWithImg(text: answerCheckVM.fianceAnswer)
@@ -161,5 +159,5 @@ extension AnswerCheckView {
 }
 
 #Preview {
-  AnswerCheckView(answerCheckVM: .init(questionId: 3), gender: true)
+  AnswerCheckView(answerCheckVM: .init(questionId: 3), sex: true)
 }

@@ -39,7 +39,7 @@ struct AnswerWriteView: View {
     })
     
     .task {
-      try? await answerVM.getUserGender()
+      try? await answerVM.getUserSex()
     }
     
     // 네비게이션바
@@ -76,7 +76,7 @@ extension AnswerWriteView {
     HStack(alignment: .top, spacing: 11) {
       
       // 유저가 남성일 때,
-      if answerVM.gender {
+      if answerVM.sex {
         Image("avatar_Female circle GradientBG")
           .resizable()
           .frame(width: 34, height: 34)
@@ -106,7 +106,7 @@ extension AnswerWriteView {
     HStack {
       Spacer()
       
-      if answerVM.gender {
+      if answerVM.sex {
         BlueChatBubbleTextField(text: $answerVM.answerText)
           .onChange(of: answerVM.answerText, perform: { newValue in
             if newValue.count > 150 {
