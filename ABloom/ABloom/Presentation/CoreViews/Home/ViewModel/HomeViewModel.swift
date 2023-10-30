@@ -10,11 +10,11 @@ import SwiftUI
 
 @MainActor
 final class HomeViewModel: ObservableObject {
-  @Published var partnerName: String = "UserName"
+  @Published var fianceName: String = "UserName"
   @Published var untilWeddingDate: Int = 0
   @Published var qnaCount: Int = 0
   @Published var isConnected: Bool = false
-  @Published var partnerType: UserType = .woman
+  @Published var fianceSexType: UserType = .woman
   @Published var recommendQuestion: String = "추천질문입니다"
   @Published var isConnectButtonTapped = false
   
@@ -58,23 +58,21 @@ final class HomeViewModel: ObservableObject {
   
   func setInfo() async throws {
     let dbUser = try await UserManager.shared.getCurrentUser()
-    try getMySex(user: dbUser)
+    try getFianceSex(user: dbUser)
     try await getFiance(user: dbUser)
     try getMarrigeDate(user: dbUser)
     self.isConnected = true
   }
   
-  private func getMySex(user: DBUser) throws {
+  private func getFianceSex(user: DBUser) throws {
     guard let userSex = user.sex else { throw URLError(.badServerResponse) }
-    self.partnerType = userSex ? .woman : .man
+    self.fianceSexType = userSex ? .woman : .man
   }
   
   private func getFiance(user: DBUser) async throws {
     guard let fiance = user.fiance else { throw URLError(.badServerResponse) }
-    
     let fianceUser = try await UserManager.shared.getUser(userId: fiance)
-    
-    self.partnerName = fianceUser.name ?? ""
+    self.fianceName = fianceUser.name ?? ""
   }
   
   private func getMarrigeDate(user: DBUser) throws {
