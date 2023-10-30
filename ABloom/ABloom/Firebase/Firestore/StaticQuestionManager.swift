@@ -13,15 +13,19 @@ final class StaticQuestionManager {
   private let questionCollection = Firestore.firestore().collection("questions")
   
   // MARK: GET Method
-  func getQuestionsWithoutAnswers(userId: String) async throws -> [DBStaticQuestion] {
-    // 내가 이미 작성한 문항은 제외하고 GET
-    let ids = try await getMyAnswersId(userId: userId)
+  func getQuestionsWithoutAnswers(myId: String, fianceId: String?) async throws -> [DBStaticQuestion] {
+    var ids = try await getAnswersId(userId: myId)
+    
+    if let fianceId = fianceId {
+      ids += try await getAnswersId(userId: fianceId)
+    }
+    
     return try await  questionCollection
-      .whereField(DBStaticQuestion.CodingKeys.questionID.rawValue, notIn: ids)
+      .whereField(DBStaticQuestion.CodingKeys.questionID.rawValue, notIn: ids.uniqued())
       .getDocuments(as: DBStaticQuestion.self)
   }
   
-  func getMyAnswersId(userId: String) async throws -> [Int] {
+  private func getAnswersId(userId: String) async throws -> [Int] {
     let myAnswers = try await UserManager.shared.getAnswers(userId: userId)
     
     return myAnswers.map { answer in answer.questionId }

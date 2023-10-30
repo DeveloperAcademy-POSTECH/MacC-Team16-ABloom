@@ -69,6 +69,7 @@ final class QuestionMainViewModel: ObservableObject {
   func getInfo() {
     clearAll()
     Task {
+      try? await getUserSex()
       try? await getMyAnswers()
       try? await getFianceAnswers()
       distinctQuestions()
@@ -95,8 +96,8 @@ final class QuestionMainViewModel: ObservableObject {
   }
   
   private func clearAll() {
-    self.answers = []
-    self.questions = []
+    self.answers.removeAll()
+    self.questions.removeAll()
   }
   
   private func sortAnswers() {
