@@ -91,9 +91,9 @@ final class HomeViewModel: ObservableObject {
     let myAnswers = try await UserManager.shared.getAnswers(userId: user.userId)
     let myAnswerIds = myAnswers.map { $0.questionId }
     
-    let bothAnswerd = try await UserManager.shared.getAnswerWithId(userId: fiance, filter: myAnswerIds)
+    let bothanswered = try await UserManager.shared.getAnswerWithId(userId: fiance, filter: myAnswerIds)
     
-    self.qnaCount = bothAnswerd.count
+    self.qnaCount = bothanswered.count
   }
   
   // MARK: - 메인 이미지 관련
