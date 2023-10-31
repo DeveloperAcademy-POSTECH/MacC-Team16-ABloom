@@ -17,6 +17,7 @@ final class MyAccountViewModel: ObservableObject {
   @Published var showDatePicker: Bool = false
   @Published var marriageDate: Date = .now
   @Published var showSignOutCheckAlert: Bool = false
+  @Published var isReady = Bool()
   
   func signOut() throws {
     try AuthenticationManager.shared.signOut()
@@ -28,6 +29,7 @@ final class MyAccountViewModel: ObservableObject {
     
     self.userName = user.name
     self.dDay = calculateDDay(estimatedMarriageDate: user.marriageDate ?? .now)
+    self.isReady = true
   }
   
   func updateMyName(name: String) throws {

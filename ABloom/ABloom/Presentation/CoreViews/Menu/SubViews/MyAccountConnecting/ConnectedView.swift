@@ -17,11 +17,15 @@ struct ConnectedView: View {
   
   var body: some View {
     VStack {
-      Image("check")
-        .resizable()
-        .frame(width: imageSize, height: imageSize)
-      
-      Text("\(fianceName)님과 연결되어 있습니다.")
+      if fianceName == "" {
+        ProgressView()
+      } else {
+        Image("check")
+          .resizable()
+          .frame(width: imageSize, height: imageSize)
+        
+        Text("\(fianceName)님과 연결되어 있습니다.")
+      }
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .task {

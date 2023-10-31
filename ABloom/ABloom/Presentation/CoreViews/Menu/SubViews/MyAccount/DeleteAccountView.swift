@@ -38,8 +38,10 @@ struct DeleteAccountView: View {
       }
       .padding(.bottom, 20)
       
-      // TODO: NavigationStack 초기화로 리팩토링
-      NavigationLink(destination: HomeView()) {
+
+      Button {
+        dismiss()
+      } label: {
         PurpleSingleBtn(text: "다시 사용하기")
       }
     }

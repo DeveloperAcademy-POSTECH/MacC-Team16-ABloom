@@ -77,14 +77,15 @@
 		607DA20C2AEE5028005AE11C /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA20B2AEE5028005AE11C /* ImageFileManager.swift */; };
 		607DA20E2AEF48AE005AE11C /* NavigationArrowLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA20D2AEF48AE005AE11C /* NavigationArrowLeft.swift */; };
 		607DA2122AEF5C96005AE11C /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2112AEF5C96005AE11C /* DeleteAccountView.swift */; };
-		607DA2182AF0B07D005AE11C /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2172AF0B07D005AE11C /* Ex+Date.swift */; };
 		607DA2142AEFCF93005AE11C /* ConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2132AEFCF93005AE11C /* ConnectionError.swift */; };
 		607DA2162AEFE900005AE11C /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2152AEFE900005AE11C /* ConnectionManager.swift */; };
+		607DA2182AF0B07D005AE11C /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2172AF0B07D005AE11C /* Ex+Date.swift */; };
 		AE1AE9F92AE50BBC0010089F /* QuestionMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AE9F82AE50BBC0010089F /* QuestionMainView.swift */; };
 		AE1AE9FB2AE51BF00010089F /* QnAListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AE9FA2AE51BF00010089F /* QnAListItem.swift */; };
 		AE1AE9FF2AE557E00010089F /* AnswerCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AE9FE2AE557E00010089F /* AnswerCheckView.swift */; };
 		AE1AEA012AE55A0C0010089F /* QuestionMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AEA002AE55A0C0010089F /* QuestionMainViewModel.swift */; };
 		AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AE2BB5F32AD650680003CD85 /* .swiftlint.yml */; };
+		AE4A717F2AF0F14600F40092 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE4A717E2AF0F14600F40092 /* Launch Screen.storyboard */; };
 		AE5693252AEAD982009F3400 /* AnswerWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5693242AEAD982009F3400 /* AnswerWriteViewModel.swift */; };
 		AE6374AF2AF01C4500081A23 /* NavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6374AE2AF01C4500081A23 /* NavigationModel.swift */; };
 		AE6697902AE904F80004B56C /* AnswerWriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE66978F2AE904F80004B56C /* AnswerWriteView.swift */; };
@@ -152,9 +153,9 @@
 		607DA20B2AEE5028005AE11C /* ImageFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
 		607DA20D2AEF48AE005AE11C /* NavigationArrowLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationArrowLeft.swift; sourceTree = "<group>"; };
 		607DA2112AEF5C96005AE11C /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
-		607DA2172AF0B07D005AE11C /* Ex+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Date.swift"; sourceTree = "<group>"; };
 		607DA2132AEFCF93005AE11C /* ConnectionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionError.swift; sourceTree = "<group>"; };
 		607DA2152AEFE900005AE11C /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
+		607DA2172AF0B07D005AE11C /* Ex+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Date.swift"; sourceTree = "<group>"; };
 		AE1AE9F82AE50BBC0010089F /* QuestionMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionMainView.swift; sourceTree = "<group>"; };
 		AE1AE9FA2AE51BF00010089F /* QnAListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnAListItem.swift; sourceTree = "<group>"; };
 		AE1AE9FE2AE557E00010089F /* AnswerCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCheckView.swift; sourceTree = "<group>"; };
@@ -162,6 +163,7 @@
 		AE2BB5F32AD650680003CD85 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		AE2BB5FE2AD673890003CD85 /* LoginMD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LoginMD.md; sourceTree = "<group>"; };
 		AE2BB6022AD674D40003CD85 /* TabBarMD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TabBarMD.md; sourceTree = "<group>"; };
+		AE4A717E2AF0F14600F40092 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AE5693242AEAD982009F3400 /* AnswerWriteViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerWriteViewModel.swift; sourceTree = "<group>"; };
 		AE6374AE2AF01C4500081A23 /* NavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModel.swift; sourceTree = "<group>"; };
 		AE66978F2AE904F80004B56C /* AnswerWriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerWriteView.swift; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 		AE7EE4DF2AD6409000E0A573 /* ABloom */ = {
 			isa = PBXGroup;
 			children = (
+				AE4A717E2AF0F14600F40092 /* Launch Screen.storyboard */,
 				3DB6A5B52AE1278D00C1369F /* ABloom.entitlements */,
 				AE8D3C5D2ADE1A22009899A7 /* Info.plist */,
 				3D4412792AEAB34000FD5A51 /* GoogleService-Info.plist */,
@@ -669,6 +672,7 @@
 				AE7EE4E82AD6409100E0A573 /* Preview Assets.xcassets in Resources */,
 				AE8D3C5C2ADE1A08009899A7 /* SpoqaHanSansNeo-Medium.ttf in Resources */,
 				3D44126B2AE6246100FD5A51 /* Assets.xcassets in Resources */,
+				AE4A717F2AF0F14600F40092 /* Launch Screen.storyboard in Resources */,
 				AE8D3C592ADE1A08009899A7 /* SpoqaHanSansNeo-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -913,6 +917,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -949,6 +954,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
