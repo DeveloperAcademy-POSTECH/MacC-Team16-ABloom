@@ -111,5 +111,11 @@ extension MyAccountConnectingView {
     }, message: {
       Text(myAccountConnectingVM.errorMessage)
     })
+    
+    .alert("연결 성공", isPresented: $myAccountConnectingVM.isConnectSuccess, actions: {
+      Button("확인") { dismiss() }
+    }, message: {
+      Text("상대방과 연결을 성공했습니다!")
+    })
   }
 }

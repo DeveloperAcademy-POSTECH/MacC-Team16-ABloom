@@ -39,6 +39,10 @@ struct LoginView: View {
     .navigationDestination(isPresented: $loginVM.isSignInSuccess) {
       RegistrationView(showLoginView: $showLoginView)
     }
+    
+    .onChange(of: loginVM.isOldUser) { newValue in
+      showLoginView = !newValue
+    }
   }
 }
 

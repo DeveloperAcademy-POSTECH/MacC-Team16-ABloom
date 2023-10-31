@@ -14,6 +14,7 @@ final class LoginViewModel: ObservableObject {
   @Published var isSignInSuccess = false
   @Published var showPrivacyPolicy = false
   @Published var showTermsOfUse = false
+  @Published var isOldUser = false
   
   func privacyPolicyTapped() {
     showPrivacyPolicy = true
@@ -37,6 +38,18 @@ final class LoginViewModel: ObservableObject {
     let authDataResult = try await AuthenticationManager.shared.signInWithApple(tokens: tokens)
     self.user = authDataResult
     
+    guard let user = self.user else { throw URLError(.badURL)}
+    
+    await checkOldUser(userId: user.uid)
+    
     self.isSignInSuccess = true
+  }
+  
+  func checkOldUser(userId: String) async {
+    guard let dbUser = try? await UserManager.shared.getUser(userId: userId) else {
+      return
+    }
+    
+    isOldUser = true
   }
 }

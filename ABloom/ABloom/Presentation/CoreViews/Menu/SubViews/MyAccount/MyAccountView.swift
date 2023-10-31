@@ -12,6 +12,7 @@ struct MyAccountView: View {
   @Environment(\.dismiss) private var dismiss
 
   @StateObject var myAccountVM = MyAccountViewModel()
+  @State var showLoginView = false
   
   var body: some View {
     
@@ -58,6 +59,11 @@ struct MyAccountView: View {
       EmptyView()
     }
     .background(backgroundDefault())
+    .fullScreenCover(isPresented: $showLoginView, content: {
+      NavigationStack {
+        LoginView(showLoginView: $showLoginView)
+      }
+    })
   }
 }
 
@@ -157,6 +163,7 @@ extension MyAccountView {
       
       Button("로그아웃") {
         try? myAccountVM.signOut()
+        showLoginView = true
         myAccountVM.showSignOutCheckAlert = false
       }
     } message: {
