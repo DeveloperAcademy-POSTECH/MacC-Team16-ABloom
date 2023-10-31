@@ -100,10 +100,17 @@ extension MyAccountConnectingView {
     .disabled(!myAccountConnectingVM.isTargetCodeInputVaild)
     .padding(.bottom, 40)
     
+    // 실패 로직
     .alert("연결에 실패했어요", isPresented: $myAccountConnectingVM.showAlert, actions: {
       Button("확인") { }
     }, message: {
       Text(myAccountConnectingVM.errorMessage)
+    })
+    
+    .alert("연결 성공", isPresented: $myAccountConnectingVM.isConnectSuccess, actions: {
+      Button("확인") { dismiss() }
+    }, message: {
+      Text("상대방과 연결을 성공했습니다!")
     })
   }
 }

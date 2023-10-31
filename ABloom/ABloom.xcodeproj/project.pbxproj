@@ -86,6 +86,7 @@
 		AE1AE9FF2AE557E00010089F /* AnswerCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AE9FE2AE557E00010089F /* AnswerCheckView.swift */; };
 		AE1AEA012AE55A0C0010089F /* QuestionMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AEA002AE55A0C0010089F /* QuestionMainViewModel.swift */; };
 		AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AE2BB5F32AD650680003CD85 /* .swiftlint.yml */; };
+		AE4A717F2AF0F14600F40092 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE4A717E2AF0F14600F40092 /* Launch Screen.storyboard */; };
 		AE5693252AEAD982009F3400 /* AnswerWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5693242AEAD982009F3400 /* AnswerWriteViewModel.swift */; };
 		AE6374AF2AF01C4500081A23 /* NavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6374AE2AF01C4500081A23 /* NavigationModel.swift */; };
 		AE6697902AE904F80004B56C /* AnswerWriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE66978F2AE904F80004B56C /* AnswerWriteView.swift */; };
@@ -164,6 +165,7 @@
 		AE2BB5F32AD650680003CD85 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		AE2BB5FE2AD673890003CD85 /* LoginMD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LoginMD.md; sourceTree = "<group>"; };
 		AE2BB6022AD674D40003CD85 /* TabBarMD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TabBarMD.md; sourceTree = "<group>"; };
+		AE4A717E2AF0F14600F40092 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AE5693242AEAD982009F3400 /* AnswerWriteViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerWriteViewModel.swift; sourceTree = "<group>"; };
 		AE6374AE2AF01C4500081A23 /* NavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModel.swift; sourceTree = "<group>"; };
 		AE66978F2AE904F80004B56C /* AnswerWriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerWriteView.swift; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 		AE7EE4DF2AD6409000E0A573 /* ABloom */ = {
 			isa = PBXGroup;
 			children = (
+				AE4A717E2AF0F14600F40092 /* Launch Screen.storyboard */,
 				3DB6A5B52AE1278D00C1369F /* ABloom.entitlements */,
 				AE8D3C5D2ADE1A22009899A7 /* Info.plist */,
 				3D4412792AEAB34000FD5A51 /* GoogleService-Info.plist */,
@@ -640,10 +643,11 @@
 			};
 			buildConfigurationList = AE7EE4D82AD6409000E0A573 /* Build configuration list for PBXProject "ABloom" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ko,
 				Base,
 			);
 			mainGroup = AE7EE4D42AD6409000E0A573;
@@ -672,6 +676,7 @@
 				AE7EE4E82AD6409100E0A573 /* Preview Assets.xcassets in Resources */,
 				AE8D3C5C2ADE1A08009899A7 /* SpoqaHanSansNeo-Medium.ttf in Resources */,
 				3D44126B2AE6246100FD5A51 /* Assets.xcassets in Resources */,
+				AE4A717F2AF0F14600F40092 /* Launch Screen.storyboard in Resources */,
 				AE8D3C592ADE1A08009899A7 /* SpoqaHanSansNeo-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -913,10 +918,13 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ABloom/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "메리";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "이미지를 화면에 보여주기 위해 사진 라이브러리 사용 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -949,10 +957,13 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ABloom/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "메리";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "이미지를 화면에 보여주기 위해 사진 라이브러리 사용 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;

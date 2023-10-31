@@ -16,7 +16,7 @@ final class AnswerCheckViewModel: ObservableObject {
   @Published var isNoFiance = false
   @Published var isNoMyAnswer = false
   @Published var isNoFianceAnswer = false
-  @Published var isDataOn = false
+  @Published var isDataReady = false
   let questionId: Int
   
   let notConnectedText = "아직 상대방과 연결되어 있지 않아요. 지금 연결하고, 상대방의 문답을 확인해주세요."
@@ -30,12 +30,13 @@ final class AnswerCheckViewModel: ObservableObject {
   }
   
   func getAnswers() {
-    self.isDataOn = false
+    self.isDataReady = false
     // TODO: 상대방 응답
     Task {
       try? await getQuestion(by: self.questionId)
       try? await getMyAnswer()
       try? await getFianceAnswer()
+      self.isDataReady = true
     }
   }
   
@@ -54,7 +55,6 @@ final class AnswerCheckViewModel: ObservableObject {
   private func getFianceAnswer() async throws {
     guard let fianceId = try await UserManager.shared.getCurrentUser().fiance else {
       self.isNoFiance = true
-      self.isDataOn = true
       throw URLError(.badServerResponse)
     }
     do {
@@ -62,7 +62,6 @@ final class AnswerCheckViewModel: ObservableObject {
       self.fianceAnswer = fianceAnswer.answerContent
       if let fianceName = try await UserManager.shared.getUser(userId: fianceId).name {
         self.fianceName = fianceName
-        self.isDataOn = true
       }
     } catch {
       self.isNoFianceAnswer = true

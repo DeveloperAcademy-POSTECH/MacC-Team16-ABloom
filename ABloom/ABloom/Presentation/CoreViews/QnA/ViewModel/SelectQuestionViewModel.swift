@@ -13,6 +13,7 @@ final class SelectQuestionViewModel: ObservableObject {
   @Published var questionLists = [DBStaticQuestion]()
   @Published var filteredLists = [DBStaticQuestion]()
   @Published var selectedCategory: Category = Category.communication
+  @Published var isReady = Bool()
   
   func selectCategory(seleted: Category) {
     selectedCategory = seleted
@@ -32,5 +33,6 @@ final class SelectQuestionViewModel: ObservableObject {
     let user = try await UserManager.shared.getCurrentUser()
     self.questionLists = try await StaticQuestionManager.shared.getQuestionsWithoutAnswers(myId: user.userId, fianceId: user.fiance)
     filterQuestion()
+    self.isReady = true
   }
 }
