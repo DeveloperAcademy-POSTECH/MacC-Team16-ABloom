@@ -17,7 +17,7 @@ struct QuestionMainView: View {
       Spacer()
         .frame(height: 34)
       
-      if questionVM.answers.isEmpty {
+      if questionVM.isEmpty {
         emptyListView
           .background(backWall())
         
@@ -35,7 +35,7 @@ struct QuestionMainView: View {
     })
     .background(backgroundDefault())
     
-    .onAppear {
+    .task {
       questionVM.getInfo()
     }
   }
@@ -59,13 +59,14 @@ extension QuestionMainView {
     .foregroundStyle(.stone700)
   }
   
+  // 질문 목록
   private var answeredQScroll: some View {
-    // 질문 목록
+    
     ScrollView(.vertical) {
+      Spacer()
+        .frame(height: 30)
+      
       LazyVStack(spacing: 30) {
-        
-        Spacer()
-          .frame(height: 0)
         
         ForEach(questionVM.questions, id: \.questionID) { question in
           NavigationLink(value: question.questionID) {
@@ -76,6 +77,9 @@ extension QuestionMainView {
               isAns: questionVM.checkAnswerStatus(qid: question.questionID))
           }
         }
+        // 탭 바로 가려지는 부분 뷰 처리
+        Spacer()
+          .frame(height: 20)
       }
     }
   }
