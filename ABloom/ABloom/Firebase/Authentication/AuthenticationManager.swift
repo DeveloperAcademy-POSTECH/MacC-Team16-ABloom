@@ -67,5 +67,6 @@ final class AuthenticationManager {
     }
     
     try await user.delete()
+    try signOut()
   }
 }

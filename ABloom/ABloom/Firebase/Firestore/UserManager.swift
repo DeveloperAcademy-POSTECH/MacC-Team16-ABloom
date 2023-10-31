@@ -67,9 +67,14 @@ final class UserManager {
     try await userDocument(userId: myId).updateData([DBUser.CodingKeys.fiance.rawValue:targetId])
   }
   
-  func deleteUser() throws {
-    let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
-    userDocument(userId: userId).delete()
+  func deleteUser() async throws {
+    let user = try await UserManager.shared.getCurrentUser()
+    try await userDocument(userId: user.userId).delete()
+    
+    guard let fiance = user.fiance else { throw URLError(.badURL)}
+    
+    let data: [String: Any?] = [DBUser.CodingKeys.fiance.rawValue: nil]
+    try await userDocument(userId: fiance).updateData(data as [AnyHashable: Any])
   }
   
   // MARK: Answer

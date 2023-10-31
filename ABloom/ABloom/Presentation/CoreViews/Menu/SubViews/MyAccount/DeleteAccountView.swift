@@ -30,7 +30,7 @@ struct DeleteAccountView: View {
       Button {
       // TODO: 로그인뷰 이동
         Task {
-          try? UserManager.shared.deleteUser()
+          try? await UserManager.shared.deleteUser()
           try? await AuthenticationManager.shared.delete()
         }
       } label: {
