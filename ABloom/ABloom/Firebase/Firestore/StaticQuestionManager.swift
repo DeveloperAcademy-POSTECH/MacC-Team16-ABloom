@@ -20,9 +20,18 @@ final class StaticQuestionManager {
       ids += try await getAnswersId(userId: fianceId)
     }
     
-    return try await  questionCollection
-      .whereField(DBStaticQuestion.CodingKeys.questionID.rawValue, notIn: ids.uniqued())
-      .getDocuments(as: DBStaticQuestion.self)
+    var allQuestions = try await questionCollection.getDocuments(as: DBStaticQuestion.self)
+    
+    allQuestions.removeAll { question in
+      for id in ids {
+        if id == question.questionID {
+          return true
+        }
+      }
+      return false
+    }
+    
+    return allQuestions
   }
   
   private func getAnswersId(userId: String) async throws -> [Int] {
