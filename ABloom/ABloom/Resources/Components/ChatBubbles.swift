@@ -68,6 +68,7 @@ struct LeftPinkChatBubble: View {
       Text(text)
         .fontWithTracking(isBold ? .footnoteBold : .footnoteR, tracking: -0.4)
         .foregroundStyle(.stone900)
+        .multilineTextAlignment(.leading)
         .padding(paddingV)
         .background(
           Rectangle()
@@ -103,6 +104,7 @@ struct RightBlueChatBubble: View {
       Text(text)
         .fontWithTracking(isBold ? .footnoteBold : .footnoteR, tracking: -0.4)
         .foregroundStyle(.stone900)
+        .multilineTextAlignment(.leading)
         .padding(paddingV)
         .background(
           Rectangle()
@@ -137,6 +139,7 @@ struct RightPinkChatBubble: View {
       Text(text)
         .fontWithTracking(isBold ? .footnoteBold : .footnoteR, tracking: -0.4)
         .foregroundStyle(.stone900)
+        .multilineTextAlignment(.leading)
         .padding(paddingV)
         .background(
           Rectangle()
