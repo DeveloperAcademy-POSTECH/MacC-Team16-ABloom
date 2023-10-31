@@ -27,9 +27,7 @@ struct HomeView: View {
       
       Spacer().frame(maxHeight: 40)
       
-      NavigationLink(value: homeVM.recommendQuestion) {
-        HomeRecommendView(recommendQuestion: homeVM.recommendQuestion.content)
-      }
+      recommendArea
       
       Spacer()
     }
@@ -37,10 +35,6 @@ struct HomeView: View {
     .background(backgroundDefault())
     .task {
       try? await homeVM.setInfo()
-    }
-    
-    .navigationDestination(for: DBStaticQuestion.self) { question in
-      AnswerWriteView(question: question)
     }
   }
 }
@@ -70,6 +64,18 @@ extension HomeView {
       .multilineTextAlignment(.leading)
       
       Spacer()
+    }
+  }
+  
+  private var recommendArea: some View {
+    NavigationLink {
+      if homeVM.recommendQuestionAnswered {
+        AnswerCheckView(answerCheckVM: .init(questionId: homeVM.recommendQuestion.questionID), sex: !homeVM.fianceSexType.getBool)
+      } else {
+        AnswerWriteView(question: homeVM.recommendQuestion)
+      }
+    } label: {
+      HomeRecommendView(recommendQuestion: homeVM.recommendQuestion.content)
     }
   }
   
