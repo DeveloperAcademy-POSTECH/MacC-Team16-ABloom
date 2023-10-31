@@ -45,15 +45,9 @@ final class ConnectionViewModel: ObservableObject {
   private func connect() async throws {
     do {
       try await ConnectionManager.shared.connectFiance(connectionCode: codeInputText)
-    } catch {
-      switch error {
-      case let connectionError as ConnectionError:
-        self.errorMessage = connectionError.errorMessage()
-        self.showAlert = true
-      default:
-        self.errorMessage = error.localizedDescription
-        self.showAlert = true
-      }
+    } catch let error as ConnectionError {
+      self.errorMessage = error.errorMessage()
+      self.showAlert = true
     }
   }
   
