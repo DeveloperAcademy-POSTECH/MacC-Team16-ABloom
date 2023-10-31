@@ -50,6 +50,43 @@ final class UserManager {
     userDocument(userId: userId).updateData(data)
   }
   
+  func connectFiance(connectionCode: String) async throws {
+    let snapshot = try await userCollection.whereField(DBUser.CodingKeys.invitationCode.rawValue, isEqualTo: connectionCode).getDocuments()
+    
+    guard let target = snapshot.documents.first else {
+      throw URLError(.badServerResponse)
+    }
+    
+    // TODO: 에러처리
+    // 1. 상대방이 이미 연결되어 있는 경우
+    // 2. 없는 코드에 접근한 경우
+    let targetId = try target.data(as: DBUser.self).userId
+    let myId = try AuthenticationManager.shared.getAuthenticatedUser().uid
+    
+    try await userDocument(userId: targetId).updateData([DBUser.CodingKeys.fiance.rawValue:myId])
+    try await userDocument(userId: myId).updateData([DBUser.CodingKeys.fiance.rawValue:targetId])
+  }
+  
+  func deleteUser() async throws {
+    let user = try await UserManager.shared.getCurrentUser()
+    
+    try await deleteSubCollection(userId: user.userId)
+    try await userDocument(userId: user.userId).delete()
+    
+    guard let fiance = user.fiance else { throw URLError(.badURL)}
+    
+    let data: [String: Any?] = [DBUser.CodingKeys.fiance.rawValue: nil]
+    try await userDocument(userId: fiance).updateData(data as [AnyHashable: Any])
+  }
+  
+  private func deleteSubCollection(userId: String) async throws {
+    let documents = try await userAnswerCollection(userId: userId).getDocuments().documents
+    
+    for document in documents {
+      try await document.reference.delete()
+    }
+  }
+  
   // MARK: Answer
   func creatAnswer(userId: String, questionId: Int, content: String) throws {
     let collection = userAnswerCollection(userId: userId)

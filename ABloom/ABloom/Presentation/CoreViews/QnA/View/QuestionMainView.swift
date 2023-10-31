@@ -80,7 +80,7 @@ extension QuestionMainView {
             QnAListItem(
               categoryImg: (Category(rawValue: question.category)?.imgName)!,
               question: question.content,
-              date: (questionVM.answers.last(where: { $0.questionId == question.questionID })?.date)!,
+              date: (questionVM.answers.last(where: { $0.questionId == question.questionID })?.date) ?? .now,
               isAns: questionVM.checkAnswerStatus(qid: question.questionID))
           }
         }
