@@ -95,7 +95,7 @@ extension HomeView {
       if homeVM.recommendQuestionAnswered {
         AnswerCheckView(answerCheckVM: .init(questionId: homeVM.recommendQuestion.questionID), sex: !homeVM.fianceSexType.getBool)
       } else {
-        AnswerWriteView(question: homeVM.recommendQuestion)
+        AnswerWriteView(question: homeVM.recommendQuestion, isFromMain: true)
       }
     } label: {
       HomeRecommendView(recommendQuestion: homeVM.recommendQuestion.content)

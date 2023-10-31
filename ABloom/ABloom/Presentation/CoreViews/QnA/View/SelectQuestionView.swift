@@ -31,7 +31,7 @@ struct SelectQuestionView: View {
       }
     }
     .navigationDestination(for: DBStaticQuestion.self, destination: { content in
-      AnswerWriteView(question: content)
+      AnswerWriteView(question: content, isFromMain: false)
     })
     
     .onAppear {

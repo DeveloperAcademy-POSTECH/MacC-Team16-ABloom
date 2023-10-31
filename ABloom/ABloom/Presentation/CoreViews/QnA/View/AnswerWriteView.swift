@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AnswerWriteView: View {
   var question: DBStaticQuestion
+  let isFromMain: Bool
+  
   @StateObject var answerVM = AnswerWriteViewModel()
   @Environment(\.dismiss) private var dismiss
   
@@ -60,7 +62,9 @@ struct AnswerWriteView: View {
       },
       rightView: {
         Button {
-          NavigationModel.shared.popToMainToggle()
+          if !isFromMain {
+            NavigationModel.shared.popToMainToggle()
+          }
           try? answerVM.createAnswer(questionId: question.questionID)
           dismiss()
         } label: {
@@ -132,5 +136,5 @@ extension AnswerWriteView {
 }
 
 #Preview {
-  AnswerWriteView(question: .init(questionID: 1, category: "values", content: "반려동물을 기르고싶어?"))
+  AnswerWriteView(question: .init(questionID: 1, category: "values", content: "반려동물을 기르고싶어?"), isFromMain: false)
 }
