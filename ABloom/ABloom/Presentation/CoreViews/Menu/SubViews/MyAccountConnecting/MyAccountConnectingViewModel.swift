@@ -15,6 +15,7 @@ final class MyAccountConnectingViewModel: ObservableObject {
   @Published var showToast = false
   @Published var showAlert = false
   @Published var errorMessage = ""
+  @Published var isConnectSuccess = false
 
   /// 연결시도가능, 유효가능 구분
   var isTargetCodeInputVaild: Bool {
@@ -22,9 +23,7 @@ final class MyAccountConnectingViewModel: ObservableObject {
   }
   
   func getMyCode() async throws {
-    let currentUser = try AuthenticationManager.shared.getAuthenticatedUser()
-    print("현재 유저 -> \(currentUser)")
-    self.myCode = try await UserManager.shared.getUser(userId: currentUser.uid).invitationCode
+    self.myCode = try await UserManager.shared.getCurrentUser().invitationCode
   }
   
   func tryConnect() async throws {
@@ -40,6 +39,7 @@ final class MyAccountConnectingViewModel: ObservableObject {
   private func connect() async throws {
     do {
       try await ConnectionManager.shared.connectFiance(connectionCode: codeInputText)
+      isConnectSuccess = true
     } catch {
       switch error {
       case let connectionError as ConnectionError:
