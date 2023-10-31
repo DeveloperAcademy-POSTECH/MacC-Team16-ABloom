@@ -28,7 +28,7 @@ struct HomeView: View {
       
       Spacer().frame(maxHeight: 40)
       
-      HomeRecommendView(recommendQuestion: homeVM.recommendQuestion)
+      recommendArea
       
       Spacer()
     }
@@ -78,6 +78,18 @@ extension HomeView {
       .multilineTextAlignment(.leading)
       
       Spacer()
+    }
+  }
+  
+  private var recommendArea: some View {
+    NavigationLink {
+      if homeVM.recommendQuestionAnswered {
+        AnswerCheckView(answerCheckVM: .init(questionId: homeVM.recommendQuestion.questionID), sex: !homeVM.fianceSexType.getBool)
+      } else {
+        AnswerWriteView(question: homeVM.recommendQuestion)
+      }
+    } label: {
+      HomeRecommendView(recommendQuestion: homeVM.recommendQuestion.content)
     }
   }
   
