@@ -67,6 +67,11 @@ final class UserManager {
     try await userDocument(userId: myId).updateData([DBUser.CodingKeys.fiance.rawValue:targetId])
   }
   
+  func deleteUser() throws {
+    let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
+    userDocument(userId: userId).delete()
+  }
+  
   // MARK: Answer
   func creatAnswer(userId: String, questionId: Int, content: String) throws {
     let collection = userAnswerCollection(userId: userId)

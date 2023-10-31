@@ -28,7 +28,11 @@ struct DeleteAccountView: View {
       Spacer()
       
       Button {
-      // TODO: 회원탈퇴 & 로그인뷰 이동
+      // TODO: 로그인뷰 이동
+        Task {
+          try? UserManager.shared.deleteUser()
+          try? await AuthenticationManager.shared.delete()
+        }
       } label: {
         StoneSingleBtn(text: "탈퇴하기")
       }
