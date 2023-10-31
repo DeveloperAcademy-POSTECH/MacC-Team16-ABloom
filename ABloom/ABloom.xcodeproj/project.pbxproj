@@ -77,9 +77,9 @@
 		607DA20C2AEE5028005AE11C /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA20B2AEE5028005AE11C /* ImageFileManager.swift */; };
 		607DA20E2AEF48AE005AE11C /* NavigationArrowLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA20D2AEF48AE005AE11C /* NavigationArrowLeft.swift */; };
 		607DA2122AEF5C96005AE11C /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2112AEF5C96005AE11C /* DeleteAccountView.swift */; };
-		607DA2182AF0B07D005AE11C /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2172AF0B07D005AE11C /* Ex+Date.swift */; };
 		607DA2142AEFCF93005AE11C /* ConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2132AEFCF93005AE11C /* ConnectionError.swift */; };
 		607DA2162AEFE900005AE11C /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2152AEFE900005AE11C /* ConnectionManager.swift */; };
+		607DA2182AF0B07D005AE11C /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2172AF0B07D005AE11C /* Ex+Date.swift */; };
 		AE1AE9F92AE50BBC0010089F /* QuestionMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AE9F82AE50BBC0010089F /* QuestionMainView.swift */; };
 		AE1AE9FB2AE51BF00010089F /* QnAListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AE9FA2AE51BF00010089F /* QnAListItem.swift */; };
 		AE1AE9FF2AE557E00010089F /* AnswerCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AE9FE2AE557E00010089F /* AnswerCheckView.swift */; };
@@ -152,9 +152,9 @@
 		607DA20B2AEE5028005AE11C /* ImageFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
 		607DA20D2AEF48AE005AE11C /* NavigationArrowLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationArrowLeft.swift; sourceTree = "<group>"; };
 		607DA2112AEF5C96005AE11C /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
-		607DA2172AF0B07D005AE11C /* Ex+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Date.swift"; sourceTree = "<group>"; };
 		607DA2132AEFCF93005AE11C /* ConnectionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionError.swift; sourceTree = "<group>"; };
 		607DA2152AEFE900005AE11C /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
+		607DA2172AF0B07D005AE11C /* Ex+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Date.swift"; sourceTree = "<group>"; };
 		AE1AE9F82AE50BBC0010089F /* QuestionMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionMainView.swift; sourceTree = "<group>"; };
 		AE1AE9FA2AE51BF00010089F /* QnAListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnAListItem.swift; sourceTree = "<group>"; };
 		AE1AE9FE2AE557E00010089F /* AnswerCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCheckView.swift; sourceTree = "<group>"; };
@@ -637,10 +637,11 @@
 			};
 			buildConfigurationList = AE7EE4D82AD6409000E0A573 /* Build configuration list for PBXProject "ABloom" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ko,
 				Base,
 			);
 			mainGroup = AE7EE4D42AD6409000E0A573;
