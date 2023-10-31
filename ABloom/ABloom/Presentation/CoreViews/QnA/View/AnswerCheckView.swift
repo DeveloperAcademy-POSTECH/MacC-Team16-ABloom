@@ -106,7 +106,7 @@ extension AnswerCheckView {
         LeftPinkChatBubbleWithImg(text: "\(answerCheckVM.fianceName)님이 답변을 등록했어요. 답변을 확인해보려면 나의 문답을 작성해주세요.")
         NavigationLink {
           if let question = answerCheckVM.question {
-            AnswerWriteView(question: question)
+            AnswerWriteView(question: question, isFromMain: false)
           }
         } label: {
           RightBlueChatBubble(text: "문답 작성하기  >", isBold: true)
@@ -155,7 +155,7 @@ extension AnswerCheckView {
         LeftBlueChatBubbleWithImg(text: "\(answerCheckVM.fianceName) 님이 답변을 등록했어요. 답변을 확인해보려면 나의 문답을 작성해주세요.")
         NavigationLink {
           if let question = answerCheckVM.question {
-            AnswerWriteView(question: question)
+            AnswerWriteView(question: question, isFromMain: false)
           }
         } label: {
           RightPinkChatBubble(text: "문답 작성하기  >", isBold: true)
