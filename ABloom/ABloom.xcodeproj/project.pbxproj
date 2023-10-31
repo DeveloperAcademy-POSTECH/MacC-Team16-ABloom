@@ -88,6 +88,7 @@
 		AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AE2BB5F32AD650680003CD85 /* .swiftlint.yml */; };
 		AE4A717F2AF0F14600F40092 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE4A717E2AF0F14600F40092 /* Launch Screen.storyboard */; };
 		AE5693252AEAD982009F3400 /* AnswerWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5693242AEAD982009F3400 /* AnswerWriteViewModel.swift */; };
+		AE5EB9FB2AF1396C0074F361 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EB9FA2AF1396C0074F361 /* AppDelegate.swift */; };
 		AE6374AF2AF01C4500081A23 /* NavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6374AE2AF01C4500081A23 /* NavigationModel.swift */; };
 		AE6697902AE904F80004B56C /* AnswerWriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE66978F2AE904F80004B56C /* AnswerWriteView.swift */; };
 		AE6ACF552AE0B49E0017088C /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6ACF542AE0B49E0017088C /* Helpers.swift */; };
@@ -167,6 +168,7 @@
 		AE2BB6022AD674D40003CD85 /* TabBarMD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TabBarMD.md; sourceTree = "<group>"; };
 		AE4A717E2AF0F14600F40092 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AE5693242AEAD982009F3400 /* AnswerWriteViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerWriteViewModel.swift; sourceTree = "<group>"; };
+		AE5EB9FA2AF1396C0074F361 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE6374AE2AF01C4500081A23 /* NavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModel.swift; sourceTree = "<group>"; };
 		AE66978F2AE904F80004B56C /* AnswerWriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerWriteView.swift; sourceTree = "<group>"; };
 		AE6ACF542AE0B49E0017088C /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
@@ -501,6 +503,7 @@
 				AE8D3C5D2ADE1A22009899A7 /* Info.plist */,
 				3D4412792AEAB34000FD5A51 /* GoogleService-Info.plist */,
 				AE7EE4E02AD6409000E0A573 /* ABloomApp.swift */,
+				AE5EB9FA2AF1396C0074F361 /* AppDelegate.swift */,
 				AEB502652AE61AD70056E439 /* Resources */,
 				6053F1632ADF7F3D0064A6E0 /* Presentation */,
 				3DB6A5AC2AE0C0B700C1369F /* Firebase */,
@@ -756,6 +759,7 @@
 				3DB6A5AE2AE0C12B00C1369F /* AppleLoginButtonViewRepresentable.swift in Sources */,
 				6053F15F2ADF6C3B0064A6E0 /* Ex+View.swift in Sources */,
 				3D44124E2AE4DD2800FD5A51 /* ConnectionView.swift in Sources */,
+				AE5EB9FB2AF1396C0074F361 /* AppDelegate.swift in Sources */,
 				3D4412622AE509C600FD5A51 /* MyAccountConnectingViewModel.swift in Sources */,
 				6053F1622ADF6CDE0064A6E0 /* InputFieldModifier.swift in Sources */,
 				6053F1742AE17A3A0064A6E0 /* HomeViewModel.swift in Sources */,
