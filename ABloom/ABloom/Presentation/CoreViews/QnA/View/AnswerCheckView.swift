@@ -29,7 +29,7 @@ struct AnswerCheckView: View {
       Spacer()
         .frame(height: 10)
       
-      if answerCheckVM.isDataOn == false {
+      if answerCheckVM.isDataReady == false {
         VStack {
           ProgressView()
         }
@@ -62,7 +62,7 @@ struct AnswerCheckView: View {
     .onAppear {
       answerCheckVM.getAnswers()
       
-      print(answerCheckVM.isDataOn)
+      print(answerCheckVM.isDataReady)
       
       if NavigationModel.shared.isPopToMain {
         NavigationModel.shared.popToMainToggle()

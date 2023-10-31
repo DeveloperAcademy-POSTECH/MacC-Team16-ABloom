@@ -20,9 +20,7 @@ struct SelectQuestionView: View {
       
       if selectQVM.isReady {
         questionListView
-          .navigationDestination(for: DBStaticQuestion.self, destination: { content in
-            AnswerWriteView(question: content)
-          })
+         
           .background(backWall())
       } else {
         VStack {
@@ -32,6 +30,10 @@ struct SelectQuestionView: View {
         .background(backWall())
       }
     }
+    .navigationDestination(for: DBStaticQuestion.self, destination: { content in
+      AnswerWriteView(question: content)
+    })
+    
     .onAppear {
       if NavigationModel.shared.isPopToMain {
         NavigationModel.shared.popToMainToggle()
