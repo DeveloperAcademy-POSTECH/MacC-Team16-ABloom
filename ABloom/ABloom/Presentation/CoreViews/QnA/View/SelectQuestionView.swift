@@ -24,12 +24,12 @@ struct SelectQuestionView: View {
         })
         .background(backWall())
     }
-    .onAppear(perform: {
+    .onAppear {
       if NavigationModel.shared.isPopToMain {
         NavigationModel.shared.popToMainToggle()
         dismiss()
       }
-    })
+    }
   
     .task {
       try? await selectQVM.fetchQuestions()
