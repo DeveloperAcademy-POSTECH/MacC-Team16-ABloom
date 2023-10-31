@@ -54,12 +54,12 @@ struct AnswerCheckView: View {
       rightView: {
         EmptyView()
       })
-    .onAppear(perform: {
+    .onAppear {
       if NavigationModel.shared.isPopToMain {
         NavigationModel.shared.popToMainToggle()
         dismiss()
       }
-    })
+    }
     
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .background(backgroundDefault())
