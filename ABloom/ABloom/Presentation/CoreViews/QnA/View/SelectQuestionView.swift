@@ -18,11 +18,19 @@ struct SelectQuestionView: View {
       
       categoryBar
       
-      questionListView
-        .navigationDestination(for: DBStaticQuestion.self, destination: { content in
-          AnswerWriteView(question: content)
-        })
+      if selectQVM.isReady {
+        questionListView
+          .navigationDestination(for: DBStaticQuestion.self, destination: { content in
+            AnswerWriteView(question: content)
+          })
+          .background(backWall())
+      } else {
+        VStack {
+          ProgressView()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(backWall())
+      }
     }
     .onAppear {
       if NavigationModel.shared.isPopToMain {

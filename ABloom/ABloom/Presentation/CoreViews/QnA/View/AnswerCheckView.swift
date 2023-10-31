@@ -30,7 +30,11 @@ struct AnswerCheckView: View {
         .frame(height: 10)
       
       if answerCheckVM.isDataOn == false {
-        ProgressView()
+        VStack {
+          ProgressView()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(backWall())
       } else {
         if sex { // 남성 일 경우
           malePart

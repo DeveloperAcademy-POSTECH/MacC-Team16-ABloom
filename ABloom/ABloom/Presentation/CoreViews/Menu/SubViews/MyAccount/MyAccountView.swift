@@ -14,14 +14,19 @@ struct MyAccountView: View {
   @StateObject var myAccountVM = MyAccountViewModel()
   
   var body: some View {
-    VStack(alignment: .leading) {
-      userInfo
-        .padding(.bottom, 50)
-        .padding(.top, 40)
-      
-      accountMenuList
-      
-      Spacer()
+    
+    VStack(alignment: .center) {
+      if myAccountVM.isReady {
+        userInfo
+          .padding(.bottom, 50)
+          .padding(.top, 40)
+        
+        accountMenuList
+        
+        Spacer()
+      } else {
+        ProgressView()
+      }
     }
     .task {
       try? await myAccountVM.getMyInfo()

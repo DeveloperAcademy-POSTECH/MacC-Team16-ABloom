@@ -55,12 +55,12 @@ extension MenuView {
         ConnectionWaypointView()
       }
       
-      MenuListNavigationItem(title: "문답 연구소") {
-        EmbedWebView(viewTitle: "문답연구소", urlString: ServiceWebURL.questionLab.rawValue)
+      MenuListNavigationItem(title: "질문 제작소") {
+        EmbedWebView(viewTitle: "질문 제작소", urlString: ServiceWebURL.questionLab.rawValue)
       }
       
-      MenuListNavigationItem(title: "문의하기") {
-        EmbedWebView(viewTitle: "문의하기", urlString: ServiceWebURL.qna.rawValue)
+      MenuListNavigationItem(title: "고객센터") {
+        EmbedWebView(viewTitle: "고객센터", urlString: ServiceWebURL.qna.rawValue)
       }
       
       MenuListNavigationItem(title: "약관과 정책") {
