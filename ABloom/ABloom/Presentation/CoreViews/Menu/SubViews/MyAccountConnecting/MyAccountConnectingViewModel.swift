@@ -16,6 +16,7 @@ final class MyAccountConnectingViewModel: ObservableObject {
   @Published var showAlert = false
   @Published var errorMessage = ""
   @Published var isConnectSuccess = false
+  @Published var isConnected = Bool()
 
   /// 연결시도가능, 유효가능 구분
   var isTargetCodeInputVaild: Bool {
@@ -28,6 +29,7 @@ final class MyAccountConnectingViewModel: ObservableObject {
   
   func tryConnect() async throws {
     self.isConnectAble = isTargetCodeInputVaild && codeInputText.count == 10
+    self.isConnected = true
     if isConnectAble {
       try await connect()
     } else {

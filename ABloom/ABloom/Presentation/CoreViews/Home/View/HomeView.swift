@@ -14,23 +14,29 @@ struct HomeView: View {
 
   var body: some View {
     VStack {
-      Spacer().frame(maxHeight: 20)
-      
-      titleArea
-      
-      Spacer().frame(maxHeight: 32)
-      
-      if homeVM.savedImage == nil {
-        defaultImage
+      if homeVM.isReady {
+        
+        Spacer().frame(maxHeight: 20)
+        
+        titleArea
+        
+        Spacer().frame(maxHeight: 32)
+        
+        if homeVM.savedImage == nil {
+          defaultImage
+        } else {
+          savedImage
+        }
+        
+        Spacer().frame(maxHeight: 40)
+        
+        recommendArea
+        
+        Spacer()
       } else {
-        savedImage
+        ProgressView()
+          .frame(maxWidth: .infinity, maxHeight: .infinity)
       }
-      
-      Spacer().frame(maxHeight: 40)
-      
-      recommendArea
-      
-      Spacer()
     }
     .padding(.horizontal, 20)
     .background(backgroundDefault())
@@ -38,13 +44,16 @@ struct HomeView: View {
     .onAppear {
       let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
       self.showLoginView = authUser == nil
+
       Task {
         try? await homeVM.setInfo()
       }
     }
+    
     .task(id: showLoginView) {
       try? await homeVM.setInfo()
     }
+    
     .fullScreenCover(isPresented: $showLoginView, content: {
       NavigationStack {
         LoginView(showLoginView: $showLoginView)

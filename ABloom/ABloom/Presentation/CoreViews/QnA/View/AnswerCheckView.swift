@@ -29,8 +29,12 @@ struct AnswerCheckView: View {
       Spacer()
         .frame(height: 10)
       
-      if answerCheckVM.isDataOn == false {
-        ProgressView()
+      if answerCheckVM.isDataReady == false {
+        VStack {
+          ProgressView()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(backWall())
       } else {
         if sex { // 남성 일 경우
           malePart
@@ -58,7 +62,7 @@ struct AnswerCheckView: View {
     .onAppear {
       answerCheckVM.getAnswers()
       
-      print(answerCheckVM.isDataOn)
+      print(answerCheckVM.isDataReady)
       
       if NavigationModel.shared.isPopToMain {
         NavigationModel.shared.popToMainToggle()

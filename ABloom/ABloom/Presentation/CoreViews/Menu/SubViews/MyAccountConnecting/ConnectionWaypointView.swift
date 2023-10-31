@@ -12,10 +12,17 @@ struct ConnectionWaypointView: View {
   
   var body: some View {
     VStack {
-      if let fianceId = waypointVM.currentUser?.fiance {
-        ConnectedView(fianceId: fianceId)
+      if waypointVM.isReady {
+        if let fianceId = waypointVM.currentUser?.fiance {
+          ConnectedView(fianceId: fianceId)
+        } else {
+          MyAccountConnectingView()
+        }
       } else {
-        MyAccountConnectingView()
+        ProgressView()
+          .frame(maxWidth: .infinity, maxHeight: .infinity)
+          .background(backgroundDefault())
+          .navigationBarBackButtonHidden(true)
       }
     }
     .task {
