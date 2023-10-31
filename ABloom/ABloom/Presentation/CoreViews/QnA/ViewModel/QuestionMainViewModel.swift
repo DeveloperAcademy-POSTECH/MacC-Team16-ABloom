@@ -78,6 +78,7 @@ final class QuestionMainViewModel: ObservableObject {
   @Published var questions: [DBStaticQuestion] = []
   @Published var sex = Bool()
   @Published var isEmpty = false
+  @Published var isSorted = false
   
   
   func getUserSex() async throws {
@@ -90,6 +91,7 @@ final class QuestionMainViewModel: ObservableObject {
   }
   
   func getInfo() {
+    self.isSorted = false
     clearAll()
     Task {
       try? await getUserSex()
@@ -137,7 +139,7 @@ final class QuestionMainViewModel: ObservableObject {
         }
       }
     }
-    
+    self.isSorted = true
     self.questions = newArray
   }
   

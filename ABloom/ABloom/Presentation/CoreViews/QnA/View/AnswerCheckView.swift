@@ -83,6 +83,7 @@ extension AnswerCheckView {
           MyAccountConnectingView()
         } label: {
           LeftPinkChatBubble(text: "연결하기  >", isBold: true)
+            .padding(.leading, 40)
         }
         
         // if 내가 먼저 답하고, 상대방의 답변을 기다릴 경우
@@ -131,6 +132,7 @@ extension AnswerCheckView {
           MyAccountConnectingView()
         } label: {
           LeftBlueChatBubble(text: "연결하기  >", isBold: true)
+            .padding(.leading, 40)
         }
         
         // if 내가 먼저 답하고, 상대방의 답변을 기다릴 경우

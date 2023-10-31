@@ -21,9 +21,16 @@ struct QuestionMainView: View {
         emptyListView
           .background(backWall())
         
-      } else {
+      } else if questionVM.isSorted {
         answeredQScroll
           .background(backWall())
+      } else {
+        // Progress 현황확인
+        VStack {
+          ProgressView()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(backWall())
       }
     }
     .navigationDestination(for: Int.self, destination: { content in
