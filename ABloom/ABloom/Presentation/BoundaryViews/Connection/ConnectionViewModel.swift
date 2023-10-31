@@ -7,30 +7,48 @@
 
 import SwiftUI
 
+@MainActor
 final class ConnectionViewModel: ObservableObject {
 
   @Published var codeInputText: String = ""
   @Published var myCode: String?
-  @Published var isConnectAble: Bool = false
   @Published var showToast = false
   @Published var showAlert = false
-
-  // TODO: 연결시도가능, 유효가능 구분
+  @Published var errorMessage = ""
+  @Published var isConnected = false
+  /// 연결시도가능, 유효가능 구분
   var isTargetCodeInputVaild: Bool {
     !codeInputText.isEmpty
   }
   
-  // TODO: 연결 가능 확인 로직 수정
-  func tryConnect() {
-    self.isConnectAble = isTargetCodeInputVaild && codeInputText.count == 3
-    if !isConnectAble {
+  
+  func getMyCode() async throws {
+    let currentUser = try AuthenticationManager.shared.getAuthenticatedUser()
+    print("현재 유저 -> \(currentUser)")
+    self.myCode = try await UserManager.shared.getUser(userId: currentUser.uid).invitationCode
+  }
+  
+  func getConnectionStatus() async throws {
+    try await ConnectionManager.shared.fetchConnectionStatus()
+    self.isConnected = ConnectionManager.shared.isConnected
+  }
+  
+  func tryConnect() async throws {
+    if isTargetCodeInputVaild && codeInputText.count == 10 {
+      try await connect()
+    } else {
+      self.errorMessage = "상대방의 코드를 올바르게 입력했는지 확인해주세요."
       self.showAlert = true
     }
   }
   
-  func getMyCode() async throws {
-    let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
-    self.myCode = try await UserManager.shared.getUser(userId: userId).invitationCode
+  private func connect() async throws {
+    do {
+      try await ConnectionManager.shared.connectFiance(connectionCode: codeInputText)
+    } catch let error as ConnectionError {
+      self.errorMessage = error.errorMessage()
+      self.showAlert = true
+    }
   }
   
   func copyClipboard() {

@@ -99,9 +99,12 @@ extension ConnectionView {
   
   private var connectButton: some View {
     Button(action: {
-      connectionVM.tryConnect()
-      if connectionVM.isConnectAble {
-        showLoginView = false
+      Task {
+        try? await connectionVM.tryConnect()
+        try? await connectionVM.getConnectionStatus()
+        if connectionVM.isConnected {
+          showLoginView = false
+        }
       }
     }, label: {
       if connectionVM.isTargetCodeInputVaild {
@@ -116,7 +119,7 @@ extension ConnectionView {
     .alert("연결에 실패했어요", isPresented: $connectionVM.showAlert, actions: {
       Button("확인") { }
     }, message: {
-      Text("상대방의 코드를 올바르게 입력했는지 확인해주세요.")
+      Text(connectionVM.errorMessage)
     })
   }
 }
