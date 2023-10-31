@@ -38,9 +38,6 @@ struct HomeView: View {
     .onAppear {
       let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
       self.showLoginView = authUser == nil
-      Task {
-        try? await homeVM.setInfo()
-      }
     }
     .task(id: showLoginView) {
       try? await homeVM.setInfo()

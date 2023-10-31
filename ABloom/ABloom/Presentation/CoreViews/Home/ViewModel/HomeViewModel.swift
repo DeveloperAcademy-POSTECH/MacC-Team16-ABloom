@@ -20,7 +20,7 @@ final class HomeViewModel: ObservableObject {
   @Published var showDialog = false
   @Published var showPhotosPicker = false
   
-  @Published var recommendQuestion: DBStaticQuestion = .init(questionID: 0, category: "", content: "추천질문입니다")
+  @Published var recommendQuestion: DBStaticQuestion = .init(questionID: 3, category: "", content: "추천질문입니다")
   @Published var recommendQuestionAnswered: Bool = false
   
   // MARK: 메인 이미지 관련
@@ -33,21 +33,16 @@ final class HomeViewModel: ObservableObject {
   @Published var selectedImageData: Data? = nil
   @Published var savedImage: UIImage? = nil
   
-  @AppStorage("savedRecommendQuestionId") var savedRecommendQuestionId: Int = 0
-  @AppStorage("lastQuestionChangeDate") var lastQuestionChangeDate: Date = Date(timeIntervalSince1970: Date().timeIntervalSince1970 + 9 * 3600)
+  @AppStorage("savedRecommendQuestionId") var savedRecommendQuestionId: Int = 3
+  @AppStorage("lastQuestionChangeDate") var lastQuestionChangeDate: Date = Date(timeIntervalSince1970: Date().timeIntervalSince1970 - (90 * 3600))
   
-  var formattedCurrnetDate: String {
+  private func checkDateDiff(currentDate: Date, lastChangedDate: Date) -> Bool {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy/MM/dd"
-    return formatter.string(from: lastQuestionChangeDate)
-  }
-  
-  private func chcekDateDiff(currentDate: Date, lastChangedDate: Date) -> Bool {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy/MM/dd"
-    var current = formatter.string(from: currentDate)
-    var last = formatter.string(from: lastChangedDate)
-    return current == last ? true : false
+    var current = formatter.string(from: Date(timeIntervalSince1970: currentDate.timeIntervalSince1970))
+    var last = formatter.string(from: Date(timeIntervalSince1970: lastChangedDate.timeIntervalSince1970))
+    print(current, last)
+    return current != last ? true : false
   }
   
   var defaultImage: UIImage {
@@ -79,10 +74,8 @@ final class HomeViewModel: ObservableObject {
     let dbUser = try await UserManager.shared.getCurrentUser()
     
     self.isConnected = dbUser.fiance != nil
-
     try getFianceSex(user: dbUser)
     try getMarrigeDate(user: dbUser)
-        
     try await loadRecommendQuestion(user: dbUser)
     
     if self.isConnected {
@@ -127,49 +120,56 @@ final class HomeViewModel: ObservableObject {
   }
   
   private func loadRecommendQuestion(user: DBUser) async throws {
-    self.recommendQuestion = try await getQuestionsRecommend(userId: user.userId, fianceId: user.fiance)
+    let currentDate = Date(timeIntervalSince1970: Date().timeIntervalSince1970 + 9 * 3600)
+    
+    if checkDateDiff(currentDate: currentDate, lastChangedDate: lastQuestionChangeDate) {
+      self.recommendQuestion = try await getQuestionsRecommend(userId: user.userId, fianceId: user.fiance)
+      lastQuestionChangeDate = currentDate
+    } else {
+      self.recommendQuestion  = try await StaticQuestionManager.shared.getQuestionById(id: savedRecommendQuestionId)
+    }
     self.recommendQuestionAnswered = try await checkRecommendAnswered(user: user, questionId: recommendQuestion.questionID)
-
   }
   
   private func getQuestionsRecommend(userId: String, fianceId: String?) async throws -> DBStaticQuestion {
     
-    // let currentDate = Calendar.current.startOfDay(for: Date())
-    let currentDate = Date(timeIntervalSince1970: Date().timeIntervalSince1970 + 9 * 3600)
-   
-    print(currentDate)
-    print(lastQuestionChangeDate)
+    try await StaticQuestionManager.shared.fetchEssentialCollections()
+    let questions = try await StaticQuestionManager.shared.getQuestionsWithoutAnswers(myId: userId, fianceId: fianceId)
     
-    chcekDateDiff(currentDate: currentDate, lastChangedDate: lastQuestionChangeDate)
+    let essentialOrderList = StaticQuestionManager.shared.essentialQuestionsOrder
+    let essentialRandomList = StaticQuestionManager.shared.essentialQuestionsRandom
     
-    if lastQuestionChangeDate == nil || !chcekDateDiff(currentDate: currentDate, lastChangedDate: lastQuestionChangeDate) { //currentDate != Calendar.current.startOfDay(for: lastQuestionChangeDate) {
-      lastQuestionChangeDate = currentDate
-      
-      
-      let answers = try await StaticQuestionManager.shared.getQuestionsWithoutAnswers(myId: userId, fianceId: fianceId)
-//      if answers.isEmpty { throw URLError(.badURL) }
-      
-      ///EssentialQuestion 우선 불러오기
-      for answer in answers {
-        if StaticQuestionManager.shared.essentialQuestionsId.contains(answer.questionID) {
-          return answer
+    for essentialquestion in essentialOrderList {
+      for question in questions {
+        if essentialquestion == question.questionID {
+          savedRecommendQuestionId = question.questionID
+          return question
         }
       }
-      let randomQuestion = answers.randomElement()!
-      savedRecommendQuestionId = randomQuestion.questionID
-      
-      return randomQuestion
-    } else {
-      return try await StaticQuestionManager.shared.getQuestionById(id: savedRecommendQuestionId)
     }
+    
+    for essentialQuestion in essentialRandomList {
+      for question in questions {
+        if essentialQuestion == question.questionID {
+          savedRecommendQuestionId = question.questionID
+          return question
+        }
+      }
+    }
+    
+    let randomQuestion = questions.randomElement()!
+    savedRecommendQuestionId = randomQuestion.questionID
+    
+    return randomQuestion
   }
   
   func checkRecommendAnswered(user: DBUser, questionId: Int) async throws -> Bool {
-    let answer = try await UserManager.shared.getAnswer(userId: user.userId, questionId: questionId)
-    if answer == nil {
+    do {
+      let answer = try await UserManager.shared.getAnswer(userId: user.userId, questionId: questionId)
+      return true
+    } catch {
       return false
     }
-    return true
   }
   
   // MARK: - 메인 이미지 관련

@@ -11,8 +11,10 @@ final class StaticQuestionManager {
   static let shared = StaticQuestionManager()
   
   private let questionCollection = Firestore.firestore().collection("questions")
-  
-  let essentialQuestionsId = [1, 2, 3, 4, 5]
+  private let essentialCollection = Firestore.firestore().collection("essentialQuestions")
+
+  @Published var essentialQuestionsOrder = [Int]()
+  @Published var essentialQuestionsRandom = [Int]()
   
   // MARK: GET Method
   func getQuestionsWithoutAnswers(myId: String, fianceId: String?) async throws -> [DBStaticQuestion] {
@@ -53,5 +55,11 @@ final class StaticQuestionManager {
   
   func getQuestionById(id: Int) async throws -> DBStaticQuestion {
     try await questionCollection.document("\(id)").getDocument(as: DBStaticQuestion.self)
+  }
+  
+  func fetchEssentialCollections() async throws {
+      let document = try await essentialCollection.document("essentialQuestionsId").getDocument(as: DBEssentialQuestion.self)
+      self.essentialQuestionsOrder = document.fixedOrder
+      self.essentialQuestionsRandom = document.randomOrder
   }
 }
