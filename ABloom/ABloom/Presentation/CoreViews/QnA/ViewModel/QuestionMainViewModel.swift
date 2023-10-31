@@ -37,14 +37,14 @@ enum Category: String, CaseIterable {
     case .future: return "미래"
     case .present: return "현재"
     case .past: return "과거"
-    
+      
     }
   }
   
   
   var imgName: String {
     switch self {
-    case .communication: 
+    case .communication:
       return "circleIcon_isometric_chatting"
     case .values:
       return "circleIcon_isometic_star"
@@ -77,6 +77,8 @@ final class QuestionMainViewModel: ObservableObject {
   @Published var answers: [DBAnswer] = []
   @Published var questions: [DBStaticQuestion] = []
   @Published var sex = Bool()
+  @Published var isEmpty = false
+  @Published var isSorted = false
   
   
   func getUserSex() async throws {
@@ -89,6 +91,7 @@ final class QuestionMainViewModel: ObservableObject {
   }
   
   func getInfo() {
+    self.isSorted = false
     clearAll()
     Task {
       try? await getUserSex()
@@ -136,7 +139,7 @@ final class QuestionMainViewModel: ObservableObject {
         }
       }
     }
-    
+    self.isSorted = true
     self.questions = newArray
   }
   
@@ -150,6 +153,7 @@ final class QuestionMainViewModel: ObservableObject {
     let myAnswers = try await UserManager.shared.getAnswers(userId: userId)
     let questions = try await StaticQuestionManager.shared.getAnsweredQuestions(questionIds: myAnswers.map({ $0.questionId }))
     
+    self.isEmpty = myAnswers.isEmpty
     self.answers += myAnswers
     self.questions += questions
   }

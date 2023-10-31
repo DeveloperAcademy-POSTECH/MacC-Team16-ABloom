@@ -12,6 +12,8 @@ final class StaticQuestionManager {
   
   private let questionCollection = Firestore.firestore().collection("questions")
   
+  let essentialQuestionsId = [1, 2, 3, 4, 5]
+  
   // MARK: GET Method
   func getQuestionsWithoutAnswers(myId: String, fianceId: String?) async throws -> [DBStaticQuestion] {
     var ids = try await getAnswersId(userId: myId)
@@ -41,8 +43,11 @@ final class StaticQuestionManager {
   }
   
   func getAnsweredQuestions(questionIds: [Int]) async throws -> [DBStaticQuestion] {
-    try await questionCollection
-//      .whereField(DBStaticQuestion.CodingKeys.questionID.rawValue, in: questionIds)
+    if questionIds.isEmpty {
+      return []
+    }
+    return try await questionCollection
+      .whereField(DBStaticQuestion.CodingKeys.questionID.rawValue, in: questionIds)
       .getDocuments(as: DBStaticQuestion.self)
   }
   

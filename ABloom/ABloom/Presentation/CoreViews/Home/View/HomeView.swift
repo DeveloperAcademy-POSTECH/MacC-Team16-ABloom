@@ -10,7 +10,8 @@ import SwiftUI
 
 struct HomeView: View {
   @StateObject var homeVM = HomeViewModel()
-  
+  @State var showLoginView = false
+
   var body: some View {
     VStack {
       Spacer().frame(maxHeight: 20)
@@ -27,15 +28,28 @@ struct HomeView: View {
       
       Spacer().frame(maxHeight: 40)
       
-      HomeRecommendView(recommendQuestion: homeVM.recommendQuestion)
+      recommendArea
       
       Spacer()
     }
     .padding(.horizontal, 20)
     .background(backgroundDefault())
-    .task {
+  
+    .onAppear {
+      let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
+      self.showLoginView = authUser == nil
+      Task {
+        try? await homeVM.setInfo()
+      }
+    }
+    .task(id: showLoginView) {
       try? await homeVM.setInfo()
     }
+    .fullScreenCover(isPresented: $showLoginView, content: {
+      NavigationStack {
+        LoginView(showLoginView: $showLoginView)
+      }
+    })
   }
 }
 
@@ -64,6 +78,18 @@ extension HomeView {
       .multilineTextAlignment(.leading)
       
       Spacer()
+    }
+  }
+  
+  private var recommendArea: some View {
+    NavigationLink {
+      if homeVM.recommendQuestionAnswered {
+        AnswerCheckView(answerCheckVM: .init(questionId: homeVM.recommendQuestion.questionID), sex: !homeVM.fianceSexType.getBool)
+      } else {
+        AnswerWriteView(question: homeVM.recommendQuestion)
+      }
+    } label: {
+      HomeRecommendView(recommendQuestion: homeVM.recommendQuestion.content)
     }
   }
   

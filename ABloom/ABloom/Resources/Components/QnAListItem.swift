@@ -48,7 +48,8 @@ struct QnAListItem: View {
           
           Spacer()
         }
-        HStack {
+        
+        HStack(spacing: 0) {
           Text(formattedWeddingDate)
             .fontWithTracking(.caption2R)
           
@@ -67,7 +68,6 @@ struct QnAListItem: View {
         }
         .foregroundStyle(.stone500)
       }
-      Spacer()
     }
     .padding(.horizontal, 20)
   }

@@ -43,16 +43,6 @@ struct TabBarView: View {
       }
       .ignoresSafeArea()
     }
-    
-    .onAppear {
-      let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
-      self.showLoginView = authUser == nil
-    }
-    .fullScreenCover(isPresented: $showLoginView, content: {
-      NavigationStack {
-        LoginView(showLoginView: $showLoginView)
-      }
-    })
   }
 }
 
