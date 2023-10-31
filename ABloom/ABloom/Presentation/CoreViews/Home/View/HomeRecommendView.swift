@@ -19,19 +19,17 @@ struct HomeRecommendView: View {
         .frame(width: 59, height: 59)
         .shadow(color: .black.opacity(0.08), radius: 11, x: 0, y: 8)
       
-      VStack(alignment: .leading, spacing: 6) {
+      VStack(alignment: .leading, spacing: 3) {
         Text("오늘의 추천 질문")
           .fontWithTracking(.subHeadlineBold)
           .foregroundStyle(.stone800)
         
-        Text("\"\(recommendQuestion)")
-          .overlay(alignment: .trailing) {
-            Text("\"").offset(x: 6)
-          }
-          .lineLimit(1)
+        Text("\(recommendQuestion)")
+          .lineLimit(2)
           .truncationMode(.tail)
           .foregroundStyle(.stone600)
-          .fontWithTracking(.footnoteR, tracking: -0.4)
+          .multilineTextAlignment(.leading)
+          .fontWithTracking(.footnoteR, tracking: -0.4, lineSpacing: 2)
       }
       
       Spacer()
