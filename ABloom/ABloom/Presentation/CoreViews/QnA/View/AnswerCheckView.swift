@@ -29,17 +29,17 @@ struct AnswerCheckView: View {
       Spacer()
         .frame(height: 10)
       
-      // 남성 일 경우
-      if sex {
-        malePart
-      } else { // 여성 일 경우
-        femalePart
+      if answerCheckVM.isDataOn == false {
+        ProgressView()
+      } else {
+        if sex { // 남성 일 경우
+          malePart
+        } else { // 여성 일 경우
+          femalePart
+        }
       }
     }
-    .onAppear {
-      answerCheckVM.getAnswers()
-    }
-    
+
     .customNavigationBar(
       centerView: {
         Text("우리의 문답")
@@ -54,7 +54,12 @@ struct AnswerCheckView: View {
       rightView: {
         EmptyView()
       })
+    
     .onAppear {
+      answerCheckVM.getAnswers()
+      
+      print(answerCheckVM.isDataOn)
+      
       if NavigationModel.shared.isPopToMain {
         NavigationModel.shared.popToMainToggle()
         dismiss()
@@ -83,8 +88,8 @@ extension AnswerCheckView {
           MyAccountConnectingView()
         } label: {
           LeftPinkChatBubble(text: "연결하기  >", isBold: true)
-            .padding(.leading, 40)
         }
+        .padding(.leading, 40)
         
         // if 내가 먼저 답하고, 상대방의 답변을 기다릴 경우
       } else if answerCheckVM.isNoFianceAnswer && !answerCheckVM.isNoMyAnswer {
@@ -132,8 +137,8 @@ extension AnswerCheckView {
           MyAccountConnectingView()
         } label: {
           LeftBlueChatBubble(text: "연결하기  >", isBold: true)
-            .padding(.leading, 40)
         }
+        .padding(.leading, 40)
         
         // if 내가 먼저 답하고, 상대방의 답변을 기다릴 경우
       } else if answerCheckVM.isNoFianceAnswer && !answerCheckVM.isNoMyAnswer {
