@@ -99,6 +99,7 @@ final class QuestionMainViewModel: ObservableObject {
       try? await getFianceAnswers()
       distinctQuestions()
       sortAnswers()
+      checkQuestions()
     }
   }
   
@@ -118,6 +119,10 @@ final class QuestionMainViewModel: ObservableObject {
     } else {
       return .nobody
     }
+  }
+  
+  private func checkQuestions() {
+    self.isEmpty = self.questions.isEmpty
   }
   
   private func clearAll() {
@@ -153,7 +158,6 @@ final class QuestionMainViewModel: ObservableObject {
     let myAnswers = try await UserManager.shared.getAnswers(userId: userId)
     let questions = try await StaticQuestionManager.shared.getAnsweredQuestions(questionIds: myAnswers.map({ $0.questionId }))
     
-    self.isEmpty = myAnswers.isEmpty
     self.answers += myAnswers
     self.questions += questions
   }
