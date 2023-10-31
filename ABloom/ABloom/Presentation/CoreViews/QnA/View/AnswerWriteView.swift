@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AnswerWriteView: View {
   var question: DBStaticQuestion
-  
   @StateObject var answerVM = AnswerWriteViewModel()
   @Environment(\.dismiss) private var dismiss
   
@@ -61,6 +60,7 @@ struct AnswerWriteView: View {
       },
       rightView: {
         Button {
+          NavigationModel.shared.popToMainToggle()
           try? answerVM.createAnswer(questionId: question.questionID)
           dismiss()
         } label: {

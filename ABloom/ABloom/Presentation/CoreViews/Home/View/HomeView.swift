@@ -10,7 +10,8 @@ import SwiftUI
 
 struct HomeView: View {
   @StateObject var homeVM = HomeViewModel()
-  
+  @State var showLoginView = false
+
   var body: some View {
     VStack {
       Spacer().frame(maxHeight: 20)
@@ -33,9 +34,22 @@ struct HomeView: View {
     }
     .padding(.horizontal, 20)
     .background(backgroundDefault())
-    .task {
+  
+    .onAppear {
+      let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
+      self.showLoginView = authUser == nil
+      Task {
+        try? await homeVM.setInfo()
+      }
+    }
+    .task(id: showLoginView) {
       try? await homeVM.setInfo()
     }
+    .fullScreenCover(isPresented: $showLoginView, content: {
+      NavigationStack {
+        LoginView(showLoginView: $showLoginView)
+      }
+    })
   }
 }
 

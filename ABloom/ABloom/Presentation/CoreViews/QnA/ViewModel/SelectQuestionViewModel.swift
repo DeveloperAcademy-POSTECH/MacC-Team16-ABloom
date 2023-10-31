@@ -12,18 +12,7 @@ import SwiftUI
 final class SelectQuestionViewModel: ObservableObject {
   @Published var questionLists = [DBStaticQuestion]()
   @Published var filteredLists = [DBStaticQuestion]()
-  @Published var selectedCategory: Category = Category.values
-  
-  @Published var sex = Bool()
-  
-  func getUserSex() async throws {
-    let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
-    
-    let sex = try await UserManager.shared.getUser(userId: userId).sex
-    
-    // 0 = female, 1 = male
-    self.sex = sex!
-  }
+  @Published var selectedCategory: Category = Category.communication
   
   func selectCategory(seleted: Category) {
     selectedCategory = seleted

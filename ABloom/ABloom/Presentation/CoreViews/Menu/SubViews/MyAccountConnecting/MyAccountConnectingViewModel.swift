@@ -14,20 +14,11 @@ final class MyAccountConnectingViewModel: ObservableObject {
   @Published var isConnectAble: Bool = false
   @Published var showToast = false
   @Published var showAlert = false
-  
-  // TODO: 연결시도가능, 유효가능 구분
+  @Published var errorMessage = ""
+
+  /// 연결시도가능, 유효가능 구분
   var isTargetCodeInputVaild: Bool {
     !codeInputText.isEmpty
-  }
-  
-  // TODO: 연결 가능 확인 로직 수정
-  func tryConnect() async throws {
-    self.isConnectAble = isTargetCodeInputVaild && codeInputText.count == 10
-    if !isConnectAble {
-      self.showAlert = true
-    } else {
-      try await connect()
-    }
   }
   
   func getMyCode() async throws {
@@ -36,8 +27,29 @@ final class MyAccountConnectingViewModel: ObservableObject {
     self.myCode = try await UserManager.shared.getUser(userId: currentUser.uid).invitationCode
   }
   
-  func connect() async throws {
-    try await UserManager.shared.connectFiance(connectionCode: codeInputText)
+  func tryConnect() async throws {
+    self.isConnectAble = isTargetCodeInputVaild && codeInputText.count == 10
+    if isConnectAble {
+      try await connect()
+    } else {
+      self.errorMessage = "상대방의 코드를 올바르게 입력했는지 확인해주세요."
+      self.showAlert = true
+    }
+  }
+  
+  private func connect() async throws {
+    do {
+      try await ConnectionManager.shared.connectFiance(connectionCode: codeInputText)
+    } catch {
+      switch error {
+      case let connectionError as ConnectionError:
+        self.errorMessage = connectionError.errorMessage()
+        self.showAlert = true
+      default:
+        self.errorMessage = error.localizedDescription
+        self.showAlert = true
+      }
+    }
   }
   
   func copyClipboard() {
