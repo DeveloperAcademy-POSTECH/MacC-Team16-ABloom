@@ -44,7 +44,7 @@ struct AnswerWriteView: View {
     // 네비게이션바
     .customNavigationBar(
       centerView: {
-        Text("문답 작성하기")
+        Text("답변 작성하기")
       },
       leftView: {
         Button {
@@ -88,7 +88,6 @@ extension AnswerWriteView {
         
         VStack {
           LeftPinkChatBubble(text: question.content)
-          LeftPinkChatBubble(text: "너의 생각을 알려줘")
         }
         // 유저가 여성일 떄,
       } else {
@@ -98,7 +97,6 @@ extension AnswerWriteView {
         
         VStack {
           LeftBlueChatBubble(text: question.content)
-          LeftBlueChatBubble(text: "너의 생각을 알려줘")
         }
       }
       
