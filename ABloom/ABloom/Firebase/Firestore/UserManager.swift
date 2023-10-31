@@ -69,12 +69,22 @@ final class UserManager {
   
   func deleteUser() async throws {
     let user = try await UserManager.shared.getCurrentUser()
+    
+    try await deleteSubCollection(userId: user.userId)
     try await userDocument(userId: user.userId).delete()
     
     guard let fiance = user.fiance else { throw URLError(.badURL)}
     
     let data: [String: Any?] = [DBUser.CodingKeys.fiance.rawValue: nil]
     try await userDocument(userId: fiance).updateData(data as [AnyHashable: Any])
+  }
+  
+  private func deleteSubCollection(userId: String) async throws {
+    let documents = try await userAnswerCollection(userId: userId).getDocuments().documents
+    
+    for document in documents {
+      try await document.reference.delete()
+    }
   }
   
   // MARK: Answer

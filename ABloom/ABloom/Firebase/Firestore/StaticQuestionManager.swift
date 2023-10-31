@@ -42,7 +42,7 @@ final class StaticQuestionManager {
   
   func getAnsweredQuestions(questionIds: [Int]) async throws -> [DBStaticQuestion] {
     try await questionCollection
-      .whereField(DBStaticQuestion.CodingKeys.questionID.rawValue, in: questionIds)
+//      .whereField(DBStaticQuestion.CodingKeys.questionID.rawValue, in: questionIds)
       .getDocuments(as: DBStaticQuestion.self)
   }
   
