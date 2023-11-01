@@ -21,13 +21,12 @@ struct MyAccountView: View {
         userInfo
           .padding(.bottom, 50)
           .padding(.top, 40)
-        
-        accountMenuList
-        
-        Spacer()
       } else {
         ProgressView()
       }
+        accountMenuList
+        
+        Spacer()
     }
     .task {
       try? await myAccountVM.getMyInfo()
