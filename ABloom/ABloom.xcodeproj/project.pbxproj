@@ -924,7 +924,7 @@
 				INFOPLIST_FILE = ABloom/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "메리";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "이미지를 화면에 보여주기 위해 사진 라이브러리 사용 권한이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "예랑이/예신이와 함께 찍은 사진이 담긴 나만의 홈화면을 만들기 위해 사진 라이브러리에 접근하도록 허용합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -963,7 +963,7 @@
 				INFOPLIST_FILE = ABloom/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "메리";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "이미지를 화면에 보여주기 위해 사진 라이브러리 사용 권한이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "예랑이/예신이와 함께 찍은 사진이 담긴 나만의 홈화면을 만들기 위해 사진 라이브러리에 접근하도록 허용합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
