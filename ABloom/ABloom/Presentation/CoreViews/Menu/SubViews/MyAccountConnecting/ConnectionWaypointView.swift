@@ -13,8 +13,10 @@ struct ConnectionWaypointView: View {
   var body: some View {
     VStack {
       if waypointVM.isReady {
-        if let fianceId = waypointVM.currentUser?.fiance {
-          ConnectedView(fianceId: fianceId)
+        if let fianceId = waypointVM.currentUser?.fiance,
+           let myCode = waypointVM.currentUser?.invitationCode
+        {
+          ConnectedView(fianceId: fianceId, myCode: myCode)
         } else {
           MyAccountConnectingView()
         }
