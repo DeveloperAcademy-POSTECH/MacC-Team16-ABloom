@@ -115,7 +115,7 @@ extension SelectQuestionView {
       ScrollViewReader { proxy in
         ScrollView(.vertical) {
           Spacer()
-            .frame(height: 0)
+            .frame(height: 16)
             .id("top")
           
           ForEach(selectQVM.filteredLists, id: \.self) { question in
@@ -130,7 +130,6 @@ extension SelectQuestionView {
             .padding(.vertical, 7)
           }
         }
-        .padding(.top, 16)
         .padding(.bottom, 50)
         
         .onChange(of: selectQVM.selectedCategory) { new in
