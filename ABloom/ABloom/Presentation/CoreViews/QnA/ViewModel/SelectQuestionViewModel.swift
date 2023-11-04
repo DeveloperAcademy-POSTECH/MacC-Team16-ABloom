@@ -27,6 +27,9 @@ final class SelectQuestionViewModel: ObservableObject {
         filteredLists.append(question)
       }
     }
+    filteredLists.sort {
+      $0.questionID < $1.questionID
+    }
   }
   
   func fetchQuestions() async throws {
