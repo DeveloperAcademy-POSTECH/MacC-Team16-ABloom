@@ -11,6 +11,7 @@ import SwiftUI
 struct HomeView: View {
   @StateObject var homeVM = HomeViewModel()
   @State var showLoginView = false
+  private let hPadding = 20.0
 
   var body: some View {
     VStack {
@@ -129,7 +130,8 @@ extension HomeView {
     Image(uiImage: homeVM.savedImage!)
       .resizable()
       .scaledToFill()
-      .frame(maxHeight: 387)
+      .frame(width: UIScreen.main.bounds.width - CGFloat(2 * hPadding))
+      .frame(minHeight: 350, maxHeight: 380)
       .overlay {
         Color.biPink.opacity(0.2)
       }
@@ -145,8 +147,8 @@ extension HomeView {
   private var defaultImage: some View {
     Image(uiImage: homeVM.defaultImage)
       .resizable()
-      .scaledToFit()
-      .frame(maxHeight: 387)
+      .scaledToFill()
+      .frame(width: UIScreen.main.bounds.width - CGFloat(2 * hPadding), height: 380)
       .clipShape(RoundedRectangle(cornerRadius: 28))
       .shadow(color: Color.purple200, radius: 20, x: 0, y: 20)
       .overlay(alignment: .topTrailing) {
