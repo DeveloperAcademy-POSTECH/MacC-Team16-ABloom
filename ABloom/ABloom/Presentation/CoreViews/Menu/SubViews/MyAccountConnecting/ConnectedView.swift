@@ -26,6 +26,7 @@ struct ConnectedView: View {
           .resizable()
           .scaledToFill()
           .frame(width: imageSize, height: imageSize)
+          .padding(.top, 50)
           .padding(.bottom, 10)
         
         Text("\(fianceName)님과 연결되어 있습니다.")
@@ -35,6 +36,14 @@ struct ConnectedView: View {
         
         myCodeBox
           .padding(.horizontal, 20)
+        
+        Spacer()
+        
+        if showToast {
+          ToastView(message: "코드가 복사되었습니다")
+        }
+        
+        Spacer()
       }
       
     }
