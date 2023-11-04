@@ -145,6 +145,7 @@ extension HomeView {
           cameraButton
         }
       }
+      .zIndex(-1)
   }
   
   private var defaultImage: some View {
