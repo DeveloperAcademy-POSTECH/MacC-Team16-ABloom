@@ -85,9 +85,9 @@ final class HomeViewModel: ObservableObject {
     }
     
     try getMarrigeDate(user: dbUser)
-    self.isReady = true
-        
     try await loadRecommendQuestion(user: dbUser)
+    
+    self.isReady = true
   }
   
   private func getFianceSex(user: DBUser) throws {
