@@ -19,10 +19,17 @@ struct AnswerWriteView: View {
       
       Spacer().frame(height: 17)
       
-      questionText
-      
-      answerText
-      
+      if answerVM.isReady {
+        
+        questionText
+        
+        answerText
+        
+      } else {
+        
+        ProgressView()
+        
+      }
     }
     
     // alert
@@ -82,29 +89,15 @@ extension AnswerWriteView {
   
   private var questionText: some View {
     
-    HStack(alignment: .top, spacing: 6) {
-      
+    VStack {
       // 유저가 남성일 때,
       if answerVM.sex {
-        Image("avatar_Female circle GradientBG")
-          .resizable()
-          .frame(width: 34, height: 34)
+        LeftPinkChatBubbleWithImg(text: question.content)
         
-        VStack {
-          LeftPinkChatBubble(text: question.content)
-        }
         // 유저가 여성일 떄,
       } else {
-        Image("avatar_Male circle GradientBG")
-          .resizable()
-          .frame(width: 34, height: 34)
-        
-        VStack {
-          LeftBlueChatBubble(text: question.content)
-        }
+        LeftBlueChatBubbleWithImg(text: question.content)
       }
-      
-      Spacer()
     }
     .padding(.horizontal, 22)
   }
@@ -130,7 +123,6 @@ extension AnswerWriteView {
           })
           .padding(.horizontal, 22)
       }
-      
     }
   }
 }
