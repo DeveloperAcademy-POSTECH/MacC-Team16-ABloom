@@ -17,6 +17,8 @@ final class HomeViewModel: ObservableObject {
   @Published var isConnected: Bool = false
   @Published var isConnectButtonTapped = false
   
+  @Published var showLoginView = false
+  
   @Published var showDialog = false
   @Published var showPhotosPicker = false
   @Published var isReady = false
