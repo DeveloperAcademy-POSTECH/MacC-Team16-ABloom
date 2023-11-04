@@ -46,22 +46,23 @@ struct HomeView: View {
     }
     .background(backgroundDefault())
     
-    .onAppear {
+    .task {
       let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
       homeVM.showLoginView = authUser == nil
-    }
-    
-    .task(id: homeVM.showLoginView) {
+
       if homeVM.showLoginView == false {
         try? await homeVM.setInfo()
       }
     }
-  
-    .fullScreenCover(isPresented: $homeVM.showLoginView, content: {
+
+    .fullScreenCover(isPresented: $homeVM.showLoginView) {
       NavigationStack {
         LoginView(showLoginView: $homeVM.showLoginView)
       }
-    })
+      .onDisappear {
+        Task { try? await homeVM.setInfo() }
+      }
+    }
   }
 }
 
