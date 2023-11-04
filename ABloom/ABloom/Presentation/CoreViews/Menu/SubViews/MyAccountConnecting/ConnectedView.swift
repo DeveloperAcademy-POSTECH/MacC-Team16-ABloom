@@ -25,6 +25,8 @@ struct ConnectedView: View {
           .frame(width: imageSize, height: imageSize)
         
         Text("\(fianceName)님과 연결되어 있습니다.")
+          .fontWithTracking(.bodyR)
+          .foregroundStyle(.stone800)
       }
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
