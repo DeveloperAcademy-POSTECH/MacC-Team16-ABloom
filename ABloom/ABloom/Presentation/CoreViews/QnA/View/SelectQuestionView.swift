@@ -19,9 +19,10 @@ struct SelectQuestionView: View {
       categoryBar
       
       if selectQVM.isReady {
+        
         questionListView
-         
           .background(backWall())
+        
       } else {
         VStack {
           ProgressView()
@@ -113,11 +114,7 @@ extension SelectQuestionView {
       ScrollView(.vertical) {
         ForEach(selectQVM.filteredLists, id: \.self) { question in
           NavigationLink(value: question) {
-            if sex {
-              LeftPinkChatBubble(text: question.content)
-            } else {
-              LeftBlueChatBubble(text: question.content)
-            }
+            LeftChatBubble(text: question.content, isMale: !sex)
           }
           .padding(.horizontal, 20)
           .padding(.bottom, 12)
