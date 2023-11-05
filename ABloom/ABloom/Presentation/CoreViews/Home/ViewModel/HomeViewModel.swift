@@ -18,6 +18,7 @@ final class HomeViewModel: ObservableObject {
   @Published var fianceName: String = "UserName"
   @Published var fianceSexType: UserType = .woman
   @Published var untilWeddingDate: Int = 0
+  @Published var marriageStatus: MarriageStatus = .notMarried
   @Published var qnaCount: Int = 0
   @Published var isConnected: Bool = false
   @Published var isConnectButtonTapped = false
@@ -99,15 +100,19 @@ final class HomeViewModel: ObservableObject {
   
   private func getMarrigeDate(user: DBUser) throws {
     guard let marrigeDate = user.marriageDate else { throw URLError(.badServerResponse) }
-    self.untilWeddingDate = calculateDDay(estimatedMarriageDate: marrigeDate)
+    self.untilWeddingDate = updateDDayStatus(marriageDate: marrigeDate)
   }
   
-  private func calculateDDay(estimatedMarriageDate: Date) -> Int {
-    let today = Date()
+  private func updateDDayStatus(marriageDate: Date) -> Int {
+    let dDay = Date().calculateDDay(with: marriageDate)
     
-    guard let days = Calendar.current.dateComponents([.day], from: today, to: estimatedMarriageDate).day else { return 0 }
-    
-    return days + 1
+    if dDay <= 0 {
+      marriageStatus = .married
+      return -dDay + 1
+    } else {
+      marriageStatus = .notMarried
+      return dDay
+    }
   }
   
   private func getQnACount(user: DBUser) async throws {
