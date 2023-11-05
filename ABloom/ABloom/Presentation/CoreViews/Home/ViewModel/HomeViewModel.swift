@@ -8,6 +8,11 @@
 import PhotosUI
 import SwiftUI
 
+enum MarriageStatus: String {
+  case notMarried = "님과 결혼까지"
+  case married = "님과 결혼한지"
+}
+
 @MainActor
 final class HomeViewModel: ObservableObject {
   @Published var fianceName: String = "UserName"
