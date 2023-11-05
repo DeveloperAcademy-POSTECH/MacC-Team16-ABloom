@@ -2,10 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>NSUserNotificationsUsageDescription</key>
+	<string>예랑이/예신이의 실시간 답변을 확인하고 매일 추천질문을 받을 수 있도록 알림을 허용합니다.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SpoqaHanSansNeo-Thin.ttf</string>
