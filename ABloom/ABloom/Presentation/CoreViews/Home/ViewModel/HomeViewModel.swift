@@ -35,17 +35,8 @@ final class HomeViewModel: ObservableObject {
   @Published var savedImage: UIImage? = nil
   
   @AppStorage("savedRecommendQuestionId") var savedRecommendQuestionId: Int = 3
-  @AppStorage("lastQuestionChangeDate") var lastQuestionChangeDate: Date = Date(timeIntervalSince1970: Date().timeIntervalSince1970 - (90 * 3600))
-  
-  private func checkDateDiff(currentDate: Date, lastChangedDate: Date) -> Bool {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy/MM/dd"
-    var current = formatter.string(from: Date(timeIntervalSince1970: currentDate.timeIntervalSince1970))
-    var last = formatter.string(from: Date(timeIntervalSince1970: lastChangedDate.timeIntervalSince1970))
-    print(current, last)
-    return current != last ? true : false
-  }
-  
+  @AppStorage("lastQuestionChangeDate") var lastQuestionChangeDate: Date = Calendar.current.date(byAdding: .day, value: -2, to: Date())!
+
   var defaultImage: UIImage {
     UIImage(named: defaultImageName)!
   }
@@ -126,14 +117,15 @@ final class HomeViewModel: ObservableObject {
   }
   
   private func loadRecommendQuestion(user: DBUser) async throws {
-    let currentDate = Date(timeIntervalSince1970: Date().timeIntervalSince1970 + 9 * 3600)
+    let currentDate = Date.now
     
-    if checkDateDiff(currentDate: currentDate, lastChangedDate: lastQuestionChangeDate) {
+    if currentDate.isSameDate(lastChangedDate: lastQuestionChangeDate) {
+      self.recommendQuestion = try await StaticQuestionManager.shared.getQuestionById(id: savedRecommendQuestionId)
+    } else {
       self.recommendQuestion = try await getQuestionsRecommend(userId: user.userId, fianceId: user.fiance)
       lastQuestionChangeDate = currentDate
-    } else {
-      self.recommendQuestion  = try await StaticQuestionManager.shared.getQuestionById(id: savedRecommendQuestionId)
     }
+    
     self.recommendQuestionAnswered = try await checkRecommendAnswered(user: user, questionId: recommendQuestion.questionID)
   }
   
