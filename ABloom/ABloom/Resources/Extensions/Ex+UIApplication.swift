@@ -5,7 +5,6 @@
 //  Created by 정승균 on 11/5/23.
 //
 
-import Foundation
 import SwiftUI
 
 extension UIApplication {
