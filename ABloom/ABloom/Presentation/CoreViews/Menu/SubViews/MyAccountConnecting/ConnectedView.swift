@@ -57,7 +57,7 @@ struct ConnectedView: View {
     }
     
     .customNavigationBar {
-      Text("상대방과 연결")
+      Text("연결 설정")
     } leftView: {
       Button {
         dismiss()
