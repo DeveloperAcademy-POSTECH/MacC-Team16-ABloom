@@ -10,7 +10,8 @@ import Foundation
 @MainActor
 final class MyAccountViewModel: ObservableObject {
   @Published var userName: String?
-  @Published var dDay: Int?
+  @Published var dDay: Int = 0
+  @Published var dDayText: String = ""
   @Published var showActionSheet: Bool = false
   @Published var showNameChangeAlert: Bool = false
   @Published var nameChangeTextfield: String = ""
@@ -28,7 +29,7 @@ final class MyAccountViewModel: ObservableObject {
     let user = try await UserManager.shared.getUser(userId: currentUser.uid)
     
     self.userName = user.name
-    self.dDay = calculateDDay(estimatedMarriageDate: user.marriageDate ?? .now)
+    updateDDayText(date: user.marriageDate ?? .now)
     self.isReady = true
   }
   
@@ -42,11 +43,13 @@ final class MyAccountViewModel: ObservableObject {
     try UserManager.shared.updateMarriageDate(userId: myId, date: date)
   }
   
-  private func calculateDDay(estimatedMarriageDate: Date) -> Int {
-    let today = Date()
+  private func updateDDayText(date: Date) {
+    self.dDay = Date().calculateDDay(with: date)
     
-    guard let days = Calendar.current.dateComponents([.day], from: today, to: estimatedMarriageDate).day else { return 0 }
-    
-    return days + 1
+    if dDay <= 0 {
+      self.dDayText = "결혼한지 \(-dDay+1)일"
+    } else {
+      self.dDayText = "결혼까지 D-\(dDay)"
+    }
   }
 }

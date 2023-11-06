@@ -21,7 +21,8 @@ struct AnswerWriteView: View {
       
       if answerVM.isReady {
         
-        questionText
+        LeftChatBubbleWithImg(text: question.content, isMale: !answerVM.sex)
+          .padding(.horizontal, 22)
         
         answerText
         
@@ -87,42 +88,17 @@ struct AnswerWriteView: View {
 
 extension AnswerWriteView {
   
-  private var questionText: some View {
-    
-    VStack {
-      // 유저가 남성일 때,
-      if answerVM.sex {
-        LeftPinkChatBubbleWithImg(text: question.content)
-        
-        // 유저가 여성일 떄,
-      } else {
-        LeftBlueChatBubbleWithImg(text: question.content)
-      }
-    }
-    .padding(.horizontal, 22)
-  }
-  
   private var answerText: some View {
     HStack {
       Spacer()
       
-      if answerVM.sex {
-        BlueChatBubbleTextField(text: $answerVM.answerText)
-          .onChange(of: answerVM.answerText, perform: { newValue in
-            if newValue.count > 150 {
-              answerVM.answerText = String(newValue.prefix(150))
-            }
-          })
-          .padding(.horizontal, 22)
-      } else {
-        PinkChatBubbleTextField(text: $answerVM.answerText)
-          .onChange(of: answerVM.answerText, perform: { newValue in
-            if newValue.count > 150 {
-              answerVM.answerText = String(newValue.prefix(150))
-            }
-          })
-          .padding(.horizontal, 22)
-      }
+      ChatBubbleTextField(text: $answerVM.answerText, isMale: answerVM.sex)
+        .onChange(of: answerVM.answerText, perform: { newValue in
+          if newValue.count > 150 {
+            answerVM.answerText = String(newValue.prefix(150))
+          }
+        })
+        .padding(.horizontal, 22)
     }
   }
 }
