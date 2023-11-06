@@ -8,11 +8,17 @@
 import PhotosUI
 import SwiftUI
 
+enum MarriageStatus: String {
+  case notMarried = "님과 결혼까지"
+  case married = "님과 결혼한지"
+}
+
 @MainActor
 final class HomeViewModel: ObservableObject {
   @Published var fianceName: String = "UserName"
   @Published var fianceSexType: UserType = .woman
   @Published var untilWeddingDate: Int = 0
+  @Published var marriageStatus: MarriageStatus = .notMarried
   @Published var qnaCount: Int = 0
   @Published var isConnected: Bool = false
   @Published var isConnectButtonTapped = false
@@ -35,17 +41,8 @@ final class HomeViewModel: ObservableObject {
   @Published var savedImage: UIImage? = nil
   
   @AppStorage("savedRecommendQuestionId") var savedRecommendQuestionId: Int = 3
-  @AppStorage("lastQuestionChangeDate") var lastQuestionChangeDate: Date = Date(timeIntervalSince1970: Date().timeIntervalSince1970 - (90 * 3600))
-  
-  private func checkDateDiff(currentDate: Date, lastChangedDate: Date) -> Bool {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy/MM/dd"
-    var current = formatter.string(from: Date(timeIntervalSince1970: currentDate.timeIntervalSince1970))
-    var last = formatter.string(from: Date(timeIntervalSince1970: lastChangedDate.timeIntervalSince1970))
-    print(current, last)
-    return current != last ? true : false
-  }
-  
+  @AppStorage("lastQuestionChangeDate") var lastQuestionChangeDate: Date = Calendar.current.date(byAdding: .day, value: -2, to: Date())!
+
   var defaultImage: UIImage {
     UIImage(named: defaultImageName)!
   }
@@ -103,15 +100,19 @@ final class HomeViewModel: ObservableObject {
   
   private func getMarrigeDate(user: DBUser) throws {
     guard let marrigeDate = user.marriageDate else { throw URLError(.badServerResponse) }
-    self.untilWeddingDate = calculateDDay(estimatedMarriageDate: marrigeDate)
+    self.untilWeddingDate = updateDDayStatus(marriageDate: marrigeDate)
   }
   
-  private func calculateDDay(estimatedMarriageDate: Date) -> Int {
-    let today = Date()
+  private func updateDDayStatus(marriageDate: Date) -> Int {
+    let dDay = Date().calculateDDay(with: marriageDate)
     
-    guard let days = Calendar.current.dateComponents([.day], from: today, to: estimatedMarriageDate).day else { return 0 }
-    
-    return days + 1
+    if dDay <= 0 {
+      marriageStatus = .married
+      return -dDay + 1
+    } else {
+      marriageStatus = .notMarried
+      return dDay
+    }
   }
   
   private func getQnACount(user: DBUser) async throws {
@@ -126,14 +127,15 @@ final class HomeViewModel: ObservableObject {
   }
   
   private func loadRecommendQuestion(user: DBUser) async throws {
-    let currentDate = Date(timeIntervalSince1970: Date().timeIntervalSince1970 + 9 * 3600)
+    let currentDate = Date.now
     
-    if checkDateDiff(currentDate: currentDate, lastChangedDate: lastQuestionChangeDate) {
+    if currentDate.isSameDate(lastChangedDate: lastQuestionChangeDate) {
+      self.recommendQuestion = try await StaticQuestionManager.shared.getQuestionById(id: savedRecommendQuestionId)
+    } else {
       self.recommendQuestion = try await getQuestionsRecommend(userId: user.userId, fianceId: user.fiance)
       lastQuestionChangeDate = currentDate
-    } else {
-      self.recommendQuestion  = try await StaticQuestionManager.shared.getQuestionById(id: savedRecommendQuestionId)
     }
+    
     self.recommendQuestionAnswered = try await checkRecommendAnswered(user: user, questionId: recommendQuestion.questionID)
   }
   

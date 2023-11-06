@@ -120,11 +120,7 @@ extension SelectQuestionView {
           
           ForEach(selectQVM.filteredLists, id: \.self) { question in
             NavigationLink(value: question) {
-              if sex {
-                LeftPinkChatBubble(text: question.content)
-              } else {
-                LeftBlueChatBubble(text: question.content)
-              }
+               LeftChatBubble(text: question.content, isMale: !sex)
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 7)

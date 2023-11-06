@@ -12,6 +12,7 @@ final class AnswerWriteViewModel: ObservableObject {
   @Published var answerText: String = ""
   @Published var isAlertOn: Bool = false
   @Published var sex = Bool()
+  @Published var isReady = Bool()
   
   
   func getUserSex() async throws {
@@ -21,6 +22,7 @@ final class AnswerWriteViewModel: ObservableObject {
     
     // 0 = female, 1 = male
     self.sex = sex!
+    self.isReady = true
   }
   
   func setAlert() {

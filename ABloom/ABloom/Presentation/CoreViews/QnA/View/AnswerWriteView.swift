@@ -19,10 +19,18 @@ struct AnswerWriteView: View {
       
       Spacer().frame(height: 17)
       
-      questionText
-      
-      answerText
-      
+      if answerVM.isReady {
+        
+        LeftChatBubbleWithImg(text: question.content, isMale: !answerVM.sex)
+          .padding(.horizontal, 22)
+        
+        answerText
+        
+      } else {
+        
+        ProgressView()
+        
+      }
     }
     
     // alert
@@ -80,57 +88,17 @@ struct AnswerWriteView: View {
 
 extension AnswerWriteView {
   
-  private var questionText: some View {
-    
-    HStack(alignment: .top, spacing: 6) {
-      
-      // 유저가 남성일 때,
-      if answerVM.sex {
-        Image("avatar_Female circle GradientBG")
-          .resizable()
-          .frame(width: 34, height: 34)
-        
-        VStack {
-          LeftPinkChatBubble(text: question.content)
-        }
-        // 유저가 여성일 떄,
-      } else {
-        Image("avatar_Male circle GradientBG")
-          .resizable()
-          .frame(width: 34, height: 34)
-        
-        VStack {
-          LeftBlueChatBubble(text: question.content)
-        }
-      }
-      
-      Spacer()
-    }
-    .padding(.horizontal, 22)
-  }
-  
   private var answerText: some View {
     HStack {
       Spacer()
       
-      if answerVM.sex {
-        BlueChatBubbleTextField(text: $answerVM.answerText)
-          .onChange(of: answerVM.answerText, perform: { newValue in
-            if newValue.count > 150 {
-              answerVM.answerText = String(newValue.prefix(150))
-            }
-          })
-          .padding(.horizontal, 22)
-      } else {
-        PinkChatBubbleTextField(text: $answerVM.answerText)
-          .onChange(of: answerVM.answerText, perform: { newValue in
-            if newValue.count > 150 {
-              answerVM.answerText = String(newValue.prefix(150))
-            }
-          })
-          .padding(.horizontal, 22)
-      }
-      
+      ChatBubbleTextField(text: $answerVM.answerText, isMale: answerVM.sex)
+        .onChange(of: answerVM.answerText, perform: { newValue in
+          if newValue.count > 150 {
+            answerVM.answerText = String(newValue.prefix(150))
+          }
+        })
+        .padding(.horizontal, 22)
     }
   }
 }
