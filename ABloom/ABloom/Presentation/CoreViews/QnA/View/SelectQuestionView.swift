@@ -128,13 +128,17 @@ extension SelectQuestionView {
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 7)
+            
+            if selectQVM.filteredLists.last == question {
+              Spacer()
+                .frame(height: 50)
+            }
           }
         }
-        .padding(.bottom, 50)
-        
         .onChange(of: selectQVM.selectedCategory) { new in
           proxy.scrollTo("top")
         }
+      
       }
     }
   }
