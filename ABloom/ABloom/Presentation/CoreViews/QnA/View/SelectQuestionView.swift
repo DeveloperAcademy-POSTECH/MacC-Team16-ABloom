@@ -24,11 +24,13 @@ struct SelectQuestionView: View {
           .background(backWall())
         
       } else {
+        
         VStack {
           ProgressView()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(backWall())
+        
       }
     }
     .navigationDestination(for: DBStaticQuestion.self, destination: { content in
@@ -41,11 +43,10 @@ struct SelectQuestionView: View {
         dismiss()
       }
     }
-  
+    
     .task {
       try? await selectQVM.fetchQuestions()
     }
-    
     
     // 네비게이션바
     .customNavigationBar(
@@ -99,7 +100,7 @@ extension SelectQuestionView {
   
   private var questionListView: some View {
     VStack(spacing: 0) {
-
+      
       HStack {
         Text("\(selectQVM.selectedCategory.type) 문답")
           .fontWithTracking(.headlineR)
@@ -109,16 +110,31 @@ extension SelectQuestionView {
       }
       .padding(.horizontal, 22)
       .padding(.top, 34)
-      .padding(.bottom, 26)
+      .padding(.bottom, 10)
       
-      ScrollView(.vertical) {
-        ForEach(selectQVM.filteredLists, id: \.self) { question in
-          NavigationLink(value: question) {
-            LeftChatBubble(text: question.content, isMale: !sex)
+      ScrollViewReader { proxy in
+        ScrollView(.vertical) {
+          Spacer()
+            .frame(height: 16)
+            .id("top")
+          
+          ForEach(selectQVM.filteredLists, id: \.self) { question in
+            NavigationLink(value: question) {
+               LeftChatBubble(text: question.content, isMale: !sex)
+            }
+            .padding(.horizontal, 20)
+            .padding(.vertical, 7)
+            
+            if selectQVM.filteredLists.last == question {
+              Spacer()
+                .frame(height: 50)
+            }
           }
-          .padding(.horizontal, 20)
-          .padding(.bottom, 12)
         }
+        .onChange(of: selectQVM.selectedCategory) { new in
+          proxy.scrollTo("top")
+        }
+      
       }
     }
   }
