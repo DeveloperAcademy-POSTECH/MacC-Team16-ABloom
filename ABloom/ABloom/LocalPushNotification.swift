@@ -26,8 +26,8 @@ func requestNotificationPermission() {
 
 func scheduleDailyNotification() {
   let content = UNMutableNotificationContent()
-  content.title = "추천 질문"
-  content.body = "오늘의 추천 질문을 확인하고, 서로에 대해 알아보는 시간을 가져보세요."
+  content.title = "오늘의 추천 질문을 확인해보세요"
+  content.body = "답변을 작성하고 서로의 생각을 알아볼까요?"
   
   var dateComponents = DateComponents()
   dateComponents.timeZone = TimeZone(identifier: "Asia/Seoul")

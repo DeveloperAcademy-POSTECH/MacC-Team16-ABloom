@@ -5,7 +5,8 @@
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>NSUserNotificationsUsageDescription</key>
-	<string>예랑이/예신이의 실시간 답변을 확인하고 매일 추천질문을 받을 수 있도록 알림을 허용합니다.</string>
+	<string>'메리'에서 알림을 보내고자 합니다.
+경고, 사운드 및 아이콘 배지가 알림에 포함될 수 있습니다. 설정에서 이를 구성할 수 있습니다.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SpoqaHanSansNeo-Thin.ttf</string>
