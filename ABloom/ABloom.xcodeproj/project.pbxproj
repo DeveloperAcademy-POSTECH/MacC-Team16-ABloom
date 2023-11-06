@@ -88,7 +88,6 @@
 		AE1AEA012AE55A0C0010089F /* QuestionMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AEA002AE55A0C0010089F /* QuestionMainViewModel.swift */; };
 		AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AE2BB5F32AD650680003CD85 /* .swiftlint.yml */; };
 		AE3BF1142AF49986009A2FB1 /* Ex+UINavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3BF1132AF49986009A2FB1 /* Ex+UINavigation.swift */; };
-		AE4A717F2AF0F14600F40092 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE4A717E2AF0F14600F40092 /* Launch Screen.storyboard */; };
 		AE5693252AEAD982009F3400 /* AnswerWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5693242AEAD982009F3400 /* AnswerWriteViewModel.swift */; };
 		AE5EB9FB2AF1396C0074F361 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EB9FA2AF1396C0074F361 /* AppDelegate.swift */; };
 		AE6374AF2AF01C4500081A23 /* NavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6374AE2AF01C4500081A23 /* NavigationModel.swift */; };
@@ -107,6 +106,7 @@
 		AEB502642AE5FA840056E439 /* CustomNavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB502632AE5FA840056E439 /* CustomNavigationBarModifier.swift */; };
 		AEB5026B2AE64B8D0056E439 /* CategoryQuestionBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB5026A2AE64B8D0056E439 /* CategoryQuestionBox.swift */; };
 		AEC260612AEA5A8000DF7CD5 /* StaticQuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */; };
+		AEC44E042AF628DF0021156E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEC44E032AF628DF0021156E /* Launch Screen.storyboard */; };
 		AEEA8DCF2AEB82070068550E /* SelectQuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEA8DCE2AEB82070068550E /* SelectQuestionViewModel.swift */; };
 		AEEA8DD12AEB82290068550E /* SelectQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEA8DD02AEB82290068550E /* SelectQuestionView.swift */; };
 		AEEA8DD32AEB82520068550E /* ChatBubbles.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEA8DD22AEB82520068550E /* ChatBubbles.swift */; };
@@ -170,7 +170,6 @@
 		AE2BB5FE2AD673890003CD85 /* LoginMD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LoginMD.md; sourceTree = "<group>"; };
 		AE2BB6022AD674D40003CD85 /* TabBarMD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TabBarMD.md; sourceTree = "<group>"; };
 		AE3BF1132AF49986009A2FB1 /* Ex+UINavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+UINavigation.swift"; sourceTree = "<group>"; };
-		AE4A717E2AF0F14600F40092 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AE5693242AEAD982009F3400 /* AnswerWriteViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerWriteViewModel.swift; sourceTree = "<group>"; };
 		AE5EB9FA2AF1396C0074F361 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE6374AE2AF01C4500081A23 /* NavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModel.swift; sourceTree = "<group>"; };
@@ -191,6 +190,7 @@
 		AEB502632AE5FA840056E439 /* CustomNavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBarModifier.swift; sourceTree = "<group>"; };
 		AEB5026A2AE64B8D0056E439 /* CategoryQuestionBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryQuestionBox.swift; sourceTree = "<group>"; };
 		AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticQuestionManager.swift; sourceTree = "<group>"; };
+		AEC44E032AF628DF0021156E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AEEA8DCE2AEB82070068550E /* SelectQuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionViewModel.swift; sourceTree = "<group>"; };
 		AEEA8DD02AEB82290068550E /* SelectQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionView.swift; sourceTree = "<group>"; };
 		AEEA8DD22AEB82520068550E /* ChatBubbles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbles.swift; sourceTree = "<group>"; };
@@ -502,8 +502,8 @@
 		AE7EE4DF2AD6409000E0A573 /* ABloom */ = {
 			isa = PBXGroup;
 			children = (
-				AE4A717E2AF0F14600F40092 /* Launch Screen.storyboard */,
 				3DB6A5B52AE1278D00C1369F /* ABloom.entitlements */,
+				AEC44E032AF628DF0021156E /* Launch Screen.storyboard */,
 				AE8D3C5D2ADE1A22009899A7 /* Info.plist */,
 				3D4412792AEAB34000FD5A51 /* GoogleService-Info.plist */,
 				AE7EE4E02AD6409000E0A573 /* ABloomApp.swift */,
@@ -685,7 +685,7 @@
 				AE7EE4E82AD6409100E0A573 /* Preview Assets.xcassets in Resources */,
 				AE8D3C5C2ADE1A08009899A7 /* SpoqaHanSansNeo-Medium.ttf in Resources */,
 				3D44126B2AE6246100FD5A51 /* Assets.xcassets in Resources */,
-				AE4A717F2AF0F14600F40092 /* Launch Screen.storyboard in Resources */,
+				AEC44E042AF628DF0021156E /* Launch Screen.storyboard in Resources */,
 				AE8D3C592ADE1A08009899A7 /* SpoqaHanSansNeo-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -937,10 +937,10 @@
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "예랑이/예신이와 함께 찍은 사진이 담긴 나만의 홈화면을 만들기 위해 사진 라이브러리에 접근하도록 허용합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -981,10 +981,10 @@
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "예랑이/예신이와 함께 찍은 사진이 담긴 나만의 홈화면을 만들기 위해 사진 라이브러리에 접근하도록 허용합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
