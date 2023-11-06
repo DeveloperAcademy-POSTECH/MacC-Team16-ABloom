@@ -106,7 +106,6 @@
 		AEB502642AE5FA840056E439 /* CustomNavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB502632AE5FA840056E439 /* CustomNavigationBarModifier.swift */; };
 		AEB5026B2AE64B8D0056E439 /* CategoryQuestionBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB5026A2AE64B8D0056E439 /* CategoryQuestionBox.swift */; };
 		AEC260612AEA5A8000DF7CD5 /* StaticQuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */; };
-		AEE9EC762AF7C6350026D803 /* LocalPushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE9EC752AF7C6350026D803 /* LocalPushNotification.swift */; };
 		AEC44E042AF628DF0021156E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEC44E032AF628DF0021156E /* Launch Screen.storyboard */; };
 		AEEA8DCF2AEB82070068550E /* SelectQuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEA8DCE2AEB82070068550E /* SelectQuestionViewModel.swift */; };
 		AEEA8DD12AEB82290068550E /* SelectQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEA8DD02AEB82290068550E /* SelectQuestionView.swift */; };
@@ -191,7 +190,6 @@
 		AEB502632AE5FA840056E439 /* CustomNavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBarModifier.swift; sourceTree = "<group>"; };
 		AEB5026A2AE64B8D0056E439 /* CategoryQuestionBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryQuestionBox.swift; sourceTree = "<group>"; };
 		AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticQuestionManager.swift; sourceTree = "<group>"; };
-		AEE9EC752AF7C6350026D803 /* LocalPushNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPushNotification.swift; sourceTree = "<group>"; };
 		AEC44E032AF628DF0021156E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AEEA8DCE2AEB82070068550E /* SelectQuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionViewModel.swift; sourceTree = "<group>"; };
 		AEEA8DD02AEB82290068550E /* SelectQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionView.swift; sourceTree = "<group>"; };
@@ -510,7 +508,6 @@
 				3D4412792AEAB34000FD5A51 /* GoogleService-Info.plist */,
 				AE7EE4E02AD6409000E0A573 /* ABloomApp.swift */,
 				AE5EB9FA2AF1396C0074F361 /* AppDelegate.swift */,
-				AEE9EC752AF7C6350026D803 /* LocalPushNotification.swift */,
 				AEB502652AE61AD70056E439 /* Resources */,
 				6053F1632ADF7F3D0064A6E0 /* Presentation */,
 				3DB6A5AC2AE0C0B700C1369F /* Firebase */,
@@ -738,7 +735,6 @@
 				3D957E9C2AEF998000D565E9 /* Ex+Sequence.swift in Sources */,
 				6053F1762AE899320064A6E0 /* InputFields.swift in Sources */,
 				6086BAA92AF130A800E2DC3A /* DBEssentialQuestionModel.swift in Sources */,
-				AEE9EC762AF7C6350026D803 /* LocalPushNotification.swift in Sources */,
 				AE1AE9FB2AE51BF00010089F /* QnAListItem.swift in Sources */,
 				AE8D3C512ADE19E0009899A7 /* Ex+Font.swift in Sources */,
 				607DA2182AF0B07D005AE11C /* Ex+Date.swift in Sources */,

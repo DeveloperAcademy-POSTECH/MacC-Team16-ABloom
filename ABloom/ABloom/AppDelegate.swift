@@ -8,6 +8,8 @@
 import Firebase
 import FirebaseCore
 import FirebaseMessaging
+import UserNotifications
+
 
 // Configuring Firebase Push Notification...
 
@@ -22,29 +24,51 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     // 파이어베이스 설정
     FirebaseApp.configure()
     
-    // 앱 실행 시 사용자에게 알림 허용 권한을 받음
-    UNUserNotificationCenter.current().delegate = self
-    
-    let authOption: UNAuthorizationOptions = [.alert, .badge, .sound]
-    UNUserNotificationCenter.current().requestAuthorization(
-      options: authOption,
-      completionHandler: {_, _ in })
-    
-    // UNUserNotificationCenterDelegate를 구현한 메서드를 실행시킴
-    application.registerForRemoteNotifications()
-    
-    // 파이어베이스 Meesaging 설정
-    Messaging.messaging().delegate = self
-    
-    UNUserNotificationCenter.current().delegate = self
+    // 알림 허용 권한 및 파이어베이스 메시징 정리
+    requestNotificationPermission()
     
     return true
   }
   
-  // 백그라운드에서 푸시 알림을 탭했을 때 실행
+  // 원격 알림을 등록했을 때 불러옴
   func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
     // Firebase Cloud Messaging 서비스에 토큰 전달
     Messaging.messaging().apnsToken = deviceToken
+  }
+  
+  func requestNotificationPermission() {
+    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+      
+      if granted {
+        self.scheduleDailyNotification()
+        print("granted")
+      } else {
+        // Handle the case where permission was denied
+      }
+    }
+  }
+  
+  func scheduleDailyNotification() {
+    let content = UNMutableNotificationContent()
+    content.title = "오늘의 추천 질문을 확인해보세요"
+    content.body = "답변을 작성하고 서로의 생각을 알아볼까요?"
+    
+    var dateComponents = DateComponents()
+    dateComponents.timeZone = TimeZone(identifier: "Asia/Seoul")
+    
+    dateComponents.hour = 21
+    dateComponents.minute = 0
+    
+    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+    print(dateComponents)
+    
+    let request = UNNotificationRequest(identifier: "dailyNotification", content: content, trigger: trigger)
+    
+    UNUserNotificationCenter.current().add(request) { error in
+      if let error = error {
+        print("Error scheduling notification: \(error)")
+      }
+    }
   }
 }
 
