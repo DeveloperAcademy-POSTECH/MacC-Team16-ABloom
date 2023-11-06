@@ -71,7 +71,7 @@ extension HomeView {
   private var titleArea: some View {
     HStack {
       VStack(alignment: .leading, spacing: 6) {
-        Text(homeVM.isConnected ? "\(homeVM.fianceName)님과 결혼까지" : "\(homeVM.fianceSexType.rawValue)님과")
+        Text(homeVM.isConnected ? "\(homeVM.fianceName)\(homeVM.marriageStatus.rawValue)" : "\(homeVM.fianceSexType.rawValue)님과")
           .foregroundStyle(.stone800)
           .fontWithTracking(.headlineR)
         HStack(spacing: 12) {

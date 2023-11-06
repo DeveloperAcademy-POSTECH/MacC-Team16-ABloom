@@ -85,8 +85,7 @@ extension MyAccountView {
           .fontWithTracking(.title3Bold)
           .foregroundStyle(.stone800)
         HStack {
-          Text("결혼까지 D-\(myAccountVM.dDay ?? 0)")
-          
+          Text(myAccountVM.dDayText)
           Spacer()
           
           Button {

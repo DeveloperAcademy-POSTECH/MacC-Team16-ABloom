@@ -25,4 +25,16 @@ extension Date: RawRepresentable {
     
     return selfComponents == lastChangedDateComponents
   }
+  
+  public func calculateDDay(with date: Date) -> Int {
+    var calendar = Calendar.current
+    calendar.timeZone = TimeZone(identifier: "Asia/Seoul")!
+    
+    let selfComponents = calendar.dateComponents([.day], from: self)
+    let dateComponents = calendar.dateComponents([.day], from: date)
+    
+    guard let dDay = Calendar.current.dateComponents([.day], from: selfComponents, to: dateComponents).day else { return 0 }
+    
+    return dDay
+  }
 }
