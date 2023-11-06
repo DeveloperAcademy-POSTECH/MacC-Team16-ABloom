@@ -23,6 +23,8 @@ final class HomeViewModel: ObservableObject {
   @Published var isConnected: Bool = false
   @Published var isConnectButtonTapped = false
   
+  @Published var showLoginView = false
+  
   @Published var showDialog = false
   @Published var showPhotosPicker = false
   @Published var isReady = false
@@ -72,19 +74,17 @@ final class HomeViewModel: ObservableObject {
     let dbUser = try await UserManager.shared.getCurrentUser()
     
     self.isConnected = dbUser.fiance != nil
+    try getFianceSex(user: dbUser)
     
     if self.isConnected == true {
       try await getFiance(user: dbUser)
-      try getFianceSex(user: dbUser)
       try await getQnACount(user: dbUser)
     }
     
     try getMarrigeDate(user: dbUser)
-    self.isReady = true
-        
-    // TODO: 라딘~ 이 함수에 문제가 있는지, 이 함수 이후에 정의한 함수에 접근하지 않습니다. 그래서 일단 맨 뒤로 옮겼어요.
     try await loadRecommendQuestion(user: dbUser)
     
+    self.isReady = true
   }
   
   private func getFianceSex(user: DBUser) throws {
