@@ -32,9 +32,8 @@ func scheduleDailyNotification() {
   var dateComponents = DateComponents()
   dateComponents.timeZone = TimeZone(identifier: "Asia/Seoul")
   
-  // 임의로 설정한 시간! 저녁 9시 50분 => 먼가 퇴근하고 쉬고 있을 것 같은 시간,,
   dateComponents.hour = 21
-  dateComponents.minute = 50
+  dateComponents.minute = 0
   
   let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
   print(dateComponents)
