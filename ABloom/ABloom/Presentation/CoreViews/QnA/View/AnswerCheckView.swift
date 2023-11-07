@@ -18,11 +18,7 @@ struct AnswerCheckView: View {
       
       // 질문 박스
       if let question = answerCheckVM.question {
-        CategoryQuestionBox(
-          question: question.content,
-          category: "\((Category(rawValue: question.category)?.type)!) 질문",
-          categoryImg: (Category(rawValue: question.category)?.imgName)!
-        )
+        CategoryQuestionBox(question: question.content)
         .padding(.vertical, 30)
       }
       
@@ -81,19 +77,19 @@ extension AnswerCheckView {
       // if 상대방과의 연결이 없을 경우
       if answerCheckVM.isNoFiance {
         if !answerCheckVM.isNoMyAnswer {
-          RightChatBubble(text: answerCheckVM.myAnswer, isMale: self.sex)
+          RightChatBubble(text: answerCheckVM.myAnswer)
         }
         LeftChatBubbleWithImg(text: answerCheckVM.notConnectedText, isMale: !self.sex)
         NavigationLink {
           MyAccountConnectingView()
         } label: {
-          LeftChatBubble(text: "연결하기  >", isBold: true, isMale: self.sex)
+          ChatBubbleBtn(text: "연결하기  >")
         }
         .padding(.leading, 40)
         
         // if 내가 먼저 답하고, 상대방의 답변을 기다릴 경우
       } else if answerCheckVM.isNoFianceAnswer && !answerCheckVM.isNoMyAnswer {
-        RightChatBubble(text: answerCheckVM.myAnswer, isMale: self.sex)
+        RightChatBubble(text: answerCheckVM.myAnswer)
         LeftChatBubbleWithImg(text: answerCheckVM.waitText, isMale: !self.sex)
       }
       
@@ -105,13 +101,13 @@ extension AnswerCheckView {
             AnswerWriteView(question: question, isFromMain: false)
           }
         } label: {
-          RightChatBubble(text: "문답 작성하기  >", isBold: true, isMale: self.sex)
+          ChatBubbleBtn(text: "문답 작성하기  >")
         }
       }
       
       // 둘 다 작성했을 경우 => 내 답변이 먼저 보이기
       else {
-        RightChatBubble(text: answerCheckVM.myAnswer, isMale: self.sex)
+        RightChatBubble(text: answerCheckVM.myAnswer)
         LeftChatBubbleWithImg(text: answerCheckVM.fianceAnswer, isMale: !self.sex)
       }
       
