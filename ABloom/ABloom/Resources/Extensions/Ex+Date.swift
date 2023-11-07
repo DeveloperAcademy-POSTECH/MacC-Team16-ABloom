@@ -30,8 +30,8 @@ extension Date: RawRepresentable {
     var calendar = Calendar.current
     calendar.timeZone = TimeZone(identifier: "Asia/Seoul")!
     
-    let selfComponents = calendar.dateComponents([.day], from: self)
-    let dateComponents = calendar.dateComponents([.day], from: date)
+    let selfComponents = calendar.dateComponents([.year, .month, .day], from: self)
+    let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
     
     guard let dDay = Calendar.current.dateComponents([.day], from: selfComponents, to: dateComponents).day else { return 0 }
     
