@@ -25,12 +25,12 @@ struct CategoryQuestionBox: View {
     }
     .padding(.horizontal, 14)
     .padding(.vertical, 10)
-    .frame(maxWidth: .infinity)
-    .frame(minHeight: 42)
+
     .background(
       RoundedRectangle(cornerRadius: 20)
-        .foregroundStyle(.stone100)
+        .foregroundStyle(.stone50)
     )
+    .frame(maxWidth: .infinity)
   }
 }
 

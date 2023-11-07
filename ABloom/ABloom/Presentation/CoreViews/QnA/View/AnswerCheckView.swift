@@ -20,6 +20,7 @@ struct AnswerCheckView: View {
       if let question = answerCheckVM.question {
         CategoryQuestionBox(question: question.content)
         .padding(.vertical, 30)
+        .padding(.horizontal, 20)
       }
       
       Spacer()
@@ -77,7 +78,7 @@ extension AnswerCheckView {
       // if 상대방과의 연결이 없을 경우
       if answerCheckVM.isNoFiance {
         if !answerCheckVM.isNoMyAnswer {
-          RightChatBubble(text: answerCheckVM.myAnswer)
+          RightPurpleChatBubble(text: answerCheckVM.myAnswer)
         }
         LeftChatBubbleWithImg(text: answerCheckVM.notConnectedText, isMale: !self.sex)
         NavigationLink {
@@ -89,7 +90,7 @@ extension AnswerCheckView {
         
         // if 내가 먼저 답하고, 상대방의 답변을 기다릴 경우
       } else if answerCheckVM.isNoFianceAnswer && !answerCheckVM.isNoMyAnswer {
-        RightChatBubble(text: answerCheckVM.myAnswer)
+        RightPurpleChatBubble(text: answerCheckVM.myAnswer)
         LeftChatBubbleWithImg(text: answerCheckVM.waitText, isMale: !self.sex)
       }
       
@@ -107,7 +108,7 @@ extension AnswerCheckView {
       
       // 둘 다 작성했을 경우 => 내 답변이 먼저 보이기
       else {
-        RightChatBubble(text: answerCheckVM.myAnswer)
+        RightPurpleChatBubble(text: answerCheckVM.myAnswer)
         LeftChatBubbleWithImg(text: answerCheckVM.fianceAnswer, isMale: !self.sex)
       }
       

@@ -9,11 +9,11 @@ import SwiftUI
 
 // Customized Chat Bubbles
 
-let paddingV = 10.0
-let paddingH = 12.0
-let conerV = 12.0
+private let paddingV = 10.0
+private let paddingH = 12.0
+private let cornerV = 12.0
 
-struct LeftChatBubble: View {
+struct LeftGrayChatBubble: View {
   let text: String
   
   var body: some View {
@@ -25,13 +25,13 @@ struct LeftChatBubble: View {
         .padding(.vertical, paddingV)
         .padding(.horizontal, paddingH)
         .multilineTextAlignment(.leading)
+      
         .background(
           Rectangle()
             .clayMorpMDShadow()
             .foregroundStyle(.purple50)
-            .cornerRadius(conerV, corners: [.topRight, .bottomRight, .bottomLeft])
+            .cornerRadius(cornerV, corners: [.topRight, .bottomRight, .bottomLeft])
         )
-        .frame(minHeight: 20, alignment: .center)
         .frame(maxWidth: 247, alignment: .leading)
       
       Spacer()
@@ -39,7 +39,7 @@ struct LeftChatBubble: View {
   }
 }
 
-struct RightChatBubble: View {
+struct RightPurpleChatBubble: View {
   let text: String
   
   var body: some View {
@@ -54,11 +54,11 @@ struct RightChatBubble: View {
         .padding(.horizontal, paddingH)
         .background(
           Rectangle()
+            .clayMorpMDShadow()
             .foregroundStyle(.purple300)
-            .cornerRadius(conerV, corners: [.topLeft, .bottomRight, .bottomLeft])
+            .cornerRadius(cornerV, corners: [.topLeft, .bottomRight, .bottomLeft])
         )
-        .frame(minHeight: 20, alignment: .center)
-        .frame(maxWidth: 247, alignment: .leading)
+        .frame(maxWidth: 247, alignment: .trailing)
     }
   }
 }
@@ -83,7 +83,7 @@ struct QuestionChatBubble: View {
           Rectangle()
             .clayMorpMDShadow()
             .foregroundStyle(.purple300)
-            .cornerRadius(conerV, corners: [.topRight, .bottomRight, .bottomLeft])
+            .cornerRadius(cornerV, corners: [.topRight, .bottomRight, .bottomLeft])
         )
         .frame(minHeight: 41, alignment: .center)
         .frame(maxWidth: 271, alignment: .leading)
@@ -110,11 +110,11 @@ struct ChatBubbleBtn: View {
         .padding(.horizontal, paddingH)
         .background(
           Rectangle()
+            .clayMorpMDShadow()
             .foregroundStyle(.purple300)
-            .cornerRadius(conerV, corners: [.topLeft, .bottomRight, .bottomLeft])
+            .cornerRadius(cornerV, corners: [.topLeft, .bottomRight, .bottomLeft])
         )
-        .frame(minHeight: 20, alignment: .center)
-        .frame(maxWidth: 247, alignment: .leading)
+        .frame(maxWidth: 247, alignment: .trailing)
     }
   }
 }
@@ -131,7 +131,7 @@ struct LeftChatBubbleWithImg: View {
       Image(isMale ? "avatar_Male circle GradientBG" : "avatar_Female circle GradientBG")
         .resizable()
         .frame(width: 34, height: 34)
-      LeftChatBubble(text: text)
+      LeftGrayChatBubble(text: text)
     }
   }
 }
@@ -163,7 +163,7 @@ struct ChatBubbleTextField: View {
         Rectangle()
           .clayMorpMDShadow()
           .foregroundStyle(.purple600)
-          .cornerRadius(conerV, corners: [.topLeft, .bottomRight, .bottomLeft])
+          .cornerRadius(cornerV, corners: [.topLeft, .bottomRight, .bottomLeft])
       )
       .frame(minHeight: 20, alignment: .center)
       .frame(maxWidth: 247, alignment: .leading)
@@ -192,8 +192,8 @@ struct ChatCallout: View {
 
 #Preview {
   Group {
-    LeftChatBubble(text: "내용을 입력해주세요.")
-    RightChatBubble(text: "내용을 입력해주세요.")
+    LeftGrayChatBubble(text: "내용을 입력해주세요.")
+    RightPurpleChatBubble(text: "내용을 입력해주세요.")
     ChatCallout(text: "내용")
     
   }
