@@ -16,7 +16,7 @@ enum MarriageStatus: String {
 @MainActor
 final class HomeViewModel: ObservableObject {
   @Published var fianceName: String = "UserName"
-  @Published var fianceSexType: UserType = .woman
+  @Published var fianceSexType: UserSexType = .woman
   @Published var untilWeddingDate: Int = 0
   @Published var marriageStatus: MarriageStatus = .notMarried
   @Published var qnaCount: Int = 0

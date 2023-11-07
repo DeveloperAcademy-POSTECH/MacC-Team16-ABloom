@@ -65,7 +65,7 @@ extension RegistrationView {
         .fontWithTracking(.subHeadlineR)
       
       HStack(spacing: 18) {
-        ForEach(UserType.allCases, id: \.self) { user in
+        ForEach(UserSexType.allCases, id: \.self) { user in
           Button {
             registerVM.userType = user
           } label: {

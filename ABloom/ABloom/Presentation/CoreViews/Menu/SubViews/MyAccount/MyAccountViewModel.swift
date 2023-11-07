@@ -10,6 +10,7 @@ import Foundation
 @MainActor
 final class MyAccountViewModel: ObservableObject {
   @Published var userName: String?
+  @Published var userSex: UserSexType?
   @Published var dDay: Int = 0
   @Published var dDayText: String = ""
   @Published var showActionSheet: Bool = false
@@ -29,6 +30,7 @@ final class MyAccountViewModel: ObservableObject {
     let user = try await UserManager.shared.getUser(userId: currentUser.uid)
     
     self.userName = user.name
+    self.userSex = (user.sex ?? false) ? .man : .woman
     updateDDayText(date: user.marriageDate ?? .now)
     self.isReady = true
   }
