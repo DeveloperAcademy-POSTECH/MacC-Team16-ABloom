@@ -108,7 +108,6 @@
 		AEB5026B2AE64B8D0056E439 /* CategoryQuestionBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB5026A2AE64B8D0056E439 /* CategoryQuestionBox.swift */; };
 		AEC260612AEA5A8000DF7CD5 /* StaticQuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */; };
 		AEC44E042AF628DF0021156E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEC44E032AF628DF0021156E /* Launch Screen.storyboard */; };
-		AEE9EC762AF7C6350026D803 /* LocalPushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE9EC752AF7C6350026D803 /* LocalPushNotification.swift */; };
 		AEEA8DCF2AEB82070068550E /* SelectQuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEA8DCE2AEB82070068550E /* SelectQuestionViewModel.swift */; };
 		AEEA8DD12AEB82290068550E /* SelectQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEA8DD02AEB82290068550E /* SelectQuestionView.swift */; };
 		AEEA8DD32AEB82520068550E /* ChatBubbles.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEA8DD22AEB82520068550E /* ChatBubbles.swift */; };
@@ -194,7 +193,6 @@
 		AEB5026A2AE64B8D0056E439 /* CategoryQuestionBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryQuestionBox.swift; sourceTree = "<group>"; };
 		AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticQuestionManager.swift; sourceTree = "<group>"; };
 		AEC44E032AF628DF0021156E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		AEE9EC752AF7C6350026D803 /* LocalPushNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPushNotification.swift; sourceTree = "<group>"; };
 		AEEA8DCE2AEB82070068550E /* SelectQuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionViewModel.swift; sourceTree = "<group>"; };
 		AEEA8DD02AEB82290068550E /* SelectQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionView.swift; sourceTree = "<group>"; };
 		AEEA8DD22AEB82520068550E /* ChatBubbles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbles.swift; sourceTree = "<group>"; };
@@ -952,7 +950,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.abloom.ABloom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -996,7 +994,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.abloom.ABloom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
