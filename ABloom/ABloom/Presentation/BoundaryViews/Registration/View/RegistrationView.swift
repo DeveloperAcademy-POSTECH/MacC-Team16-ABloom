@@ -26,8 +26,13 @@ struct RegistrationView: View {
       nextButton
     }
     .padding(.horizontal, 20)
+    
+    .onAppear(perform: UIApplication.shared.hideKeyboard)
+    
     .background(backgroundDefault())
+    
     .tint(.purple600)
+    
     .customNavigationBar(
       centerView: {
         Text("가입하기")

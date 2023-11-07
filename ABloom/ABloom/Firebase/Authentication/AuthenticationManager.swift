@@ -67,7 +67,7 @@ final class AuthenticationManager {
       throw URLError(.badURL)
     }
     
-    try await user.delete()
     try signOut()
+    try await user.delete()
   }
 }
