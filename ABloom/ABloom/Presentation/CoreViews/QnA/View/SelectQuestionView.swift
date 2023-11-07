@@ -103,7 +103,7 @@ extension SelectQuestionView {
       
       HStack {
         Text("\(selectQVM.selectedCategory.type) 문답")
-          .fontWithTracking(.headlineR)
+          .fontWithTracking(.headlineBold)
           .foregroundStyle(.stone700)
         
         Spacer()
@@ -120,10 +120,10 @@ extension SelectQuestionView {
           
           ForEach(selectQVM.filteredLists, id: \.self) { question in
             NavigationLink(value: question) {
-               LeftChatBubble(text: question.content, isMale: !sex)
+              QuestionChatBubble(text: question.content)
             }
             .padding(.horizontal, 20)
-            .padding(.vertical, 7)
+            .padding(.vertical, 12)
             
             if selectQVM.filteredLists.last == question {
               Spacer()
@@ -134,7 +134,7 @@ extension SelectQuestionView {
         .onChange(of: selectQVM.selectedCategory) { new in
           proxy.scrollTo("top")
         }
-      
+        
       }
     }
   }

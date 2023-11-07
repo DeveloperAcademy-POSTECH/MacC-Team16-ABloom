@@ -15,15 +15,15 @@ struct AnswerWriteView: View {
   @Environment(\.dismiss) private var dismiss
   
   var body: some View {
-    VStack(spacing: 13) {
+    VStack(spacing: 20) {
       
-      Spacer().frame(height: 17)
+      Spacer().frame(height: 0)
       
       if answerVM.isReady {
         
-        LeftChatBubbleWithImg(text: question.content, isMale: !answerVM.sex)
-          .padding(.horizontal, 22)
-        
+        CategoryQuestionBox(question: question.content)
+          .padding(.horizontal, 20)
+
         answerText
         
       } else {
@@ -94,7 +94,7 @@ extension AnswerWriteView {
     HStack {
       Spacer()
       
-      ChatBubbleTextField(text: $answerVM.answerText, isMale: answerVM.sex)
+      ChatBubbleTextField(text: $answerVM.answerText)
         .onChange(of: answerVM.answerText, perform: { newValue in
           if newValue.count > 150 {
             answerVM.answerText = String(newValue.prefix(150))
