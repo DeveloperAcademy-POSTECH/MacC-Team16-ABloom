@@ -30,9 +30,13 @@ struct MyAccountConnectingView: View {
       connectButton
     }
     .padding(.horizontal, 20)
+    
+    .onAppear(perform: UIApplication.shared.hideKeyboard)
+    
     .task {
       try? await myAccountConnectingVM.getMyCode()
     }
+    
     .customNavigationBar {
       Text("상대방과 연결")
     } leftView: {
