@@ -34,9 +34,13 @@ struct ConnectionView: View {
       connectButton
     }
     .padding(.horizontal, 20)
+    
+    .onAppear(perform: UIApplication.shared.hideKeyboard)
+    
     .task {
       try? await connectionVM.getMyCode()
     }
+    
     .customNavigationBar(
       centerView: {
         Text("상대방과 연결")
