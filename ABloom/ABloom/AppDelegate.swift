@@ -24,6 +24,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     // 파이어베이스 설정
     FirebaseApp.configure()
     
+    Messaging.messaging().delegate = self
+    
     // 알림 허용 권한 및 파이어베이스 메시징 정리
     requestNotificationPermission()
     
@@ -82,9 +84,19 @@ extension AppDelegate: MessagingDelegate {
     let dataDict: [String: String] = ["token": fcmToken ?? ""]
     // Store token in Firestore For Sending Notifications From Server in Future...
     
+    if let fcmToken = fcmToken {
+      try? updatefcmToken(fcmToken: fcmToken)
+    }
     print(dataDict)
     
+    
   }
+  
+  private func updatefcmToken(fcmToken: String) throws {
+    let myId: String = try AuthenticationManager.shared.getAuthenticatedUser().uid
+    try UserManager.shared.updateFcmToken(userID: myId, fcmToken: fcmToken)
+  }
+  
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {

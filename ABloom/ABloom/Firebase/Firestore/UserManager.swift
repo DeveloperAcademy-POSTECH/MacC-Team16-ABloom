@@ -124,4 +124,10 @@ final class UserManager {
     
     return answer
   }
+  
+  // FCMToken
+  func updateFcmToken(userID: String, fcmToken: String) throws {
+    let fcmToken: [String: Any] = [DBUser.CodingKeys.fcmToken.rawValue:fcmToken]
+    userDocument(userId: userID).updateData(fcmToken)
+  }
 }
