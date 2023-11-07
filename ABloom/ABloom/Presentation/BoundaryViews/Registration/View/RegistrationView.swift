@@ -26,8 +26,13 @@ struct RegistrationView: View {
       nextButton
     }
     .padding(.horizontal, 20)
+    
+    .onAppear(perform: UIApplication.shared.hideKeyboard)
+    
     .background(backgroundDefault())
+    
     .tint(.purple600)
+    
     .customNavigationBar(
       centerView: {
         Text("가입하기")
@@ -65,7 +70,7 @@ extension RegistrationView {
         .fontWithTracking(.subHeadlineR)
       
       HStack(spacing: 18) {
-        ForEach(UserType.allCases, id: \.self) { user in
+        ForEach(UserSexType.allCases, id: \.self) { user in
           Button {
             registerVM.userType = user
           } label: {

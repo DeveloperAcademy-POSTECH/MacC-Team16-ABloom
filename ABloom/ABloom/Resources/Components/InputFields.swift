@@ -7,18 +7,20 @@
 
 import SwiftUI
 
-///연결 코드 복사 뷰
+/// 연결 코드 복사 뷰
 struct CopyStrokeInputField: View {
   let myCode: String?
   var copyAction: () -> Void
 
   var body: some View {
     HStack {
-      Image(systemName: "clipboard")
+      Image(systemName: "clipboard.fill")
         .font(.calloutR)
+        .foregroundStyle(.stone900)
      
       Text(myCode ?? "코드를 불러오지 못했습니다")
         .fontWithTracking(.calloutBold, tracking: -0.4)
+        .foregroundStyle(.stone900)
       
       Spacer()
       
@@ -33,7 +35,7 @@ struct CopyStrokeInputField: View {
   }
 }
 
-///연결 코드 입력 뷰
+/// 연결 코드 입력 뷰
 struct ConnectCodeStrokeInputField: View {
   @Binding var codeInputText: String
   let isTargetCodeValid: Bool

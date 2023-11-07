@@ -10,55 +10,62 @@ import SwiftUI
 
 struct HomeView: View {
   @StateObject var homeVM = HomeViewModel()
-  @State var showLoginView = false
-
+  private let hPadding = 20.0
+  private let imageSize = UIScreen.main.bounds.width - CGFloat(40.0)
+  
   var body: some View {
-    VStack {
+    VStack(spacing: 0) {
+      Spacer().frame(height: 4)
+      
       if homeVM.isReady {
-        
-        Spacer().frame(maxHeight: 20)
-        
-        titleArea
-        
-        Spacer().frame(maxHeight: 32)
-        
-        if homeVM.savedImage == nil {
-          defaultImage
-        } else {
-          savedImage
+        ScrollView(showsIndicators: false) {
+          Spacer().frame(height: 16)
+          
+          titleArea
+            .padding(.horizontal, hPadding)
+          
+          Spacer().frame(height: 32)
+          
+          if homeVM.savedImage == nil {
+            defaultImage
+              .padding(.horizontal, hPadding)
+          } else {
+            savedImage
+              .padding(.horizontal, hPadding)
+          }
+          
+          Spacer().frame(height: 40)
+          
+          recommendArea
+            .padding(.horizontal, hPadding)
+          
+          Spacer().frame(minHeight: 60)
         }
         
-        Spacer().frame(maxHeight: 40)
-        
-        recommendArea
-        
-        Spacer()
       } else {
         ProgressView()
           .frame(maxWidth: .infinity, maxHeight: .infinity)
       }
     }
-    .padding(.horizontal, 20)
     .background(backgroundDefault())
-  
-    .onAppear {
+    
+    .task {
       let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
-      self.showLoginView = authUser == nil
+      homeVM.showLoginView = authUser == nil
 
-      Task {
+      if homeVM.showLoginView == false {
         try? await homeVM.setInfo()
       }
     }
-    
-    .task(id: showLoginView) {
-      try? await homeVM.setInfo()
-    }
-    
-    .fullScreenCover(isPresented: $showLoginView, content: {
+
+    .fullScreenCover(isPresented: $homeVM.showLoginView) {
       NavigationStack {
-        LoginView(showLoginView: $showLoginView)
+        LoginView(showLoginView: $homeVM.showLoginView)
       }
-    })
+      .onDisappear {
+        Task { try? await homeVM.setInfo() }
+      }
+    }
   }
 }
 
@@ -71,7 +78,7 @@ extension HomeView {
   private var titleArea: some View {
     HStack {
       VStack(alignment: .leading, spacing: 6) {
-        Text(homeVM.isConnected ? "\(homeVM.fianceName)님과 결혼까지" : "\(homeVM.fianceSexType.rawValue)님과")
+        Text(homeVM.isConnected ? "\(homeVM.fianceName)\(homeVM.marriageStatus.rawValue)" : "\(homeVM.fianceSexType.rawValue)님과")
           .foregroundStyle(.stone800)
           .fontWithTracking(.headlineR)
         HStack(spacing: 12) {
@@ -129,7 +136,7 @@ extension HomeView {
     Image(uiImage: homeVM.savedImage!)
       .resizable()
       .scaledToFill()
-      .frame(maxHeight: 387)
+      .frame(width: imageSize, height: imageSize)
       .overlay {
         Color.biPink.opacity(0.2)
       }
@@ -140,13 +147,14 @@ extension HomeView {
           cameraButton
         }
       }
+      .zIndex(-1)
   }
   
   private var defaultImage: some View {
     Image(uiImage: homeVM.defaultImage)
       .resizable()
-      .scaledToFit()
-      .frame(maxHeight: 387)
+      .scaledToFill()
+      .frame(width: imageSize, height: imageSize)
       .clipShape(RoundedRectangle(cornerRadius: 28))
       .shadow(color: Color.purple200, radius: 20, x: 0, y: 20)
       .overlay(alignment: .topTrailing) {

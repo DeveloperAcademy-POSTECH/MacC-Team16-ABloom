@@ -24,7 +24,7 @@ final class StaticQuestionManager {
       ids += try await getAnswersId(userId: fianceId)
     }
     
-    var allQuestions = try await questionCollection.getDocuments(as: DBStaticQuestion.self)
+    var allQuestions = try await questionCollection.order(by: "q_id").getDocuments(as: DBStaticQuestion.self)
     
     allQuestions.removeAll { question in
       for id in ids {

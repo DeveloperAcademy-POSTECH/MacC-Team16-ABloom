@@ -13,15 +13,6 @@ enum InputField {
   case datePicker
 }
 
-enum UserType: String, CaseIterable {
-  case woman = "예비신부"
-  case man = "예비신랑"
-  
-  var getBool: Bool {
-    self == .man ? true : false
-  }
-}
-
 enum RegisterField {
   case username
   case userType
@@ -30,7 +21,7 @@ enum RegisterField {
 
 class RegistrationViewModel: ObservableObject {
   @Published var userName: String = ""
-  @Published var userType: UserType?
+  @Published var userType: UserSexType?
   @Published var weddingDate: Date = .now
   @Published var isDatePickerTapped: Bool = false
   @Published var isShowingDatePicker = false
@@ -55,11 +46,11 @@ class RegistrationViewModel: ObservableObject {
     return isFieldValid(.datePicker, value: formattedWeddingDate)
   }
   
-  func isUserTypeValid(type: UserType) -> Bool {
+  func isUserTypeValid(type: UserSexType) -> Bool {
     isFieldValid(.radio, value: type.rawValue, selectedType: userType)
   }
   
-  private func isFieldValid(_ type: InputField, value: String, selectedType: UserType? = nil) -> Bool {
+  private func isFieldValid(_ type: InputField, value: String, selectedType: UserSexType? = nil) -> Bool {
     switch type {
     case .datePicker:
       return isDatePickerTapped

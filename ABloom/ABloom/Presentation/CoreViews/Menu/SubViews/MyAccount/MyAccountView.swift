@@ -21,13 +21,12 @@ struct MyAccountView: View {
         userInfo
           .padding(.bottom, 50)
           .padding(.top, 40)
-        
-        accountMenuList
-        
-        Spacer()
       } else {
         ProgressView()
       }
+        accountMenuList
+        
+        Spacer()
     }
     .task {
       try? await myAccountVM.getMyInfo()
@@ -76,18 +75,19 @@ struct MyAccountView: View {
 extension MyAccountView {
   private var userInfo: some View {
     HStack(spacing: 15) {
-      Image("avatar_Female circle GradientBG")
-        .resizable()
-        .scaledToFit()
-        .frame(width: avatarSize)
+      if let userSex = myAccountVM.userSex {
+        Image(userSex.getGradientImage())
+          .resizable()
+          .scaledToFit()
+          .frame(width: avatarSize)
+      }
       
       VStack(alignment: .leading) {
         Text(myAccountVM.userName ?? "정보 없음")
           .fontWithTracking(.title3Bold)
           .foregroundStyle(.stone800)
         HStack {
-          Text("결혼까지 D-\(myAccountVM.dDay ?? 0)")
-          
+          Text(myAccountVM.dDayText)
           Spacer()
           
           Button {
