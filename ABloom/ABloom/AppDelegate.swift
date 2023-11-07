@@ -18,7 +18,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   // 예시 키
   let gcmMessageIDKey = "gcm.message_id"
   
-  // 앱이 켜졌을 때
+  // 앱이 켜졌을 때 자동 실행
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
     
     // 파이어베이스 설정
@@ -56,7 +56,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     var dateComponents = DateComponents()
     dateComponents.timeZone = TimeZone(identifier: "Asia/Seoul")
     
-    dateComponents.hour = 21
+    dateComponents.hour = 9
     dateComponents.minute = 0
     
     let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
