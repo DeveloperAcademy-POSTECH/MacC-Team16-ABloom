@@ -12,8 +12,14 @@ struct WebView: UIViewRepresentable {
   let urlString: String?
   
   func makeUIView(context: Context) -> WKWebView {
-    let webView = WKWebView()
+    let config = WKWebViewConfiguration()
+    config.allowsInlineMediaPlayback = true
+    
+    let webView = WKWebView(frame: .zero, configuration: config)
+    
     webView.navigationDelegate = context.coordinator
+    
+    
     return webView
   }
   
@@ -34,5 +40,14 @@ struct WebView: UIViewRepresentable {
     init(_ parent: WebView) {
       self.parent = parent
     }
+    
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+      
+        if navigationAction.targetFrame == nil {
+          webView.load(navigationAction.request)
+        }
+      
+        return nil
+      }
   }
 }
