@@ -24,15 +24,16 @@ struct HomeRecommendView: View {
           .fontWithTracking(.subHeadlineBold)
           .foregroundStyle(.stone800)
         
-        Text("\(recommendQuestion)")
-          .lineLimit(2)
-          .truncationMode(.tail)
-          .foregroundStyle(.stone600)
-          .multilineTextAlignment(.leading)
-          .fontWithTracking(.footnoteR, tracking: -0.4, lineSpacing: 2)
+        HStack {
+          Text("\(recommendQuestion)")
+            .lineLimit(2)
+            .truncationMode(.tail)
+            .foregroundStyle(.stone600)
+            .multilineTextAlignment(.leading)
+            .fontWithTracking(.footnoteR, tracking: -0.4, lineSpacing: 2)
+          Spacer()
+        }
       }
-      
-      Spacer()
     }
     .padding(.horizontal, 24)
     .background(
