@@ -47,6 +47,8 @@ struct AnswerWriteView: View {
       Text("지금 뒤로 나가면 작성했던 답변이\n삭제되고, 복구할 수 없어요.")
     })
     
+    .onAppear(perform: UIApplication.shared.hideKeyboard)
+    
     .task {
       try? await answerVM.getUserSex()
     }
