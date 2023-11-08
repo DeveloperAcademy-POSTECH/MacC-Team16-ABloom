@@ -111,30 +111,7 @@ extension AnswerCheckView {
         RightPurpleChatBubble(text: answerCheckVM.myAnswer?.answerContent ?? "")
         LeftChatBubbleWithImg(text: answerCheckVM.fianceAnswer?.answerContent ?? "", isMale: !self.sex)
         
-        // 리액션 버튼 구현
-        Button(action: {
-          try? answerCheckVM.reactToAnswer(reaction: .good)
-        }, label: {
-          Text("좋아용")
-        })
-        
-        Button(action: {
-          try? answerCheckVM.reactToAnswer(reaction: .knowEachOther)
-        }, label: {
-          Text("서로에 대해 더 알게")
-        })
-        
-        Button(action: {
-          try? answerCheckVM.reactToAnswer(reaction: .moreCommunication)
-        }, label: {
-          Text("더 대화 해보실")
-        })
-        
-        Button(action: {
-          try? answerCheckVM.reactToAnswer(reaction: .moreResearch)
-        }, label: {
-          Text("더 찾아볼듯")
-        })
+        reactSection
       }
       
       Spacer()
@@ -143,6 +120,89 @@ extension AnswerCheckView {
     .background(backWall())
   }
   
+  private var reactSection: some View {
+    VStack {
+      if answerCheckVM.hasMyReaction && answerCheckVM.hasFianceReaction {
+        // 내 반응 상대 반응 다 보여주기
+        Text("내 반응 : \(answerCheckVM.myAnswer?.reactionType.reactionContent ?? "")")
+        Text("상대 반응 : \(answerCheckVM.fianceAnswer?.reactionType.reactionContent ?? "")")
+        
+        completeSection
+        
+      } else if answerCheckVM.hasMyReaction {
+        // 내 반응만 보여주기
+        Text("내 반응 : \(answerCheckVM.myAnswer?.reactionType.reactionContent ?? "")")
+        
+      } else if answerCheckVM.hasFianceReaction {
+        // 상대 반응과 버튼 보여주기
+        Text("상대 반응 : \(answerCheckVM.fianceAnswer?.reactionType.reactionContent ?? "")")
+        
+        reactionButtons
+        
+      } else {
+        // 버튼만 보여주기
+        reactionButtons
+        
+      }
+    }
+  }
+  
+  private var reactionButtons: some View {
+    VStack {
+      // 리액션 버튼 구현
+      reactionButton(reaction: .good)
+      
+      reactionButton(reaction: .knowEachOther)
+      
+      reactionButton(reaction: .moreCommunication)
+      
+      reactionButton(reaction: .moreResearch)
+    }
+  }
+  
+  private func reactionButton(reaction: ReactionType) -> some View {
+    Button {
+      try? answerCheckVM.reactToAnswer(reaction: reaction)
+    } label: {
+      Text(reaction.reactionContent)
+    }
+  }
+  
+  private var completeSection: some View {
+    VStack {
+      if answerCheckVM.bothPositiveReaction {
+        // 바로 완성되었어요
+        Text("문답이 완성됐어요 보여주기")
+        
+      } else if answerCheckVM.isCompleteMyAnswer && answerCheckVM.isCompleteFianceAnswer {
+        // 서로 응답 완
+        Text("문답이 완성됐어요 + 서로 완성상태 변경 보여주기")
+        
+      } else if answerCheckVM.isCompleteMyAnswer {
+        // 나만 응답 완
+        Text("대기중")
+        
+      } else if answerCheckVM.isCompleteFianceAnswer {
+        // 상대만 응답 완, 버튼 보여주기
+        Text("상대가 대기중")
+        
+        Button {
+          try? answerCheckVM.completeAnswer()
+        } label: {
+          Text("✅ 문답 완성하기")
+        }
+        
+      } else {
+        // 버튼만 보여주기
+        Button {
+          try? answerCheckVM.completeAnswer()
+        } label: {
+          Text("✅ 문답 완성하기")
+        }
+        
+      }
+    }
+  }
 }
 
 #Preview {
