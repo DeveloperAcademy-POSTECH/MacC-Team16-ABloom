@@ -132,4 +132,10 @@ final class UserManager {
     
     userAnswerCollection(userId: userId).document(answerId).updateData(data)
   }
+  
+  func updateAnswerComplete(userId: String, answerId: String) {
+    let data: [String: Any] = [DBAnswer.CodingKeys.isComplete.rawValue:true]
+    
+    userAnswerCollection(userId: userId).document(answerId).updateData(data)
+  }
 }
