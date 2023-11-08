@@ -1,43 +1,41 @@
-import { getAuth } from "firebase/auth";
-
-const auth = getAuth();
-const user = auth.currentUser;
-
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 
-
-require("firebase-functions/logger/compat");
-
 admin.initializeApp();
 
-exports.sendNotificationToUser = functions
+exports.sendNotificationToFiance = functions
     .region('asia-northeast3')
     .firestore
-    .document('users/{userID}/answers/')
+    .document('users/{userID}/answers/{documentId}')
     .onCreate(async (snapshot, context) => {
-
-        const userID = user.uid;
+        const userID = context.params.userID;
 
         const userDoc = await admin.firestore().collection('users').doc(userID).get();
+
+        if (!userDoc.exists) {
+            console.error(`User document with ID ${userID} does not exist`);
+            return;
+        }
 
         const userData = userDoc.data();
         const fianceId = userData.fiance;
 
-        const fianceDoc = await admin.firestore().collection('users').doc(fianceId).get();
+        const recipientToken = await getRecipientToken(fianceId);
 
-        if (fianceDoc.exists) {
+        console.log(`token: ${recipientToken}`);
 
-            const recipientToken = await getRecipientToken(fianceId);
+        if (recipientToken) {
+            const partnerUserDoc = await admin.firestore().collection('users').doc(fianceId).get();
 
-            console.log("token: \(recipientToken)");
+            if (partnerUserDoc.exists) {
+                const partnerUserData = partnerUserDoc.data();
+                const partnerUserName = partnerUserData.name;
 
-            const fianceData = fianceData.data();
+                  console.log(`fianceName: ${partnerUserName}`);
 
-            if (recipientToken) {
                 const message = {
                     data: {
-                        title: '\(fianceData.name)님이 답변을 작성했어요.',
+                        title: `${partnerUserName}님이 답변을 작성했어요.`,
                         body: '답변을 확인하고 반응을 남겨볼까요?',
                     },
                     token: recipientToken,
@@ -50,10 +48,10 @@ exports.sendNotificationToUser = functions
                     console.error('Error sending message to partner user:', error);
                 }
             } else {
-                console.error('Recipient token not found for partner user:', partnerUserId);
+                console.error(`Partner user document with ID ${fianceId} does not exist`);
             }
         } else {
-            console.error(`User document with ID ${userID} does not exist`);
+            console.error('Recipient token not found for partner user:', fianceId);
         }
     });
 
@@ -64,10 +62,9 @@ async function getRecipientToken(fianceId) {
 
         if (userDoc.exists) {
             const userData = userDoc.data();
-            console.log(`fcm_token ${userData.fcm_token}`);
             return userData.fcm_token;
         } else {
-            console.log("no partner fcm_token");
+            console.error("no partner fcm_token");
             return null;
         }
     } catch (error) {

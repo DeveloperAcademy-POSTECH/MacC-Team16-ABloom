@@ -10,13 +10,7 @@ import FirebaseCore
 import FirebaseMessaging
 import UserNotifications
 
-
-// Configuring Firebase Push Notification...
-
 class AppDelegate: NSObject, UIApplicationDelegate {
-  
-  // 예시 키
-  let gcmMessageIDKey = "gcm.message_id"
   
   // 앱이 켜졌을 때 자동 실행
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
@@ -24,10 +18,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     // 파이어베이스 설정
     FirebaseApp.configure()
     
-    Messaging.messaging().delegate = self
-    
     // 알림 허용 권한 및 파이어베이스 메시징 정리
     requestNotificationPermission()
+    
+    Messaging.messaging().delegate = self
     
     return true
   }
@@ -43,6 +37,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
       
       if granted {
         self.scheduleDailyNotification()
+        
+        if let fcmToken = Messaging.messaging().fcmToken {
+          try? self.updatefcmToken(fcmToken: fcmToken)
+          print("token achieved")
+        } else {
+          print("empty Token")
+        }
         print("granted")
       } else {
         // Handle the case where permission was denied
@@ -71,6 +72,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         print("Error scheduling notification: \(error)")
       }
     }
+    
+    
   }
 }
 
@@ -82,14 +85,19 @@ extension AppDelegate: MessagingDelegate {
     print("토큰을 받았다")
     // Store this token to firebase and retrieve when to send message to someone...
     let dataDict: [String: String] = ["token": fcmToken ?? ""]
+    
     // Store token in Firestore For Sending Notifications From Server in Future...
+//    if let fcmToken = fcmToken {
+//      do {
+//        try updatefcmToken(fcmToken: fcmToken)
+//        print("Token updated successfully")
+//      } catch {
+//        print("Error updating FCM token: \(error)")
+//      }
+//    }
     
-    if let fcmToken = fcmToken {
-      try? updatefcmToken(fcmToken: fcmToken)
-    }
+    
     print(dataDict)
-    
-    
   }
   
   private func updatefcmToken(fcmToken: String) throws {
@@ -111,12 +119,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     let userInfo = notification.request.content.userInfo
     
     
-    // Do Something With MSG Data... 예제
-    if let messageID = userInfo[gcmMessageIDKey] {
-      print("Message ID: \(messageID)")
-    }
-    print(userInfo)
-    
     completionHandler([[.banner, .badge, .sound]])
   }
   
@@ -128,12 +130,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     let userInfo = response.notification.request.content.userInfo
     
     // Do Something With MSG Data... 예제
-    
-    if let messageID = userInfo[gcmMessageIDKey] {
-      print("Message ID: \(messageID)")
-    }
-    
-    print(userInfo)
     
     completionHandler()
   }
