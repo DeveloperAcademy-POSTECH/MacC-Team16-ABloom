@@ -28,6 +28,8 @@ exports.sendNotificationToUser = functions.firestore
     .onCreate(async (snapshot, context) => {
 
         const userID = firebase.auth().currentUser.user_id;
+        console.log(userId);
+
         const partnerUserId = firebase.auth().currentUser.fiance;
 
         const newDocumentData = snapshot.data();
