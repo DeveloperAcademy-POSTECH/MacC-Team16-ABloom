@@ -15,6 +15,14 @@ struct DBAnswer: Codable {
   let isComplete: Bool?
   let reaction: Int?
   
+  var reactionType: ReactionType {
+    if let reaction = self.reaction {
+      return ReactionType(rawValue: reaction) ?? .error
+    }
+    
+    return .error
+  }
+  
   init(questionId: Int, userId: String, date: Date = .now, answerContent: String, isComplete: Bool, reaction: Int?) {
     self.questionId = questionId
     self.userId = userId
