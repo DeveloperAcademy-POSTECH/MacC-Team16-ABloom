@@ -77,6 +77,8 @@
 		605541152ADE1A9D00AD5625 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605541142ADE1A9D00AD5625 /* TabBarView.swift */; };
 		605541172ADE1ACF00AD5625 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605541162ADE1ACF00AD5625 /* Tab.swift */; };
 		6055411A2ADE66B000AD5625 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605541192ADE66B000AD5625 /* RegistrationView.swift */; };
+		606AA7622AFA910100CA5EA6 /* AnswerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AA7612AFA910100CA5EA6 /* AnswerStatus.swift */; };
+		60797C212AF9DD7C005375DC /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60797C202AF9DD7C005375DC /* Category.swift */; };
 		607DA20C2AEE5028005AE11C /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA20B2AEE5028005AE11C /* ImageFileManager.swift */; };
 		607DA20E2AEF48AE005AE11C /* NavigationArrowLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA20D2AEF48AE005AE11C /* NavigationArrowLeft.swift */; };
 		607DA2122AEF5C96005AE11C /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2112AEF5C96005AE11C /* DeleteAccountView.swift */; };
@@ -159,6 +161,8 @@
 		605541142ADE1A9D00AD5625 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		605541162ADE1ACF00AD5625 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		605541192ADE66B000AD5625 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		606AA7612AFA910100CA5EA6 /* AnswerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerStatus.swift; sourceTree = "<group>"; };
+		60797C202AF9DD7C005375DC /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		607DA20B2AEE5028005AE11C /* ImageFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
 		607DA20D2AEF48AE005AE11C /* NavigationArrowLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationArrowLeft.swift; sourceTree = "<group>"; };
 		607DA2112AEF5C96005AE11C /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
@@ -313,8 +317,10 @@
 		3D4412762AE9F5C500FD5A51 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				3D4412772AE9F5E600FD5A51 /* ServiceWebURL.swift */,
+				606AA7612AFA910100CA5EA6 /* AnswerStatus.swift */,
+				60797C202AF9DD7C005375DC /* Category.swift */,
 				607DA2132AEFCF93005AE11C /* ConnectionError.swift */,
+				3D4412772AE9F5E600FD5A51 /* ServiceWebURL.swift */,
 				3D957EA62AF8E95F00D565E9 /* UserSexType.swift */,
 				3DE945032AFA96C900CF7E33 /* ReactionType.swift */,
 			);
@@ -737,6 +743,7 @@
 				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
 				AEEA8DD32AEB82520068550E /* ChatBubbles.swift in Sources */,
 				6053F15B2ADEB7700064A6E0 /* RegistrationViewModel.swift in Sources */,
+				606AA7622AFA910100CA5EA6 /* AnswerStatus.swift in Sources */,
 				6055411A2ADE66B000AD5625 /* RegistrationView.swift in Sources */,
 				3D957E9C2AEF998000D565E9 /* Ex+Sequence.swift in Sources */,
 				6053F1762AE899320064A6E0 /* InputFields.swift in Sources */,
@@ -759,6 +766,7 @@
 				607DA2142AEFCF93005AE11C /* ConnectionError.swift in Sources */,
 				3D957E892AEE7ECF00D565E9 /* AnswerCheckViewModel.swift in Sources */,
 				6053F1712AE17A260064A6E0 /* HomeRecommendView.swift in Sources */,
+				60797C212AF9DD7C005375DC /* Category.swift in Sources */,
 				607DA2162AEFE900005AE11C /* ConnectionManager.swift in Sources */,
 				6055411A2ADE66B000AD5625 /* RegistrationView.swift in Sources */,
 				AEAB19372ADF77210057BC43 /* Buttons.swift in Sources */,

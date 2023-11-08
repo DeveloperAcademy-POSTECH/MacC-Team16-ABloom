@@ -7,68 +7,88 @@
 
 import SwiftUI
 
-enum AnswerStatus {
-  case both
-  case onlyMe
-  case onlyFinace
-  case nobody
-}
-
 struct QnAListItem: View {
-  let categoryImg: String
+  let category: Category
   let question: String
-  let date: Date
-  let isAns: AnswerStatus
-  
-  var formattedWeddingDate: String {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy년 MM월 dd일"
-    return formatter.string(from: date)
-  }
+  let answerStatus: AnswerStatus
   
   var body: some View {
-    HStack(spacing: 15) {
-      
-      Image(categoryImg)
-        .resizable()
-        .aspectRatio(contentMode: .fit)
-        .frame(width: 50, height: 50)
-        .background(
-          RoundedRectangle(cornerRadius: 17)
-            .clayMorpMDShadow()
-            .foregroundStyle(.white)
-        )
-      
-      VStack(spacing: 4) {
-        HStack {
-          Text(question)
-            .fontWithTracking(.caption1Bold)
-            .foregroundStyle(.black)
-            .lineLimit(1)
-          
-          Spacer()
-        }
-        
-        HStack(spacing: 0) {
-          Text(formattedWeddingDate)
-            .fontWithTracking(.caption2R)
-          
-          Spacer()
-          
-          switch isAns {
-          case .onlyMe:
-            Text("답변을 기다리고 있어요 >")
-              .fontWithTracking(.caption2R)
-          case .onlyFinace:
-            Text("답변해주세요 >")
-              .fontWithTracking(.caption2R)
-          case .nobody, .both:
-            EmptyView()
+    VStack(alignment: .leading, spacing: 15) {
+      HStack {
+        Text("     " + question)
+          .foregroundStyle(.stone900)
+          .fontWithTracking(.footnoteBold, lineSpacing: 2)
+          .overlay(alignment: .topLeading) {
+            Text("Q.")
+              .foregroundColor(.purple700)
+              .fontWithTracking(.subHeadlineBold)
+              .offset(y: -2)
           }
-        }
-        .foregroundStyle(.stone500)
+      }
+      .multilineTextAlignment(.leading)
+      
+      HStack(spacing: 6) {
+        categoryTag
+        
+        answerStatusTag
+        
+        Spacer()
       }
     }
-    .padding(.horizontal, 20)
+    .padding(.horizontal, 25)
+    .padding(.vertical, 24)
+    .background(Color.white)
+    .cornerRadius(12, corners: .allCorners)
   }
+}
+
+extension QnAListItem {
+  private var categoryTag: some View {
+    HStack {
+      Text("\(category.type)")
+        .fontWithTracking(.caption2R)
+        .foregroundStyle(.stone600)
+        .padding(.horizontal, 8)
+        .padding(.vertical, 5)
+    }
+    .overlay {
+      RoundedRectangle(cornerRadius: 12)
+        .stroke(lineWidth: 1)
+        .foregroundStyle(.stone600)
+    }
+  }
+  
+  private var answerStatusTag: some View {
+    HStack(spacing: 0) {
+      if let image = answerStatus.image {
+        image
+      }
+     
+      Text("\(answerStatus.text)")
+    }
+    .fontWithTracking(.caption2R, tracking: -0.4)
+    .foregroundStyle(answerStatus.textColor)
+    .padding(.horizontal, 8)
+    .padding(.vertical, 5)
+    .background(answerStatus.backgroundColor)
+    .clipShape(RoundedRectangle(cornerRadius: 12))
+    .overlay {
+      if answerStatus == .completed {
+        RoundedRectangle(cornerRadius: 12)
+          .stroke(lineWidth: 1)
+          .foregroundStyle(.purple500)
+      }
+    }
+  }
+}
+
+#Preview {
+  VStack {
+    QnAListItem(category: .future, question: "Nobody", answerStatus: .nobody)
+    QnAListItem(category: .child, question: "onlyMe", answerStatus: .onlyMe)
+    QnAListItem(category: .child, question: "onlyFinace", answerStatus: .onlyFinace)
+    QnAListItem(category: .child, question: "both", answerStatus: .both)
+    QnAListItem(category: .child, question: "completed", answerStatus: .completed)
+  }
+  .background(.blue)
 }
