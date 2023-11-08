@@ -99,6 +99,12 @@ extension AnswerWriteView {
           if newValue.count > 150 {
             answerVM.answerText = String(newValue.prefix(150))
           }
+          // 내용이 있을 때, 스와이프 방지
+          if !newValue.isEmpty {
+            UINavigationController.isSwipeBackEnabled = false
+          } else {
+            UINavigationController.isSwipeBackEnabled = true
+          }
         })
         .padding(.horizontal, 22)
     }
