@@ -14,25 +14,20 @@ struct QuestionMainView: View {
     VStack {
       headerView
       
-      Spacer()
-        .frame(height: 34)
+      Spacer().frame(height: 40)
       
-      if questionVM.isEmpty {
+      switch questionVM.viewState {
+      case .isProgress:
+        ProgressView()
+          .frame(maxHeight: .infinity)
+      case .isEmpty:
         emptyListView
-          .background(backWall())
-        
-      } else if questionVM.isSorted {
+      case .isSorted:
         answeredQScroll
-          .background(backWall())
-      } else {
-        // Progress 현황확인
-        VStack {
-          ProgressView()
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(backWall())
       }
     }
+    .background(backgroundDefault())
+    
     .navigationDestination(for: Int.self, destination: { content in
       if content == 0 {
         SelectQuestionView(sex: questionVM.sex)
@@ -40,8 +35,7 @@ struct QuestionMainView: View {
         AnswerCheckView(answerCheckVM: .init(questionId: content), sex: questionVM.sex)
       }
     })
-    .background(backgroundDefault())
-    
+   
     .task {
       questionVM.getInfo()
     }
@@ -49,50 +43,44 @@ struct QuestionMainView: View {
 }
 
 extension QuestionMainView {
+  // 헤더
   private var headerView: some View {
-    // 헤더
     HStack {
       Text("우리의 문답")
         .fontWithTracking(.title3Bold)
-        .padding([.leading], 20)
       Spacer()
       // FIXME: 다른 뷰로 전환 시에는 다른 방식으로 처리해야함
       NavigationLink(value: 0) {
         Image("pencil_write_fill")
       }
-      .padding(.trailing, 17)
+      .padding(.trailing, -3)
     }
-    .padding(.top, 20)
+    .padding([.top, .horizontal], 20)
     .foregroundStyle(.stone700)
   }
   
   // 질문 목록
   private var answeredQScroll: some View {
-    
     ScrollView(.vertical) {
-      Spacer()
-        .frame(height: 30)
-      
-      LazyVStack(spacing: 30) {
-        
+      LazyVStack(spacing: 12) {
         ForEach(questionVM.questions, id: \.questionID) { question in
           NavigationLink(value: question.questionID) {
             QnAListItem(
-              categoryImg: (Category(rawValue: question.category)?.imgName)!,
+              category: Category(rawValue: question.category) ?? .child,
               question: question.content,
-              date: (questionVM.answers.last(where: { $0.questionId == question.questionID })?.date) ?? .now,
-              isAns: questionVM.checkAnswerStatus(qid: question.questionID))
+              answerStatus: questionVM.checkAnswerStatus(qid: question.questionID)
+            )
           }
+          .padding(.horizontal, 20)
         }
+        
         // 탭 바로 가려지는 부분 뷰 처리
-        Spacer()
-          .frame(height: 20)
+        Spacer().frame(height: 30)
       }
     }
   }
   
   private var emptyListView: some View {
-    
     VStack {
       VStack(spacing: 6) {
         HStack(spacing: 7) {
@@ -105,19 +93,15 @@ extension QuestionMainView {
         Text("첫번째 문답을 작성해보세요.")
       }
       .fontWithTracking(.calloutR, tracking: -0.4)
-      .foregroundStyle(.stone400)
+      .foregroundStyle(.stone500)
       .frame(maxWidth: .infinity)
-      .frame(height: 114)
-      .background(
-        RoundedRectangle(cornerRadius: 12)
-          .stroke(Color.stone300)
-          .foregroundStyle(.clear)
-      )
-      .padding(.horizontal, 20)
-      .padding(.top, 35)
+      .frame(height: 141)
+      .background(Color.white)
+      .cornerRadius(12, corners: .allCorners)
       
       Spacer()
     }
+    .padding(.horizontal, 20)
   }
 }
 
