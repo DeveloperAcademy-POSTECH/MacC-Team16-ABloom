@@ -92,7 +92,7 @@ final class UserManager {
     let collection = userAnswerCollection(userId: userId)
     let document = collection.document()
     
-    let data = DBAnswer(questionId: questionId, userId: userId, answerContent: content)
+    let data = DBAnswer(questionId: questionId, userId: userId, answerContent: content, isComplete: false, reaction: nil)
     
     try? document.setData(from: data, merge: false)
   }
@@ -114,14 +114,22 @@ final class UserManager {
     }
   }
   
-  func getAnswer(userId: String, questionId: Int) async throws -> DBAnswer {
+  func getAnswer(userId: String, questionId: Int) async throws -> (answer: DBAnswer, answerId: String) {
     let collection = userAnswerCollection(userId: userId)
-    let userAnswer = try await collection
+    let userAnswerSnapshot = try await collection
       .whereField(DBAnswer.CodingKeys.questionId.rawValue, isEqualTo: questionId)
-      .getDocuments(as: DBAnswer.self)
+      .getDocuments()
     
-    guard let answer = userAnswer.first else { throw URLError(.badServerResponse)}
+    guard let answerDocumentSnapshot = userAnswerSnapshot.documents.first else { throw URLError(.badServerResponse) }
     
-    return answer
+    let answer = try answerDocumentSnapshot.data(as: DBAnswer.self)
+    
+    return (answer, answerId: answerDocumentSnapshot.documentID)
+  }
+  
+  func updateReaction(userId: String, answerId: String, reaction: ReactionType) {
+    let data: [String: Any] = [DBAnswer.CodingKeys.reaction.rawValue:reaction.rawValue]
+    
+    userAnswerCollection(userId: userId).document(answerId).updateData(data)
   }
 }

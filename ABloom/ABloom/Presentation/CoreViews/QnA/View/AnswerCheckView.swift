@@ -78,7 +78,7 @@ extension AnswerCheckView {
       // if 상대방과의 연결이 없을 경우
       if answerCheckVM.isNoFiance {
         if !answerCheckVM.isNoMyAnswer {
-          RightPurpleChatBubble(text: answerCheckVM.myAnswer)
+          RightPurpleChatBubble(text: answerCheckVM.myAnswer?.answerContent ?? "")
         }
         LeftChatBubbleWithImg(text: answerCheckVM.notConnectedText, isMale: !self.sex)
         NavigationLink {
@@ -90,7 +90,7 @@ extension AnswerCheckView {
         
         // if 내가 먼저 답하고, 상대방의 답변을 기다릴 경우
       } else if answerCheckVM.isNoFianceAnswer && !answerCheckVM.isNoMyAnswer {
-        RightPurpleChatBubble(text: answerCheckVM.myAnswer)
+        RightPurpleChatBubble(text: answerCheckVM.myAnswer?.answerContent ?? "")
         LeftChatBubbleWithImg(text: answerCheckVM.waitText, isMale: !self.sex)
       }
       
@@ -108,8 +108,33 @@ extension AnswerCheckView {
       
       // 둘 다 작성했을 경우 => 내 답변이 먼저 보이기
       else {
-        RightPurpleChatBubble(text: answerCheckVM.myAnswer)
-        LeftChatBubbleWithImg(text: answerCheckVM.fianceAnswer, isMale: !self.sex)
+        RightPurpleChatBubble(text: answerCheckVM.myAnswer?.answerContent ?? "")
+        LeftChatBubbleWithImg(text: answerCheckVM.fianceAnswer?.answerContent ?? "", isMale: !self.sex)
+        
+        // 리액션 버튼 구현
+        Button(action: {
+          try? answerCheckVM.reactToAnswer(reaction: .good)
+        }, label: {
+          Text("좋아용")
+        })
+        
+        Button(action: {
+          try? answerCheckVM.reactToAnswer(reaction: .knowEachOther)
+        }, label: {
+          Text("서로에 대해 더 알게")
+        })
+        
+        Button(action: {
+          try? answerCheckVM.reactToAnswer(reaction: .moreCommunication)
+        }, label: {
+          Text("더 대화 해보실")
+        })
+        
+        Button(action: {
+          try? answerCheckVM.reactToAnswer(reaction: .moreResearch)
+        }, label: {
+          Text("더 찾아볼듯")
+        })
       }
       
       Spacer()
