@@ -117,21 +117,19 @@ extension SelectQuestionView {
       ScrollViewReader { proxy in
         ScrollView(.vertical) {
           Spacer()
-            .frame(height: 16)
+            .frame(height: 20)
             .id("top")
           
           ForEach(selectQVM.filteredLists, id: \.self) { question in
             NavigationLink(value: question) {
-              QuestionChatBubble(text: question.content)
+              QuestionChatBubble(text: question.content.useNonBreakingSpace())
             }
             .padding(.horizontal, 20)
-            .padding(.vertical, 12)
+            .padding(.bottom, 17)
             
-            if selectQVM.filteredLists.last == question {
-              Spacer()
-                .frame(height: 50)
-            }
           }
+          Spacer()
+            .frame(height: 50)
         }
         .onChange(of: selectQVM.selectedCategory) { new in
           proxy.scrollTo("top")
