@@ -11,7 +11,7 @@ struct MenuView: View {
   @Binding var selectedTab: Tab
   
   let listItemPadding: CGFloat = 32
-  let versionInfoText: String = "v1.0.0"
+  let versionInfoText: String = "v1.1.0"
   
   var body: some View {
     NavigationStack {
