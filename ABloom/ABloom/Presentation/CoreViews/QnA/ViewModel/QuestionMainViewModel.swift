@@ -54,7 +54,11 @@ final class QuestionMainViewModel: ObservableObject {
         return .onlyFinace
       }
     } else if filteredAnswers.count == 2 {
-      return .both
+      if filteredAnswers[0].isComplete != nil && filteredAnswers[1].isComplete != nil && filteredAnswers[0].isComplete! && filteredAnswers[1].isComplete! {
+        return .completed
+      } else {
+        return .both
+      }
     } else {
       return .nobody
     }
