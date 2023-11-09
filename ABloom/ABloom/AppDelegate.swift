@@ -21,7 +21,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     // 알림 허용 권한 및 파이어베이스 메시징 정리
     requestNotificationPermission()
     
+    application.registerForRemoteNotifications()
+    
     Messaging.messaging().delegate = self
+    // 푸시 권한 설정
+          
+         
     
     return true
   }
@@ -37,14 +42,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
       
       if granted {
         self.scheduleDailyNotification()
-        
-        if let fcmToken = Messaging.messaging().fcmToken {
-          try? self.updatefcmToken(fcmToken: fcmToken)
-          print("token achieved")
-        } else {
-          print("empty Token")
-        }
         print("granted")
+        
       } else {
         // Handle the case where permission was denied
       }
@@ -87,15 +86,14 @@ extension AppDelegate: MessagingDelegate {
     let dataDict: [String: String] = ["token": fcmToken ?? ""]
     
     // Store token in Firestore For Sending Notifications From Server in Future...
-//    if let fcmToken = fcmToken {
-//      do {
-//        try updatefcmToken(fcmToken: fcmToken)
-//        print("Token updated successfully")
-//      } catch {
-//        print("Error updating FCM token: \(error)")
-//      }
-//    }
-    
+    if let fcmToken = fcmToken {
+      do {
+        try updatefcmToken(fcmToken: fcmToken)
+        print("Token updated successfully")
+      } catch {
+        print("Error updating FCM token: \(error)")
+      }
+    }
     
     print(dataDict)
   }
