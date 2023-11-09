@@ -88,13 +88,14 @@ final class AnswerCheckViewModel: ObservableObject {
     
     self.fianceId = fianceId
     
+    if let fianceName = try await UserManager.shared.getUser(userId: fianceId).name {
+      self.fianceName = fianceName
+    }
+    
     do {
       let fianceAnswer = try await UserManager.shared.getAnswer(userId: fianceId, questionId: questionId)
       self.fianceAnswer = fianceAnswer.answer
       self.fianceAnswerId = fianceAnswer.answerId
-      if let fianceName = try await UserManager.shared.getUser(userId: fianceId).name {
-        self.fianceName = fianceName
-      }
     } catch {
       self.isNoFianceAnswer = true
       throw URLError(.badURL)
