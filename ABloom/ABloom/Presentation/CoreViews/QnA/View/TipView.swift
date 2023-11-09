@@ -68,7 +68,7 @@ struct TipView: View {
       } label: {
         Text("확인")
           .fontWithTracking(.subHeadlineBold, tracking: -0.4)
-          .padding(.vertical, 12)
+          .frame(height: 45)
           .frame(maxWidth: .infinity)
           .foregroundStyle(.white)
           .background(Color.purple500)
@@ -81,6 +81,8 @@ struct TipView: View {
     .background(Color.stone100)
     .cornerRadius(16, corners: .allCorners)
     .padding(.horizontal, 8)
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
+    .background(Color.black.opacity(0.6))
   }
 }
 
