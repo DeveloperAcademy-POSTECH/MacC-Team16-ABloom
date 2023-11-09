@@ -138,4 +138,10 @@ final class UserManager {
     
     userAnswerCollection(userId: userId).document(answerId).updateData(data)
   }
+  
+  // FCMToken
+  func updateFcmToken(userID: String, fcmToken: String) throws {
+    let fcmToken: [String: Any] = [DBUser.CodingKeys.fcmToken.rawValue:fcmToken]
+    userDocument(userId: userID).updateData(fcmToken)
+  }
 }
