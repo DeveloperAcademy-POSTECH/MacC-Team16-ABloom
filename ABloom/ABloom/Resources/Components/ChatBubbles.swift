@@ -78,7 +78,7 @@ struct QuestionChatBubble: View {
         .multilineTextAlignment(.leading)
         .padding(.vertical, paddingV)
         .padding(.horizontal, paddingH)
-       
+      
         .background(
           Rectangle()
             .clayMorpMDShadow()
@@ -160,27 +160,26 @@ struct ChatBubbleTextField: View {
     TextField("", text: $text, axis: .vertical)
       .placeholder(when: text.isEmpty, placeholder: {
         Text("답변을 작성해주세요. (150자 이내)")
-          .font(.custom("SpoqaHanSansNeo-Regular", size: 14))
-          .tracking(-0.2)
-          .lineSpacing(7)
+          .fontWithTracking(.chatBubble, tracking: -0.2)
           .foregroundStyle(.stone300)
       })
-      .font(.custom("SpoqaHanSansNeo-Regular", size: 14))
-      .tracking(-0.2)
-      .lineSpacing(7)
+      .fontWithTracking(.chatBubble, tracking: -0.2, lineSpacing: 7)
       .foregroundStyle(.white)
       .multilineTextAlignment(.leading)
     
       .padding(.vertical, paddingV)
       .padding(.horizontal, paddingH)
+      
+      // 텍스트 입력시 커서가 작아지면서 백그라운드도 작아지는 현상 방지를 위해 height를 조금 더 넓게 설정
+      .frame(minHeight: 45, alignment: .center)
+      .frame(maxWidth: 247, alignment: .leading)
+    
       .background(
         Rectangle()
           .clayMorpMDShadow()
           .foregroundStyle(.purple600)
           .cornerRadius(cornerV, corners: [.topLeft, .bottomRight, .bottomLeft])
       )
-      .frame(minHeight: 20, alignment: .center)
-      .frame(maxWidth: 247, alignment: .leading)
   }
 }
 
@@ -228,5 +227,6 @@ struct ChatCallout: View {
     ChatCallout(text: "내용")
     ChatBubbleBtn(text: "챗버블버튼", disabled: true)
     ChatBubbleBtn(text: "챗버블버튼", disabled: false)
+    //ChatBubbleTextField(text: "")
   }
 }
