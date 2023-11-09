@@ -73,7 +73,7 @@ struct AnswerCheckView: View {
 
 
 extension AnswerCheckView {
-  
+  // MARK: Answer Area
   private var answerText: some View {
     VStack(spacing: 12) {
       ChatCallout(text: "서로의 답변")
@@ -114,11 +114,11 @@ extension AnswerCheckView {
         
         reactSection
       }
-      
     }
     .padding(.horizontal, 20)
   }
   
+  // MARK: React Area
   private var reactSection: some View {
     VStack(spacing: 12) {
       ChatCallout(text: "반응 남기기")
@@ -127,17 +127,16 @@ extension AnswerCheckView {
         // 내 반응 상대 반응 다 보여주기
         RightPurpleChatBubble(text: "\(answerCheckVM.myName)님이 새로운 반응을 남겼어요.\n \"\(answerCheckVM.myAnswer?.reactionType.reactionContent ?? "")\"")
         LeftChatBubbleWithImg(text: "\(answerCheckVM.fianceName)님이 새로운 반응을 남겼어요.\n\"\(answerCheckVM.fianceAnswer?.reactionType.reactionContent ?? "")\"", isMale: !self.sex)
-        
         completeSection
         
       } else if answerCheckVM.hasMyReaction {
         // 내 반응만 보여주기
         RightPurpleChatBubble(text: "\(answerCheckVM.myName)님이 새로운 반응을 남겼어요.\n \"\(answerCheckVM.myAnswer?.reactionType.reactionContent ?? "")\"")
         LeftChatBubbleWithImg(text: "\(answerCheckVM.fianceName)님의 반응을 기다리고 있어요.", isMale: !self.sex)
+        
       } else if answerCheckVM.hasFianceReaction {
         // 상대 반응과 버튼 보여주기
         LeftChatBubbleWithImg(text: "\(answerCheckVM.fianceName)님이 새로운 반응을 남겼어요. 나도 반응을 선택하면 서로 확인할 수 있어요.", isMale: !self.sex)
-        
         reactionButtons
         
       } else {

@@ -28,7 +28,6 @@ final class AnswerCheckViewModel: ObservableObject {
   @Published var reactButtonTapped = false
   @Published var myReaction: ReactionType = .error
   
-  // TODO: @Radin 아래 플래그들을 이용하여 뷰 작업을 진행해주세요
   // 1. 나의 반응과 피앙새의 반응이 모두 있을 때 (hasMyReaction && hasFianceReaction)
   // 2. 나의 반응만 있을 때 (hasMyReaction)
   // 3. 피앙새의 반응만 있을 때 (hasFianceReaction)
@@ -37,8 +36,6 @@ final class AnswerCheckViewModel: ObservableObject {
   @Published var hasFianceReaction = false
   @Published var bothPositiveReaction = false
   
-  
-  // TODO: @Radin 아래 플래그들을 이용하여 뷰 작업을 진행해주세요
   // 1. 나와 피앙새 모두 문답을 완료 표시 했을 때 (isCompleteMyAnswer && isCompleteFianceAnswer)
   // 2. 나만 문답 완료 표시를 했을 때 (isCompleteMyAnswer)
   // 3. 피앙새만 문답 완료 표시를 했을 때 (isCompleteFianceAnswer)
@@ -49,8 +46,6 @@ final class AnswerCheckViewModel: ObservableObject {
   let questionId: Int
   
   let notConnectedText = "아직 상대방과 연결되어 있지 않아요. 지금 연결하고, 상대방의 문답을 확인해주세요."
-  let waitText = "상대방의 답변을 기다리고 있어요."
-  
   
   init(questionId: Int) {
     self.questionId = questionId
