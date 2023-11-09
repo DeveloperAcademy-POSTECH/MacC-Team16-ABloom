@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MenuView: View {
+  @Binding var selectedTab: Tab
+  
   let listItemPadding: CGFloat = 32
   let versionInfoText: String = "v1.0.0"
   
@@ -28,7 +30,7 @@ struct MenuView: View {
 
 #Preview {
   NavigationStack {
-    MenuView()
+    MenuView(selectedTab: .constant(.info))
   }
 }
 
@@ -47,7 +49,7 @@ extension MenuView {
   private var menuList: some View {
     VStack(spacing: listItemPadding) {
       MenuListNavigationItem(title: "내 계정") {
-        MyAccountView()
+        MyAccountView(selectedTab: $selectedTab)
       }
       
       MenuListNavigationItem(title: "연결 설정") {

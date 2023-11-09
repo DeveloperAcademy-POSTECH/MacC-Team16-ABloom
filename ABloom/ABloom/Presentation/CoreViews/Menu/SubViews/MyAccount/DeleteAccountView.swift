@@ -11,6 +11,7 @@ struct DeleteAccountView: View {
   @Environment(\.dismiss) private var dismiss
   @State var deleteAlert: Bool = false
   @State var showLoginView = false
+  @Binding var selectedTab: Tab
 
   private let title = "메리를 탈퇴하시나요?"
   private let content1 = "지금까지 메리를 이용해주셔서 감사합니다.\n회원님께 더 나은 서비스를 제공해드리지 못한 것 같아 무거운 마음이 큽니다.\n\n"
@@ -69,6 +70,8 @@ struct DeleteAccountView: View {
       
       Button("회원 탈퇴") {
         Task {
+          dismiss()
+          selectedTab = .main
           try? await UserManager.shared.deleteUser()
           try? await AuthenticationManager.shared.delete()
           showLoginView = true
@@ -87,5 +90,5 @@ struct DeleteAccountView: View {
 }
 
 #Preview {
-  DeleteAccountView()
+  DeleteAccountView(selectedTab: .constant(.info))
 }
