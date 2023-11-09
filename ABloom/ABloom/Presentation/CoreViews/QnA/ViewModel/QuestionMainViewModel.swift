@@ -54,7 +54,13 @@ final class QuestionMainViewModel: ObservableObject {
         return .onlyFinace
       }
     } else if filteredAnswers.count == 2 {
-      return .both
+      
+      if let isComplete0 = filteredAnswers[0].isComplete, let isComplete1 = filteredAnswers[1].isComplete,
+         isComplete0 && isComplete1 {
+        return .completed
+      } else {
+        return .both
+      }
     } else {
       return .nobody
     }
