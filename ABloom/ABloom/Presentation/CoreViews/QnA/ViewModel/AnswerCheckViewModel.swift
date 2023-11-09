@@ -15,7 +15,7 @@ final class AnswerCheckViewModel: ObservableObject {
   @Published var fianceAnswerId: String?
   @Published var fianceAnswer: DBAnswer?
   @Published var fianceName: String = ""
-  
+  @Published var myName: String = ""
   @Published var myId: String?
   @Published var fianceId: String?
   
@@ -23,6 +23,8 @@ final class AnswerCheckViewModel: ObservableObject {
   @Published var isNoMyAnswer = false
   @Published var isNoFianceAnswer = false
   @Published var isDataReady = false
+  
+  @Published var showTip = false
   
   // TODO: @Radin 아래 플래그들을 이용하여 뷰 작업을 진행해주세요
   // 1. 나의 반응과 피앙새의 반응이 모두 있을 때 (hasMyReaction && hasFianceReaction)
@@ -67,8 +69,9 @@ final class AnswerCheckViewModel: ObservableObject {
   
   private func getMyAnswer() async throws {
     let myId = try AuthenticationManager.shared.getAuthenticatedUser().uid
-    
     self.myId = myId
+    
+    self.myName = try await UserManager.shared.getUser(userId: myId).name ?? ""
     
     do {
       let myAnswer = try await UserManager.shared.getAnswer(userId: myId, questionId: questionId)
