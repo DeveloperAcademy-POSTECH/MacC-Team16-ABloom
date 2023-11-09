@@ -97,6 +97,17 @@ struct QuestionChatBubble: View {
 
 struct ChatBubbleBtn: View {
   let text: String
+  let disabled: Bool
+  
+  init(text: String) {
+    self.text = text
+    self.disabled = false
+  }
+  
+  init(text: String, disabled: Bool) {
+    self.text = text
+    self.disabled = disabled
+  }
   
   var body: some View {
     HStack {
@@ -112,6 +123,9 @@ struct ChatBubbleBtn: View {
           Rectangle()
             .clayMorpMDShadow()
             .foregroundStyle(.purple300)
+            .overlay {
+              disabled ? Color.black.opacity(0.18) : Color.clear
+            }
             .cornerRadius(cornerV, corners: [.topLeft, .bottomRight, .bottomLeft])
         )
         .frame(maxWidth: 247, alignment: .trailing)
