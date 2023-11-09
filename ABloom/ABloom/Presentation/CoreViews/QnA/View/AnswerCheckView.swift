@@ -32,7 +32,7 @@ struct AnswerCheckView: View {
         Spacer()
       }
     }
-    .background(backgroundDefault())
+    
     .customNavigationBar(
       centerView: {
         Text("우리의 문답")
@@ -49,12 +49,14 @@ struct AnswerCheckView: View {
           .foregroundStyle(.stone700)
       })
     
-    .overlay(content: {
+    .overlay {
       if answerCheckVM.showTip {
         TipView(isPresent: $answerCheckVM.showTip)
           .zIndex(1)
       }
-    })
+    }
+    
+    .background(backgroundDefault())
     
     .onAppear {
       answerCheckVM.getAnswers()
