@@ -18,15 +18,23 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     // 파이어베이스 설정
     FirebaseApp.configure()
     
-    // 알림 허용 권한 및 파이어베이스 메시징 정리
-    requestNotificationPermission()
+    UNUserNotificationCenter.current().delegate = self
+    
+    let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+    UNUserNotificationCenter
+      .current()
+      .requestAuthorization(
+        options: authOptions, completionHandler: { granted, _ in
+          if granted {
+            self.scheduleDailyNotification()
+            print("granted and set up local push")
+          }
+        }
+      )
     
     application.registerForRemoteNotifications()
     
     Messaging.messaging().delegate = self
-    // 푸시 권한 설정
-          
-         
     
     return true
   }
@@ -35,19 +43,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
     // Firebase Cloud Messaging 서비스에 토큰 전달
     Messaging.messaging().apnsToken = deviceToken
+    print(deviceToken)
+    print("good")
   }
   
-  func requestNotificationPermission() {
-    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-      
-      if granted {
-        self.scheduleDailyNotification()
-        print("granted")
-        
-      } else {
-        // Handle the case where permission was denied
-      }
-    }
+  // 푸시 토큰 받기 실패
+  func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+    print("error!!")
+    print(error.localizedDescription)
   }
   
   func scheduleDailyNotification() {
@@ -71,8 +74,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         print("Error scheduling notification: \(error)")
       }
     }
-    
-    
   }
 }
 
@@ -94,7 +95,6 @@ extension AppDelegate: MessagingDelegate {
         print("Error updating FCM token: \(error)")
       }
     }
-    
     print(dataDict)
   }
   
@@ -102,7 +102,6 @@ extension AppDelegate: MessagingDelegate {
     let myId: String = try AuthenticationManager.shared.getAuthenticatedUser().uid
     try UserManager.shared.updateFcmToken(userID: myId, fcmToken: fcmToken)
   }
-  
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
@@ -116,7 +115,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     let userInfo = notification.request.content.userInfo
     
-    
     completionHandler([[.banner, .badge, .sound]])
   }
   
@@ -126,8 +124,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                               didReceive response: UNNotificationResponse,
                               withCompletionHandler completionHandler: @escaping () -> Void) {
     let userInfo = response.notification.request.content.userInfo
-    
-    // Do Something With MSG Data... 예제
     
     completionHandler()
   }

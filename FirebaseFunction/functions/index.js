@@ -31,10 +31,10 @@ exports.sendNotificationToFiance = functions
                 const partnerUserData = partnerUserDoc.data();
                 const partnerUserName = partnerUserData.name;
 
-                  console.log(`fianceName: ${partnerUserName}`);
+                console.log(`fianceName: ${partnerUserName}`);
 
                 const message = {
-                    data: {
+                    notification: {
                         title: `${partnerUserName}님이 답변을 작성했어요.`,
                         body: '답변을 확인하고 반응을 남겨볼까요?',
                     },
@@ -42,8 +42,10 @@ exports.sendNotificationToFiance = functions
                 };
 
                 try {
-                    await admin.messaging().send(message);
+                    return await admin.messaging().send(message).then((results) => {
                     console.log('Successfully sent message to partner user');
+                    return {success: true};
+                  });
                 } catch (error) {
                     console.error('Error sending message to partner user:', error);
                 }
