@@ -45,7 +45,8 @@ struct AnswerCheckView: View {
         }
       },
       rightView: {
-        EmptyView() // TODO: 버튼 선택시 확인
+        reactionSubmitButton
+          .foregroundStyle(.stone700)
       })
     
     .overlay(content: {
@@ -160,12 +161,28 @@ extension AnswerCheckView {
   
   private func reactionButton(reaction: ReactionType) -> some View {
     Button {
-      try? answerCheckVM.reactToAnswer(reaction: reaction)
+      self.answerCheckVM.reactButtonTapped = true
+      self.answerCheckVM.myReaction = reaction
     } label: {
-      RightPurpleChatBubble(text: reaction.reactionContent)
+      ChatBubbleBtn(
+        text: reaction.reactionContent,
+        disabled: answerCheckVM.myReaction != reaction
+      )
     }
   }
   
+  private var reactionSubmitButton: some View {
+    answerCheckVM.reactButtonTapped ?
+    Button {
+      try? answerCheckVM.reactToAnswer()
+    } label: {
+      Text("선택")
+        .font(.headlineR)
+    }
+    : Button { } label: { Text("") }
+  }
+  
+  // MARK: Complete Area
   private var completeSection: some View {
     VStack(spacing: 12) {
       if answerCheckVM.bothPositiveReaction {

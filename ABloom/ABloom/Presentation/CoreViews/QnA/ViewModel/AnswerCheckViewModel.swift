@@ -25,6 +25,8 @@ final class AnswerCheckViewModel: ObservableObject {
   @Published var isDataReady = false
   
   @Published var showTip = false
+  @Published var reactButtonTapped = false
+  @Published var myReaction: ReactionType = .error
   
   // TODO: @Radin 아래 플래그들을 이용하여 뷰 작업을 진행해주세요
   // 1. 나의 반응과 피앙새의 반응이 모두 있을 때 (hasMyReaction && hasFianceReaction)
@@ -109,14 +111,13 @@ final class AnswerCheckViewModel: ObservableObject {
   }
   
   // MARK: 반응(React)관련 함수
-  // TODO: @Radin 이 함수를 이용하여 버튼과 액션을 구현해주세요.
-  func reactToAnswer(reaction: ReactionType) throws {
+  func reactToAnswer() throws {
     guard let myId = self.myId else { throw URLError(.badURL) }
     
     guard let myAnswer = self.myAnswer else { throw URLError(.badURL) }
     guard let myAnswerId = self.myAnswerId else { throw URLError(.badURL)}
     
-    UserManager.shared.updateReaction(userId: myId, answerId: myAnswerId, reaction: reaction)
+    UserManager.shared.updateReaction(userId: myId, answerId: myAnswerId, reaction: myReaction)
     
     Task {
       try? await getMyAnswer()
