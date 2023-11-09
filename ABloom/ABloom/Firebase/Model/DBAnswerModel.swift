@@ -12,12 +12,24 @@ struct DBAnswer: Codable {
   let userId: String
   let date: Date
   let answerContent: String
+  let isComplete: Bool?
+  let reaction: Int?
   
-  init(questionId: Int, userId: String, date: Date = .now, answerContent: String) {
+  var reactionType: ReactionType {
+    if let reaction = self.reaction {
+      return ReactionType(rawValue: reaction) ?? .error
+    }
+    
+    return .error
+  }
+  
+  init(questionId: Int, userId: String, date: Date = .now, answerContent: String, isComplete: Bool, reaction: Int?) {
     self.questionId = questionId
     self.userId = userId
     self.date = date
     self.answerContent = answerContent
+    self.isComplete = isComplete
+    self.reaction = reaction
   }
   
   enum CodingKeys: String, CodingKey {
@@ -25,6 +37,8 @@ struct DBAnswer: Codable {
     case userId = "user_id"
     case date = "date"
     case answerContent = "answer_content"
+    case isComplete = "is_complete"
+    case reaction = "reaction"
   }
   
   init(from decoder: Decoder) throws {
@@ -33,6 +47,8 @@ struct DBAnswer: Codable {
     self.userId = try container.decode(String.self, forKey: .userId)
     self.date = try container.decode(Date.self, forKey: .date)
     self.answerContent = try container.decode(String.self, forKey: .answerContent)
+    self.isComplete = try container.decodeIfPresent(Bool.self, forKey: .isComplete)
+    self.reaction = try container.decodeIfPresent(Int.self, forKey: .reaction)
   }
   
   func encode(to encoder: Encoder) throws {
@@ -41,5 +57,7 @@ struct DBAnswer: Codable {
     try container.encode(self.userId, forKey: .userId)
     try container.encode(self.date, forKey: .date)
     try container.encode(self.answerContent, forKey: .answerContent)
+    try container.encode(self.isComplete, forKey: .isComplete)
+    try container.encode(self.reaction, forKey: .reaction)
   }
 }
