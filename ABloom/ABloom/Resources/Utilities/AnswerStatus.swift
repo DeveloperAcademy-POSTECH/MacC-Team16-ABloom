@@ -17,7 +17,7 @@ enum AnswerStatus {
   var text: String {
     switch self {
     case .both:
-      return "완성해주세요"
+      return "완성해주세요 >"
     case .onlyMe:
       return "답변을 기다리고 있어요"
     case .onlyFinace:
