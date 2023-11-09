@@ -38,6 +38,8 @@ struct SelectQuestionView: View {
     })
     
     .onAppear {
+      //TODO: mainView에서도 추가해야함! 충돌일어날까봐 우선 보류
+      UINavigationController.isSwipeBackEnabled = true
       if NavigationModel.shared.isPopToMain {
         NavigationModel.shared.popToMainToggle()
         dismiss()
