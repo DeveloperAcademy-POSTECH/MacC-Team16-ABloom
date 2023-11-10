@@ -120,7 +120,7 @@ extension SelectQuestionView {
           
           ForEach(selectQVM.filteredLists, id: \.self) { question in
             NavigationLink(value: question) {
-              QuestionChatBubble(text: question.content.useNonBreakingSpace())
+              QuestionChatBubble(text: question.content)
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 17)

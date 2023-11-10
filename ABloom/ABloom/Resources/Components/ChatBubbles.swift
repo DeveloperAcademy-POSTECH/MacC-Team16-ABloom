@@ -71,7 +71,7 @@ struct QuestionChatBubble: View {
   var body: some View {
     HStack {
       
-      Text(text)
+      Text(text.useNonBreakingSpace())
         .fontWithTracking(.chatBubble, tracking: -0.2, lineSpacing: 7)
         .fixedSize(horizontal: false, vertical: true)
         .foregroundStyle(.stone800)
@@ -114,11 +114,11 @@ struct ChatBubbleBtn: View {
       Spacer()
       
       Text(text)
-        .fontWithTracking(.chatBubbleBtn, tracking: -0.2, lineSpacing: 7)
+        .fontWithTracking(.subHeadlineBold, tracking: -0.4)
         .foregroundStyle(.stone800)
         .multilineTextAlignment(.leading)
-        .padding(.vertical, paddingV)
-        .padding(.horizontal, paddingH)
+        .padding(.vertical, 12)
+        .padding(.horizontal, 16)
         .background(
           Rectangle()
             .clayMorpMDShadow()
