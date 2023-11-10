@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DBAnswer: Codable {
+struct DBAnswer: Codable, Hashable {
   let questionId: Int
   let userId: String
   let date: Date
