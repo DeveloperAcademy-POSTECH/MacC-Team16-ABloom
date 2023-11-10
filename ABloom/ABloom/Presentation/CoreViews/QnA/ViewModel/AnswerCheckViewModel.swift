@@ -25,8 +25,6 @@ final class AnswerCheckViewModel: ObservableObject {
   @Published var isDataReady = false
   
   @Published var showTip = false
-  @Published var reactButtonTapped = false
-  @Published var myReaction: ReactionType = .error
   
   // 1. 나의 반응과 피앙새의 반응이 모두 있을 때 (hasMyReaction && hasFianceReaction)
   // 2. 나의 반응만 있을 때 (hasMyReaction)
@@ -107,13 +105,13 @@ final class AnswerCheckViewModel: ObservableObject {
   }
   
   // MARK: 반응(React)관련 함수
-  func reactToAnswer() throws {
+  func reactToAnswer(reaction: ReactionType) throws {
     guard let myId = self.myId else { throw URLError(.badURL) }
     
     guard let myAnswer = self.myAnswer else { throw URLError(.badURL) }
     guard let myAnswerId = self.myAnswerId else { throw URLError(.badURL)}
     
-    UserManager.shared.updateReaction(userId: myId, answerId: myAnswerId, reaction: myReaction)
+    UserManager.shared.updateReaction(userId: myId, answerId: myAnswerId, reaction: reaction)
     
     Task {
       try? await getMyAnswer()
