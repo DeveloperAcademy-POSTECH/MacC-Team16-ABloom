@@ -36,13 +36,10 @@ struct TipView: View {
       
       Rectangle().frame(height: 1.5)
         .foregroundStyle(.stone200)
-      
-      Spacer().frame(maxHeight: 50)
-      
+            
       contentView
-      
-      Spacer().frame(maxHeight: 50)
-      
+        .padding(.vertical, 50)
+            
       Button {
         isPresent = false
       } label: {
@@ -57,7 +54,7 @@ struct TipView: View {
       .padding(.horizontal, 32)
       .padding(.bottom, 18)
     }
-    .frame(minHeight: 352, maxHeight: 420)
+    .frame(minHeight: 352)
     .background(Color.stone100)
     .cornerRadius(16, corners: .allCorners)
     .padding(.horizontal, 8)
