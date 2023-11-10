@@ -26,9 +26,9 @@ struct AnswerCheckView: View {
         ProgressView()
           .frame(maxWidth: .infinity, maxHeight: .infinity)
       } else {
-        answerText
-        
-        Spacer()
+        ScrollView {
+          answerText
+        }
       }
     }
     
