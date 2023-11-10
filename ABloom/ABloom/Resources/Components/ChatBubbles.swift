@@ -68,10 +68,12 @@ struct RightPurpleChatBubble: View {
 struct QuestionChatBubble: View {
   let text: String
   
+
+  
   var body: some View {
     HStack {
       
-      Text(text.useNonBreakingSpace())
+      Text(text.containsNumbers() ? text : text.useNonBreakingSpace())
         .fontWithTracking(.chatBubble, tracking: -0.2, lineSpacing: 7)
         .fixedSize(horizontal: false, vertical: true)
         .foregroundStyle(.stone800)
@@ -89,6 +91,9 @@ struct QuestionChatBubble: View {
         .frame(maxWidth: 271, alignment: .leading)
       Spacer()
     }
+    .onAppear(perform: {
+      print(text.useNonBreakingSpace())
+    })
   }
   
 }
