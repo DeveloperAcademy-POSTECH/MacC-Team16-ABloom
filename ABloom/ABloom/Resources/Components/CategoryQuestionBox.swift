@@ -9,38 +9,31 @@ import SwiftUI
 
 struct CategoryQuestionBox: View {
   let question: String
-  let category: String
-  let categoryImg: String
   
   var body: some View {
-    VStack(alignment: .center, spacing: 17) {
-      HStack(spacing: 17) {
-        Spacer()
-        Image(categoryImg)
-          .resizable()
-          .frame(width: 28, height: 28)
-        Text(category)
-          .fontWithTracking(.subHeadlineBold)
-        Spacer()
-      }
-      .padding(.top, 25)
+    HStack(alignment: .top, spacing: 9) {
       
-      Text("\"\(question)\"")
-        .fontWithTracking(.subHeadlineR)
-        .multilineTextAlignment(.center)
-        .padding(.horizontal, 10)
-        .padding(.bottom, 22)
+      Image("noticeIcon")
+        .resizable()
+        .frame(width: 22, height: 22)
+      
+      Text("\(question)")
+        .fontWithTracking(.subHeadlineR, lineSpacing: 3)
+        .multilineTextAlignment(.leading)
+      
+      Spacer()
     }
-    .frame(maxWidth: .infinity)
-    .frame(minHeight: 104)
+    .padding(.horizontal, 14)
+    .padding(.vertical, 10)
+
     .background(
       RoundedRectangle(cornerRadius: 20)
-        .foregroundStyle(.white)
+        .foregroundStyle(.stone50)
     )
-    .padding(.horizontal, 20)
+    .frame(maxWidth: .infinity)
   }
 }
 
 #Preview {
-  CategoryQuestionBox(question: "반려동물을 기르고 싶어?", category: "경제 질문", categoryImg: "squareIcon_isometric_health")
+  CategoryQuestionBox(question: "반려동물을 기르고 싶어?")
 }

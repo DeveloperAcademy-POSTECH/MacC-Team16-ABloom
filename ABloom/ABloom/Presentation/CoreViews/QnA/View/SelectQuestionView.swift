@@ -103,7 +103,7 @@ extension SelectQuestionView {
       
       HStack {
         Text("\(selectQVM.selectedCategory.type) 문답")
-          .fontWithTracking(.headlineR)
+          .fontWithTracking(.headlineBold)
           .foregroundStyle(.stone700)
         
         Spacer()
@@ -115,26 +115,24 @@ extension SelectQuestionView {
       ScrollViewReader { proxy in
         ScrollView(.vertical) {
           Spacer()
-            .frame(height: 16)
+            .frame(height: 20)
             .id("top")
           
           ForEach(selectQVM.filteredLists, id: \.self) { question in
             NavigationLink(value: question) {
-               LeftChatBubble(text: question.content, isMale: !sex)
+              QuestionChatBubble(text: question.content)
             }
             .padding(.horizontal, 20)
-            .padding(.vertical, 7)
+            .padding(.bottom, 17)
             
-            if selectQVM.filteredLists.last == question {
-              Spacer()
-                .frame(height: 50)
-            }
           }
+          Spacer()
+            .frame(height: 50)
         }
         .onChange(of: selectQVM.selectedCategory) { new in
           proxy.scrollTo("top")
         }
-      
+        
       }
     }
   }
