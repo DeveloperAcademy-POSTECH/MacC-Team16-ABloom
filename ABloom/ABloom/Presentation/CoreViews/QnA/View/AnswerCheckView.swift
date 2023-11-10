@@ -197,9 +197,8 @@ extension AnswerCheckView {
         
         if answerCheckVM.isCompleteMyAnswer && answerCheckVM.isCompleteFianceAnswer {
           // 서로 응답 완 + 서로 완성상태 변경
-          // TODO: 누가 먼저뜰껀지 벤틀리랑 얘기
-          LeftChatBubbleWithImg(text: "\(answerCheckVM.fianceName)님이 문답의 상태를 '완성'으로 변경했어요.", isMale: !self.sex)
           RightPurpleChatBubble(text: "\(answerCheckVM.myName)님이 문답의 상태를 '완성'으로 변경했어요.")
+          LeftChatBubbleWithImg(text: "\(answerCheckVM.fianceName)님이 문답의 상태를 '완성'으로 변경했어요.", isMale: !self.sex)
           ChatCallout(text: "문답이 완성되었어요")
           
         } else if answerCheckVM.isCompleteMyAnswer {
