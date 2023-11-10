@@ -18,6 +18,7 @@ exports.sendNotificationToFiance = functions
         }
 
         const userData = userDoc.data();
+        const myName = userData.name
         const fianceId = userData.fiance;
 
         const recipientToken = await getRecipientToken(fianceId);
@@ -28,14 +29,12 @@ exports.sendNotificationToFiance = functions
             const partnerUserDoc = await admin.firestore().collection('users').doc(fianceId).get();
 
             if (partnerUserDoc.exists) {
+                // 나중을 위해서 일단 남겨둔다,,
                 const partnerUserData = partnerUserDoc.data();
-                const partnerUserName = partnerUserData.name;
-
-                console.log(`fianceName: ${partnerUserName}`);
 
                 const message = {
                     notification: {
-                        title: `${partnerUserName}님이 답변을 작성했어요.`,
+                        title: `${myName}님이 답변을 작성했어요.`,
                         body: '답변을 확인하고 반응을 남겨볼까요?',
                     },
                     token: recipientToken,
