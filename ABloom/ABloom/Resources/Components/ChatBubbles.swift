@@ -91,9 +91,6 @@ struct QuestionChatBubble: View {
         .frame(maxWidth: 271, alignment: .leading)
       Spacer()
     }
-    .onAppear(perform: {
-      print(text.useNonBreakingSpace())
-    })
   }
   
 }
