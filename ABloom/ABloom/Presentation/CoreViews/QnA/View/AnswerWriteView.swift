@@ -35,10 +35,13 @@ struct AnswerWriteView: View {
     
     // alert
     .alert("삭제하시겠어요?", isPresented: $answerVM.isAlertOn, actions: {
-      Button(action: {dismiss()}, label: {
+      Button {
+        UINavigationController.isSwipeBackEnabled = true
+        dismiss()
+      } label: {
         Text("삭제")
           .foregroundStyle(.purple600)
-      })
+      }
       Button(role: .cancel, action: {}, label: {
         Text("취소")
           .foregroundStyle(.purple600)
@@ -72,6 +75,7 @@ struct AnswerWriteView: View {
       },
       rightView: {
         Button {
+          UINavigationController.isSwipeBackEnabled = true
           if !isFromMain {
             NavigationModel.shared.popToMainToggle()
           }
