@@ -32,7 +32,7 @@ struct LeftGrayChatBubble: View {
             .foregroundStyle(.purple50)
             .cornerRadius(cornerV, corners: [.topRight, .bottomRight, .bottomLeft])
         )
-        .frame(maxWidth: 247, alignment: .leading)
+        .frame(maxWidth: 271, alignment: .leading)
       
       Spacer()
     }
@@ -58,7 +58,7 @@ struct RightPurpleChatBubble: View {
             .foregroundStyle(.purple300)
             .cornerRadius(cornerV, corners: [.topLeft, .bottomRight, .bottomLeft])
         )
-        .frame(maxWidth: 247, alignment: .trailing)
+        .frame(maxWidth: 271, alignment: .trailing)
     }
   }
 }
@@ -128,7 +128,7 @@ struct ChatBubbleBtn: View {
             }
             .cornerRadius(cornerV, corners: [.topLeft, .bottomRight, .bottomLeft])
         )
-        .frame(maxWidth: 247, alignment: .trailing)
+        .frame(maxWidth: 271, alignment: .trailing)
     }
   }
 }
@@ -172,7 +172,7 @@ struct ChatBubbleTextField: View {
       
       // 텍스트 입력시 커서가 작아지면서 백그라운드도 작아지는 현상 방지를 위해 height를 조금 더 넓게 설정
       .frame(minHeight: 45, alignment: .center)
-      .frame(maxWidth: 247, alignment: .leading)
+      .frame(maxWidth: 271, alignment: .leading)
     
       .background(
         Rectangle()
