@@ -14,8 +14,7 @@ struct AnswerCheckView: View {
   let sex: Bool
   
   var body: some View {
-    VStack {
-      
+    VStack(spacing: 0) {
       // 질문 박스
       if let question = answerCheckVM.question {
         CategoryQuestionBox(question: question.content)
@@ -32,7 +31,7 @@ struct AnswerCheckView: View {
         Spacer()
       }
     }
-    .background(backgroundDefault())
+    
     .customNavigationBar(
       centerView: {
         Text("우리의 문답")
@@ -45,15 +44,18 @@ struct AnswerCheckView: View {
         }
       },
       rightView: {
-        EmptyView() // TODO: 버튼 선택시 확인
+        reactionSubmitButton
+          .foregroundStyle(.stone700)
       })
     
-    .overlay(content: {
+    .overlay {
       if answerCheckVM.showTip {
         TipView(isPresent: $answerCheckVM.showTip)
           .zIndex(1)
       }
-    })
+    }
+    
+    .background(backgroundDefault())
     
     .onAppear {
       answerCheckVM.getAnswers()
@@ -70,7 +72,7 @@ struct AnswerCheckView: View {
 
 
 extension AnswerCheckView {
-  
+  // MARK: Answer Area
   private var answerText: some View {
     VStack(spacing: 12) {
       ChatCallout(text: "서로의 답변")
@@ -83,13 +85,13 @@ extension AnswerCheckView {
         NavigationLink {
           MyAccountConnectingView()
         } label: {
-          ChatBubbleBtn(text: "연결하기  >")
+          ChatBubbleBtn(text: "🖇️ 연결하기")
         }
         
         // if 내가 먼저 답하고, 상대방의 답변을 기다릴 경우
       } else if answerCheckVM.isNoFianceAnswer && !answerCheckVM.isNoMyAnswer {
         RightPurpleChatBubble(text: answerCheckVM.myAnswer?.answerContent ?? "")
-        LeftChatBubbleWithImg(text: answerCheckVM.waitText, isMale: !self.sex)
+        LeftChatBubbleWithImg(text: "\(answerCheckVM.fianceName)님의 답변을 기다리고 있어요.", isMale: !self.sex)
       }
       
       // if 상대방이 답하고, 상대방이 내 답변을 기다릴 경우 => 내비게이션 연결
@@ -100,7 +102,7 @@ extension AnswerCheckView {
             AnswerWriteView(question: question, isFromMain: false)
           }
         } label: {
-          ChatBubbleBtn(text: "문답 작성하기  >")
+          ChatBubbleBtn(text: "✏️ 답변 작성하기")
         }
       }
       
@@ -111,11 +113,11 @@ extension AnswerCheckView {
         
         reactSection
       }
-      
     }
     .padding(.horizontal, 20)
   }
   
+  // MARK: React Area
   private var reactSection: some View {
     VStack(spacing: 12) {
       ChatCallout(text: "반응 남기기")
@@ -124,17 +126,16 @@ extension AnswerCheckView {
         // 내 반응 상대 반응 다 보여주기
         RightPurpleChatBubble(text: "\(answerCheckVM.myName)님이 새로운 반응을 남겼어요.\n \"\(answerCheckVM.myAnswer?.reactionType.reactionContent ?? "")\"")
         LeftChatBubbleWithImg(text: "\(answerCheckVM.fianceName)님이 새로운 반응을 남겼어요.\n\"\(answerCheckVM.fianceAnswer?.reactionType.reactionContent ?? "")\"", isMale: !self.sex)
-        
         completeSection
         
       } else if answerCheckVM.hasMyReaction {
         // 내 반응만 보여주기
         RightPurpleChatBubble(text: "\(answerCheckVM.myName)님이 새로운 반응을 남겼어요.\n \"\(answerCheckVM.myAnswer?.reactionType.reactionContent ?? "")\"")
         LeftChatBubbleWithImg(text: "\(answerCheckVM.fianceName)님의 반응을 기다리고 있어요.", isMale: !self.sex)
+        
       } else if answerCheckVM.hasFianceReaction {
         // 상대 반응과 버튼 보여주기
         LeftChatBubbleWithImg(text: "\(answerCheckVM.fianceName)님이 새로운 반응을 남겼어요. 나도 반응을 선택하면 서로 확인할 수 있어요.", isMale: !self.sex)
-        
         reactionButtons
         
       } else {
@@ -160,12 +161,28 @@ extension AnswerCheckView {
   
   private func reactionButton(reaction: ReactionType) -> some View {
     Button {
-      try? answerCheckVM.reactToAnswer(reaction: reaction)
+      self.answerCheckVM.reactButtonTapped = true
+      self.answerCheckVM.myReaction = reaction
     } label: {
-      RightPurpleChatBubble(text: reaction.reactionContent)
+      ChatBubbleBtn(
+        text: reaction.reactionContent,
+        disabled: answerCheckVM.myReaction != reaction
+      )
     }
   }
   
+  private var reactionSubmitButton: some View {
+    answerCheckVM.reactButtonTapped ?
+    Button {
+      try? answerCheckVM.reactToAnswer()
+    } label: {
+      Text("선택")
+        .font(.headlineR)
+    }
+    : Button { } label: { Text("") }
+  }
+  
+  // MARK: Complete Area
   private var completeSection: some View {
     VStack(spacing: 12) {
       if answerCheckVM.bothPositiveReaction {
@@ -175,23 +192,24 @@ extension AnswerCheckView {
         Button {
           answerCheckVM.showTip.toggle()
         } label: {
-          ChatCallout(text: "더 대화해보기")
+          ChatCallout(text: "더 대화해보기", imageName: "questionmark.circle")
         }
         
         if answerCheckVM.isCompleteMyAnswer && answerCheckVM.isCompleteFianceAnswer {
           // 서로 응답 완 + 서로 완성상태 변경
-          LeftChatBubbleWithImg(text: "\(answerCheckVM.fianceName)님이 응답의 상태를 '완성'으로 변경했어요.", isMale: !self.sex)
-          RightPurpleChatBubble(text: "\(answerCheckVM.myName)님이 응답의 상태를 '완성'으로 변경했어요.")
+          // TODO: 누가 먼저뜰껀지 벤틀리랑 얘기
+          LeftChatBubbleWithImg(text: "\(answerCheckVM.fianceName)님이 문답의 상태를 '완성'으로 변경했어요.", isMale: !self.sex)
+          RightPurpleChatBubble(text: "\(answerCheckVM.myName)님이 문답의 상태를 '완성'으로 변경했어요.")
           ChatCallout(text: "문답이 완성되었어요")
           
         } else if answerCheckVM.isCompleteMyAnswer {
           // 나만 응답 완
-          RightPurpleChatBubble(text: "\(answerCheckVM.myName)님이 응답의 상태를 '완성'으로 변경했어요.")
+          RightPurpleChatBubble(text: "\(answerCheckVM.myName)님이 문답의 상태를 '완성'으로 변경했어요.")
           LeftChatBubbleWithImg(text: "\(answerCheckVM.fianceName)님의 확인을 기다리고 있어요.", isMale: !self.sex)
           
         } else if answerCheckVM.isCompleteFianceAnswer {
           // 상대만 응답 완, 버튼 보여주기
-          LeftChatBubbleWithImg(text: "\(answerCheckVM.fianceName)님의 확인을 기다리고 있어요.", isMale: !self.sex)
+          LeftChatBubbleWithImg(text: "\(answerCheckVM.fianceName)님이 문답의 상태를 '완성'으로 변경했어요.", isMale: !self.sex)
           
           Button {
             try? answerCheckVM.completeAnswer()

@@ -25,8 +25,9 @@ final class AnswerCheckViewModel: ObservableObject {
   @Published var isDataReady = false
   
   @Published var showTip = false
+  @Published var reactButtonTapped = false
+  @Published var myReaction: ReactionType = .error
   
-  // TODO: @Radin 아래 플래그들을 이용하여 뷰 작업을 진행해주세요
   // 1. 나의 반응과 피앙새의 반응이 모두 있을 때 (hasMyReaction && hasFianceReaction)
   // 2. 나의 반응만 있을 때 (hasMyReaction)
   // 3. 피앙새의 반응만 있을 때 (hasFianceReaction)
@@ -35,8 +36,6 @@ final class AnswerCheckViewModel: ObservableObject {
   @Published var hasFianceReaction = false
   @Published var bothPositiveReaction = false
   
-  
-  // TODO: @Radin 아래 플래그들을 이용하여 뷰 작업을 진행해주세요
   // 1. 나와 피앙새 모두 문답을 완료 표시 했을 때 (isCompleteMyAnswer && isCompleteFianceAnswer)
   // 2. 나만 문답 완료 표시를 했을 때 (isCompleteMyAnswer)
   // 3. 피앙새만 문답 완료 표시를 했을 때 (isCompleteFianceAnswer)
@@ -47,8 +46,6 @@ final class AnswerCheckViewModel: ObservableObject {
   let questionId: Int
   
   let notConnectedText = "아직 상대방과 연결되어 있지 않아요. 지금 연결하고, 상대방의 문답을 확인해주세요."
-  let waitText = "상대방의 답변을 기다리고 있어요."
-  
   
   init(questionId: Int) {
     self.questionId = questionId
@@ -91,13 +88,14 @@ final class AnswerCheckViewModel: ObservableObject {
     
     self.fianceId = fianceId
     
+    if let fianceName = try await UserManager.shared.getUser(userId: fianceId).name {
+      self.fianceName = fianceName
+    }
+    
     do {
       let fianceAnswer = try await UserManager.shared.getAnswer(userId: fianceId, questionId: questionId)
       self.fianceAnswer = fianceAnswer.answer
       self.fianceAnswerId = fianceAnswer.answerId
-      if let fianceName = try await UserManager.shared.getUser(userId: fianceId).name {
-        self.fianceName = fianceName
-      }
     } catch {
       self.isNoFianceAnswer = true
       throw URLError(.badURL)
@@ -109,14 +107,13 @@ final class AnswerCheckViewModel: ObservableObject {
   }
   
   // MARK: 반응(React)관련 함수
-  // TODO: @Radin 이 함수를 이용하여 버튼과 액션을 구현해주세요.
-  func reactToAnswer(reaction: ReactionType) throws {
+  func reactToAnswer() throws {
     guard let myId = self.myId else { throw URLError(.badURL) }
     
     guard let myAnswer = self.myAnswer else { throw URLError(.badURL) }
     guard let myAnswerId = self.myAnswerId else { throw URLError(.badURL)}
     
-    UserManager.shared.updateReaction(userId: myId, answerId: myAnswerId, reaction: reaction)
+    UserManager.shared.updateReaction(userId: myId, answerId: myAnswerId, reaction: myReaction)
     
     Task {
       try? await getMyAnswer()

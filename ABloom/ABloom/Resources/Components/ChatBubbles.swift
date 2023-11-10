@@ -97,6 +97,17 @@ struct QuestionChatBubble: View {
 
 struct ChatBubbleBtn: View {
   let text: String
+  let disabled: Bool
+  
+  init(text: String) {
+    self.text = text
+    self.disabled = false
+  }
+  
+  init(text: String, disabled: Bool) {
+    self.text = text
+    self.disabled = disabled
+  }
   
   var body: some View {
     HStack {
@@ -112,6 +123,9 @@ struct ChatBubbleBtn: View {
           Rectangle()
             .clayMorpMDShadow()
             .foregroundStyle(.purple300)
+            .overlay {
+              disabled ? Color.black.opacity(0.18) : Color.clear
+            }
             .cornerRadius(cornerV, corners: [.topLeft, .bottomRight, .bottomLeft])
         )
         .frame(maxWidth: 247, alignment: .trailing)
@@ -173,17 +187,34 @@ struct ChatBubbleTextField: View {
 
 struct ChatCallout: View {
   let text: String
+  let imageName: String?
+
+  init(text: String) {
+    self.text = text
+    self.imageName = nil
+  }
+  
+  init(text: String, imageName: String) {
+    self.text = text
+    self.imageName = imageName
+  }
   
   var body: some View {
-    Text(text)
-      .fontWithTracking(.caption2R, tracking: -0.4)
-      .foregroundStyle(.white)
-      .padding(.vertical, 7)
-      .padding(.horizontal, 14)
-      .background(
-        RoundedRectangle(cornerRadius: 24)
-          .foregroundStyle(.black.opacity(0.3))
-      )
+    HStack(spacing: 4) {
+      Text(text)
+     
+      if let image = imageName {
+        Image(systemName: image)
+      }
+    }
+    .fontWithTracking(.caption2R, tracking: -0.4)
+    .foregroundStyle(.white)
+    .padding(.vertical, 7)
+    .padding(.horizontal, 14)
+    .background(
+      RoundedRectangle(cornerRadius: 24)
+        .foregroundStyle(.black.opacity(0.3))
+    )
   }
 }
 
@@ -194,7 +225,8 @@ struct ChatCallout: View {
     LeftGrayChatBubble(text: "내용을 입력해주세요.")
     RightPurpleChatBubble(text: "내용을 입력해주세요.")
     ChatCallout(text: "내용")
+    ChatBubbleBtn(text: "챗버블버튼", disabled: true)
+    ChatBubbleBtn(text: "챗버블버튼", disabled: false)
     //ChatBubbleTextField(text: "")
-    
   }
 }
