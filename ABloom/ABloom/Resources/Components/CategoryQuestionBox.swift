@@ -17,7 +17,7 @@ struct CategoryQuestionBox: View {
         .resizable()
         .frame(width: 22, height: 22)
       
-      Text("\(question)")
+      Text("\(question.containsNumbers() ? question : question.useNonBreakingSpace())")
         .fontWithTracking(.subHeadlineR, lineSpacing: 3)
         .multilineTextAlignment(.leading)
       

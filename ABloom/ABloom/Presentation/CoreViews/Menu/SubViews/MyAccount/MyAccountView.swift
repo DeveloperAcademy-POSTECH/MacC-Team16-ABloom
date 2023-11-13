@@ -14,7 +14,6 @@ struct MyAccountView: View {
   @Binding var selectedTab: Tab
 
   @StateObject var myAccountVM = MyAccountViewModel()
-  @State var showLoginView = false
   
   var body: some View {
     
@@ -60,11 +59,6 @@ struct MyAccountView: View {
       EmptyView()
     }
     .background(backgroundDefault())
-    .fullScreenCover(isPresented: $showLoginView, content: {
-      NavigationStack {
-        LoginView(showLoginView: $showLoginView)
-      }
-    })
   }
 }
 
@@ -167,7 +161,6 @@ extension MyAccountView {
         try? myAccountVM.signOut()
         dismiss()
         selectedTab = .main
-        showLoginView = true
         myAccountVM.showSignOutCheckAlert = false
       }
     } message: {
