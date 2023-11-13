@@ -36,4 +36,8 @@ extension Font {
   static let footnoteBold: Font = .custom("SpoqaHanSansNeo-Bold", size: 13)
   static let caption1Bold: Font = .custom("SpoqaHanSansNeo-Medium", size: 12)
   static let caption2Bold: Font = .custom("SpoqaHanSansNeo-Medium", size: 11)
+  
+  // ChatBubble
+  static let chatBubble: Font = .custom("SpoqaHanSansNeo-Regular", size: 14)
+  static let chatBubbleBtn: Font = .custom("SpoqaHanSansNeo-Medium", size: 14)
 }

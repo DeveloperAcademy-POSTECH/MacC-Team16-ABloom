@@ -118,12 +118,25 @@ final class HomeViewModel: ObservableObject {
   private func getQnACount(user: DBUser) async throws {
     guard let fiance = user.fiance else { throw URLError(.badURL)}
     
-    let myAnswers = try await UserManager.shared.getAnswers(userId: user.userId)
-    let myAnswerIds = myAnswers.map { $0.questionId }
+    let myAnswers = try await UserManager.shared.getAnswers(userId: user.userId).map { $0.questionId }
+    let fianceAnswers = try await UserManager.shared.getAnswers(userId: fiance).map { $0.questionId }
     
-    let bothanswered = try await UserManager.shared.getAnswerWithId(userId: fiance, filter: myAnswerIds)
+    self.qnaCount = (myAnswers + fianceAnswers).uniqued().count
     
-    self.qnaCount = bothanswered.count
+//    let myCompleteAnswers = myAnswers.filter { answer in
+//      guard let isComplete = answer.isComplete else { return false }
+//      
+//      return isComplete
+//    }
+//    
+//    let myAnswerIds = myCompleteAnswers.map { $0.questionId }
+//    
+//    let bothAnswered = try await UserManager.shared.getAnswerWithId(userId: fiance, filter: myAnswerIds)
+//    let bothCompletedAnswers = bothAnswered.filter { answer in
+//      guard let isComplete = answer.isComplete else { return false }
+//      
+//      return isComplete
+//    }
   }
   
   private func loadRecommendQuestion(user: DBUser) async throws {

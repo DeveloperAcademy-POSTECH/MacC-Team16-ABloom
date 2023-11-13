@@ -7,79 +7,18 @@
 
 import SwiftUI
 
-enum Category: String, CaseIterable {
-  case communication
-  case values
-  case finance
-  case lifestyle
-  case child
-  case family
-  case sex
-  case health
-  case wedding
-  case future
-  case present
-  case past
-  
-  
-  
-  var type: String {
-    switch self {
-    case .communication: return "소통"
-    case .values: return "가치관"
-    case .finance: return "경제"
-    case .lifestyle: return "생활"
-    case .child: return "자녀"
-    case .family: return "가족"
-    case .sex: return "부부 관계"
-    case .health: return "건강"
-    case .wedding: return "결혼 준비"
-    case .future: return "미래"
-    case .present: return "현재"
-    case .past: return "과거"
-      
-    }
-  }
-  
-  
-  var imgName: String {
-    switch self {
-    case .communication:
-      return "circleIcon_isometric_chatting"
-    case .values:
-      return "circleIcon_isometic_star"
-    case .finance:
-      return "circleIcon_isometic_money"
-    case .lifestyle:
-      return "circleIcon_isometic_rice"
-    case .child:
-      return "circleIcon_isometic_dummy"
-    case .family:
-      return "circleIcon_isometic_sofa"
-    case .sex:
-      return "circleIcon_isometic_bed"
-    case .health:
-      return "circleIcon_isometic_health"
-    case .wedding:
-      return "circleIcon_isometic_love_calender"
-    case .future:
-      return "circleIcon_isometic_target"
-    case .present:
-      return "circleIcon_isometric_location"
-    case .past:
-      return "circleIcon_isometic_reversed_timer"
-    }
-  }
-}
-
 @MainActor
 final class QuestionMainViewModel: ObservableObject {
   @Published var answers: [DBAnswer] = []
   @Published var questions: [DBStaticQuestion] = []
   @Published var sex = Bool()
-  @Published var isEmpty = false
-  @Published var isSorted = false
+  @Published var viewState: ViewState = .isProgress
   
+  enum ViewState {
+    case isProgress
+    case isEmpty
+    case isSorted
+  }
   
   func getUserSex() async throws {
     let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
@@ -91,15 +30,15 @@ final class QuestionMainViewModel: ObservableObject {
   }
   
   func getInfo() {
-    self.isSorted = false
+    self.viewState = .isProgress
     clearAll()
     Task {
       try? await getUserSex()
       try? await getMyAnswers()
       try? await getFianceAnswers()
       distinctQuestions()
-      sortAnswers()
       checkQuestions()
+      sortAnswers()
     }
   }
   
@@ -114,15 +53,20 @@ final class QuestionMainViewModel: ObservableObject {
       } else {
         return .onlyFinace
       }
-    } else if filteredAnswers.count == 2 {
-      return .both
+    } else if filteredAnswers.count == 2 {      
+      if let isComplete0 = filteredAnswers[0].isComplete, let isComplete1 = filteredAnswers[1].isComplete,
+         isComplete0 && isComplete1 {
+        return .completed
+      } else {
+        return .both
+      }
     } else {
       return .nobody
     }
   }
   
   private func checkQuestions() {
-    self.isEmpty = self.questions.isEmpty
+    self.viewState = self.questions.isEmpty ? .isEmpty : viewState
   }
   
   private func clearAll() {
@@ -131,6 +75,8 @@ final class QuestionMainViewModel: ObservableObject {
   }
   
   private func sortAnswers() {
+    if self.viewState == .isEmpty { return }
+    
     self.answers.sort { $0.date > $1.date }
     
     let id = answers.map { $0.questionId }.uniqued()
@@ -144,8 +90,9 @@ final class QuestionMainViewModel: ObservableObject {
         }
       }
     }
-    self.isSorted = true
+    
     self.questions = newArray
+    self.viewState = .isSorted
   }
   
   private func distinctQuestions() {

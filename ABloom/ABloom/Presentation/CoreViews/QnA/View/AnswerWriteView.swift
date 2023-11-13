@@ -15,15 +15,15 @@ struct AnswerWriteView: View {
   @Environment(\.dismiss) private var dismiss
   
   var body: some View {
-    VStack(spacing: 13) {
+    VStack(spacing: 20) {
       
-      Spacer().frame(height: 17)
+      Spacer().frame(height: 0)
       
       if answerVM.isReady {
         
-        LeftChatBubbleWithImg(text: question.content, isMale: !answerVM.sex)
-          .padding(.horizontal, 22)
-        
+        CategoryQuestionBox(question: question.content)
+          .padding(.horizontal, 20)
+
         answerText
         
       } else {
@@ -35,10 +35,13 @@ struct AnswerWriteView: View {
     
     // alert
     .alert("삭제하시겠어요?", isPresented: $answerVM.isAlertOn, actions: {
-      Button(action: {dismiss()}, label: {
+      Button {
+        UINavigationController.isSwipeBackEnabled = true
+        dismiss()
+      } label: {
         Text("삭제")
           .foregroundStyle(.purple600)
-      })
+      }
       Button(role: .cancel, action: {}, label: {
         Text("취소")
           .foregroundStyle(.purple600)
@@ -72,6 +75,7 @@ struct AnswerWriteView: View {
       },
       rightView: {
         Button {
+          UINavigationController.isSwipeBackEnabled = true
           if !isFromMain {
             NavigationModel.shared.popToMainToggle()
           }
@@ -94,10 +98,16 @@ extension AnswerWriteView {
     HStack {
       Spacer()
       
-      ChatBubbleTextField(text: $answerVM.answerText, isMale: answerVM.sex)
+      ChatBubbleTextField(text: $answerVM.answerText)
         .onChange(of: answerVM.answerText, perform: { newValue in
           if newValue.count > 150 {
             answerVM.answerText = String(newValue.prefix(150))
+          }
+          // 내용이 있을 때, 스와이프 방지
+          if !newValue.isEmpty {
+            UINavigationController.isSwipeBackEnabled = false
+          } else {
+            UINavigationController.isSwipeBackEnabled = true
           }
         })
         .padding(.horizontal, 22)

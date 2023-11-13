@@ -10,13 +10,7 @@ import FirebaseCore
 import FirebaseMessaging
 import UserNotifications
 
-
-// Configuring Firebase Push Notification...
-
 class AppDelegate: NSObject, UIApplicationDelegate {
-  
-  // 예시 키
-  let gcmMessageIDKey = "gcm.message_id"
   
   // 앱이 켜졌을 때 자동 실행
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
@@ -24,8 +18,23 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     // 파이어베이스 설정
     FirebaseApp.configure()
     
-    // 알림 허용 권한 및 파이어베이스 메시징 정리
-    requestNotificationPermission()
+    UNUserNotificationCenter.current().delegate = self
+    
+    let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+    UNUserNotificationCenter
+      .current()
+      .requestAuthorization(
+        options: authOptions, completionHandler: { granted, _ in
+          if granted {
+            self.scheduleDailyNotification()
+            print("granted and set up local push")
+          }
+        }
+      )
+    
+    application.registerForRemoteNotifications()
+    
+    Messaging.messaging().delegate = self
     
     return true
   }
@@ -34,18 +43,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
     // Firebase Cloud Messaging 서비스에 토큰 전달
     Messaging.messaging().apnsToken = deviceToken
+    print(deviceToken)
+    print("good")
   }
   
-  func requestNotificationPermission() {
-    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-      
-      if granted {
-        self.scheduleDailyNotification()
-        print("granted")
-      } else {
-        // Handle the case where permission was denied
-      }
-    }
+  // 푸시 토큰 받기 실패
+  func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+    print("error!!")
+    print(error.localizedDescription)
   }
   
   func scheduleDailyNotification() {
@@ -80,10 +85,22 @@ extension AppDelegate: MessagingDelegate {
     print("토큰을 받았다")
     // Store this token to firebase and retrieve when to send message to someone...
     let dataDict: [String: String] = ["token": fcmToken ?? ""]
+    
     // Store token in Firestore For Sending Notifications From Server in Future...
-    
+    if let fcmToken = fcmToken {
+      do {
+        try updatefcmToken(fcmToken: fcmToken)
+        print("Token updated successfully")
+      } catch {
+        print("Error updating FCM token: \(error)")
+      }
+    }
     print(dataDict)
-    
+  }
+  
+  private func updatefcmToken(fcmToken: String) throws {
+    let myId: String = try AuthenticationManager.shared.getAuthenticatedUser().uid
+    try UserManager.shared.updateFcmToken(userID: myId, fcmToken: fcmToken)
   }
 }
 
@@ -98,13 +115,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     let userInfo = notification.request.content.userInfo
     
-    
-    // Do Something With MSG Data... 예제
-    if let messageID = userInfo[gcmMessageIDKey] {
-      print("Message ID: \(messageID)")
-    }
-    print(userInfo)
-    
     completionHandler([[.banner, .badge, .sound]])
   }
   
@@ -114,14 +124,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                               didReceive response: UNNotificationResponse,
                               withCompletionHandler completionHandler: @escaping () -> Void) {
     let userInfo = response.notification.request.content.userInfo
-    
-    // Do Something With MSG Data... 예제
-    
-    if let messageID = userInfo[gcmMessageIDKey] {
-      print("Message ID: \(messageID)")
-    }
-    
-    print(userInfo)
     
     completionHandler()
   }

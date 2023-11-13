@@ -33,7 +33,7 @@ struct TabBarView: View {
               QuestionMainView()
                 .tag(tab)
             case .info:
-              MenuView()
+              MenuView(selectedTab: $selectedTab)
                 .tag(tab)
             }
           }

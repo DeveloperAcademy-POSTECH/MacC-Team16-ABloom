@@ -10,9 +10,10 @@ import SwiftUI
 struct MyAccountView: View {
   let avatarSize: CGFloat = 70
   @Environment(\.dismiss) private var dismiss
+  
+  @Binding var selectedTab: Tab
 
   @StateObject var myAccountVM = MyAccountViewModel()
-  @State var showLoginView = false
   
   var body: some View {
     
@@ -58,17 +59,12 @@ struct MyAccountView: View {
       EmptyView()
     }
     .background(backgroundDefault())
-    .fullScreenCover(isPresented: $showLoginView, content: {
-      NavigationStack {
-        LoginView(showLoginView: $showLoginView)
-      }
-    })
   }
 }
 
 #Preview {
   NavigationView {
-    MyAccountView()
+    MyAccountView(selectedTab: .constant(.info))
   }
 }
 
@@ -152,7 +148,7 @@ extension MyAccountView {
       }
       
       MenuListNavigationItem(title: "회원탈퇴") {
-        DeleteAccountView()
+        DeleteAccountView(selectedTab: $selectedTab)
       }
     }
     .alert("로그아웃 하시겠어요?", isPresented: $myAccountVM.showSignOutCheckAlert) {
@@ -163,7 +159,8 @@ extension MyAccountView {
       
       Button("로그아웃") {
         try? myAccountVM.signOut()
-        showLoginView = true
+        dismiss()
+        selectedTab = .main
         myAccountVM.showSignOutCheckAlert = false
       }
     } message: {
