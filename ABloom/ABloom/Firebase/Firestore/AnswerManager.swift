@@ -34,9 +34,19 @@ final class AnswerManager: ObservableObject {
   }
   
   // MARK: Retrieve
-  func fetchAnswers(userId: String) async throws -> [DBAnswer] {
-    let collection = userAnswerCollection(userId: userId)
-    return try await collection.getDocuments(as: DBAnswer.self)
+  func fetchMyAnswers() async throws {
+    guard let currentUserId = UserManager.shared.currentUser?.userId else { return }
+    
+    let collection = userAnswerCollection(userId: currentUserId)
+    
+    self.myAnswers = try await collection.getDocuments(as: DBAnswer.self)
+  }
+  
+  func fetchFianceAnswers(userId: String) async throws {
+    guard let fianceId = UserManager.shared.currentUser?.fiance else { return }
+    
+    let collection = userAnswerCollection(userId: fianceId)
+    self.fianceAnswers = try await collection.getDocuments(as: DBAnswer.self)
   }
   
   // MARK: Update

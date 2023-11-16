@@ -78,6 +78,7 @@
 		3DF31AF72B04545500F0EA4E /* WebView2.0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31AF62B04545500F0EA4E /* WebView2.0.swift */; };
 		3DF31AF92B04546700F0EA4E /* ConnectionView2.0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31AF82B04546700F0EA4E /* ConnectionView2.0.swift */; };
 		3DF31B022B06685F00F0EA4E /* AnswerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31B012B06685F00F0EA4E /* AnswerManager.swift */; };
+		3DF31B042B0669F900F0EA4E /* EssentialQuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31B032B0669F900F0EA4E /* EssentialQuestionManager.swift */; };
 		6053F15B2ADEB7700064A6E0 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053F15A2ADEB7700064A6E0 /* RegistrationViewModel.swift */; };
 		6053F15F2ADF6C3B0064A6E0 /* Ex+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053F15E2ADF6C3B0064A6E0 /* Ex+View.swift */; };
 		6053F1622ADF6CDE0064A6E0 /* InputFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053F1612ADF6CDE0064A6E0 /* InputFieldModifier.swift */; };
@@ -176,6 +177,7 @@
 		3DF31AF62B04545500F0EA4E /* WebView2.0.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView2.0.swift; sourceTree = "<group>"; };
 		3DF31AF82B04546700F0EA4E /* ConnectionView2.0.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionView2.0.swift; sourceTree = "<group>"; };
 		3DF31B012B06685F00F0EA4E /* AnswerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerManager.swift; sourceTree = "<group>"; };
+		3DF31B032B0669F900F0EA4E /* EssentialQuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialQuestionManager.swift; sourceTree = "<group>"; };
 		6053F15A2ADEB7700064A6E0 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		6053F15E2ADF6C3B0064A6E0 /* Ex+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+View.swift"; sourceTree = "<group>"; };
 		6053F1612ADF6CDE0064A6E0 /* InputFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldModifier.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */,
 				607DA2152AEFE900005AE11C /* ConnectionManager.swift */,
 				3DF31B012B06685F00F0EA4E /* AnswerManager.swift */,
+				3DF31B032B0669F900F0EA4E /* EssentialQuestionManager.swift */,
 			);
 			path = Firestore;
 			sourceTree = "<group>";
@@ -947,6 +950,7 @@
 				3D44127E2AEAC57500FD5A51 /* ConnectionWaypointView.swift in Sources */,
 				AE7EE4E12AD6409000E0A573 /* ABloomApp.swift in Sources */,
 				AEEA8DCF2AEB82070068550E /* SelectQuestionViewModel.swift in Sources */,
+				3DF31B042B0669F900F0EA4E /* EssentialQuestionManager.swift in Sources */,
 				3D44125E2AE4FB7400FD5A51 /* MyAccountConnectingView.swift in Sources */,
 				3DB6A5B12AE11C2D00C1369F /* LoginViewModel.swift in Sources */,
 				3D957EA52AF6B66D00D565E9 /* Ex+UIApplication.swift in Sources */,
