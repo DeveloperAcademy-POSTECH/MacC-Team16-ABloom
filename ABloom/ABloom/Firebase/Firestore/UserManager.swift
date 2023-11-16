@@ -9,8 +9,20 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Foundation
 
-final class UserManager {
+final class UserManager: ObservableObject {
   static let shared = UserManager()
+  
+  @Published var currentUser: DBUser?
+  @Published var fianceUser: DBUser?
+  
+  init() {
+    Task {
+      try? await fetchCurrentUser()
+      print("현재 유저 : \(currentUser)")
+      try? await fetchFianceUser()
+      print("상대 유저 : \(fianceUser)")
+    }
+  }
   
   // MARK: 사용 객체
   private let userCollection = Firestore.firestore().collection("users")
@@ -23,23 +35,33 @@ final class UserManager {
     userDocument(userId: userId).collection("answers")
   }
   
-  // MARK: GET Method
-  func getCurrentUser() async throws -> DBUser {
+  // MARK: Create
+  func createNewUser(user: DBUser) throws {
+    try userDocument(userId: user.userId).setData(from: user, merge: false)
+  }
+  
+  
+  // MARK: Retrieve
+  func fetchCurrentUser() async throws {
+    // TODO: 에러처리
     let currentUser = try AuthenticationManager.shared.getAuthenticatedUser()
     
-    return try await getUser(userId: currentUser.uid)
+    self.currentUser = try await getUser(userId: currentUser.uid)
+  }
+  
+  func fetchFianceUser() async throws {
+    guard let fianceId = self.currentUser?.fiance else {
+      return
+    }
+    
+    self.fianceUser = try await getUser(userId: fianceId)
   }
   
   func getUser(userId: String) async throws -> DBUser {
     try await userDocument(userId: userId).getDocument(as: DBUser.self)
   }
   
-  
-  // MARK: POST Method
-  func createNewUser(user: DBUser) throws {
-    try userDocument(userId: user.userId).setData(from: user, merge: false)
-  }
-  
+  // MARK: Update
   func updateUserName(userId: String, name: String) throws {
     let data: [String: Any] = [DBUser.CodingKeys.name.rawValue:name]
     userDocument(userId: userId).updateData(data)
@@ -50,22 +72,12 @@ final class UserManager {
     userDocument(userId: userId).updateData(data)
   }
   
-  func connectFiance(connectionCode: String) async throws {
-    let snapshot = try await userCollection.whereField(DBUser.CodingKeys.invitationCode.rawValue, isEqualTo: connectionCode).getDocuments()
-    
-    guard let target = snapshot.documents.first else {
-      throw URLError(.badServerResponse)
-    }
-    
-    // TODO: 에러처리
-    // 1. 상대방이 이미 연결되어 있는 경우
-    // 2. 없는 코드에 접근한 경우
-    let targetId = try target.data(as: DBUser.self).userId
-    let myId = try AuthenticationManager.shared.getAuthenticatedUser().uid
-    
-    try await userDocument(userId: targetId).updateData([DBUser.CodingKeys.fiance.rawValue:myId])
-    try await userDocument(userId: myId).updateData([DBUser.CodingKeys.fiance.rawValue:targetId])
+  func updateFcmToken(userID: String, fcmToken: String) throws {
+    let fcmToken: [String: Any] = [DBUser.CodingKeys.fcmToken.rawValue:fcmToken]
+    userDocument(userId: userID).updateData(fcmToken)
   }
+  
+  // MARK: Delete
   
   func deleteUser() async throws {
     let user = try await UserManager.shared.getCurrentUser()
@@ -86,6 +98,35 @@ final class UserManager {
       try await document.reference.delete()
     }
   }
+  
+  
+  // MARK: Will be deprecated method
+  // MARK: GET Method
+  func getCurrentUser() async throws -> DBUser {
+    let currentUser = try AuthenticationManager.shared.getAuthenticatedUser()
+    
+    return try await getUser(userId: currentUser.uid)
+  }
+  
+  
+  // MARK: POST Method
+  func connectFiance(connectionCode: String) async throws {
+    let snapshot = try await userCollection.whereField(DBUser.CodingKeys.invitationCode.rawValue, isEqualTo: connectionCode).getDocuments()
+    
+    guard let target = snapshot.documents.first else {
+      throw URLError(.badServerResponse)
+    }
+    
+    // TODO: 에러처리
+    // 1. 상대방이 이미 연결되어 있는 경우
+    // 2. 없는 코드에 접근한 경우
+    let targetId = try target.data(as: DBUser.self).userId
+    let myId = try AuthenticationManager.shared.getAuthenticatedUser().uid
+    
+    try await userDocument(userId: targetId).updateData([DBUser.CodingKeys.fiance.rawValue:myId])
+    try await userDocument(userId: myId).updateData([DBUser.CodingKeys.fiance.rawValue:targetId])
+  }
+
   
   // MARK: Answer
   func creatAnswer(userId: String, questionId: Int, content: String) throws {
@@ -140,8 +181,4 @@ final class UserManager {
   }
   
   // FCMToken
-  func updateFcmToken(userID: String, fcmToken: String) throws {
-    let fcmToken: [String: Any] = [DBUser.CodingKeys.fcmToken.rawValue:fcmToken]
-    userDocument(userId: userID).updateData(fcmToken)
-  }
 }
