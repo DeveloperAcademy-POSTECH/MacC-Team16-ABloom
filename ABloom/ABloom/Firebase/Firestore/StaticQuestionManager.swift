@@ -12,7 +12,7 @@ final class StaticQuestionManager {
   
   private let questionCollection = Firestore.firestore().collection("questions")
   private let essentialCollection = Firestore.firestore().collection("essentialQuestions")
-
+  
   @Published var essentialQuestionsOrder = [Int]()
   @Published var essentialQuestionsRandom = [Int]()
   
@@ -58,8 +58,8 @@ final class StaticQuestionManager {
   }
   
   func fetchEssentialCollections() async throws {
-      let document = try await essentialCollection.document("essentialQuestionsId").getDocument(as: DBEssentialQuestion.self)
-      self.essentialQuestionsOrder = document.fixedOrder
-      self.essentialQuestionsRandom = document.randomOrder
+    let document = try await essentialCollection.document("essentialQuestionsId").getDocument(as: DBEssentialQuestion.self)
+    self.essentialQuestionsOrder = document.fixedOrder
+    self.essentialQuestionsRandom = document.randomOrder
   }
 }
