@@ -57,11 +57,13 @@ final class UserManager: ObservableObject {
     self.fianceUser = try await getUser(userId: fianceId)
   }
   
+  // TODO: private로 수정
   func getUser(userId: String) async throws -> DBUser {
     try await userDocument(userId: userId).getDocument(as: DBUser.self)
   }
   
   // MARK: Update
+  // TODO: 유저 아이디를 받지 않고 수정이 가능하도록 구현
   func updateUserName(userId: String, name: String) throws {
     let data: [String: Any] = [DBUser.CodingKeys.name.rawValue:name]
     userDocument(userId: userId).updateData(data)
@@ -75,6 +77,16 @@ final class UserManager: ObservableObject {
   func updateFcmToken(userID: String, fcmToken: String) throws {
     let fcmToken: [String: Any] = [DBUser.CodingKeys.fcmToken.rawValue:fcmToken]
     userDocument(userId: userID).updateData(fcmToken)
+  }
+  
+  func connectFiance(with invitationCode: String) {
+    // TODO: 에러처리
+    guard let currentUser = self.currentUser else {
+      return
+    }
+    
+    let data: [String: Any] = [DBUser.CodingKeys.fiance.rawValue:invitationCode]
+    userDocument(userId: currentUser.userId).updateData(data)
   }
   
   // MARK: Delete
