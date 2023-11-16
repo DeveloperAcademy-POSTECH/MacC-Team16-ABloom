@@ -13,6 +13,8 @@ final class AnswerManager: ObservableObject {
   @Published var myAnswers: [DBAnswer]?
   @Published var fianceAnswers: [DBAnswer]?
   
+  static let shared = AnswerManager()
+  
   private let userCollection = Firestore.firestore().collection("users")
   
   private func userDocument(userId: String) -> DocumentReference {
