@@ -80,7 +80,7 @@ extension MyAccountView {
       
       VStack(alignment: .leading) {
         Text(myAccountVM.userName ?? "정보 없음")
-          .fontWithTracking(.title3Bold)
+          .fontWithTracking(.title3B)
           .foregroundStyle(.stone800)
         HStack {
           Text(myAccountVM.dDayText)
@@ -141,7 +141,7 @@ extension MyAccountView {
   private var accountMenuList: some View {
     VStack(alignment: .leading, spacing: 30) {
       Text("내 계정 관리")
-        .fontWithTracking(.headlineBold)
+        .fontWithTracking(.headlineB)
       
       MenuListButtonItem(title: "로그아웃") {
         myAccountVM.showSignOutCheckAlert = true

@@ -93,18 +93,20 @@
 		AE7EE4E12AD6409000E0A573 /* ABloomApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7EE4E02AD6409000E0A573 /* ABloomApp.swift */; };
 		AE7EE4E82AD6409100E0A573 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE7EE4E72AD6409100E0A573 /* Preview Assets.xcassets */; };
 		AE8D3C512ADE19E0009899A7 /* Ex+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D3C502ADE19E0009899A7 /* Ex+Font.swift */; };
-		AE8D3C582ADE1A08009899A7 /* SpoqaHanSansNeo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8D3C532ADE1A07009899A7 /* SpoqaHanSansNeo-Bold.ttf */; };
-		AE8D3C592ADE1A08009899A7 /* SpoqaHanSansNeo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8D3C542ADE1A07009899A7 /* SpoqaHanSansNeo-Regular.ttf */; };
-		AE8D3C5A2ADE1A08009899A7 /* SpoqaHanSansNeo-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8D3C552ADE1A08009899A7 /* SpoqaHanSansNeo-Thin.ttf */; };
-		AE8D3C5B2ADE1A08009899A7 /* SpoqaHanSansNeo-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8D3C562ADE1A08009899A7 /* SpoqaHanSansNeo-Light.ttf */; };
-		AE8D3C5C2ADE1A08009899A7 /* SpoqaHanSansNeo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8D3C572ADE1A08009899A7 /* SpoqaHanSansNeo-Medium.ttf */; };
 		AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D3C602ADE3C73009899A7 /* Ex+Shape.swift */; };
 		AEAB19372ADF77210057BC43 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAB19362ADF77210057BC43 /* Buttons.swift */; };
 		AEB502642AE5FA840056E439 /* CustomNavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB502632AE5FA840056E439 /* CustomNavigationBarModifier.swift */; };
 		AEB5026B2AE64B8D0056E439 /* CategoryQuestionBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB5026A2AE64B8D0056E439 /* CategoryQuestionBox.swift */; };
+		AEBDE5682B06FC46005711BF /* NanumSquareNeo-aLt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEBDE5632B06FC46005711BF /* NanumSquareNeo-aLt.ttf */; };
+		AEBDE5692B06FC46005711BF /* NanumSquareNeo-dEb.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEBDE5642B06FC46005711BF /* NanumSquareNeo-dEb.ttf */; };
+		AEBDE56A2B06FC46005711BF /* NanumSquareNeo-cBd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEBDE5652B06FC46005711BF /* NanumSquareNeo-cBd.ttf */; };
+		AEBDE56B2B06FC46005711BF /* NanumSquareNeo-bRg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEBDE5662B06FC46005711BF /* NanumSquareNeo-bRg.ttf */; };
+		AEBDE56C2B06FC46005711BF /* NanumSquareNeo-eHv.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEBDE5672B06FC46005711BF /* NanumSquareNeo-eHv.ttf */; };
 		AEC260612AEA5A8000DF7CD5 /* StaticQuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */; };
 		AEC44E042AF628DF0021156E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEC44E032AF628DF0021156E /* Launch Screen.storyboard */; };
 		AEEA8DCF2AEB82070068550E /* SelectQuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEA8DCE2AEB82070068550E /* SelectQuestionViewModel.swift */; };
+		AEEA8DD12AEB82290068550E /* SelectQuestionView1.0.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEA8DD02AEB82290068550E /* SelectQuestionView1.0.swift */; };
+
 		AEEA8DD32AEB82520068550E /* ChatBubbles.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEA8DD22AEB82520068550E /* ChatBubbles.swift */; };
 /* End PBXBuildFile section */
 
@@ -196,19 +198,21 @@
 		AE7EE4E02AD6409000E0A573 /* ABloomApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABloomApp.swift; sourceTree = "<group>"; };
 		AE7EE4E72AD6409100E0A573 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AE8D3C502ADE19E0009899A7 /* Ex+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Font.swift"; sourceTree = "<group>"; };
-		AE8D3C532ADE1A07009899A7 /* SpoqaHanSansNeo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Bold.ttf"; sourceTree = "<group>"; };
-		AE8D3C542ADE1A07009899A7 /* SpoqaHanSansNeo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Regular.ttf"; sourceTree = "<group>"; };
-		AE8D3C552ADE1A08009899A7 /* SpoqaHanSansNeo-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Thin.ttf"; sourceTree = "<group>"; };
-		AE8D3C562ADE1A08009899A7 /* SpoqaHanSansNeo-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Light.ttf"; sourceTree = "<group>"; };
-		AE8D3C572ADE1A08009899A7 /* SpoqaHanSansNeo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Medium.ttf"; sourceTree = "<group>"; };
 		AE8D3C5D2ADE1A22009899A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AE8D3C602ADE3C73009899A7 /* Ex+Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Shape.swift"; sourceTree = "<group>"; };
 		AEAB19362ADF77210057BC43 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		AEB502632AE5FA840056E439 /* CustomNavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBarModifier.swift; sourceTree = "<group>"; };
 		AEB5026A2AE64B8D0056E439 /* CategoryQuestionBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryQuestionBox.swift; sourceTree = "<group>"; };
+		AEBDE5632B06FC46005711BF /* NanumSquareNeo-aLt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NanumSquareNeo-aLt.ttf"; sourceTree = "<group>"; };
+		AEBDE5642B06FC46005711BF /* NanumSquareNeo-dEb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NanumSquareNeo-dEb.ttf"; sourceTree = "<group>"; };
+		AEBDE5652B06FC46005711BF /* NanumSquareNeo-cBd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NanumSquareNeo-cBd.ttf"; sourceTree = "<group>"; };
+		AEBDE5662B06FC46005711BF /* NanumSquareNeo-bRg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NanumSquareNeo-bRg.ttf"; sourceTree = "<group>"; };
+		AEBDE5672B06FC46005711BF /* NanumSquareNeo-eHv.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NanumSquareNeo-eHv.ttf"; sourceTree = "<group>"; };
 		AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticQuestionManager.swift; sourceTree = "<group>"; };
 		AEC44E032AF628DF0021156E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AEEA8DCE2AEB82070068550E /* SelectQuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionViewModel.swift; sourceTree = "<group>"; };
+		AEEA8DD02AEB82290068550E /* SelectQuestionView1.0.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionView1.0.swift; sourceTree = "<group>"; };
+
 		AEEA8DD22AEB82520068550E /* ChatBubbles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbles.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -574,6 +578,7 @@
 				AE1AE9F82AE50BBC0010089F /* QuestionMainView.swift */,
 				AE1AE9FE2AE557E00010089F /* AnswerCheckView.swift */,
 				AE66978F2AE904F80004B56C /* AnswerWriteView.swift */,
+				AEEA8DD02AEB82290068550E /* SelectQuestionView1.0.swift */,
 				60E05FAF2AFBB66200AC6AE8 /* TipView.swift */,
 			);
 			path = View;
@@ -699,11 +704,11 @@
 		AE8D3C522ADE19F2009899A7 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				AE8D3C532ADE1A07009899A7 /* SpoqaHanSansNeo-Bold.ttf */,
-				AE8D3C562ADE1A08009899A7 /* SpoqaHanSansNeo-Light.ttf */,
-				AE8D3C572ADE1A08009899A7 /* SpoqaHanSansNeo-Medium.ttf */,
-				AE8D3C542ADE1A07009899A7 /* SpoqaHanSansNeo-Regular.ttf */,
-				AE8D3C552ADE1A08009899A7 /* SpoqaHanSansNeo-Thin.ttf */,
+				AEBDE5632B06FC46005711BF /* NanumSquareNeo-aLt.ttf */,
+				AEBDE5662B06FC46005711BF /* NanumSquareNeo-bRg.ttf */,
+				AEBDE5652B06FC46005711BF /* NanumSquareNeo-cBd.ttf */,
+				AEBDE5642B06FC46005711BF /* NanumSquareNeo-dEb.ttf */,
+				AEBDE5672B06FC46005711BF /* NanumSquareNeo-eHv.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -833,16 +838,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE8D3C5A2ADE1A08009899A7 /* SpoqaHanSansNeo-Thin.ttf in Resources */,
-				AE8D3C582ADE1A08009899A7 /* SpoqaHanSansNeo-Bold.ttf in Resources */,
+				AEBDE56A2B06FC46005711BF /* NanumSquareNeo-cBd.ttf in Resources */,
+				AEBDE5682B06FC46005711BF /* NanumSquareNeo-aLt.ttf in Resources */,
 				3D44127A2AEAB34000FD5A51 /* GoogleService-Info.plist in Resources */,
-				AE8D3C5B2ADE1A08009899A7 /* SpoqaHanSansNeo-Light.ttf in Resources */,
+				AEBDE5692B06FC46005711BF /* NanumSquareNeo-dEb.ttf in Resources */,
 				AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */,
 				AE7EE4E82AD6409100E0A573 /* Preview Assets.xcassets in Resources */,
-				AE8D3C5C2ADE1A08009899A7 /* SpoqaHanSansNeo-Medium.ttf in Resources */,
+				AEBDE56B2B06FC46005711BF /* NanumSquareNeo-bRg.ttf in Resources */,
 				3D44126B2AE6246100FD5A51 /* Assets.xcassets in Resources */,
+				AEBDE56C2B06FC46005711BF /* NanumSquareNeo-eHv.ttf in Resources */,
 				AEC44E042AF628DF0021156E /* Launch Screen.storyboard in Resources */,
-				AE8D3C592ADE1A08009899A7 /* SpoqaHanSansNeo-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -901,6 +906,8 @@
 				607DA2182AF0B07D005AE11C /* Ex+Date.swift in Sources */,
 				AEB5026B2AE64B8D0056E439 /* CategoryQuestionBox.swift in Sources */,
 				607DA20C2AEE5028005AE11C /* ImageFileManager.swift in Sources */,
+				AEEA8DD12AEB82290068550E /* SelectQuestionView1.0.swift in Sources */,
+
 				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
 				AE6697902AE904F80004B56C /* AnswerWriteView.swift in Sources */,
 				3D44125A2AE4F8B600FD5A51 /* WebView1.0.swift in Sources */,

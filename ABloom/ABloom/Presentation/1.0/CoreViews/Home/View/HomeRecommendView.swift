@@ -21,7 +21,7 @@ struct HomeRecommendView: View {
       
       VStack(alignment: .leading, spacing: 3) {
         Text("오늘의 추천 질문")
-          .fontWithTracking(.subHeadlineBold)
+          .fontWithTracking(.subHeadlineR)
           .foregroundStyle(.stone800)
         
         HStack {

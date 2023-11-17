@@ -1,41 +1,53 @@
 import SwiftUI
 
-extension Font {
-  // LargeTitle
 
-  static let largeTitleR: Font = .custom("SpoqaHanSansNeo-Regular", size: 34)
+enum AppFont: String {
+  case regular = "NanumSquareNeoTTF-bRg"
+  case bold = "NanumSquareNeoTTF-cBd"
+  case extraBold = "NanumSquareNeoTTF-dEb"
+}
+
+extension Font {
+  
+  // MARK: - 새로 바뀐 폰트
+  
+  // LargeTitle
+  static let largeTitleR: Font = .custom(AppFont.regular.rawValue, size: 34)
+  static let largeTitleB: Font = .custom(AppFont.bold.rawValue, size: 34)
+  static let largeTitleXB: Font = .custom(AppFont.extraBold.rawValue, size: 34)
   
   // Titles
-  static let title1R: Font = .custom("SpoqaHanSansNeo-Regular", size: 28)
-  static let title2R: Font = .custom("SpoqaHanSansNeo-Regular", size: 22)
-  static let title3R: Font = .custom("SpoqaHanSansNeo-Regular", size: 20)
+  static let title1R: Font = .custom(AppFont.regular.rawValue, size: 28)
+  static let title1B: Font = .custom(AppFont.bold.rawValue, size: 28)
   
+  static let title2R: Font = .custom(AppFont.regular.rawValue, size: 22)
+  static let title2B: Font = .custom(AppFont.bold.rawValue, size: 22)
+  
+  static let title3R: Font = .custom(AppFont.regular.rawValue, size: 20)
+  static let title3B: Font = .custom(AppFont.bold.rawValue, size: 20)
+ 
   // Others
-  static let headlineR: Font = .custom("SpoqaHanSansNeo-Regular", size: 17)
-  static let bodyR: Font = .custom("SpoqaHanSansNeo-Regular", size: 17)
-  static let calloutR: Font = .custom("SpoqaHanSansNeo-Regular", size: 16)
-  static let subHeadlineR: Font = .custom("SpoqaHanSansNeo-Regular", size: 15)
-  static let footnoteR: Font = .custom("SpoqaHanSansNeo-Regular", size: 13)
-  static let caption1R: Font = .custom("SpoqaHanSansNeo-Regular", size: 12)
-  static let caption2R: Font = .custom("SpoqaHanSansNeo-Regular", size: 11)
+  static let headlineR: Font = .custom(AppFont.regular.rawValue, size: 17)
+  static let headlineB: Font = .custom(AppFont.bold.rawValue, size: 17)
   
+  static let bodyR: Font = .custom(AppFont.regular.rawValue, size: 17)
+  static let bodyB: Font = .custom(AppFont.bold.rawValue, size: 17)
   
-  // LargeTitleBold
-  static let largeTitleBold: Font = .custom("SpoqaHanSansNeo-Bold", size: 34)
+  static let calloutR: Font = .custom(AppFont.regular.rawValue, size: 16)
+  static let calloutB: Font = .custom(AppFont.bold.rawValue, size: 16)
   
-  // TitlesBold
-  static let title1Bold: Font = .custom("SpoqaHanSansNeo-Bold", size: 28)
-  static let title2Bold: Font = .custom("SpoqaHanSansNeo-Bold", size: 22)
-  static let title3Bold: Font = .custom("SpoqaHanSansNeo-Medium", size: 20)
+  static let subHeadlineR: Font = .custom(AppFont.regular.rawValue, size: 15)
+  static let subHeadlineB: Font = .custom(AppFont.bold.rawValue, size: 15)
   
-  // OthersBold
-  static let headlineBold: Font = .custom("SpoqaHanSansNeo-Bold", size: 17)
-  static let bodyBold: Font = .custom("SpoqaHanSansNeo-Medium", size: 17)
-  static let calloutBold: Font = .custom("SpoqaHanSansNeo-Medium", size: 16)
-  static let subHeadlineBold: Font = .custom("SpoqaHanSansNeo-Medium", size: 15)
-  static let footnoteBold: Font = .custom("SpoqaHanSansNeo-Bold", size: 13)
-  static let caption1Bold: Font = .custom("SpoqaHanSansNeo-Medium", size: 12)
-  static let caption2Bold: Font = .custom("SpoqaHanSansNeo-Medium", size: 11)
+  static let footnoteR: Font = .custom(AppFont.regular.rawValue, size: 13)
+  static let footnoteB: Font = .custom(AppFont.bold.rawValue, size: 13)
+  
+  static let caption1R: Font = .custom(AppFont.regular.rawValue, size: 12)
+  static let caption1B: Font = .custom(AppFont.bold.rawValue, size: 12)
+  
+  static let caption2R: Font = .custom(AppFont.regular.rawValue, size: 11)
+  static let caption2B: Font = .custom(AppFont.bold.rawValue, size: 11)
+
   
   // ChatBubble
   static let chatBubble: Font = .custom("SpoqaHanSansNeo-Regular", size: 14)

@@ -24,7 +24,7 @@ struct DeleteAccountView: View {
     VStack(alignment: .leading, spacing: 0) {
       Text(title)
         .foregroundStyle(.stone900)
-        .fontWithTracking(.title3Bold)
+        .fontWithTracking(.title3B)
         .padding(.bottom, 18)
       Text(content1 + content2 + content3)
         .foregroundStyle(.stone700)

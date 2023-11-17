@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct QuestionMainView: View {
+
   @StateObject var questionVM = QuestionMainViewModel()
   
   var body: some View {
@@ -35,7 +36,7 @@ struct QuestionMainView: View {
         AnswerCheckView(answerCheckVM: .init(questionId: content), sex: questionVM.sex)
       }
     })
-   
+    
     .task {
       questionVM.getInfo()
     }
@@ -47,7 +48,7 @@ extension QuestionMainView {
   private var headerView: some View {
     HStack {
       Text("우리의 문답")
-        .fontWithTracking(.title3Bold)
+        .fontWithTracking(.title3B)
       Spacer()
       // FIXME: 다른 뷰로 전환 시에는 다른 방식으로 처리해야함
       NavigationLink(value: 0) {

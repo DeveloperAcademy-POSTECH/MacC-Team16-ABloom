@@ -19,7 +19,7 @@ struct CopyStrokeInputField: View {
         .foregroundStyle(.stone900)
      
       Text(myCode ?? "코드를 불러오지 못했습니다")
-        .fontWithTracking(.calloutBold, tracking: -0.4)
+        .fontWithTracking(.calloutB, tracking: -0.4)
         .foregroundStyle(.stone900)
       
       Spacer()

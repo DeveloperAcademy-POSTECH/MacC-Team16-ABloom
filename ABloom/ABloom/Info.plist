@@ -16,6 +16,11 @@
 		<string>SpoqaHanSansNeo-Medium.ttf</string>
 		<string>SpoqaHanSansNeo-Light.ttf</string>
 		<string>SpoqaHanSansNeo-Bold.ttf</string>
+		<string>NanumSquareNeo-aLt.ttf</string>
+		<string>NanumSquareNeo-bRg.ttf</string>
+		<string>NanumSquareNeo-cBd.ttf</string>
+		<string>NanumSquareNeo-dEb.ttf</string>
+		<string>NanumSquareNeo-eHv.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

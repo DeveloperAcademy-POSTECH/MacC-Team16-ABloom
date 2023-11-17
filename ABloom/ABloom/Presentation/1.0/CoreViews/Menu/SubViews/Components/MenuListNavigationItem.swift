@@ -24,7 +24,7 @@ struct MenuListNavigationItem<Content: View>: View {
     } label: {
       HStack {
         Text(title)
-          .fontWithTracking(.subHeadlineBold)
+          .fontWithTracking(.subHeadlineB)
           .foregroundStyle(.stone800)
         
         Spacer()
@@ -57,7 +57,7 @@ struct MenuListButtonItem: View {
     Button(action: action, label: {
       HStack {
         Text(title)
-          .fontWithTracking(.subHeadlineBold)
+          .fontWithTracking(.subHeadlineB)
           .foregroundStyle(.stone800)
         
         Spacer()
