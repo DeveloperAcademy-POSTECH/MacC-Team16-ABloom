@@ -57,13 +57,13 @@ extension SelectQuestionView {
         ForEach(Category.allCases, id: \.self) { category in
           VStack(alignment: .center, spacing: 6) {
             
-            Image(selectQVM.selectedCategory == category ? category.rawValue + "Black" : category.rawValue)
+            Image(category.rawValue)
               .resizable()
               .frame(width: 24, height: 24)
             
             Text(category.type)
               .fontWithTracking(selectQVM.selectedCategory == category ? .caption1Bold : .caption1R)
-              .foregroundStyle(.stone700)
+              .foregroundStyle(.gray800)
           }
           .opacity(selectQVM.selectedCategory == category ? 1 : 0.4)
           .onTapGesture(perform: {
@@ -78,6 +78,7 @@ extension SelectQuestionView {
     }
   }
   
+  // MARK:  Lia's Lavine
   private var questionListView: some View {
     VStack(spacing: 0) {
       

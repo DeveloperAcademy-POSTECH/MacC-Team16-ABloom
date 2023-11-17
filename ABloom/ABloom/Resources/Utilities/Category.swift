@@ -35,33 +35,4 @@ enum Category: String, CaseIterable {
     case .past: return "과거"
     }
   }
-  
-//  var imgName: String {
-//    switch self {
-//    case .communication:
-//      return "communication"
-//    case .values:
-//      return "value"
-//    case .finance:
-//      return "finance"
-//    case .lifestyle:
-//      return "lifestyle"
-//    case .child:
-//      return "child"
-//    case .family:
-//      return "family"
-//    case .sex:
-//      return "sex"
-//    case .health:
-//      return "health"
-//    case .wedding:
-//      return "wedding"
-//    case .future:
-//      return "future"
-//    case .present:
-//      return "present"
-//    case .past:
-//      return "past"
-//    }
-//  }
 }
