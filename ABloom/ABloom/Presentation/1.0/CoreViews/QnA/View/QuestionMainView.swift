@@ -30,7 +30,7 @@ struct QuestionMainView: View {
     
     .navigationDestination(for: Int.self, destination: { content in
       if content == 0 {
-        SelectQuestionView(sex: questionVM.sex)
+        SelectQuestionView()
       } else {
         AnswerCheckView(answerCheckVM: .init(questionId: content), sex: questionVM.sex)
       }
