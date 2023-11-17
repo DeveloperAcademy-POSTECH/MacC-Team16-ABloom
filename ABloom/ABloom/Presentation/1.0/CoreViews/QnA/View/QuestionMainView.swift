@@ -8,6 +8,19 @@
 import SwiftUI
 
 struct QuestionMainView: View {
+  init() {
+    checkFont()
+  }
+  
+  func checkFont() {
+       
+    for familyName in UIFont.familyNames {
+               print("Font Family Name: \(familyName)")
+               for fontName in UIFont.fontNames(forFamilyName: familyName) {
+                   print("    Font Name: \(fontName)")
+               }
+           }
+  }
   @StateObject var questionVM = QuestionMainViewModel()
   
   var body: some View {
@@ -35,7 +48,7 @@ struct QuestionMainView: View {
         AnswerCheckView(answerCheckVM: .init(questionId: content), sex: questionVM.sex)
       }
     })
-   
+    
     .task {
       questionVM.getInfo()
     }
