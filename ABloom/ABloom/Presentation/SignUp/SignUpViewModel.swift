@@ -15,6 +15,12 @@ final class SignUpViewModel: ObservableObject {
   @Published var isCheckedPrivacyPolicy = false
   @Published var isCheckedTermsOfuse = false
   
+  func signUp() throws {
+    let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
+    
+    try UserManager.shared.createUser(user: DBUser(userId: userId, name: inputName, sex: selectedSex.getBool, marriageDate: selectedDate, invitationCode: generateInviteCode(userId: userId)))
+  }
+  
   func stepToNext() {
     switch nowStep {
     case .step1:
@@ -24,7 +30,7 @@ final class SignUpViewModel: ObservableObject {
     case .step3:
       self.nowStep = .step4
     case .step4:
-      return
+      try? signUp()
     }
   }
   
@@ -58,5 +64,11 @@ final class SignUpViewModel: ObservableObject {
     case .step4:
       !self.isCheckedPrivacyPolicy || !self.isCheckedTermsOfuse
     }
+  }
+                                  
+  /// 초대를 위한 초대 코드를 생성합니다.
+  /// - Returns: 랜덤한 초대 코드를 리턴합니다.
+  private func generateInviteCode(userId: String) -> String {
+    String((0..<10).map { _ in userId.randomElement()! })
   }
 }

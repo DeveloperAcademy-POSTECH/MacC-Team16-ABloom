@@ -39,7 +39,9 @@ struct SignUpView: View {
         if vm.nowStep == .step1 {
           Text("취소")
         } else {
-          Image(systemName: "chevron.left")
+          Image("angle-left")
+            .resizable()
+            .renderingMode(.template)
             .frame(width: 18)
             .scaledToFit()
         }
@@ -71,6 +73,7 @@ extension SignUpView {
     ProgressView("", value: vm.nowStep.progress, total: 100)
       .labelsHidden()
       .tint(.purple600)
+      .scaleEffect(y: 1.5)
   }
   
   private var headlineText: some View {
