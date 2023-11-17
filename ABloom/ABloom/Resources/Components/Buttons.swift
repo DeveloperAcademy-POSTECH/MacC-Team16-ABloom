@@ -154,9 +154,107 @@ struct TextBtn: View {
   }
 }
 
+struct ButtonWDescriptionA: View {
+  let title: String
+  let subtitle: String
+  var isActive: Bool
+  
+  var body: some View {
+    if isActive {
+      HStack {
+        Text(title)
+          .customFont(.calloutB)
+          .foregroundStyle(.gray800)
+          .padding(.trailing, 24)
+        
+        Text(subtitle)
+          .customFont(.caption2R)
+          .foregroundStyle(.gray600)
+        
+        Spacer()
+      }
+      .padding(.horizontal, 24)
+      .padding(.vertical, 20)
+      .background(Color.purple300)
+      .cornerRadius(12, corners: .allCorners)
+      .overlay {
+        RoundedRectangle(cornerRadius: 12)
+          .inset(by: 0.75)
+          .stroke(Color.purple700)
+      }
+    } else {
+      HStack {
+        Text(title)
+          .customFont(.calloutB)
+          .foregroundStyle(.gray800)
+          .padding(.trailing, 24)
+        
+        Text(subtitle)
+          .customFont(.caption2R)
+          .foregroundStyle(.gray600)
+        
+        Spacer()
+      }
+      .padding(.horizontal, 24)
+      .padding(.vertical, 20)
+      .background(Color.gray100)
+      .cornerRadius(12, corners: .allCorners)
+    }
+  }
+}
+
+struct ButtonWDescriptionB: View {
+  let title: String
+  let subtitle: String
+  var isActive: Bool
+  
+  var body: some View {
+    if isActive {
+      HStack {
+        Text(title)
+          .customFont(.calloutB)
+          .foregroundStyle(.gray800)
+          .padding(.trailing, 24)
+        
+        Spacer()
+        
+        Text(subtitle)
+          .customFont(.caption2R)
+          .foregroundStyle(.gray500)
+      }
+      .padding(.horizontal, 25)
+      .padding(.vertical, 20)
+      .background(Color.purple300)
+      .cornerRadius(12, corners: .allCorners)
+      .overlay {
+        RoundedRectangle(cornerRadius: 12)
+          .inset(by: 0.75)
+          .stroke(Color.purple700)
+      }
+    } else {
+      HStack {
+        Text(title)
+          .customFont(.calloutB)
+          .foregroundStyle(.gray800)
+          .padding(.trailing, 24)
+        
+        Spacer()
+        
+        Text(subtitle)
+          .customFont(.caption2R)
+          .foregroundStyle(.gray500)
+      }
+      .padding(.horizontal, 25)
+      .padding(.vertical, 20)
+      .background(Color.gray100)
+      .cornerRadius(12, corners: .allCorners)
+    }
+  }
+}
+
 
 #Preview {
-  Group {
+  ScrollView {
     PurpleSingleBtn(text: "PurpleSingleBtn")
       .padding()
     PinkSingleBtn(text: "버튼")
@@ -174,6 +272,11 @@ struct TextBtn: View {
     CicleGrayBtn()
       .padding()
     TextBtn()
+      .padding()
+    ButtonWDescriptionA(title: "11", subtitle: "    11", isActive: false)
+      .padding()
+    
+    ButtonWDescriptionB(title: "12312", subtitle: "123123", isActive: false)
       .padding()
   }
 }

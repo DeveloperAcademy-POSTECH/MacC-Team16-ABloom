@@ -10,6 +10,7 @@ import Foundation
 enum UserSexType: String, CaseIterable {
   case woman = "예비신부"
   case man = "예비신랑"
+  case none
   
   var getBool: Bool {
     self == .man ? true : false
@@ -21,6 +22,8 @@ enum UserSexType: String, CaseIterable {
       return "avatar_Female circle GradientBG"
     case .man:
       return "avatar_Male circle GradientBG"
+    case .none:
+      return ""
     }
   }
 }

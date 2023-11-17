@@ -16,22 +16,47 @@ struct SignUpView: View {
       progressBar
         .padding(.top, 20)
         .padding(.bottom, 30)
-      
-      SignUpContentView(signUpViewModel: vm, step: .step1)
+
+      SignUpContentView(signUpViewModel: vm, step: vm.nowStep)
       
       Spacer()
     }
     .padding(.horizontal, horizontalPadding)
-    .toolbar {
-      ToolbarItem(placement: .cancellationAction) {
-        Button("취소") {
-          // Sheet 닫기
+    
+    .customNavigationBar(centerView: {
+      Text("가입하기")
+        .customFont(.bodyB)
+    }, leftView: {
+      Button {
+        if vm.nowStep == .step1 {
+          
+        } else {
+          withAnimation {
+            vm.stepToBack()
+          }
+        }
+      } label: {
+        if vm.nowStep == .step1 {
+          Text("취소")
+        } else {
+          Image(systemName: "chevron.left")
+            .frame(width: 18)
+            .scaledToFit()
         }
       }
-      ToolbarItem(placement: .principal) {
-        Text("가입하기")
+      .customFont(.calloutB)
+      .foregroundStyle(Color.purple700)
+    }, rightView: {
+      Button(vm.nowStep == .step4 ? "완료": "다음") {
+        withAnimation {
+          vm.stepToNext()
+        }
       }
-    }
+      .customFont(.calloutB)
+      .foregroundStyle(vm.nextButtonColor())
+      .hidden(vm.nowStep == .step1)
+      .disabled(vm.nextButtonDisableStatus())
+    })
   }
 }
 
@@ -43,24 +68,9 @@ struct SignUpView: View {
 
 extension SignUpView {
   private var progressBar: some View {
-    ZStack {
-      Rectangle()
-        .foregroundColor(.clear)
-        .frame(height: 6)
-        .frame(maxWidth: .infinity)
-        .background(Color(red: 0.88, green: 0.89, blue: 0.91))
-        .cornerRadius(30)
-      
-      HStack {
-        Rectangle()
-          .foregroundColor(.clear)
-          .frame(width: 87.5, height: 6)
-          .background(Color(red: 0.6, green: 0.43, blue: 0.69))
-          .cornerRadius(30)
-        
-        Spacer()
-      }
-    }
+    ProgressView("", value: vm.nowStep.progress, total: 100)
+      .labelsHidden()
+      .tint(.purple600)
   }
   
   private var headlineText: some View {
