@@ -67,8 +67,7 @@ extension QuestionMainView {
         ForEach(questionVM.questions, id: \.questionID) { question in
           NavigationLink(value: question.questionID) {
             QnAListItem(
-              category: Category(rawValue: question.category) ?? .child,
-              question: question.content,
+              question: question,
               answerStatus: questionVM.checkAnswerStatus(qid: question.questionID)
             )
           }
