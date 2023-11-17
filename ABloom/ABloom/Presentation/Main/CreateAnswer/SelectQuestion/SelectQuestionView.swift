@@ -120,5 +120,5 @@ extension SelectQuestionView {
 }
 
 #Preview {
-  SelectQuestionView()
+    SelectQuestionView()
 }
