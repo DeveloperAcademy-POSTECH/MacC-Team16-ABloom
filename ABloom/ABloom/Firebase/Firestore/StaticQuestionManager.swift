@@ -11,7 +11,7 @@ final class StaticQuestionManager {
   static let shared = StaticQuestionManager()
   
   @Published var staticQuestions: [DBStaticQuestion]?
-  @Published var filterdQuestions: [DBStaticQuestion]?
+  @Published var filteredQuestions: [DBStaticQuestion]?
   
   private let questionCollection = Firestore.firestore().collection("questions")
   private let essentialCollection = Firestore.firestore().collection("essentialQuestions")
@@ -30,7 +30,7 @@ final class StaticQuestionManager {
     ids += myAnswers.map { $0.questionId }
     ids += fianceAnswers.map { $0.questionId }
     
-    self.filterdQuestions = self.staticQuestions?.filter({ question in
+    self.filteredQuestions = self.staticQuestions?.filter({ question in
       !ids.contains { id in
         id == question.questionID
       }
