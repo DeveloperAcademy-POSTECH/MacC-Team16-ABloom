@@ -42,7 +42,7 @@ struct SignUpView: View {
           Image("angle-left")
             .resizable()
             .renderingMode(.template)
-            .frame(width: 18)
+            .frame(width: 18, height: 18)
             .scaledToFit()
         }
       }

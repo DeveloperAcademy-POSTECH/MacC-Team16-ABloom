@@ -26,7 +26,6 @@ struct SignUpContentView: View {
         selectSex
       case .step2:
         datePicker
-          .animation(.easeIn.delay(1), value: signUpViewModel.nowStep)
       case .step3:
         nameTextField
       case .step4:
