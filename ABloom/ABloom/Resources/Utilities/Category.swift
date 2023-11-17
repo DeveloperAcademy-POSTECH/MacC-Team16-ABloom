@@ -35,33 +35,4 @@ enum Category: String, CaseIterable {
     case .past: return "과거"
     }
   }
-  
-  var imgName: String {
-    switch self {
-    case .communication:
-      return "circleIcon_isometric_chatting"
-    case .values:
-      return "circleIcon_isometic_star"
-    case .finance:
-      return "circleIcon_isometic_money"
-    case .lifestyle:
-      return "circleIcon_isometic_rice"
-    case .child:
-      return "circleIcon_isometic_dummy"
-    case .family:
-      return "circleIcon_isometic_sofa"
-    case .sex:
-      return "circleIcon_isometic_bed"
-    case .health:
-      return "circleIcon_isometic_health"
-    case .wedding:
-      return "circleIcon_isometic_love_calender"
-    case .future:
-      return "circleIcon_isometic_target"
-    case .present:
-      return "circleIcon_isometric_location"
-    case .past:
-      return "circleIcon_isometic_reversed_timer"
-    }
-  }
 }
