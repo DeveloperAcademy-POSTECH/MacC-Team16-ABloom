@@ -57,11 +57,11 @@ extension LoginView {
     HStack {
       VStack(alignment: .leading, spacing: 11) {
         Text("예비부부가 함께 써내려가는\n둘 만의 결혼문답")
-          .fontWithTracking(.title2Bold, tracking: -0.4)
+          .fontWithTracking(.title2B, tracking: -0.4)
           .foregroundStyle(.stone600)
           .frame(minHeight: 72)
         Text("MERY")
-          .fontWithTracking(.largeTitleBold)
+          .fontWithTracking(.largeTitleR)
           .foregroundStyle(.stone950)
       }
       .multilineTextAlignment(.leading)

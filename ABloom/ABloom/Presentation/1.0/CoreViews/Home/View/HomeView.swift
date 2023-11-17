@@ -84,7 +84,7 @@ extension HomeView {
         HStack(spacing: 12) {
           Text(homeVM.isConnected ? "\(homeVM.untilWeddingDate)일, \(homeVM.qnaCount)개의 문답" : "연결해주세요")
             .foregroundStyle(.stone700)
-            .fontWithTracking(.title1Bold)
+            .fontWithTracking(.title1B)
           
           if !homeVM.isConnected {
             connectButton

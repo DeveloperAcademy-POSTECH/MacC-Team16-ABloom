@@ -21,7 +21,7 @@ struct TipView: View {
       HStack {
         Spacer()
         Text(title)
-          .fontWithTracking(.subHeadlineBold, tracking: -0.4)
+          .fontWithTracking(.subHeadlineB, tracking: -0.4)
         Spacer()
         Button {
           isPresent = false
@@ -44,7 +44,7 @@ struct TipView: View {
         isPresent = false
       } label: {
         Text("확인")
-          .fontWithTracking(.subHeadlineBold, tracking: -0.4)
+          .fontWithTracking(.subHeadlineB, tracking: -0.4)
           .frame(height: 45)
           .frame(maxWidth: .infinity)
           .foregroundStyle(.white)
@@ -65,7 +65,7 @@ struct TipView: View {
   private var contentView: some View {
     VStack(alignment: .leading, spacing: 2) {
       Text(contentTitle1)
-        .fontWithTracking(.calloutBold, tracking: -0.4)
+        .fontWithTracking(.calloutB, tracking: -0.4)
       
       Text("둘 중 한 명이라도".useNonBreakingSpace())
       + Text(" ‘더 대화해보고 싶어요' ".useNonBreakingSpace())
@@ -76,7 +76,7 @@ struct TipView: View {
       + Text("를 선택한 경우, 함께 시간을 보내며 더 얘기를 나눠주세요.".useNonBreakingSpace())
       
       Text(contentTitle2)
-        .fontWithTracking(.calloutBold, tracking: -0.4)
+        .fontWithTracking(.calloutB, tracking: -0.4)
         .padding(.top, 18)
       
       Text("함께 충분한 이야기를 나누고, 더 대화해보고 싶거나 알아보고 싶은 부분이 해결되었으면".useNonBreakingSpace())

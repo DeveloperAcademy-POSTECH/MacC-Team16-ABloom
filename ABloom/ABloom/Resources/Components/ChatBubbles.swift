@@ -105,7 +105,7 @@ struct ChatBubbleBtn: View {
       Spacer()
       
       Text(text)
-        .fontWithTracking(.subHeadlineBold, tracking: -0.4)
+        .fontWithTracking(.subHeadlineB, tracking: -0.4)
         .foregroundStyle(.stone800)
         .multilineTextAlignment(.leading)
         .padding(.vertical, 12)

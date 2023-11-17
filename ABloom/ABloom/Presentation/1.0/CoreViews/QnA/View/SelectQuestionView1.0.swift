@@ -83,7 +83,7 @@ extension SelectQuestionView {
               .frame(width: 64, height: 64)
             
             Text(category.type)
-              .fontWithTracking(selectQVM.selectedCategory == category ? .caption1Bold : .caption1R)
+              .fontWithTracking(selectQVM.selectedCategory == category ? .caption1B : .caption1R)
               .foregroundStyle(.stone700)
           }
           .opacity(selectQVM.selectedCategory == category ? 1 : 0.4)
@@ -103,7 +103,7 @@ extension SelectQuestionView {
       
       HStack {
         Text("\(selectQVM.selectedCategory.type) 문답")
-          .fontWithTracking(.headlineBold)
+          .fontWithTracking(.headlineB)
           .foregroundStyle(.stone700)
         
         Spacer()

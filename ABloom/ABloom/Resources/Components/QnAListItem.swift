@@ -17,11 +17,11 @@ struct QnAListItem: View {
       HStack {
         Text("     " + question)
           .foregroundStyle(.stone900)
-          .fontWithTracking(.footnoteBold, lineSpacing: 2)
+          .fontWithTracking(.footnoteB, lineSpacing: 2)
           .overlay(alignment: .topLeading) {
             Text("Q.")
               .foregroundColor(.purple700)
-              .fontWithTracking(.subHeadlineBold)
+              .fontWithTracking(.subHeadlineB)
               .offset(y: -2)
           }
       }
