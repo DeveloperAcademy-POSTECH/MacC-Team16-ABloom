@@ -66,7 +66,6 @@ extension QnAListView {
               date: .now,
               answerStatus: qnaListVM.checkAnswerStatus(qid: question.questionID)
             )
-            .shadow(color: .black.opacity(0.08), radius: 16, x: 0, y: 0)
           }
           .sheet(isPresented: $qnaListVM.showQnASheet) {
             CheckAnswerView(question: question)
@@ -77,6 +76,7 @@ extension QnAListView {
         Spacer().frame(height: 30)
       }
     }
+    .shadow(color: .black.opacity(0.08), radius: 16, x: 0, y: 0)
   }
   
   private var emptyView: some View {
