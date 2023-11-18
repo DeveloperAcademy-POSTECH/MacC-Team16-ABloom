@@ -160,45 +160,26 @@ struct ButtonWDescriptionA: View {
   var isActive: Bool
   
   var body: some View {
-    if isActive {
-      HStack {
-        Text(title)
-          .customFont(.calloutB)
-          .foregroundStyle(.gray800)
-          .padding(.trailing, 24)
-        
-        Text(subtitle)
-          .customFont(.caption2R)
-          .foregroundStyle(.gray600)
-        
-        Spacer()
-      }
-      .padding(.horizontal, 24)
-      .padding(.vertical, 20)
-      .background(Color.purple300)
-      .cornerRadius(12, corners: .allCorners)
-      .overlay {
-        RoundedRectangle(cornerRadius: 12)
-          .inset(by: 0.75)
-          .stroke(Color.purple700)
-      }
-    } else {
-      HStack {
-        Text(title)
-          .customFont(.calloutB)
-          .foregroundStyle(.gray800)
-          .padding(.trailing, 24)
-        
-        Text(subtitle)
-          .customFont(.caption2R)
-          .foregroundStyle(.gray600)
-        
-        Spacer()
-      }
-      .padding(.horizontal, 24)
-      .padding(.vertical, 20)
-      .background(Color.gray100)
-      .cornerRadius(12, corners: .allCorners)
+    HStack {
+      Text(title)
+        .customFont(.calloutB)
+        .foregroundStyle(.gray800)
+        .padding(.trailing, 24)
+      
+      Text(subtitle)
+        .customFont(.caption2R)
+        .foregroundStyle(.gray600)
+      
+      Spacer()
+    }
+    .padding(.horizontal, 24)
+    .padding(.vertical, 20)
+    .background(isActive ? Color.purple300 : Color.gray100)
+    .cornerRadius(12, corners: .allCorners)
+    .overlay {
+      RoundedRectangle(cornerRadius: 12)
+        .inset(by: 0.75)
+        .stroke(Color.purple700.opacity(isActive ? 1.0 : 0))
     }
   }
 }
@@ -209,45 +190,26 @@ struct ButtonWDescriptionB: View {
   var isActive: Bool
   
   var body: some View {
-    if isActive {
-      HStack {
-        Text(title)
-          .customFont(.calloutB)
-          .foregroundStyle(.gray800)
-          .padding(.trailing, 24)
-        
-        Spacer()
-        
-        Text(subtitle)
-          .customFont(.caption2R)
-          .foregroundStyle(.gray500)
-      }
-      .padding(.horizontal, 25)
-      .padding(.vertical, 20)
-      .background(Color.purple300)
-      .cornerRadius(12, corners: .allCorners)
-      .overlay {
-        RoundedRectangle(cornerRadius: 12)
-          .inset(by: 0.75)
-          .stroke(Color.purple700)
-      }
-    } else {
-      HStack {
-        Text(title)
-          .customFont(.calloutB)
-          .foregroundStyle(.gray800)
-          .padding(.trailing, 24)
-        
-        Spacer()
-        
-        Text(subtitle)
-          .customFont(.caption2R)
-          .foregroundStyle(.gray500)
-      }
-      .padding(.horizontal, 25)
-      .padding(.vertical, 20)
-      .background(Color.gray100)
-      .cornerRadius(12, corners: .allCorners)
+    HStack {
+      Text(title)
+        .customFont(.calloutB)
+        .foregroundStyle(.gray800)
+        .padding(.trailing, 24)
+      
+      Spacer()
+      
+      Text(subtitle)
+        .customFont(.caption2R)
+        .foregroundStyle(.gray500)
+    }
+    .padding(.horizontal, 25)
+    .padding(.vertical, 20)
+    .background(isActive ? Color.purple300 : Color.gray100)
+    .cornerRadius(12, corners: .allCorners)
+    .overlay {
+      RoundedRectangle(cornerRadius: 12)
+        .inset(by: 0.75)
+        .stroke(Color.purple700.opacity(isActive ? 1.0 : 0))
     }
   }
 }
