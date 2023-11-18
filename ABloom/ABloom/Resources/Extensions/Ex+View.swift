@@ -125,4 +125,21 @@ extension View {
         self
       }
     }
+  
+  func hidden(_ by: Bool) -> some View {
+    modifier(Hidden(hidden: by))
+  }
+}
+
+struct Hidden: ViewModifier {
+  var hidden: Bool
+  
+  func body(content: Content) -> some View {
+    if hidden {
+      content
+        .hidden()
+    } else {
+      content
+    }
+  }
 }

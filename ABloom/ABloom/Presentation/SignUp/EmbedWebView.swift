@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct EmbedWebView: View {
-  @Environment(\.dismiss) private var dismiss
-
   let viewTitle: String
   let urlString: String
+  
+  @Binding var showSheet: Bool
+  @Binding var checkContract: Bool
   
   var body: some View {
     VStack {
@@ -21,22 +22,22 @@ struct EmbedWebView: View {
     }
     .customNavigationBar {
       Text("\(viewTitle)")
+        .customFont(.bodyB)
     } leftView: {
-      Button {
-        print("tapped")
-        dismiss()
-      } label: {
-        NavigationArrowLeft()
-      }
-    } rightView: {
       EmptyView()
+    } rightView: {
+      Button("확인") {
+        showSheet = false
+        checkContract = true
+      }
+      .customFont(.calloutB)
+      .foregroundStyle(Color.purple700)
     }
-    .background(backgroundDefault())
   }
 }
 
 #Preview {
   NavigationStack {
-    EmbedWebView(viewTitle: "문의하기", urlString: "https://www.google.com")
+    EmbedWebView(viewTitle: "문의하기", urlString: "https://www.google.com", showSheet: .constant(false), checkContract: .constant(false))
   }
 }

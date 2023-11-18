@@ -10,77 +10,116 @@ import SwiftUI
 struct SignUpContentView: View {
   @ObservedObject var signUpViewModel: SignUpViewModel
   let step: SignUpStep
+  @State var showPrivacyPolicy = false
+  @State var showTermOfUse = false
   
   var body: some View {
     VStack(alignment: .leading) {
       headlineText
         .padding(.bottom, 12)
-        .font(Font.custom("NanumSquare Neo", size: 22).weight(.bold))
       
       subHeadlineText
         .padding(.bottom, 50)
-        .font(Font.custom("NanumSquare Neo", size: 12))
-        .foregroundColor(Color(red: 0.19, green: 0.22, blue: 0.28))
+      
+      switch step {
+      case .step1:
+        selectSex
+      case .step2:
+        datePicker
+      case .step3:
+        nameTextField
+      case .step4:
+        confirmContract
+      }
+      
+      Spacer()
     }
-    .frame(maxWidth: .infinity)
   }
 }
 
 #Preview {
-  SignUpContentView(signUpViewModel: SignUpViewModel(), step: .step1)
+  SignUpContentView(signUpViewModel: SignUpViewModel(), step: .step4)
 }
 
 extension SignUpContentView {
   private var headlineText: some View {
-    Text("가입 유형을 선택해주세요.")
+    Text(step.headlineText)
+      .customFont(.title2B)
+      .foregroundStyle(.gray900)
   }
   
   private var subHeadlineText: some View {
-    Text("가입 유형을 선택해주세요.")
+    Text(step.subHeadlineText)
+      .foregroundStyle(.gray700)
   }
-}
-
-enum SignUpStep {
-  case step1
-  case step2
-  case step3
-  case step4
   
-  var headlineText: String {
-    switch self {
-    case .step1:
-      "가입 유형을 선택해주세요."
-    case .step2:
-      "결혼예정일을 알려주세요."
-    case .step3:
-      "이름을 알려주세요"
-    case .step4:
-      "마지막 단계예요."
+  private var selectSex: some View {
+    VStack(spacing: 12) {
+      Button {
+        withAnimation {
+          signUpViewModel.selectedSex = .man
+          signUpViewModel.nowStep = .step2
+        }
+      } label: {
+        ButtonWDescriptionA(title: "예비신랑", subtitle: "결혼을 준비하는 예비신랑이에요.", isActive: signUpViewModel.selectedSex == .man)
+      }
+      .frame(maxWidth: .infinity)
+      
+      Button {
+        withAnimation {
+          signUpViewModel.selectedSex = .woman
+          signUpViewModel.nowStep = .step2
+        }
+      } label: {
+        ButtonWDescriptionA(title: "예비신부", subtitle: "결혼을 준비하는 예비신부예요.", isActive: signUpViewModel.selectedSex == .woman)
+      }
+      .frame(maxWidth: .infinity)
     }
   }
   
-  var subHeadlineText: String {
-    switch self {
-    case .step1:
-      """
-        메리는 예비부부를 위한 결혼문답 앱이에요.
-        예비신랑인지 예비신부인지 선택해주세요.
-      """
-    case .step2:
-      """
-        결혼까지 남은 기간에 따라 문답을 추천해드릴게요.
-        정확한 예정일이 없다면 대략적으로 선택해주세요.
-      """
-    case .step3:
-    """
-      메리가 회원님을 어떻게 불러드릴까요?
-      작성한 이름은 연결된 상대방에게 공개돼요.
-    """
-    case .step4:
-      """
-        안전한 서비스 이용을 위해서,
-        이용약관과 개인정보 처리방침을 확인해주세요.
-      """
+  private var datePicker: some View {
+    DatePicker("", selection: $signUpViewModel.selectedDate, displayedComponents: .date)
+      .datePickerStyle(.wheel)
+      .labelsHidden()
+  }
+  
+  private var nameTextField: some View {
+    TextField("", text: $signUpViewModel.inputName)
+      .placeholder(when: signUpViewModel.inputName.isEmpty) {
+        Text("이름을 입력해주세요.")
+          .customFont(.headlineR)
+          .foregroundStyle(.gray500)
+      }
+      .customFont(.headlineR)
+      .padding(.vertical, 20)
+      .padding(.horizontal, 22)
+      .background(Color.gray100)
+      .cornerRadius(12, corners: .allCorners)
+  }
+  
+  private var confirmContract: some View {
+    VStack(spacing: 12) {
+      Button {
+        showPrivacyPolicy = true
+      } label: {
+        ButtonWDescriptionB(title: "개인정보 처리방침", subtitle: "확인하기", isActive: signUpViewModel.isCheckedPrivacyPolicy)
+      }
+      .frame(maxWidth: .infinity)
+      
+      Button {
+        showTermOfUse = true
+      } label: {
+        ButtonWDescriptionB(title: "서비스 이용약관", subtitle: "확인하기", isActive: signUpViewModel.isCheckedTermsOfuse)
+      }
+      .frame(maxWidth: .infinity)
     }
+    
+    .sheet(isPresented: $showPrivacyPolicy, content: {
+      EmbedWebView(viewTitle: "개인정보 처리방침", urlString: ServiceWebURL.privacyPolicy.rawValue, showSheet: $showPrivacyPolicy, checkContract: $signUpViewModel.isCheckedPrivacyPolicy)
+    })
+    
+    .sheet(isPresented: $showTermOfUse, content: {
+      EmbedWebView(viewTitle: "서비스 이용약관", urlString: ServiceWebURL.termsOfuse.rawValue, showSheet: $showTermOfUse, checkContract: $signUpViewModel.isCheckedTermsOfuse)
+    })
   }
 }

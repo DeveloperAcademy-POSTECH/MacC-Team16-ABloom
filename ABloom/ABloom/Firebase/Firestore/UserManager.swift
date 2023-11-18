@@ -36,7 +36,7 @@ final class UserManager: ObservableObject {
   }
   
   // MARK: Create
-  func createNewUser(user: DBUser) throws {
+  func createUser(user: DBUser) throws {
     try userDocument(userId: user.userId).setData(from: user, merge: false)
   }
   
