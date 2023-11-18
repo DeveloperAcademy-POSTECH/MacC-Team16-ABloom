@@ -25,7 +25,7 @@ enum AnswerStatus {
     case .reactOnlyFinace:
       return "반응해주세요  >"
     case .completed:
-      return " 완성된 문답"
+      return "완성된 문답"
     }
   }
   
