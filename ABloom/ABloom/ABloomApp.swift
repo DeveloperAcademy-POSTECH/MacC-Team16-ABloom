@@ -17,10 +17,12 @@ struct ABloomApp: App {
   
   var body: some Scene {
     WindowGroup {
-      SignUpView()
-        .fullScreenCover(isPresented: $isFirstLaunching) {
-          OnboardingTabView(isFirstLaunching: $isFirstLaunching)
-        }
+      NavigationStack {
+        SignUpView()
+          .fullScreenCover(isPresented: $isFirstLaunching) {
+            OnboardingTabView(isFirstLaunching: $isFirstLaunching)
+          } 
+      }
     }
   }
 }
