@@ -410,6 +410,7 @@
 		3DF31AD82B044E6100F0EA4E /* QnAList */ = {
 			isa = PBXGroup;
 			children = (
+				AE1AE9FA2AE51BF00010089F /* QnAListItem.swift */,
 				3DF31AEA2B0453F400F0EA4E /* QnAListView.swift */,
 			);
 			path = QnAList;
@@ -608,7 +609,6 @@
 				607DA20D2AEF48AE005AE11C /* NavigationArrowLeft.swift */,
 				6053F1752AE899320064A6E0 /* InputFields.swift */,
 				6053F1612ADF6CDE0064A6E0 /* InputFieldModifier.swift */,
-				AE1AE9FA2AE51BF00010089F /* QnAListItem.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
