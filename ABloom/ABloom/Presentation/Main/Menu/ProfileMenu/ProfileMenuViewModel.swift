@@ -12,7 +12,15 @@ final class ProfileMenuViewModel: ObservableObject {
   @Published var fianceUser: DBUser?
   @Published var marriageStatus: MarriageStatus?
   
+  @Published var showActionSheet = false
+  @Published var showNameChangeAlert = false
+  @Published var showCalendarSheet = false
+  
+  @Published var nameChangeTextfield = ""
+  @Published var marriageDate: Date = Date()
+  
   init() {
+    getUsers()
     updateDayStatus()
   }
   
@@ -21,8 +29,23 @@ final class ProfileMenuViewModel: ObservableObject {
     self.fianceUser = UserManager.shared.fianceUser
   }
   
+  func renewInfo() async throws {
+    try? await UserManager.shared.fetchCurrentUser()
+    getUsers()
+  }
+  
   func signOut() throws {
     try AuthenticationManager.shared.signOut()
+  }
+  
+  func updateMyName() throws {
+    guard let myId = currentUser?.userId else { return }
+    try UserManager.shared.updateUserName(userId: myId, name: nameChangeTextfield)
+  }
+  
+  func updateMyMarriageDate() throws {
+    guard let myId = currentUser?.userId else { return }
+    try UserManager.shared.updateMarriageDate(userId: myId, date: marriageDate)
   }
   
   private func updateDayStatus() {

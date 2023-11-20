@@ -23,6 +23,8 @@ struct ABloomApp: App {
       try? await AnswerManager.shared.fetchMyAnswers()
       try? await AnswerManager.shared.fetchFianceAnswers()
     }
+    
+    UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(named: "Purple 600")
   }
   
   var body: some Scene {

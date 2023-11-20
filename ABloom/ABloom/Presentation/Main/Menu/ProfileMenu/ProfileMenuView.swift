@@ -33,6 +33,7 @@ struct ProfileMenuView: View {
         menuSeparator
         
         exitAction
+          .padding(.bottom, 85)
       }
       
     }
@@ -53,6 +54,55 @@ struct ProfileMenuView: View {
     
     .ignoresSafeArea(.all, edges: .bottom)
     
+    .confirmationDialog("", isPresented: $vm.showActionSheet, titleVisibility: .hidden) {
+      Button("이름 변경하기") {
+        vm.showNameChangeAlert = true
+      }
+      
+      Button("결혼예정일 수정하기") {
+        vm.showCalendarSheet = true
+      }
+    }
+    
+    .alert("이름 변경하기", isPresented: $vm.showNameChangeAlert) {
+      // TODO: 버튼 UI 수정
+      TextField(text: $vm.nameChangeTextfield) {
+        Text("홍길동")
+      }
+      
+      Button {
+        vm.showNameChangeAlert = false
+      } label: {
+        Text("취소")
+      }
+      
+      Button("확인") {
+        Task {
+          try? vm.updateMyName()
+          try? await vm.renewInfo()
+        }
+      }
+    } message: {
+      Text("변경할 이름을 입력해주세요.")
+    }
+    
+    .sheet(isPresented: $vm.showCalendarSheet) {
+      DatePicker("", selection: $vm.marriageDate, displayedComponents: .date)
+        .datePickerStyle(.graphical)
+        .frame(width: 320)
+        .labelsHidden()
+        .presentationDetents([.medium])
+      
+      Button {
+        Task {
+          try? vm.updateMyMarriageDate()
+          try? await vm.renewInfo()
+          vm.showActionSheet = false
+        }
+      } label: {
+        Text("완료")
+      }
+    }
   }
 }
 
@@ -120,7 +170,7 @@ extension ProfileMenuView {
         .customFont(.headlineB)
       
       Button {
-        // 내 정보 수정 액션 시트
+        vm.showActionSheet = true
       } label: {
         listRowLabel(title: "내 정보 수정하기")
       }
@@ -210,6 +260,7 @@ extension ProfileMenuView {
         Text(title)
           .customFont(.calloutR)
           .foregroundStyle(.gray800)
+        
         if isIssue {
           Circle()
             .frame(width: 5)
