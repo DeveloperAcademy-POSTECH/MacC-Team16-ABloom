@@ -26,11 +26,16 @@ struct ABloomApp: App {
     
     UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(named: "Purple 600")
   }
+
+  @AppStorage("_isFirstLaunching") var isFirstLaunching: Bool = true
   
   var body: some Scene {
     WindowGroup {
       NavigationStack {
         SignUpView()
+          .fullScreenCover(isPresented: $isFirstLaunching) {
+            OnboardingTabView(isFirstLaunching: $isFirstLaunching)
+          } 
       }
       .sheet(isPresented: .constant(true), content: {
         ProfileMenuView()
