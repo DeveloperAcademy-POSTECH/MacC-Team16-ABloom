@@ -74,12 +74,14 @@ extension QnAListItem {
 
 #Preview {
   VStack {
-    var content: String = "질문입니다질 문입니다질문입니다질문입니 다질문입니 다질문입니 다질문입니다질문입니 다질 문입니다질문입니다"
-    QnAListItem(question: DBStaticQuestion(questionID: 1, category: "경제", content: content), date: .now, answerStatus: .completed)
-    QnAListItem(question: DBStaticQuestion(questionID: 1, category: "경제", content: content), date: .now, answerStatus: .onlyFinace)
-    QnAListItem(question: DBStaticQuestion(questionID: 1, category: "경제", content: content), date: .now, answerStatus: .onlyMe)
-    QnAListItem(question: DBStaticQuestion(questionID: 1, category: "경제", content: content), date: .now, answerStatus: .reactOnlyFinace)
-    QnAListItem(question: DBStaticQuestion(questionID: 1, category: "경제", content: content), date: .now, answerStatus: .reactOnlyMe)
+    let content: String = "질문입니다질 문입니다질문입니다질문입니 다질문입니 다질문입니다질문입니다질문입니다질문입니다"
+    let mockDBStaticQuestion = DBStaticQuestion(questionID: 1, category: "경제", content: content)
+    
+    QnAListItem(question: mockDBStaticQuestion, date: .now, answerStatus: .completed)
+    QnAListItem(question: mockDBStaticQuestion, date: .now, answerStatus: .onlyFinace)
+    QnAListItem(question: mockDBStaticQuestion, date: .now, answerStatus: .onlyMe)
+    QnAListItem(question: mockDBStaticQuestion, date: .now, answerStatus: .reactOnlyFinace)
+    QnAListItem(question: mockDBStaticQuestion, date: .now, answerStatus: .reactOnlyMe)
   }
   .background(Color.blue)
 }
