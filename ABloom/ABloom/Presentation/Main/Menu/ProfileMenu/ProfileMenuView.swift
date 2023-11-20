@@ -14,5 +14,7 @@ struct ProfileMenuView: View {
 }
 
 #Preview {
+  NavigationStack {
     ProfileMenuView()
+  }
 }
