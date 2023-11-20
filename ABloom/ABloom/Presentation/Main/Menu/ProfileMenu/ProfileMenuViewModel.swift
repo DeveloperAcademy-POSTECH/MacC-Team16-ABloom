@@ -15,4 +15,8 @@ final class ProfileMenuViewModel: ObservableObject {
     self.currentUser = UserManager.shared.currentUser
     self.fianceUser = UserManager.shared.fianceUser
   }
+  
+  func signOut() throws {
+    try AuthenticationManager.shared.signOut()
+  }
 }

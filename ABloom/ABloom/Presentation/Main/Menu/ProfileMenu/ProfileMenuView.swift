@@ -179,7 +179,7 @@ extension ProfileMenuView {
   private var exitAction: some View {
     VStack(alignment: .leading, spacing: 20) {
       Button {
-        // 로그아웃 액션
+        try? vm.signOut()
       } label: {
         listRowLabel(title: "로그아웃")
       }
