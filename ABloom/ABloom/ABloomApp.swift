@@ -32,6 +32,9 @@ struct ABloomApp: App {
       NavigationStack {
         SignUpView()
       }
+      .sheet(isPresented: .constant(true), content: {
+        ProfileMenuView()
+      })
     }
   }
 }

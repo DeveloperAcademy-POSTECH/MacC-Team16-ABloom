@@ -50,7 +50,6 @@ struct ProfileMenuView: View {
     } rightView: {
       EmptyView()
     }
-    .padding(.top, 16)
     
     .ignoresSafeArea(.all, edges: .bottom)
     
