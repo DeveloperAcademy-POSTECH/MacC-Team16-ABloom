@@ -82,17 +82,6 @@ extension View {
     clipShape( RoundedCorner(radius: radius, corners: corners) )
   }
   
-  /// customNavigationBar
-  func customNavigationBar<C, L, R>(
-    centerView: @escaping (() -> C),
-    leftView: @escaping (() -> L),
-    rightView: @escaping (() -> R)
-  ) -> some View where C: View, L: View, R: View {
-    modifier(
-      CustomNavigationBarModifier(centerView: centerView, leftView: leftView, rightView: rightView)
-    )
-  }
-  
   /// QnABackWall
   func backWall() -> some View {
     RoundedRectangle(cornerRadius: 20)
@@ -106,6 +95,29 @@ extension View {
       .lineSpacing(lineSpacing)
       .tracking(tracking)
   }
+  
+  func hidden(_ by: Bool) -> some View {
+    modifier(Hidden(hidden: by))
+  }
+  
+  
+  // MARK: - 2.0에서 사용
+  
+  func alertButtonTint(color: Color) -> some View {
+    modifier(AlertButtonTintColor(color: color))
+  }
+  
+  /// customNavigationBar
+  func customNavigationBar<C, L, R>(
+    centerView: @escaping (() -> C),
+    leftView: @escaping (() -> L),
+    rightView: @escaping (() -> R)
+  ) -> some View where C: View, L: View, R: View {
+    modifier(
+      CustomNavigationBarModifier(centerView: centerView, leftView: leftView, rightView: rightView)
+    )
+  }
+  
   
   func customFont(_ fontStyle: Font) -> some View {
     self
@@ -125,12 +137,10 @@ extension View {
         self
       }
     }
-  
-  func hidden(_ by: Bool) -> some View {
-    modifier(Hidden(hidden: by))
-  }
 }
 
+
+// TODO: 이 아이는 왜 여기에 있죠..0.0
 struct Hidden: ViewModifier {
   var hidden: Bool
   
