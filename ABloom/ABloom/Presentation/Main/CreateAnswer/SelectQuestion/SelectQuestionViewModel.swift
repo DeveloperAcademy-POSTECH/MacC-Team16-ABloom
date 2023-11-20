@@ -46,23 +46,6 @@ final class SelectQuestionViewModel: ObservableObject {
       }
     }
   }
-  
-  // MARK: - oldVersion
-  func fetchQuestionsOriginal() async throws {
-    let user = try await UserManager.shared.getCurrentUser()
-    self.questionLists = try await StaticQuestionManager.shared.getQuestionsWithoutAnswers(myId: user.userId, fianceId: user.fiance)
-    filterQuestion()
-  }
-  func filterQuestion() {
-    filteredLists.removeAll()
-    for question in questionLists {
-      if question.category == selectedCategory.rawValue {
-        filteredLists.append(question)
-      }
-    }
-  }
-  
-  
 }
 
 #Preview {

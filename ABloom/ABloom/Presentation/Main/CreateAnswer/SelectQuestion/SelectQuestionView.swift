@@ -15,16 +15,16 @@ struct SelectQuestionView: View {
       categoryBar
       bottomGradient
       
-      
       questionListView
     }
     .task {
       selectQVM.fetchQuestions()
     }
-    .sheet(isPresented: $selectQVM.isAnswerSheetOn,
-           content: {
-      
-    })
+    .sheet(isPresented: $selectQVM.isAnswerSheetOn) {
+      if let selectedQ = selectQVM.selectedQuestion {
+        WriteAnswerView(question: selectedQ)
+      }
+    }
   }
 }
 
@@ -87,8 +87,8 @@ extension SelectQuestionView {
       .padding(.horizontal, 22)
       Divider()
         .frame(maxWidth: .infinity)
-        .frame(height: 3)
-        .overlay(.purple200)
+        .frame(height: 2)
+        .overlay(.purple100)
     }
     .onTapGesture {
       selectQVM.questionClicked(selectedQ: selectedQ)
