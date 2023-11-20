@@ -44,7 +44,7 @@ final class AnswerManager: ObservableObject {
     self.myAnswers = try await collection.getDocuments(as: DBAnswer.self)
   }
   
-  func fetchFianceAnswers(userId: String) async throws {
+  func fetchFianceAnswers() async throws {
     guard let fianceId = UserManager.shared.currentUser?.fiance else { return }
     
     let collection = userAnswerCollection(userId: fianceId)

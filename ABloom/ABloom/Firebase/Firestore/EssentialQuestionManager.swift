@@ -10,6 +10,8 @@ import FirebaseFirestoreSwift
 import Foundation
 
 final class EssentialQuestionManager: ObservableObject {
+  static var shared = EssentialQuestionManager()
+  
   @Published var essentialQuestions: [Int]?
   @Published var randomQuestions: [Int]?
   
