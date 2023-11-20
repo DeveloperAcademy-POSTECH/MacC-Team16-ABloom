@@ -47,7 +47,7 @@ struct CheckAnswerView: View {
     .overlay {
       if checkAnswerVM.showSelectReactionView {
         Color.black.opacity(0.4).ignoresSafeArea()
-        SelectReactionView()
+        SelectReactionView(checkAnswerVM: checkAnswerVM)
       }
     }
   }
