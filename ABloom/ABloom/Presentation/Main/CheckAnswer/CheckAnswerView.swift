@@ -8,12 +8,10 @@
 import SwiftUI
 
 struct CheckAnswerView: View {
+  @StateObject var checkAnswerVM = CheckAnswerViewModel()
+  
   let question: DBStaticQuestion
-  let date: Date = .now
-  let myAnswer: DBAnswer = DBAnswer(questionId: 1, userId: "dd", answerContent: "대답", isComplete: false, reaction: nil)
-  let fianceAnswer: DBAnswer = DBAnswer(questionId: 1, userId: "dd", answerContent: "대답이다", isComplete: false, reaction: nil)
-  let currentUserName: String = "이름"
-  let fianceName: String = "상대방이름"
+  @Environment(\.dismiss) private var dismiss
   
   var body: some View {
     ScrollView {
@@ -26,29 +24,55 @@ struct CheckAnswerView: View {
         
         reactionArea
       }
+      .padding(.top, 46)
       .frame(maxWidth: .infinity)
       .multilineTextAlignment(.leading)
     }
     .padding(.horizontal, 20)
-    .background(Color.gray100) // background(Color.Background)
+    .customNavigationBar {
+      Text("우리의 문답")
+        .customFont(.bodyB)
+    } leftView: {
+      Button {
+        dismiss()
+      } label: {
+        Image("xmark")
+          .renderingMode(.template)
+          .foregroundStyle(.purple700)
+      }
+    } rightView: {
+      EmptyView()
+    }
+    .background(Color.background)
+    .overlay {
+      if checkAnswerVM.showSelectReactionView {
+        Color.black.opacity(0.4).ignoresSafeArea()
+        SelectReactionView()
+      }
+    }
   }
 }
 
 extension CheckAnswerView {
   private var questionArea: some View {
-    VStack(alignment: .leading, spacing: 6) {
-      Text(question.content.useNonBreakingSpace())
-        .customFont(.headlineB)
-      Text("\(date)")
-        .customFont(.caption2R)
-        .foregroundStyle(.gray500)
+    HStack {
+      VStack(alignment: .leading, spacing: 6) {
+        Text(question.content.useNonBreakingSpace())
+          .customFont(.headlineB)
+        Text("\(checkAnswerVM.date.formatToYMD())")
+          .customFont(.caption2R)
+          .foregroundStyle(.gray500)
+      }
+      
+      Spacer()
     }
   }
+  
   private var myAnswerArea: some View {
     VStack(alignment: .leading, spacing: 6) {
-      Text("\(currentUserName)님의 대답")
+      Text("\(checkAnswerVM.currentUserName)님의 대답")
         .customFont(.calloutB)
-      Text(myAnswer.answerContent.useNonBreakingSpace())
+      Text(checkAnswerVM.currentUserAnswerContent.useNonBreakingSpace())
         .customFont(.footnoteR)
         .foregroundStyle(.gray500)
     }
@@ -56,9 +80,9 @@ extension CheckAnswerView {
   
   private var fianceAnswerArea: some View {
     VStack(alignment: .leading, spacing: 6) {
-      Text("\(fianceName)님의 대답")
+      Text("\(checkAnswerVM.fianceName)님의 대답")
         .customFont(.calloutB)
-      Text(fianceAnswer.answerContent.useNonBreakingSpace())
+      Text(checkAnswerVM.fianceAnswerContent.useNonBreakingSpace())
         .customFont(.footnoteR)
         .foregroundStyle(.gray500)
     }
@@ -71,6 +95,23 @@ extension CheckAnswerView {
       Text("둘 다 답변을 작성하면 우리만의 반응을 추가할 수 있어요.")
         .customFont(.footnoteR)
         .foregroundStyle(.gray500)
+        .padding(.bottom, 30)
+      
+      HStack(alignment: .bottom) {
+        Circle()
+          .frame(width: 84, height: 84)
+        Spacer()
+        Circle()
+          .frame(width: 124, height: 124)
+        Spacer()
+        Button {
+          checkAnswerVM.tapSelectReactionButton()
+        } label: {
+          Circle()
+            .frame(width: 84, height: 84)
+        }
+      }
+      .foregroundStyle(.gray300)
     }
   }
 }
