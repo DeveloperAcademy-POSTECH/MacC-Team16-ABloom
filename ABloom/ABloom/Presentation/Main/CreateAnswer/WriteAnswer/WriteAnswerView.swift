@@ -73,7 +73,7 @@ struct WriteAnswerView: View {
       Button {
         dismiss()
       } label: {
-        Text("나가기")
+        Text("완료하기")
       }
       Button(role: .cancel, action: {}, label: {
         Text("취소")
