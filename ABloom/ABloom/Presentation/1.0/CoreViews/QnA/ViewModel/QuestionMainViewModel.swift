@@ -60,9 +60,7 @@ final class QuestionMainViewModel: ObservableObject {
       } else {
         return .both
       }
-    } else {
-      return .nobody
-    }
+    } 
   }
   
   private func checkQuestions() {

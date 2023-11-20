@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct CheckAnswerView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+  let question: DBStaticQuestion
+  var body: some View {
+    Text(question.content)
+  }
 }
 
 #Preview {
-    CheckAnswerView()
+  CheckAnswerView(question: DBStaticQuestion(questionID: 1, category: "경제", content: "질문"))
 }
