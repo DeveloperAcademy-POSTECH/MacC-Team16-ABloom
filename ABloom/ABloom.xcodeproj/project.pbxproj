@@ -50,7 +50,6 @@
 		3DB6A5A92AE0BDF800C1369F /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5A82AE0BDF800C1369F /* FirebaseStorageCombine-Community */; };
 		3DB6A5B42AE11CCD00C1369F /* SignInAppleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6A5B32AE11CCD00C1369F /* SignInAppleHelper.swift */; };
 		3DE945042AFA96C900CF7E33 /* ReactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE945032AFA96C900CF7E33 /* ReactionType.swift */; };
-		3DF31AE52B0453D300F0EA4E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31AE42B0453D300F0EA4E /* OnboardingView.swift */; };
 		3DF31AE72B0453DF00F0EA4E /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31AE62B0453DF00F0EA4E /* SignInView.swift */; };
 		3DF31AE92B0453E700F0EA4E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31AE82B0453E700F0EA4E /* SignUpView.swift */; };
 		3DF31AEB2B0453F400F0EA4E /* QnAListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31AEA2B0453F400F0EA4E /* QnAListView.swift */; };
@@ -85,6 +84,8 @@
 		AE6B41052AFC618B00A7483E /* Ex+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B41042AFC618B00A7483E /* Ex+String.swift */; };
 		AE7EE4E12AD6409000E0A573 /* ABloomApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7EE4E02AD6409000E0A573 /* ABloomApp.swift */; };
 		AE7EE4E82AD6409100E0A573 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE7EE4E72AD6409100E0A573 /* Preview Assets.xcassets */; };
+		AE8CFC172B089899000F452F /* OnboardingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CFC162B089899000F452F /* OnboardingTabView.swift */; };
+		AE8CFC192B0898BF000F452F /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CFC182B0898BF000F452F /* OnboardingPageView.swift */; };
 		AE8D3C512ADE19E0009899A7 /* Ex+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D3C502ADE19E0009899A7 /* Ex+Font.swift */; };
 		AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D3C602ADE3C73009899A7 /* Ex+Shape.swift */; };
 		AEAB19372ADF77210057BC43 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAB19362ADF77210057BC43 /* Buttons.swift */; };
@@ -134,7 +135,6 @@
 		3DB6A5B32AE11CCD00C1369F /* SignInAppleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAppleHelper.swift; sourceTree = "<group>"; };
 		3DB6A5B52AE1278D00C1369F /* ABloom.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ABloom.entitlements; sourceTree = "<group>"; };
 		3DE945032AFA96C900CF7E33 /* ReactionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionType.swift; sourceTree = "<group>"; };
-		3DF31AE42B0453D300F0EA4E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		3DF31AE62B0453DF00F0EA4E /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		3DF31AE82B0453E700F0EA4E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		3DF31AEA2B0453F400F0EA4E /* QnAListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnAListView.swift; sourceTree = "<group>"; };
@@ -188,6 +188,8 @@
 		AE7EE4DD2AD6409000E0A573 /* ABloom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ABloom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE7EE4E02AD6409000E0A573 /* ABloomApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABloomApp.swift; sourceTree = "<group>"; };
 		AE7EE4E72AD6409100E0A573 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		AE8CFC162B089899000F452F /* OnboardingTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTabView.swift; sourceTree = "<group>"; };
+		AE8CFC182B0898BF000F452F /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
 		AE8D3C502ADE19E0009899A7 /* Ex+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Font.swift"; sourceTree = "<group>"; };
 		AE8D3C5D2ADE1A22009899A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AE8D3C602ADE3C73009899A7 /* Ex+Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Shape.swift"; sourceTree = "<group>"; };
@@ -380,7 +382,8 @@
 		3DF31AD52B044DE800F0EA4E /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				3DF31AE42B0453D300F0EA4E /* OnboardingView.swift */,
+				AE8CFC162B089899000F452F /* OnboardingTabView.swift */,
+				AE8CFC182B0898BF000F452F /* OnboardingPageView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -882,7 +885,6 @@
 				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
 				3DF31AED2B0453FB00F0EA4E /* CheckAnswerView.swift in Sources */,
 				3DF31AF32B04544600F0EA4E /* WriteAnswerView.swift in Sources */,
-				3DF31AE52B0453D300F0EA4E /* OnboardingView.swift in Sources */,
 				3DF31AEF2B04540800F0EA4E /* CategoryWaypointView.swift in Sources */,
 				AEEA8DD32AEB82520068550E /* ChatBubbles.swift in Sources */,
 				606AA7622AFA910100CA5EA6 /* AnswerStatus.swift in Sources */,
@@ -905,6 +907,9 @@
 				3DE945042AFA96C900CF7E33 /* ReactionType.swift in Sources */,
 				3D957E902AEE7F4800D565E9 /* DBAnswerModel.swift in Sources */,
 				607DA2142AEFCF93005AE11C /* ConnectionError.swift in Sources */,
+				AE8CFC192B0898BF000F452F /* OnboardingPageView.swift in Sources */,
+				3DF31AF12B04541F00F0EA4E /* SelectQuestionView.swift in Sources */,
+				3DF31AF72B04545500F0EA4E /* WebView.swift in Sources */,
 				3DF31BFE2B074BB800F0EA4E /* SelectQuestionView.swift in Sources */,
 				3DF31AF72B04545500F0EA4E /* ShowWebView.swift in Sources */,
 				60797C212AF9DD7C005375DC /* Category.swift in Sources */,
@@ -926,6 +931,7 @@
 				3DF31AF52B04544E00F0EA4E /* ProfileMenuView.swift in Sources */,
 				AEC260612AEA5A8000DF7CD5 /* StaticQuestionManager.swift in Sources */,
 				3D4412432AE388DB00FD5A51 /* UserManager.swift in Sources */,
+				AE8CFC172B089899000F452F /* OnboardingTabView.swift in Sources */,
 				3DF31B062B073CD000F0EA4E /* SignUpViewModel.swift in Sources */,
 				AE6ACF552AE0B49E0017088C /* Helpers.swift in Sources */,
 				AE6B41052AFC618B00A7483E /* Ex+String.swift in Sources */,
