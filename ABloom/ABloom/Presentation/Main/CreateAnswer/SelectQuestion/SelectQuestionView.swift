@@ -1,124 +1,125 @@
-////
-////  SelectQuestionView.swift
-////  ABloom
-////
-////
 //
-//import SwiftUI
+//  SelectQuestionView.swift
+//  ABloom
 //
-//struct SelectQuestionView: View {
-//  @Environment(\.dismiss) private var dismiss
-//  @StateObject var selectQVM = SelectQuestionViewModel()
-//  
-//  
-//  var body: some View {
-//    VStack {
-//      
-//      categoryBar
-//      
-//      if selectQVM.isReady {
-//        
-//        questionListView
-//          .background(backWall())
-//        
-//      } else {
-//        
-//        VStack {
-//          ProgressView()
-//        }
-//        .frame(maxWidth: .infinity, maxHeight: .infinity)
-//        .background(backWall())
-//        
-//      }
-//    }
-//    .navigationDestination(for: DBStaticQuestion.self, destination: { content in
-//      AnswerWriteView(question: content, isFromMain: false)
-//    })
-//    
-//    .onAppear {
-//      if NavigationModel.shared.isPopToMain {
-//        NavigationModel.shared.popToMainToggle()
-//        dismiss()
-//      }
-//    }
-//    
-//    .task {
-//      try? await selectQVM.fetchQuestions()
-//    }
-//  }
-//}
 //
-//extension SelectQuestionView {
-//  
-//  private var categoryBar: some View {
-//    ScrollView(.horizontal, showsIndicators: false) {
-//      HStack(spacing: 50) {
-//        
-//        ForEach(Category.allCases, id: \.self) { category in
-//          VStack(alignment: .center, spacing: 6) {
-//            
-//            Image(category.rawValue)
-//              .resizable()
-//              .frame(width: 24, height: 24)
-//            
-//            Text(category.type)
-//              .fontWithTracking(selectQVM.selectedCategory == category ? .caption1Bold : .caption1R)
-//              .foregroundStyle(.gray800)
-//          }
-//          .opacity(selectQVM.selectedCategory == category ? 1 : 0.4)
-//          .onTapGesture(perform: {
-//            selectQVM.selectCategory(seleted: category)
-//          })
-//        }
-//      }
-//      .padding(.horizontal, 29)
-//      .padding(.bottom, 13)
-//      .padding(.top, 36)
-//      
-//    }
-//  }
-//  
-//  // MARK:  Lia's Lavine
-//  private var questionListView: some View {
-//    VStack(spacing: 0) {
-//      
-//      HStack {
-//        Text("\(selectQVM.selectedCategory.type) 문답")
-//          .fontWithTracking(.headlineBold)
-//          .foregroundStyle(.stone700)
-//        
-//        Spacer()
-//      }
-//      .padding(.horizontal, 22)
-//      .padding(.top, 34)
-//      .padding(.bottom, 10)
-//      
-//      ScrollViewReader { proxy in
-//        ScrollView(.vertical) {
-//          Spacer()
-//            .frame(height: 20)
-//            .id("top")
-//          
-//          ForEach(selectQVM.filteredLists, id: \.self) { question in
-//            NavigationLink(value: question) {
-//              QuestionChatBubble(text: question.content)
-//            }
-//            .padding(.horizontal, 20)
-//            .padding(.bottom, 17)
-//            
-//          }
-//          Spacer()
-//            .frame(height: 50)
-//        }
-//        .onChange(of: selectQVM.selectedCategory) { new in
-//          proxy.scrollTo("top")
-//        }
-//        
-//      }
-//    }
-//  }
-//}
-//
-//#Preview {
-//    SelectQuestionView()
-//}
+
+import SwiftUI
+
+struct SelectQuestionView: View {
+  @StateObject var selectQVM = SelectQuestionViewModel()
+  
+  var body: some View {
+    VStack(spacing: 0) {
+      
+      categoryBar
+      bottomGradient
+      
+      
+      questionListView
+    }
+    .task {
+      selectQVM.fetchQuestions()
+    }
+    .sheet(isPresented: $selectQVM.isAnswerSheetOn,
+           content: {
+      
+    })
+  }
+}
+
+extension SelectQuestionView {
+  
+  private var categoryBar: some View {
+    ScrollView(.horizontal, showsIndicators: false) {
+      HStack(spacing: 50) {
+        
+        ForEach(Category.allCases, id: \.self) { category in
+          VStack(alignment: .center, spacing: 0) {
+            
+            Image(category.rawValue)
+              .resizable()
+              .renderingMode(.template)
+              .frame(width: 24, height: 24)
+              .padding(.bottom, 6)
+            
+            Text(category.type)
+              .customFont(.caption2B)
+              .padding(.bottom, 11)
+            
+            Divider()
+              .frame(width: 30, height: 2)
+              .overlay(.purple700)
+              .opacity(selectQVM.selectedCategory == category ? 1 : 0)
+          }
+          .foregroundStyle(selectQVM.selectedCategory == category ? .purple700 : .gray400)
+          .opacity(selectQVM.selectedCategory == category ? 1 : 0.4)
+          .onTapGesture(perform: {
+            selectQVM.selectCategory(seleted: category)
+          })
+        }
+      }
+      .padding(.horizontal, 29)
+      .padding(.top, 36)
+      
+    }
+  }
+  
+  private var bottomGradient: some View {
+    Rectangle()
+      .fill(LinearGradient(
+        colors: [Color(hex: 0xF6F6F6), Color(hex: 0xF6F6F6).opacity(0)],
+        startPoint: .top, endPoint: .bottom)
+      )
+      .frame(maxWidth: .infinity)
+      .frame(height: 5)
+  }
+  
+  private func questionItem(selectedQ: DBStaticQuestion) -> some View {
+    return VStack {
+      HStack {
+        Text(selectedQ.content)
+          .customFont(.subHeadlineR)
+          .foregroundStyle(.gray500)
+        Spacer()
+      }
+      .padding(.vertical, 20)
+      .padding(.horizontal, 22)
+      Divider()
+        .frame(maxWidth: .infinity)
+        .frame(height: 3)
+        .overlay(.purple200)
+    }
+    .onTapGesture {
+      selectQVM.questionClicked(selectedQ: selectedQ)
+    }
+    
+  }
+  
+  private var questionListView: some View {
+    VStack(spacing: 0) {
+      
+      ScrollViewReader { proxy in
+        ScrollView(.vertical) {
+          Spacer()
+            .frame(height: 20)
+            .id("top")
+          
+          ForEach(selectQVM.filteredLists, id: \.self) { question in
+            questionItem(selectedQ: question)
+          }
+          Spacer()
+            .frame(height: 50)
+        }
+        .onChange(of: selectQVM.selectedCategory) { new in
+          proxy.scrollTo("top")
+        }
+        
+      }
+    }
+  }
+}
+
+#Preview {
+  SelectQuestionView()
+}
