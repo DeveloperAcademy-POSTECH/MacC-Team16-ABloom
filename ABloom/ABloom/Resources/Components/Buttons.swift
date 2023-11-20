@@ -214,9 +214,23 @@ struct ButtonWDescriptionB: View {
   }
 }
 
+struct PurpleTextButton: View {
+  let title: String
+  var body: some View {
+    Text(title)
+      .customFont(.calloutB)
+      .foregroundStyle(.purple50)
+      .frame(height: 46)
+      .frame(maxWidth: .infinity)
+      .background(Color.purple600)
+      .cornerRadius(4, corners: .allCorners)
+  }
+}
 
 #Preview {
   ScrollView {
+    PurpleTextButton(title: "ButtonWithText")
+      .padding()
     PurpleSingleBtn(text: "PurpleSingleBtn")
       .padding()
     PinkSingleBtn(text: "버튼")
