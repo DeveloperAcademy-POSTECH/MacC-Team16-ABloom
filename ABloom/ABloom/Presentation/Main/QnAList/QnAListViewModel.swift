@@ -14,7 +14,7 @@ final class QnAListViewModel: ObservableObject {
 
   @Published var showProfileSheet: Bool = false
   @Published var showQnASheet: Bool = false
-  @Published var showSelectQuestionSheet: Bool = false
+  @Published var showCategoryWayPointSheet: Bool = false
   
   enum QnAListViewState {
     case isProgress
@@ -41,7 +41,7 @@ final class QnAListViewModel: ObservableObject {
   }
   
   func tapPlusButton() {
-    showSelectQuestionSheet = true
+    showCategoryWayPointSheet = true
   }
   
   func checkAnswerStatus(qid: Int) -> AnswerStatus {
