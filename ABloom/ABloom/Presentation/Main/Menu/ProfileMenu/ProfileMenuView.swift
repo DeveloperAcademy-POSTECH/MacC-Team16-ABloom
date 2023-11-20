@@ -70,14 +70,19 @@ extension ProfileMenuView {
         .frame(width: 60)
       
       VStack(alignment: .leading, spacing: 0) {
-        Text(vm.currentUser?.name ?? "이지훈")
+        Text(vm.currentUser?.name ?? "로그인해주세요")
           .customFont(.headlineB)
           .foregroundStyle(.black)
         
-        
-        Text("\(vm.fianceUser?.name ?? "최지은")님의 \((vm.currentUser?.sex ?? true) ? UserSexType.man.rawValue : UserSexType.woman.rawValue)")
-          .customFont(.caption1B)
-          .foregroundStyle(.gray500)
+        if let fianceName = vm.fianceUser?.name {
+          Text("\(vm.fianceUser?.name ?? "눌러서 로그인하기 >")님의 \((vm.currentUser?.sex ?? true) ? UserSexType.man.rawValue : UserSexType.woman.rawValue)")
+            .customFont(.caption1B)
+            .foregroundStyle(.gray500)
+        } else {
+          Text("눌러서 로그인하기 >")
+            .customFont(.caption1B)
+            .foregroundStyle(.gray500)
+        }
       }
     }
   }
