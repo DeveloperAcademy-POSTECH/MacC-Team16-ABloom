@@ -63,8 +63,8 @@ struct ProfileMenuView: View {
       }
     }
     
+    // 이름 수정
     .alert("이름 변경하기", isPresented: $vm.showNameChangeAlert) {
-      // TODO: 버튼 UI 수정
       TextField(text: $vm.nameChangeTextfield) {
         Text("홍길동")
       }
@@ -85,6 +85,7 @@ struct ProfileMenuView: View {
       Text("변경할 이름을 입력해주세요.")
     }
     
+    // 결혼 일자 수정
     .sheet(isPresented: $vm.showCalendarSheet) {
       DatePicker("", selection: $vm.marriageDate, displayedComponents: .date)
         .datePickerStyle(.graphical)
@@ -114,8 +115,10 @@ struct ProfileMenuView: View {
 extension ProfileMenuView {
   private var myInformation: some View {
     HStack(spacing: 15) {
-      Circle()
-        .fill(Color.gray)
+      Image(UserSexType(type: (vm.currentUser?.sex ?? true)).getAvatar())
+        .resizable()
+        .scaledToFit()
+        .clipShape(Circle())
         .frame(width: 60)
       
       VStack(alignment: .leading, spacing: 0) {

@@ -12,16 +12,25 @@ enum UserSexType: String, CaseIterable {
   case man = "예비신랑"
   case none
   
+  init(type: Bool) {
+    switch type {
+    case true:
+      self = .man
+    case false:
+      self = .woman
+    }
+  }
+  
   var getBool: Bool {
     self == .man ? true : false
   }
   
-  func getGradientImage() -> String {
+  func getAvatar() -> String {
     switch self {
     case .woman:
-      return "avatar_Female circle GradientBG"
+      return "FemaleAvatar"
     case .man:
-      return "avatar_Male circle GradientBG"
+      return "MaleAvatar"
     case .none:
       return ""
     }
