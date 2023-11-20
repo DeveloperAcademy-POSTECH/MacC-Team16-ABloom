@@ -87,9 +87,7 @@ extension ProfileMenuView {
       HStack {
         Label(
           title: {
-            Text("결혼까지 105일 남았어요.")
-            .customFont(.caption1R)
-            .foregroundStyle(.gray600)
+            Text(vm.marriageStatus?.dDayMessage ?? "로그인 해주세요")
           },
           icon: {
             Image("heart_calendar")
