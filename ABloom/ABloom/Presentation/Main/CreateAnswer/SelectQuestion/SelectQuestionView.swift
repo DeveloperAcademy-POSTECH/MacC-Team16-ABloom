@@ -9,6 +9,8 @@ import SwiftUI
 struct SelectQuestionView: View {
   @StateObject var selectQVM = SelectQuestionViewModel()
   
+  var selectedCategory: Category
+  
   var body: some View {
     VStack(spacing: 0) {
       
@@ -19,6 +21,9 @@ struct SelectQuestionView: View {
     }
     .task {
       selectQVM.fetchQuestions()
+    }
+    .onAppear {
+      selectQVM.moveToSelectedCategory(selectedCategory: selectedCategory)
     }
     .sheet(isPresented: $selectQVM.isAnswerSheetOn) {
       if let selectedQ = selectQVM.selectedQuestion {
@@ -31,37 +36,45 @@ struct SelectQuestionView: View {
 extension SelectQuestionView {
   
   private var categoryBar: some View {
-    ScrollView(.horizontal, showsIndicators: false) {
-      HStack(spacing: 50) {
-        
-        ForEach(Category.allCases, id: \.self) { category in
-          VStack(alignment: .center, spacing: 0) {
+    ScrollViewReader { proxy in
+      ScrollView(.horizontal, showsIndicators: false) {
+        HStack(spacing: 30) {
+          
+          ForEach(Category.allCases, id: \.self) { category in
             
-            Image(category.rawValue)
-              .resizable()
-              .renderingMode(.template)
-              .frame(width: 24, height: 24)
-              .padding(.bottom, 6)
+            VStack(alignment: .center, spacing: 0) {
+              
+              Image(category.rawValue)
+                .resizable()
+                .renderingMode(.template)
+                .frame(width: 24, height: 24)
+                .padding(.bottom, 6)
+              
+              Text(category.type)
+                .customFont(.caption2B)
+                .padding(.bottom, 11)
+              
+              Divider()
+                .frame(width: 30, height: 2)
+                .overlay(.purple700)
+                .opacity(selectQVM.selectedCategory == category ? 1 : 0)
+            }
             
-            Text(category.type)
-              .customFont(.caption2B)
-              .padding(.bottom, 11)
-            
-            Divider()
-              .frame(width: 30, height: 2)
-              .overlay(.purple700)
-              .opacity(selectQVM.selectedCategory == category ? 1 : 0)
+            .padding(.horizontal, 10)
+            .tag(category)
+            .foregroundStyle(selectQVM.selectedCategory == category ? .purple700 : .gray400)
+            .opacity(selectQVM.selectedCategory == category ? 1 : 0.4)
+            .onTapGesture(perform: {
+              selectQVM.selectCategory(seleted: category)
+            })
           }
-          .foregroundStyle(selectQVM.selectedCategory == category ? .purple700 : .gray400)
-          .opacity(selectQVM.selectedCategory == category ? 1 : 0.4)
-          .onTapGesture(perform: {
-            selectQVM.selectCategory(seleted: category)
-          })
         }
+        .padding(.top, 36)
+        .padding(.horizontal, 20)
       }
-      .padding(.horizontal, 29)
-      .padding(.top, 36)
-      
+      .onChange(of: selectQVM.selectedCategory) { new in
+        proxy.scrollTo(selectQVM.selectedCategory)
+      }
     }
   }
   
@@ -93,7 +106,6 @@ extension SelectQuestionView {
     .onTapGesture {
       selectQVM.questionClicked(selectedQ: selectedQ)
     }
-    
   }
   
   private var questionListView: some View {
@@ -121,5 +133,5 @@ extension SelectQuestionView {
 }
 
 #Preview {
-  SelectQuestionView()
+  SelectQuestionView(selectedCategory: Category.communication)
 }

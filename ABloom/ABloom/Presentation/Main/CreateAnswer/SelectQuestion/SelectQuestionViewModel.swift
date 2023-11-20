@@ -16,6 +16,10 @@ final class SelectQuestionViewModel: ObservableObject {
   @Published var selectedCategory: Category = Category.communication
   
   
+  func moveToSelectedCategory(selectedCategory: Category) {
+    self.selectedCategory = selectedCategory
+  }
+  
   func questionClicked(selectedQ: DBStaticQuestion) {
     self.selectedQuestion = selectedQ
     self.isAnswerSheetOn.toggle()
@@ -49,5 +53,5 @@ final class SelectQuestionViewModel: ObservableObject {
 }
 
 #Preview {
-  SelectQuestionView()
+  SelectQuestionView(selectedCategory: Category.communication)
 }
