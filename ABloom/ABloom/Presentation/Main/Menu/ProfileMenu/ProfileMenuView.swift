@@ -52,7 +52,7 @@ struct ProfileMenuView: View {
     .padding(.top, 16)
     
     .ignoresSafeArea(.all, edges: .bottom)
-
+    
   }
 }
 
@@ -75,7 +75,7 @@ extension ProfileMenuView {
           .foregroundStyle(.black)
         
         if let fianceName = vm.fianceUser?.name {
-          Text("\(vm.fianceUser?.name ?? "눌러서 로그인하기 >")님의 \((vm.currentUser?.sex ?? true) ? UserSexType.man.rawValue : UserSexType.woman.rawValue)")
+          Text("\(fianceName)님의 \((vm.currentUser?.sex ?? true) ? UserSexType.man.rawValue : UserSexType.woman.rawValue)")
             .customFont(.caption1B)
             .foregroundStyle(.gray500)
         } else {
@@ -128,7 +128,7 @@ extension ProfileMenuView {
       Button {
         // 연결 관리 뷰 연동
       } label: {
-        listRowLabel(title: "상대방과 연결 관리")
+        listRowLabel(title: "상대방과 연결 관리", isIssue: (vm.currentUser?.fiance) == nil)
       }
     }
     .padding(.horizontal, 20)
@@ -204,11 +204,19 @@ extension ProfileMenuView {
       .foregroundStyle(.gray50)
   }
   
-  private func listRowLabel(title: String) -> some View {
+  private func listRowLabel(title: String, isIssue: Bool = false) -> some View {
     HStack {
-      Text(title)
-        .customFont(.calloutR)
-        .foregroundStyle(.gray800)
+      ZStack(alignment: .topTrailing) {
+        Text(title)
+          .customFont(.calloutR)
+          .foregroundStyle(.gray800)
+        if isIssue {
+          Circle()
+            .frame(width: 5)
+            .foregroundStyle(.red)
+            .offset(x: 8)
+        }
+      }
       
       Spacer()
       
