@@ -50,6 +50,7 @@ final class AuthenticationManager {
   ///   - AuthDataResultModel: 파이어베이스에 저장된 유저에대한 기초적인 정보를 가지고 있는 모델입니다.
   func getAuthenticatedUser() throws -> AuthDataResultModel {
     guard let user = Auth.auth().currentUser else {
+      
       throw URLError(.badServerResponse)
     }
     

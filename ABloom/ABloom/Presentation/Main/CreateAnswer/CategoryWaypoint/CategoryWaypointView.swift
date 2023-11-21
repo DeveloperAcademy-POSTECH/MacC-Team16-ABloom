@@ -27,7 +27,9 @@ struct CategoryWaypointView: View {
         Spacer()
       }
       .padding(.horizontal, 20)
-      
+    }
+    .sheet(isPresented: $categoryWayVM.isSelectSheetOn) {
+      SelectQuestionView(selectedCategory: categoryWayVM.selectedCategory)
     }
   }
 }
@@ -61,9 +63,9 @@ extension CategoryWaypointView {
   private var categoryList: some View {
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     
-    // TODO: - OnTapGesture로 SelectionQuestionView로 이동,, 차후구현
     return LazyVGrid(columns: columns, spacing: 20) {
       ForEach(Category.allCases, id: \.self) { category in
+        
         Text(category.type)
           .customFont(.headlineB)
           .foregroundColor(.white)
@@ -74,6 +76,9 @@ extension CategoryWaypointView {
               .aspectRatio(contentMode: .fill)
               .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
           )
+          .onTapGesture {
+            categoryWayVM.isClicked(selectedCategory: category)
+          }
       }
     }
   }

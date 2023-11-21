@@ -8,12 +8,18 @@
 import SwiftUI
 
 final class CategoryWaypointViewModel: ObservableObject {
-
-  // MAKR: - 추천질문 관련 => 제이와 상의후 로직 변경 예정
+  
+  @Published var isAnswered: Bool = false
   @Published var recommendQuestion: DBStaticQuestion = .init(questionID: 3, category: "", content: "추천질문입니다")
-//  
-//  @Published var recommendQuestionAnswered: Bool = false
-//  
+  @Published var selectedCategory: Category = Category.communication
+  @Published var isSelectSheetOn = Bool()
+
+  
+  func isClicked(selectedCategory: Category) {
+    self.selectedCategory = selectedCategory
+    self.isSelectSheetOn.toggle()
+  }
+  
 //  @AppStorage("savedRecommendQuestionId") var savedRecommendQuestionId: Int = 3
 //  @AppStorage("lastQuestionChangeDate") var lastQuestionChangeDate: Date = Calendar.current.date(byAdding: .day, value: -2, to: Date())!
 //  

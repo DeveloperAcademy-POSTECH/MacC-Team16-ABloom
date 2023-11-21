@@ -37,8 +37,8 @@ struct CustomNavigationBarModifier<C, L, R>: ViewModifier where C: View, L: View
           Spacer()
           
           self.centerView?()
-            .fontWithTracking(.title3R)
-            .foregroundStyle(.stone800)
+            .customFont(.bodyB)
+            .foregroundStyle(.black)
           
           Spacer()
         }
