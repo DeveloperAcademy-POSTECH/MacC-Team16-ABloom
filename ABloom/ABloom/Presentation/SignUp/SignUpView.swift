@@ -11,6 +11,8 @@ struct SignUpView: View {
   @StateObject var vm = SignUpViewModel()
   let horizontalPadding: CGFloat = 20
   
+  @Environment(\.dismiss) private var dismiss
+
   var body: some View {
     VStack(alignment: .leading) {
       progressBar
@@ -22,6 +24,12 @@ struct SignUpView: View {
       Spacer()
     }
     .padding(.horizontal, horizontalPadding)
+    
+    .onChange(of: vm.isSuccessCreateUser) { newValue in
+      if newValue {
+        dismiss()
+      }
+    }
     
     .customNavigationBar(centerView: {
       Text("가입하기")
