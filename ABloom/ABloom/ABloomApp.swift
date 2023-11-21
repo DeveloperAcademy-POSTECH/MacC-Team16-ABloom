@@ -32,7 +32,7 @@ struct ABloomApp: App {
   var body: some Scene {
     WindowGroup {
       NavigationStack {
-        SignUpView()
+        QnAListView()
           .fullScreenCover(isPresented: $isFirstLaunching) {
             OnboardingTabView(isFirstLaunching: $isFirstLaunching)
           } 

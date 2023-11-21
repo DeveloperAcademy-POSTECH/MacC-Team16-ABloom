@@ -37,6 +37,11 @@ final class StaticQuestionManager {
     })
   }
   
+  // MARK: essentialQ id로 question 가지고 올 때 사용
+  func getQuestionById(id: Int) async throws -> DBStaticQuestion {
+    try await questionCollection.document("\(id)").getDocument(as: DBStaticQuestion.self)
+  }
+  
   
   // MARK: Will be deprecated properties
   @Published var essentialQuestionsOrder = [Int]()
@@ -78,15 +83,5 @@ final class StaticQuestionManager {
     return try await questionCollection
       .whereField(DBStaticQuestion.CodingKeys.questionID.rawValue, in: questionIds)
       .getDocuments(as: DBStaticQuestion.self)
-  }
-  
-  func getQuestionById(id: Int) async throws -> DBStaticQuestion {
-    try await questionCollection.document("\(id)").getDocument(as: DBStaticQuestion.self)
-  }
-  
-  func fetchEssentialCollections() async throws {
-    let document = try await essentialCollection.document("essentialQuestionsId").getDocument(as: DBEssentialQuestion.self)
-    self.essentialQuestionsOrder = document.fixedOrder
-    self.essentialQuestionsRandom = document.randomOrder
   }
 }
