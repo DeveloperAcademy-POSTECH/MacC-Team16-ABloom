@@ -28,9 +28,7 @@ struct SignUpView: View {
         .customFont(.bodyB)
     }, leftView: {
       Button {
-        if vm.nowStep == .step1 {
-          
-        } else {
+        if vm.nowStep != .step1 {
           withAnimation {
             vm.stepToBack()
           }

@@ -120,7 +120,6 @@ extension WriteAnswerView {
       }
     }
     .padding(.bottom, UIScreen.main.bounds.size.height/2.5)
-    
   }
 }
 
