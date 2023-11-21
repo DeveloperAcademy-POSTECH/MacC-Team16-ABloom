@@ -26,20 +26,33 @@ struct ABloomApp: App {
     
     UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(named: "Purple 600")
   }
-
+  
   @AppStorage("_isFirstLaunching") var isFirstLaunching: Bool = true
+  @State var isLoading = true
   
   var body: some Scene {
+    
     WindowGroup {
       NavigationStack {
-        SignUpView()
-          .fullScreenCover(isPresented: $isFirstLaunching) {
-            OnboardingTabView(isFirstLaunching: $isFirstLaunching)
-          } 
+        ZStack {
+          if isLoading {
+            SplashView()
+          } else {
+            QnAListView()
+              .fullScreenCover(isPresented: $isFirstLaunching) {
+                OnboardingTabView(isFirstLaunching: $isFirstLaunching)
+              }
+//              .sheet(isPresented: .constant(true), content: {
+//                ProfileMenuView()
+//              })
+          }
+        }
       }
-      .sheet(isPresented: .constant(true), content: {
-        ProfileMenuView()
+      .onAppear { DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: {
+        isLoading.toggle()
       })
+      }
+     
     }
   }
 }
