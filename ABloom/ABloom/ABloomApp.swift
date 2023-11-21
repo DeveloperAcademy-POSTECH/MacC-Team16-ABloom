@@ -37,9 +37,6 @@ struct ABloomApp: App {
             OnboardingTabView(isFirstLaunching: $isFirstLaunching)
           } 
       }
-      .sheet(isPresented: .constant(true), content: {
-        ProfileMenuView()
-      })
     }
   }
 }

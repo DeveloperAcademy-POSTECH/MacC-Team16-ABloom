@@ -140,27 +140,26 @@ extension ProfileMenuView {
   }
   
   private var marriageDday: some View {
-    ZStack {
-      HStack {
-        Label(
-          title: {
-            Text(vm.marriageStatus?.dDayMessage ?? "로그인 해주세요")
-          },
-          icon: {
-            Image("heart_calendar")
-              .resizable()
-              .scaledToFit()
-              .frame(width: 16)
-              .foregroundStyle(.gray600)
-          }
-        )
-        .padding(.horizontal, 12)
-        .padding(.vertical, 9)
-        
-        Spacer()
-      }
+    HStack {
+      Label(
+        title: {
+          Text(vm.marriageStatus?.dDayMessage ?? "지금 로그인하고 결혼예정일을 설정해보세요.")
+            .customFont(.caption1R)
+            .foregroundStyle(.gray600)
+        },
+        icon: {
+          Image("heart_calendar")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 16)
+            .foregroundStyle(.gray600)
+        }
+      )
+      .padding(.horizontal, 12)
+      .padding(.vertical, 9)
+      
+      Spacer()
     }
-    .frame(maxWidth: .infinity)
     .background(Color.gray100)
     .cornerRadius(8, corners: .allCorners)
   }
