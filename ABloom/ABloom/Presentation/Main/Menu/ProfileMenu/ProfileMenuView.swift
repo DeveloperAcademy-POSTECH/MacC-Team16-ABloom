@@ -191,26 +191,26 @@ extension ProfileMenuView {
         .foregroundStyle(.black)
         .customFont(.headlineB)
       
-      Button {
-        // 문답 연구소 웹뷰 연동
+      NavigationLink {
+        EmbedWebView(viewTitle: "문답 연구소", urlString: ServiceWebURL.questionLab.rawValue, type: .navigation, showSheet: .constant(true), checkContract: .constant(true))
       } label: {
         listRowLabel(title: "문답 연구소")
       }
       
-      Button {
-        // 고객센터 웹뷰 연동
+      NavigationLink {
+        EmbedWebView(viewTitle: "고객센터", urlString: ServiceWebURL.qna.rawValue, type: .navigation, showSheet: .constant(true), checkContract: .constant(true))
       } label: {
         listRowLabel(title: "고객센터")
       }
       
-      Button {
-        // 서비스 이용약관 수정 웹뷰 연동
+      NavigationLink {
+        EmbedWebView(viewTitle: "서비스 이용약관", urlString: ServiceWebURL.termsOfuse.rawValue, type: .navigation, showSheet: .constant(true), checkContract: .constant(true))
       } label: {
         listRowLabel(title: "서비스 이용약관")
       }
       
-      Button {
-        // 개인정보 처리방침 웹뷰 연동
+      NavigationLink {
+        EmbedWebView(viewTitle: "개인정보 처리 방침", urlString: ServiceWebURL.privacyPolicy.rawValue, type: .navigation, showSheet: .constant(true), checkContract: .constant(true))
       } label: {
         listRowLabel(title: "개인정보 처리 방침")
       }

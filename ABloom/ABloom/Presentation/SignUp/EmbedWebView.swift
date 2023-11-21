@@ -10,6 +10,9 @@ import SwiftUI
 struct EmbedWebView: View {
   let viewTitle: String
   let urlString: String
+  let type: WebViewType
+  
+  @Environment(\.dismiss) var dismiss
   
   @Binding var showSheet: Bool
   @Binding var checkContract: Bool
@@ -24,7 +27,18 @@ struct EmbedWebView: View {
       Text("\(viewTitle)")
         .customFont(.bodyB)
     } leftView: {
-      EmptyView()
+      Button {
+        dismiss()
+      } label: {
+        Image("angle-left")
+          .resizable()
+          .renderingMode(.template)
+          .scaledToFit()
+          .frame(width: 18)
+          .foregroundStyle(.purple700)
+          .hidden(type == .sheet)
+      }
+
     } rightView: {
       Button("확인") {
         showSheet = false
@@ -32,12 +46,18 @@ struct EmbedWebView: View {
       }
       .customFont(.calloutB)
       .foregroundStyle(Color.purple700)
+      .hidden(type == .navigation)
     }
+  }
+  
+  enum WebViewType {
+    case navigation
+    case sheet
   }
 }
 
 #Preview {
   NavigationStack {
-    EmbedWebView(viewTitle: "문의하기", urlString: "https://www.google.com", showSheet: .constant(false), checkContract: .constant(false))
+    EmbedWebView(viewTitle: "문의하기", urlString: "https://www.google.com", type: .sheet, showSheet: .constant(false), checkContract: .constant(false))
   }
 }
