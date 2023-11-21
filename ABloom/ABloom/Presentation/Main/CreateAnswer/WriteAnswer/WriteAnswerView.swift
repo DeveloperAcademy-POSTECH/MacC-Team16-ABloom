@@ -26,7 +26,7 @@ struct WriteAnswerView: View {
     }
     .padding(.horizontal, 20)
     
-    .interactiveDismissDisabled()
+    .interactiveDismissDisabled(writeAMV.ansText.isEmpty ? false : true)
     
     // 네비게이션바
     .customNavigationBar {

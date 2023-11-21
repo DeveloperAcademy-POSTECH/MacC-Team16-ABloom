@@ -21,11 +21,11 @@ class WriteAnswerViewModel: ObservableObject {
       self.isTextOver = false
     }
     
-    self.swipeDisable()
+    self.checkSwipeDisable()
   }
   
   // 백스와이프 차단
-  private func swipeDisable() {
+  private func checkSwipeDisable() {
     if self.ansText == "" {
       UINavigationController.isSwipeBackEnabled = true
     } else {
