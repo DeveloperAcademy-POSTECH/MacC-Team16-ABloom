@@ -21,7 +21,7 @@ final class StaticQuestionManager {
     self.staticQuestions = try await questionCollection.getDocuments(as: DBStaticQuestion.self)
   }
   
-  func filterQuestions() {
+  func fetchFilterQuestions() {
     guard let myAnswers = AnswerManager.shared.myAnswers else { return }
     guard let fianceAnswers = AnswerManager.shared.fianceAnswers else { return }
     

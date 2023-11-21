@@ -15,15 +15,6 @@ final class UserManager: ObservableObject {
   @Published var currentUser: DBUser?
   @Published var fianceUser: DBUser?
   
-  init() {
-    Task {
-      try? await fetchCurrentUser()
-      print("현재 유저 : \(currentUser)")
-      try? await fetchFianceUser()
-      print("상대 유저 : \(fianceUser)")
-    }
-  }
-  
   // MARK: 사용 객체
   private let userCollection = Firestore.firestore().collection("users")
   

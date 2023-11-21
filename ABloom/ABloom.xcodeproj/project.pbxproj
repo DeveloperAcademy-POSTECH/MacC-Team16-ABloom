@@ -49,6 +49,8 @@
 		3DB6A5A72AE0BDF800C1369F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5A62AE0BDF800C1369F /* FirebaseStorage */; };
 		3DB6A5A92AE0BDF800C1369F /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5A82AE0BDF800C1369F /* FirebaseStorageCombine-Community */; };
 		3DB6A5B42AE11CCD00C1369F /* SignInAppleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6A5B32AE11CCD00C1369F /* SignInAppleHelper.swift */; };
+		3DD485E12B0AFC7300AF5E02 /* ProfileMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD485E02B0AFC7300AF5E02 /* ProfileMenuViewModel.swift */; };
+		3DD485E32B0B9BA500AF5E02 /* MarriageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD485E22B0B9BA500AF5E02 /* MarriageStatus.swift */; };
 		3DE945042AFA96C900CF7E33 /* ReactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE945032AFA96C900CF7E33 /* ReactionType.swift */; };
 		3DF31AE72B0453DF00F0EA4E /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31AE62B0453DF00F0EA4E /* SignInView.swift */; };
 		3DF31AE92B0453E700F0EA4E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31AE82B0453E700F0EA4E /* SignUpView.swift */; };
@@ -136,6 +138,8 @@
 		3DB6A5B02AE11C2D00C1369F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		3DB6A5B32AE11CCD00C1369F /* SignInAppleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAppleHelper.swift; sourceTree = "<group>"; };
 		3DB6A5B52AE1278D00C1369F /* ABloom.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ABloom.entitlements; sourceTree = "<group>"; };
+		3DD485E02B0AFC7300AF5E02 /* ProfileMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuViewModel.swift; sourceTree = "<group>"; };
+		3DD485E22B0B9BA500AF5E02 /* MarriageStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarriageStatus.swift; sourceTree = "<group>"; };
 		3DE945032AFA96C900CF7E33 /* ReactionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionType.swift; sourceTree = "<group>"; };
 		3DF31AE62B0453DF00F0EA4E /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		3DF31AE82B0453E700F0EA4E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -333,6 +337,7 @@
 				3DE945032AFA96C900CF7E33 /* ReactionType.swift */,
 				3DF31BFF2B076F7500F0EA4E /* SignUpStep.swift */,
 				3D4412592AE4F8B600FD5A51 /* WebView.swift */,
+				3DD485E22B0B9BA500AF5E02 /* MarriageStatus.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -481,6 +486,7 @@
 			isa = PBXGroup;
 			children = (
 				3DF31AF42B04544E00F0EA4E /* ProfileMenuView.swift */,
+				3DD485E02B0AFC7300AF5E02 /* ProfileMenuViewModel.swift */,
 			);
 			path = ProfileMenu;
 			sourceTree = "<group>";
@@ -922,6 +928,7 @@
 				3DF31AF72B04545500F0EA4E /* ShowWebView.swift in Sources */,
 				60797C212AF9DD7C005375DC /* Category.swift in Sources */,
 				3DF31B082B073CDE00F0EA4E /* SignUpContentView.swift in Sources */,
+				3DD485E32B0B9BA500AF5E02 /* MarriageStatus.swift in Sources */,
 				607DA2162AEFE900005AE11C /* ConnectionManager.swift in Sources */,
 				AEAB19372ADF77210057BC43 /* Buttons.swift in Sources */,
 				AE7EE4E12AD6409000E0A573 /* ABloomApp.swift in Sources */,
@@ -939,6 +946,7 @@
 				3DF31AF52B04544E00F0EA4E /* ProfileMenuView.swift in Sources */,
 				AEC260612AEA5A8000DF7CD5 /* StaticQuestionManager.swift in Sources */,
 				3D4412432AE388DB00FD5A51 /* UserManager.swift in Sources */,
+				3DD485E12B0AFC7300AF5E02 /* ProfileMenuViewModel.swift in Sources */,
 				AE8CFC172B089899000F452F /* OnboardingTabView.swift in Sources */,
 				3DF31B062B073CD000F0EA4E /* SignUpViewModel.swift in Sources */,
 				AE6ACF552AE0B49E0017088C /* Helpers.swift in Sources */,
