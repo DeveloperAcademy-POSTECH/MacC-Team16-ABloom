@@ -20,6 +20,17 @@ class WriteAnswerViewModel: ObservableObject {
     } else {
       self.isTextOver = false
     }
+    
+    self.swipeDisable()
+  }
+  
+  // 백스와이프 차단
+  private func swipeDisable() {
+    if self.ansText == "" {
+      UINavigationController.isSwipeBackEnabled = true
+    } else {
+      UINavigationController.isSwipeBackEnabled = false
+    }
   }
   
   func backClicked() {

@@ -9,27 +9,43 @@ import SwiftUI
 
 struct CategoryWaypointView: View {
   @StateObject var categoryWayVM = CategoryWaypointViewModel()
+  @Environment(\.dismiss) private var dismiss
+  @Binding var isSheetOn: Bool
   
   var body: some View {
-    
-    ScrollView {
-      
-      VStack(alignment: .leading, spacing: 35) {
+    NavigationStack {
+      ScrollView {
         
-        recommenedArea
-          .padding(.top, 20)
-        
-        Text("카테고리 선택하기")
-          .customFont(.headlineB)
-        
-        categoryList
-        
-        Spacer()
+        VStack(alignment: .leading, spacing: 35) {
+          
+          recommenedArea
+            .padding(.top, 20)
+          
+          Text("카테고리 선택하기")
+            .customFont(.headlineB)
+          
+          categoryList
+          
+          Spacer()
+        }
+        .padding(.horizontal, 20)
       }
-      .padding(.horizontal, 20)
-    }
-    .sheet(isPresented: $categoryWayVM.isSelectSheetOn) {
-      SelectQuestionView(selectedCategory: categoryWayVM.selectedCategory)
+      
+      .navigationDestination(isPresented: $categoryWayVM.isSelectSheetOn, destination: {
+        SelectQuestionView(isSheetOn: $isSheetOn, selectedCategory: categoryWayVM.selectedCategory)
+      }) 
+      
+      .customNavigationBar {
+        EmptyView()
+      } leftView: {
+        Button("취소") {
+          dismiss()
+        }
+        .foregroundStyle(.purple600)
+        .customFont(.calloutB)
+      } rightView: {
+        EmptyView()
+      }
     }
   }
 }
@@ -85,5 +101,5 @@ extension CategoryWaypointView {
 }
 
 #Preview {
-  CategoryWaypointView()
+  CategoryWaypointView(isSheetOn: .constant(true))
 }
