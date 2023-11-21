@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct WriteAnswerView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+  var question: DBStaticQuestion
+  
+  var body: some View {
+    Text(question.content)
+  }
 }
 
 #Preview {
-    WriteAnswerView()
+  WriteAnswerView(question: .init(questionID: 1, category: "communication", content: "Hello"))
 }
