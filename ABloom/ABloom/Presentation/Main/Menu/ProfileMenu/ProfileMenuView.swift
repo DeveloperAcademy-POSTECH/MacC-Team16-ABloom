@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileMenuView: View {
+  @Binding var showProfileMenuSheet: Bool
   
   @StateObject var vm = ProfileMenuViewModel()
   
@@ -43,7 +44,7 @@ struct ProfileMenuView: View {
       EmptyView()
     } leftView: {
       Button("취소") {
-        
+        showProfileMenuSheet = false
       }
       .customFont(.calloutB)
       .foregroundStyle(.purple700)
@@ -108,7 +109,7 @@ struct ProfileMenuView: View {
 
 #Preview {
   NavigationStack {
-    ProfileMenuView()
+    ProfileMenuView(showProfileMenuSheet: .constant(false))
   }
 }
 
@@ -238,8 +239,8 @@ extension ProfileMenuView {
         listRowLabel(title: "로그아웃")
       }
       
-      Button {
-        // 회원탈퇴 뷰 연동
+      NavigationLink {
+        WithdrawalMembershipView(showProfileMenuSheet: $showProfileMenuSheet)
       } label: {
         listRowLabel(title: "회원탈퇴")
       }
