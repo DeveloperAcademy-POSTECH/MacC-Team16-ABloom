@@ -12,7 +12,15 @@ class WriteAnswerViewModel: ObservableObject {
   @Published var isCancelAlertOn = Bool()
   @Published var isCompleteAlertOn = Bool()
   @Published var ansText: String = ""
-  @Published var textNum: Int = 0
+  @Published var isTextOver = Bool()
+  
+  func checkTextCount() {
+    if self.ansText.count > 150 {
+      self.isTextOver = true
+    } else {
+      self.isTextOver = false
+    }
+  }
   
   func backClicked() {
     if self.ansText != "" {
@@ -24,8 +32,5 @@ class WriteAnswerViewModel: ObservableObject {
     self.isCompleteAlertOn.toggle()
   }
   
-  func updateTextNum(num: Int) {
-    self.textNum = num
-  }
   
 }

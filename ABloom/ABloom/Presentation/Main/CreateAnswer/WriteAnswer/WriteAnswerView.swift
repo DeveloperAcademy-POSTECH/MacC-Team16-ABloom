@@ -44,9 +44,9 @@ struct WriteAnswerView: View {
       Button(action: { writeAMV.completeClicked() }, label: {
         Text("완료")
           .customFont(.calloutB)
-          .foregroundStyle((writeAMV.ansText == "" || writeAMV.textNum > 150) ? .gray400 : .purple700)
+          .foregroundStyle((writeAMV.ansText == "" || writeAMV.isTextOver) ? .gray400 : .purple700)
       })
-      .disabled(writeAMV.ansText == "" || writeAMV.textNum > 150)
+      .disabled(writeAMV.ansText == "" || writeAMV.isTextOver)
     }
     
     // 백버튼 알림
@@ -56,16 +56,13 @@ struct WriteAnswerView: View {
         dismiss()
       } label: {
         Text("나가기")
-          .foregroundStyle(.purple600)
       }
       Button(role: .cancel, action: {}, label: {
         Text("취소")
-          .foregroundStyle(.purple600)
       })
     }, message: {
       Text("작성중이었던 답변은 저장되지 않아요.")
     })
-    .alertButtonTint(color: .purple600)
     
     // 완료 알림
     .alert("답변을 완료할까요?", isPresented: $writeAMV.isCompleteAlertOn,
@@ -82,7 +79,6 @@ struct WriteAnswerView: View {
       Text("완료한 답변은 수정할 수 없고,\n상대방은 내 답변을 확인할 수 있어요.")
         .multilineTextAlignment(.center)
     })
-    .alertButtonTint(color: .purple600)
   }
 }
 
@@ -104,8 +100,8 @@ extension WriteAnswerView {
       .customFont(.calloutR)
       .foregroundStyle(.gray500)
       .frame(maxWidth: .infinity)
-      .onChange(of: writeAMV.ansText, perform: { newValue in
-        writeAMV.updateTextNum(num: newValue.count)
+      .onChange(of: writeAMV.ansText, perform: { _ in
+        writeAMV.checkTextCount()
       })
   }
   
@@ -114,9 +110,9 @@ extension WriteAnswerView {
       Spacer()
       HStack(spacing: 0) {
         Spacer()
-        Text("\(writeAMV.textNum)")
+        Text("\(writeAMV.ansText.count)")
           .customFont(.footnoteR)
-          .foregroundStyle(writeAMV.textNum >= 150 ? .red : .gray400)
+          .foregroundStyle( writeAMV.isTextOver ? .red : .gray400)
         
         Text(" / 150")
           .customFont(.footnoteR)

@@ -103,10 +103,6 @@ extension View {
   
   // MARK: - 2.0에서 사용
   
-  func alertButtonTint(color: Color) -> some View {
-    modifier(AlertButtonTintColor(color: color))
-  }
-  
   /// customNavigationBar
   func customNavigationBar<C, L, R>(
     centerView: @escaping (() -> C),

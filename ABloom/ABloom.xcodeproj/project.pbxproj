@@ -80,7 +80,6 @@
 		AE1AE9FB2AE51BF00010089F /* QnAListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AE9FA2AE51BF00010089F /* QnAListItem.swift */; };
 		AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AE2BB5F32AD650680003CD85 /* .swiftlint.yml */; };
 		AE2F915C2B0B3D7800EE9C33 /* WriteAnswerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2F915B2B0B3D7800EE9C33 /* WriteAnswerViewModel.swift */; };
-		AE2F915E2B0B4F2500EE9C33 /* AlertButtonTint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2F915D2B0B4F2500EE9C33 /* AlertButtonTint.swift */; };
 		AE3BF1142AF49986009A2FB1 /* Ex+UINavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3BF1132AF49986009A2FB1 /* Ex+UINavigation.swift */; };
 		AE5EB9FB2AF1396C0074F361 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EB9FA2AF1396C0074F361 /* AppDelegate.swift */; };
 		AE6ACF552AE0B49E0017088C /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6ACF542AE0B49E0017088C /* Helpers.swift */; };
@@ -184,7 +183,6 @@
 		AE2BB5FE2AD673890003CD85 /* LoginMD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LoginMD.md; sourceTree = "<group>"; };
 		AE2BB6022AD674D40003CD85 /* TabBarMD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TabBarMD.md; sourceTree = "<group>"; };
 		AE2F915B2B0B3D7800EE9C33 /* WriteAnswerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteAnswerViewModel.swift; sourceTree = "<group>"; };
-		AE2F915D2B0B4F2500EE9C33 /* AlertButtonTint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertButtonTint.swift; sourceTree = "<group>"; };
 		AE3BF1132AF49986009A2FB1 /* Ex+UINavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+UINavigation.swift"; sourceTree = "<group>"; };
 		AE5693242AEAD982009F3400 /* AnswerWriteViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerWriteViewModel.swift; sourceTree = "<group>"; };
 		AE5EB9FA2AF1396C0074F361 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -623,7 +621,6 @@
 				607DA20D2AEF48AE005AE11C /* NavigationArrowLeft.swift */,
 				6053F1752AE899320064A6E0 /* InputFields.swift */,
 				6053F1612ADF6CDE0064A6E0 /* InputFieldModifier.swift */,
-				AE2F915D2B0B4F2500EE9C33 /* AlertButtonTint.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -916,7 +913,6 @@
 				3D44125A2AE4F8B600FD5A51 /* WebView.swift in Sources */,
 				3DF31C002B076F7500F0EA4E /* SignUpStep.swift in Sources */,
 				3D4412602AE503FD00FD5A51 /* ToastView.swift in Sources */,
-				AE2F915E2B0B4F2500EE9C33 /* AlertButtonTint.swift in Sources */,
 				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
 				AEB502642AE5FA840056E439 /* CustomNavigationBarModifier.swift in Sources */,
 				3DE945042AFA96C900CF7E33 /* ReactionType.swift in Sources */,
