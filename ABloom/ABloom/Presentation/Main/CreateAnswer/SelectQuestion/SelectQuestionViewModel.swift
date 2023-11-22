@@ -13,12 +13,15 @@ final class SelectQuestionViewModel: ObservableObject {
   @Published var filteredLists = [DBStaticQuestion]()
   @Published var selectedQuestion: DBStaticQuestion? = nil
   @Published var isAnswerSheetOn = Bool()
+  @Published var didGetCategory = Bool()
   @Published var selectedCategory: Category = Category.communication
   
   
-  func moveToSelectedCategory(selectedCategory: Category) {
-    self.selectedCategory = selectedCategory
+  func updateSelectedCategory(new: Category) {
+    self.selectedCategory = new
+    self.didGetCategory = true
   }
+
   
   func questionClicked(selectedQ: DBStaticQuestion) {
     self.selectedQuestion = selectedQ
@@ -50,8 +53,4 @@ final class SelectQuestionViewModel: ObservableObject {
       }
     }
   }
-}
-
-#Preview {
-  SelectQuestionView(selectedCategory: Category.communication)
 }

@@ -114,7 +114,7 @@ extension QnAListView {
         .padding(.bottom, 7)
     }
     .sheet(isPresented: $qnaListVM.showCategoryWayPointSheet) {
-      CategoryWaypointView()
+      CategoryWaypointView(isSheetOn: $qnaListVM.showCategoryWayPointSheet)
     }
   }
 }

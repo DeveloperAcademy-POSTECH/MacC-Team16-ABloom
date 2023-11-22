@@ -82,7 +82,3 @@ final class CategoryWaypointViewModel: ObservableObject {
 //  }
   
 }
-
-#Preview {
-  CategoryWaypointView()
-}
