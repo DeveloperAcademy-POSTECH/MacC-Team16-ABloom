@@ -13,18 +13,18 @@ struct OnboardingTabView: View {
   @State private var selectedTab = 0
   
   var body: some View {
-    VStack {
+    VStack(spacing: 0) {
       
       tabIndicator
         .padding(.vertical, 50)
       
       tabViews
-        .frame(maxHeight: .infinity)
       
       startButton
       
     }
     .ignoresSafeArea(.all, edges: .bottom)
+   
   }
 }
 
@@ -35,7 +35,7 @@ extension OnboardingTabView {
     return HStack(spacing: 10) {
       ForEach(0..<3, id: \.self) { index in
         Button(action: {  withAnimation {
-          selectedTab = index // Update selected tab
+          selectedTab = index
         } }, label: {
           Circle()
             .fill(selectedTab == index ? .purple600 : .gray300)
@@ -49,23 +49,23 @@ extension OnboardingTabView {
     return TabView(selection: $selectedTab) {
       
       OnboardingPageView(
-        title: "동해물과 백두산이",
-        subtitle: "마르고 닳도록",
-        imageName: "person.3.fill"
+        title: "수백개의 다양한 질문들,",
+        subtitle: "둘러보고 골라보세요",
+        imageName: "onboarding_1"
       )
       .tag(0)
       
       OnboardingPageView(
-        title: "쓰기 탭",
-        subtitle: "이 앱은 개인 메모장으로도 쓸 수 있어요",
-        imageName: "note.text.badge.plus"
+        title: "나의 생각을 정리해가며",
+        subtitle: "답변을 작성해보세요",
+        imageName: "onboarding_2"
       )
       .tag(1)
       
       OnboardingPageView(
-        title: "쓰기 탭",
-        subtitle: "이 앱은 개인 메모장으로도 쓸 수 있어요",
-        imageName: "note.text.badge.plus"
+        title: "서로의 생각을 확인하고",
+        subtitle: "반응을 남겨보세요",
+        imageName: "onboarding_3"
       )
       .tag(2)
     }
@@ -86,6 +86,7 @@ extension OnboardingTabView {
             Rectangle()
               .foregroundStyle(.purple700)
           )
+          .padding(0)
       }
     )
   }

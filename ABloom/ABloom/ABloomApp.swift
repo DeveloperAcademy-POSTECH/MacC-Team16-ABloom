@@ -48,7 +48,7 @@ struct ABloomApp: App {
           }
         }
       }
-      .onAppear { DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: {
+      .onAppear { DispatchQueue.main.asyncAfter(deadline: .now() + 4.0, execute: {
         isLoading.toggle()
       })
       }

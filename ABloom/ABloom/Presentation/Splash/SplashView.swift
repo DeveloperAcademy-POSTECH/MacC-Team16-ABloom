@@ -11,7 +11,7 @@ import SwiftUI
 struct SplashView: View {
   var body: some View {
     
-    GIFView(type: .name("example"))
+    GIFView(type: .name("splashGIF"))
       .frame(maxWidth: .infinity, maxHeight: .infinity)
       .ignoresSafeArea()
       

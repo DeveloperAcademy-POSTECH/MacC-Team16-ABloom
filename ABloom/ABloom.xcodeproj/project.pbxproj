@@ -84,7 +84,6 @@
 		AE02ABED2B0C8A08004648F9 /* FLAnimatedImage in Frameworks */ = {isa = PBXBuildFile; productRef = AE02ABEC2B0C8A08004648F9 /* FLAnimatedImage */; };
 		AE02ABF02B0C8A47004648F9 /* GIFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE02ABEF2B0C8A47004648F9 /* GIFView.swift */; };
 		AE02ABF22B0C8A4C004648F9 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE02ABF12B0C8A4C004648F9 /* SplashView.swift */; };
-		AE02ABF42B0C8B60004648F9 /* example.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE02ABF32B0C8B60004648F9 /* example.gif */; };
 		AE1AE9FB2AE51BF00010089F /* QnAListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AE9FA2AE51BF00010089F /* QnAListItem.swift */; };
 		AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AE2BB5F32AD650680003CD85 /* .swiftlint.yml */; };
 		AE2F915C2B0B3D7800EE9C33 /* WriteAnswerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2F915B2B0B3D7800EE9C33 /* WriteAnswerViewModel.swift */; };
@@ -101,6 +100,7 @@
 		AE8D3C512ADE19E0009899A7 /* Ex+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D3C502ADE19E0009899A7 /* Ex+Font.swift */; };
 		AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D3C602ADE3C73009899A7 /* Ex+Shape.swift */; };
 		AEAB19372ADF77210057BC43 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAB19362ADF77210057BC43 /* Buttons.swift */; };
+		AEB350BD2B0D97C300C3A59F /* splashGIF.gif in Resources */ = {isa = PBXBuildFile; fileRef = AEB350BC2B0D97C300C3A59F /* splashGIF.gif */; };
 		AEB502642AE5FA840056E439 /* CustomNavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB502632AE5FA840056E439 /* CustomNavigationBarModifier.swift */; };
 		AEB5026B2AE64B8D0056E439 /* CategoryQuestionBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB5026A2AE64B8D0056E439 /* CategoryQuestionBox.swift */; };
 		AEBDE5682B06FC46005711BF /* NanumSquareNeo-aLt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEBDE5632B06FC46005711BF /* NanumSquareNeo-aLt.ttf */; };
@@ -192,7 +192,6 @@
 		60E05FAF2AFBB66200AC6AE8 /* TipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
 		AE02ABEF2B0C8A47004648F9 /* GIFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFView.swift; sourceTree = "<group>"; };
 		AE02ABF12B0C8A4C004648F9 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
-		AE02ABF32B0C8B60004648F9 /* example.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = example.gif; sourceTree = "<group>"; };
 		AE1AE9F82AE50BBC0010089F /* QuestionMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionMainView.swift; sourceTree = "<group>"; };
 		AE1AE9FA2AE51BF00010089F /* QnAListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnAListItem.swift; sourceTree = "<group>"; };
 		AE1AE9FE2AE557E00010089F /* AnswerCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCheckView.swift; sourceTree = "<group>"; };
@@ -219,6 +218,7 @@
 		AE8D3C5D2ADE1A22009899A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AE8D3C602ADE3C73009899A7 /* Ex+Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Shape.swift"; sourceTree = "<group>"; };
 		AEAB19362ADF77210057BC43 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		AEB350BC2B0D97C300C3A59F /* splashGIF.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = splashGIF.gif; sourceTree = "<group>"; };
 		AEB502632AE5FA840056E439 /* CustomNavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBarModifier.swift; sourceTree = "<group>"; };
 		AEB5026A2AE64B8D0056E439 /* CategoryQuestionBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryQuestionBox.swift; sourceTree = "<group>"; };
 		AEBDE5632B06FC46005711BF /* NanumSquareNeo-aLt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NanumSquareNeo-aLt.ttf"; sourceTree = "<group>"; };
@@ -758,7 +758,7 @@
 		AEB502652AE61AD70056E439 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				AE02ABF32B0C8B60004648F9 /* example.gif */,
+				AEB350BC2B0D97C300C3A59F /* splashGIF.gif */,
 				3D44126A2AE6246100FD5A51 /* Assets.xcassets */,
 				AE8D3C522ADE19F2009899A7 /* Fonts */,
 				AE8D3C4F2ADE19B4009899A7 /* Extensions */,
@@ -884,13 +884,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEBDE56A2B06FC46005711BF /* NanumSquareNeo-cBd.ttf in Resources */,
+				AEB350BD2B0D97C300C3A59F /* splashGIF.gif in Resources */,
 				AEBDE5682B06FC46005711BF /* NanumSquareNeo-aLt.ttf in Resources */,
 				3D44127A2AEAB34000FD5A51 /* GoogleService-Info.plist in Resources */,
 				AEBDE5692B06FC46005711BF /* NanumSquareNeo-dEb.ttf in Resources */,
 				AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */,
 				AE7EE4E82AD6409100E0A573 /* Preview Assets.xcassets in Resources */,
 				AEBDE56B2B06FC46005711BF /* NanumSquareNeo-bRg.ttf in Resources */,
-				AE02ABF42B0C8B60004648F9 /* example.gif in Resources */,
 				3D44126B2AE6246100FD5A51 /* Assets.xcassets in Resources */,
 				AEBDE56C2B06FC46005711BF /* NanumSquareNeo-eHv.ttf in Resources */,
 				AEC44E042AF628DF0021156E /* Launch Screen.storyboard in Resources */,
