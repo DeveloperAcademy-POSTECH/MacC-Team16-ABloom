@@ -10,6 +10,7 @@ enum ConnectionError: Error {
   case fianceAlreadyExists
   case invalidConnectionCode
   case selfConnection
+  case notSignIn
   
   func errorMessage() -> String {
     switch self {
@@ -19,6 +20,8 @@ enum ConnectionError: Error {
       return "유효하지 않은 코드입니다."
     case .selfConnection:
       return "본인 아이디를 입력할 수 없습니다."
+    case .notSignIn:
+      return "먼저 로그인을 하세요."
     }
   }
 }

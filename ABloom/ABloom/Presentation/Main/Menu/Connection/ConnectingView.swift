@@ -33,6 +33,14 @@ struct ConnectingView: View {
     }
     .padding(.top, 39)
     .padding(.horizontal, 20)
+    
+    .alert("연결에 실패했어요", isPresented: $vm.showErrorAlert, actions: {
+      Button("확인") {
+        vm.showErrorAlert = false
+      }
+    }, message: {
+      Text(vm.errorMessage)
+    })
   }
 }
 
@@ -68,7 +76,7 @@ extension ConnectingView {
   
   private var connectButton: some View {
     Button {
-      // 연결하기
+      vm.connectUser()
     } label: {
       PurpleTextButton(title: "연결하기", isDisable: !vm.isTargetCodeInputVaild)
     }

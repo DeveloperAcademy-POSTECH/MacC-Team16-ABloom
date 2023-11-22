@@ -177,8 +177,8 @@ extension ProfileMenuView {
         listRowLabel(title: "내 정보 수정하기")
       }
       
-      Button {
-        // 연결 관리 뷰 연동
+      NavigationLink {
+        ConnectionView()
       } label: {
         listRowLabel(title: "상대방과 연결 관리", isIssue: (vm.currentUser?.fiance) == nil)
       }

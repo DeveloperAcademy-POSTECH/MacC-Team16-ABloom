@@ -33,8 +33,9 @@ final class ConnectionManager {
     
     let targetUser = try target.data(as: DBUser.self)
     let targetUserId = targetUser.userId
-    let currentUser = try await UserManager.shared.getCurrentUser()
-    let currentUserId = currentUser.userId
+    guard let currentUser = UserManager.shared.currentUser else {
+      throw ConnectionError.notSignIn
+    }
     
     /// 본인 아이디를 넣은 경우
     if currentUser.invitationCode == targetUser.invitationCode {
@@ -46,7 +47,7 @@ final class ConnectionManager {
       throw ConnectionError.fianceAlreadyExists
     }
     
-    try await connectionUpdate(userId: currentUserId, targetId: targetUserId)
+    try await connectionUpdate(userId: currentUser.userId, targetId: targetUserId)
   }
   
   private func connectionUpdate(userId: String, targetId: String) async throws {
