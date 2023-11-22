@@ -23,12 +23,22 @@ final class QnAListViewModel: ObservableObject {
   }
   
   init() {
+    getUserInfo()
     getAnswers()
     getQuestions()
     if questions.isEmpty {
       viewState = .isEmpty
     } else {
       viewState = .isSorted
+    }
+  }
+  
+  func getUserInfo() {
+    Task {
+      try await UserManager.shared.fetchCurrentUser()
+      try await UserManager.shared.fetchFianceUser()
+      dump(UserManager.shared.currentUser)
+      dump(UserManager.shared.fianceUser)
     }
   }
   

@@ -101,13 +101,4 @@ extension Shape {
     )
     .shadow(color: Color.purple200.opacity(1), radius: 20, x: 0, y: 20)
   }
-  
-  // 완료
-  public func loginChatBubbleShadow() -> some View {
-    self.fill(
-      .shadow(.inner(color: Color.black.opacity(0.06), radius: 5, x: 0, y: -3))
-      .shadow(.inner(color: Color.white.opacity(0.6), radius: 8, x: 3, y: 1))
-    )
-    .shadow(color: Color.black.opacity(0.08), radius: 10, x: 0, y: 7.45)
-  }
 }

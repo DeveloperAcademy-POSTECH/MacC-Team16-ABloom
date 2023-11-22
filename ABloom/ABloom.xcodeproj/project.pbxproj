@@ -68,10 +68,13 @@
 		3DF31BFE2B074BB800F0EA4E /* SelectQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31AF02B04541F00F0EA4E /* SelectQuestionView.swift */; };
 		3DF31C002B076F7500F0EA4E /* SignUpStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31BFF2B076F7500F0EA4E /* SignUpStep.swift */; };
 		3DF31C012B07729200F0EA4E /* EmbedWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44125B2AE4F91900FD5A51 /* EmbedWebView.swift */; };
+		60528FA92B0C97A900A29E6F /* ActiveSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60528FA82B0C97A900A29E6F /* ActiveSheet.swift */; };
 		6053F15F2ADF6C3B0064A6E0 /* Ex+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053F15E2ADF6C3B0064A6E0 /* Ex+View.swift */; };
 		6053F1622ADF6CDE0064A6E0 /* InputFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053F1612ADF6CDE0064A6E0 /* InputFieldModifier.swift */; };
 		6053F1762AE899320064A6E0 /* InputFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053F1752AE899320064A6E0 /* InputFields.swift */; };
 		60678E2A2B09186F009B9558 /* QnAListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60678E292B09186F009B9558 /* QnAListViewModel.swift */; };
+		60678E342B0B8843009B9558 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6A5B02AE11C2D00C1369F /* SignInViewModel.swift */; };
+		60678E352B0B8943009B9558 /* AppleLoginButtonViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6A5AD2AE0C12B00C1369F /* AppleLoginButtonViewRepresentable.swift */; };
 		60678E2C2B0AF43B009B9558 /* CheckAnswerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60678E2B2B0AF43B009B9558 /* CheckAnswerViewModel.swift */; };
 		60678E2E2B0B00D4009B9558 /* SelectReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60678E2D2B0B00D4009B9558 /* SelectReactionView.swift */; };
 		606AA7622AFA910100CA5EA6 /* AnswerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606AA7612AFA910100CA5EA6 /* AnswerStatus.swift */; };
@@ -142,7 +145,7 @@
 		3D957EA62AF8E95F00D565E9 /* UserSexType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSexType.swift; sourceTree = "<group>"; };
 		3DB6A5AA2AE0C09800C1369F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3DB6A5AD2AE0C12B00C1369F /* AppleLoginButtonViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginButtonViewRepresentable.swift; sourceTree = "<group>"; };
-		3DB6A5B02AE11C2D00C1369F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		3DB6A5B02AE11C2D00C1369F /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		3DB6A5B32AE11CCD00C1369F /* SignInAppleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAppleHelper.swift; sourceTree = "<group>"; };
 		3DB6A5B52AE1278D00C1369F /* ABloom.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ABloom.entitlements; sourceTree = "<group>"; };
 		3DD485E02B0AFC7300AF5E02 /* ProfileMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuViewModel.swift; sourceTree = "<group>"; };
@@ -163,6 +166,7 @@
 		3DF31B052B073CD000F0EA4E /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		3DF31B072B073CDE00F0EA4E /* SignUpContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpContentView.swift; sourceTree = "<group>"; };
 		3DF31BFF2B076F7500F0EA4E /* SignUpStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpStep.swift; sourceTree = "<group>"; };
+		60528FA82B0C97A900A29E6F /* ActiveSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSheet.swift; sourceTree = "<group>"; };
 		6053F15A2ADEB7700064A6E0 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		6053F15E2ADF6C3B0064A6E0 /* Ex+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+View.swift"; sourceTree = "<group>"; };
 		6053F1612ADF6CDE0064A6E0 /* InputFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldModifier.swift; sourceTree = "<group>"; };
@@ -351,6 +355,7 @@
 				3DE945032AFA96C900CF7E33 /* ReactionType.swift */,
 				3DF31BFF2B076F7500F0EA4E /* SignUpStep.swift */,
 				3D4412592AE4F8B600FD5A51 /* WebView.swift */,
+				60528FA82B0C97A900A29E6F /* ActiveSheet.swift */,
 				AEE092922B0AFCDE0076E7B7 /* PreviewQuestions.swift */,
 				3DD485E22B0B9BA500AF5E02 /* MarriageStatus.swift */,
 			);
@@ -378,14 +383,6 @@
 			path = Firebase;
 			sourceTree = "<group>";
 		};
-		3DB6A5AF2AE0C13800C1369F /* SubViews */ = {
-			isa = PBXGroup;
-			children = (
-				3DB6A5AD2AE0C12B00C1369F /* AppleLoginButtonViewRepresentable.swift */,
-			);
-			path = SubViews;
-			sourceTree = "<group>";
-		};
 		3DB6A5B22AE11CBA00C1369F /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -399,6 +396,8 @@
 			isa = PBXGroup;
 			children = (
 				3DF31AE62B0453DF00F0EA4E /* SignInView.swift */,
+				3DB6A5B02AE11C2D00C1369F /* SignInViewModel.swift */,
+				3DB6A5AD2AE0C12B00C1369F /* AppleLoginButtonViewRepresentable.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -627,8 +626,6 @@
 			children = (
 				AE2BB5FE2AD673890003CD85 /* LoginMD.md */,
 				3DB6A5AA2AE0C09800C1369F /* LoginView.swift */,
-				3DB6A5B02AE11C2D00C1369F /* LoginViewModel.swift */,
-				3DB6A5AF2AE0C13800C1369F /* SubViews */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -948,9 +945,11 @@
 				607DA2142AEFCF93005AE11C /* ConnectionError.swift in Sources */,
 				AE8CFC192B0898BF000F452F /* OnboardingPageView.swift in Sources */,
 				3DF31AF72B04545500F0EA4E /* ShowWebView.swift in Sources */,
+				60678E352B0B8943009B9558 /* AppleLoginButtonViewRepresentable.swift in Sources */,
 				3DF31BFE2B074BB800F0EA4E /* SelectQuestionView.swift in Sources */,
 				3DF31AF72B04545500F0EA4E /* ShowWebView.swift in Sources */,
 				60797C212AF9DD7C005375DC /* Category.swift in Sources */,
+				60528FA92B0C97A900A29E6F /* ActiveSheet.swift in Sources */,
 				3DF31B082B073CDE00F0EA4E /* SignUpContentView.swift in Sources */,
 				3DD485E32B0B9BA500AF5E02 /* MarriageStatus.swift in Sources */,
 				607DA2162AEFE900005AE11C /* ConnectionManager.swift in Sources */,
@@ -964,6 +963,7 @@
 				6053F1622ADF6CDE0064A6E0 /* InputFieldModifier.swift in Sources */,
 				3DF31C012B07729200F0EA4E /* EmbedWebView.swift in Sources */,
 				3D957EA72AF8E95F00D565E9 /* UserSexType.swift in Sources */,
+				60678E342B0B8843009B9558 /* SignInViewModel.swift in Sources */,
 				3DB6A5B42AE11CCD00C1369F /* SignInAppleHelper.swift in Sources */,
 				AE3BF1142AF49986009A2FB1 /* Ex+UINavigation.swift in Sources */,
 				607DA20E2AEF48AE005AE11C /* NavigationArrowLeft.swift in Sources */,

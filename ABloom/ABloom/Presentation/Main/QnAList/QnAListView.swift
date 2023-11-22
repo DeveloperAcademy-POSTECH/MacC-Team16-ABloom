@@ -9,7 +9,8 @@ import SwiftUI
 
 struct QnAListView: View {
   @StateObject var qnaListVM = QnAListViewModel()
-  
+  @ObservedObject var activeSheet: ActiveSheet = ActiveSheet()
+
   var body: some View {
     ZStack(alignment: .bottom) {
       VStack(spacing: 0) {
@@ -38,6 +39,22 @@ struct QnAListView: View {
       plusButton
     }
     .background(Color.background)
+    .sheet(isPresented: $activeSheet.showSheet) { self.sheet }
+
+    .task {
+      let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
+      
+      if authUser == nil {
+        activeSheet.kind = .signIn
+      } else {
+        guard let uid = authUser?.uid else { return }
+        let dbUser = try? await UserManager.shared.getUser(userId: uid)
+        if dbUser == nil {
+          activeSheet.kind = .signUp
+        }
+        qnaListVM.getUserInfo()
+      }
+    }
   }
 }
 
@@ -116,6 +133,29 @@ extension QnAListView {
     .sheet(isPresented: $qnaListVM.showCategoryWayPointSheet) {
       CategoryWaypointView(isSheetOn: $qnaListVM.showCategoryWayPointSheet)
     }
+  }
+  
+  private var sheet: some View {
+    switch activeSheet.kind {
+    case .none: return AnyView(EmptyView())
+    case .signIn: return AnyView(signInSheet)
+    case .signUp: return AnyView(signUpSheet)
+    }
+  }
+  
+  private var signInSheet: some View {
+    SignInView(activeSheet: activeSheet)
+      .presentationDetents([.height(302)])
+      .onDisappear {
+        Task { qnaListVM.getUserInfo() }
+      }
+  }
+  private var signUpSheet: some View {
+    SignUpView()
+      .interactiveDismissDisabled()
+      .onDisappear {
+        Task { qnaListVM.getUserInfo() }
+      }
   }
 }
 
