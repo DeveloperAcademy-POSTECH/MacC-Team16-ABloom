@@ -33,7 +33,11 @@ struct CategoryWaypointView: View {
       
       .navigationDestination(isPresented: $categoryWayVM.isSelectSheetOn, destination: {
         SelectQuestionView(isSheetOn: $isSheetOn, selectedCategory: categoryWayVM.selectedCategory)
-      }) 
+      })
+      
+      .task {
+        try? await categoryWayVM.loadRecommendedQuestion()
+      }
       
       .customNavigationBar {
         EmptyView()
@@ -53,27 +57,38 @@ struct CategoryWaypointView: View {
 extension CategoryWaypointView {
   
   private var recommenedArea: some View {
-    return VStack(alignment: .leading, spacing: 5) {
+    return NavigationLink {
       
-      HStack {
-        Text("오늘의 추천 질문")
-          .customFont(.caption2B)
-          .foregroundStyle(.gray300)
-          .padding(15)
-        Spacer()
+      if !categoryWayVM.isLoggedIn {
+        // 로그인 팝업 뷰
+      } else if categoryWayVM.isAnswered {
+        // 문답확인뷰 이동
+      } else {
+        WriteAnswerView(isSheetOn: $isSheetOn, question: categoryWayVM.recommendQuestion)
       }
-      
-      Text(categoryWayVM.recommendQuestion.content)
-        .multilineTextAlignment(.leading)
-        .customFont(.headlineB)
-        .foregroundStyle(.white)
-        .padding(15)
+    } label: {
+      VStack(alignment: .leading, spacing: 5) {
+        
+        HStack {
+          Text("오늘의 추천 질문")
+            .customFont(.caption2B)
+            .foregroundStyle(.gray300)
+            .padding(15)
+          Spacer()
+        }
+        
+        Text(categoryWayVM.recommendQuestion.content)
+          .multilineTextAlignment(.leading)
+          .customFont(.headlineB)
+          .foregroundStyle(.white)
+          .padding(15)
+      }
+      .frame(maxWidth: .infinity)
+      .background(
+        RoundedRectangle(cornerRadius: 8)
+          .foregroundStyle(.purple800)
+      )
     }
-    .frame(maxWidth: .infinity)
-    .background(
-      RoundedRectangle(cornerRadius: 8)
-        .foregroundStyle(.purple800)
-    )
   }
   
   private var categoryList: some View {

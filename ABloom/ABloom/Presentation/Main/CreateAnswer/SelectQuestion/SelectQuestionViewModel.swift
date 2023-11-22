@@ -17,6 +17,10 @@ final class SelectQuestionViewModel: ObservableObject {
   @Published var selectedCategory: Category = Category.communication
   
   
+  init() {
+    self.fetchQuestions()
+  }
+  
   func updateSelectedCategory(new: Category) {
     self.selectedCategory = new
     self.didGetCategory = true
@@ -34,12 +38,14 @@ final class SelectQuestionViewModel: ObservableObject {
   }
   
   // 나 혹은 상대방이 답한 질문 제외한 질문리스트가 저장된 변수 그대로 받아오기
-  func fetchQuestions() { 
+  private func fetchQuestions() { 
     if let filteredQuestions = StaticQuestionManager.shared.filteredQuestions {
       self.questionLists = filteredQuestions
+      print("filtered")
     } else {
       // 로그인 안되어 있어서 데이터를 못받아올 경우 
       self.questionLists = previewQuestions
+      print("preview")
     }
     filterCategoryQuestion()
   }

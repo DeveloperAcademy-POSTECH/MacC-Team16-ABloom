@@ -25,7 +25,6 @@ struct SelectQuestionView: View {
       if !selectQVM.didGetCategory {
         selectQVM.updateSelectedCategory(new: selectedCategory)
       }
-      selectQVM.fetchQuestions()
     }
     
     .navigationDestination(isPresented: $selectQVM.isAnswerSheetOn, destination: {
