@@ -8,9 +8,26 @@
 import SwiftUI
 
 struct ConnectionView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+  @Environment(\.dismiss) private var dismiss
+  
+  var body: some View {
+    VStack {
+      
     }
+    .customNavigationBar {
+      Text("상대방과 연결 관리")
+        .customFont(.bodyB)
+    } leftView: {
+      Button {
+        dismiss()
+      } label: {
+        NavigationArrowLeft()
+      }
+    } rightView: {
+      EmptyView()
+    }
+
+  }
 }
 
 #Preview {
