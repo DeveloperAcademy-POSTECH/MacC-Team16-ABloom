@@ -50,7 +50,7 @@ final class CategoryWaypointViewModel: ObservableObject {
       self.answeredQuestionsID = nil
     }
   }
-  
+
   // TODO: 로그인 안되어 있을 때 DB 접근 X => getQuestionById 함수 호출 불가
   func loadRecommendedQuestion() async throws {
     let currentDate = Date.now

@@ -32,14 +32,12 @@ struct ABloomApp: App {
   var body: some Scene {
     WindowGroup {
       NavigationStack {
-        QnAListView()
-          .fullScreenCover(isPresented: $isFirstLaunching) {
-            OnboardingTabView(isFirstLaunching: $isFirstLaunching)
-          } 
+        if isFirstLaunching {
+          OnboardingTabView(isFirstLaunching: $isFirstLaunching)
+        } else {
+          QnAListView()
+        }
       }
-      .sheet(isPresented: .constant(true), content: {
-        ProfileMenuView()
-      })
     }
   }
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileMenuView: View {
+  @Binding var showProfileMenuSheet: Bool
   
   @StateObject var vm = ProfileMenuViewModel()
   
@@ -43,7 +44,7 @@ struct ProfileMenuView: View {
       EmptyView()
     } leftView: {
       Button("취소") {
-        
+        showProfileMenuSheet = false
       }
       .customFont(.calloutB)
       .foregroundStyle(.purple700)
@@ -108,7 +109,7 @@ struct ProfileMenuView: View {
 
 #Preview {
   NavigationStack {
-    ProfileMenuView()
+    ProfileMenuView(showProfileMenuSheet: .constant(false))
   }
 }
 
@@ -140,27 +141,26 @@ extension ProfileMenuView {
   }
   
   private var marriageDday: some View {
-    ZStack {
-      HStack {
-        Label(
-          title: {
-            Text(vm.marriageStatus?.dDayMessage ?? "로그인 해주세요")
-          },
-          icon: {
-            Image("heart_calendar")
-              .resizable()
-              .scaledToFit()
-              .frame(width: 16)
-              .foregroundStyle(.gray600)
-          }
-        )
-        .padding(.horizontal, 12)
-        .padding(.vertical, 9)
-        
-        Spacer()
-      }
+    HStack {
+      Label(
+        title: {
+          Text(vm.marriageStatus?.dDayMessage ?? "지금 로그인하고 결혼예정일을 설정해보세요.")
+            .customFont(.caption1R)
+            .foregroundStyle(.gray600)
+        },
+        icon: {
+          Image("heart_calendar")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 16)
+            .foregroundStyle(.gray600)
+        }
+      )
+      .padding(.horizontal, 12)
+      .padding(.vertical, 9)
+      
+      Spacer()
     }
-    .frame(maxWidth: .infinity)
     .background(Color.gray100)
     .cornerRadius(8, corners: .allCorners)
   }
@@ -192,26 +192,26 @@ extension ProfileMenuView {
         .foregroundStyle(.black)
         .customFont(.headlineB)
       
-      Button {
-        // 문답 연구소 웹뷰 연동
+      NavigationLink {
+        EmbedWebView(viewTitle: "문답 연구소", urlString: ServiceWebURL.questionLab.rawValue, type: .navigation, showSheet: .constant(true), checkContract: .constant(true))
       } label: {
         listRowLabel(title: "문답 연구소")
       }
       
-      Button {
-        // 고객센터 웹뷰 연동
+      NavigationLink {
+        EmbedWebView(viewTitle: "고객센터", urlString: ServiceWebURL.qna.rawValue, type: .navigation, showSheet: .constant(true), checkContract: .constant(true))
       } label: {
         listRowLabel(title: "고객센터")
       }
       
-      Button {
-        // 서비스 이용약관 수정 웹뷰 연동
+      NavigationLink {
+        EmbedWebView(viewTitle: "서비스 이용약관", urlString: ServiceWebURL.termsOfuse.rawValue, type: .navigation, showSheet: .constant(true), checkContract: .constant(true))
       } label: {
         listRowLabel(title: "서비스 이용약관")
       }
       
-      Button {
-        // 개인정보 처리방침 웹뷰 연동
+      NavigationLink {
+        EmbedWebView(viewTitle: "개인정보 처리 방침", urlString: ServiceWebURL.privacyPolicy.rawValue, type: .navigation, showSheet: .constant(true), checkContract: .constant(true))
       } label: {
         listRowLabel(title: "개인정보 처리 방침")
       }
@@ -239,8 +239,8 @@ extension ProfileMenuView {
         listRowLabel(title: "로그아웃")
       }
       
-      Button {
-        // 회원탈퇴 뷰 연동
+      NavigationLink {
+        WithdrawalMembershipView(showProfileMenuSheet: $showProfileMenuSheet)
       } label: {
         listRowLabel(title: "회원탈퇴")
       }

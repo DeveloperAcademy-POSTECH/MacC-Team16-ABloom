@@ -8,11 +8,64 @@
 import SwiftUI
 
 struct SignInView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+  @StateObject var signInVM = SignInViewModel()
+  @Environment(\.dismiss) private var dismiss
+  
+  @ObservedObject var activeSheet: ActiveSheet
+  
+  var body: some View {
+    
+    VStack(alignment: .leading, spacing: 14) {
+      Text("로그인")
+        .customFont(.title1B)
+      Text("간편하게 로그인해서 메리를 시작해보세요.")
+        .customFont(.caption1B)
+        .foregroundStyle(.gray500)
+        .padding(.bottom, 10)
+      
+      buttonArea
     }
+    .padding(.vertical, 36)
+    .padding(.horizontal, 20)
+    
+    .task {
+      try? signInVM.loadCurrentUser()
+    }
+    
+    .onChange(of: signInVM.isSignInSuccess) { newValue in
+      if signInVM.isOldUser {
+        dismiss()
+      } else {
+        dismiss()
+        activeSheet.kind = .signUp
+      }
+    }
+  }
 }
 
 #Preview {
-    SignInView()
+  SignInView(activeSheet: ActiveSheet())
+}
+
+extension SignInView {
+  private var buttonArea: some View {
+    VStack(spacing: 12) {
+      Button {
+        // Task { try await signInVM.signInKakao() }
+      } label: {
+        Image("signInKakao")
+          .resizable()
+          .scaledToFit()
+      }
+      .frame(height: 52)
+      
+      Button {
+        Task { try await signInVM.signInApple() }
+      } label: {
+        SignInWithAppleButtonViewRepresentable(type: .signIn, style: .black)
+          .allowsHitTesting(false)
+      }
+      .frame(height: 52)
+    }
+  }
 }

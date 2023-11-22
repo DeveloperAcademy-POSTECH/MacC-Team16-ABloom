@@ -115,11 +115,11 @@ extension SignUpContentView {
     }
     
     .sheet(isPresented: $showPrivacyPolicy, content: {
-      EmbedWebView(viewTitle: "개인정보 처리방침", urlString: ServiceWebURL.privacyPolicy.rawValue, showSheet: $showPrivacyPolicy, checkContract: $signUpViewModel.isCheckedPrivacyPolicy)
+      EmbedWebView(viewTitle: "개인정보 처리방침", urlString: ServiceWebURL.privacyPolicy.rawValue, type: .sheet, showSheet: $showPrivacyPolicy, checkContract: $signUpViewModel.isCheckedPrivacyPolicy)
     })
     
     .sheet(isPresented: $showTermOfUse, content: {
-      EmbedWebView(viewTitle: "서비스 이용약관", urlString: ServiceWebURL.termsOfuse.rawValue, showSheet: $showTermOfUse, checkContract: $signUpViewModel.isCheckedTermsOfuse)
+      EmbedWebView(viewTitle: "서비스 이용약관", urlString: ServiceWebURL.termsOfuse.rawValue, type: .sheet, showSheet: $showTermOfUse, checkContract: $signUpViewModel.isCheckedTermsOfuse)
     })
   }
 }

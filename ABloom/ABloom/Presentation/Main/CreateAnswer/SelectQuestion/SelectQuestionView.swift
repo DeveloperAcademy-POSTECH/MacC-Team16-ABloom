@@ -8,6 +8,8 @@ import SwiftUI
 
 struct SelectQuestionView: View {
   @StateObject var selectQVM = SelectQuestionViewModel()
+  @Environment(\.dismiss) private var dismiss
+  @Binding var isSheetOn: Bool
   
   var selectedCategory: Category
   
@@ -19,16 +21,34 @@ struct SelectQuestionView: View {
       
       questionListView
     }
-    .task {
+    .onAppear {
+      if !selectQVM.didGetCategory {
+        selectQVM.updateSelectedCategory(new: selectedCategory)
+      }
       selectQVM.fetchQuestions()
     }
-    .onAppear {
-      selectQVM.moveToSelectedCategory(selectedCategory: selectedCategory)
-    }
-    .sheet(isPresented: $selectQVM.isAnswerSheetOn) {
+    
+    .navigationDestination(isPresented: $selectQVM.isAnswerSheetOn, destination: {
       if let selectedQ = selectQVM.selectedQuestion {
-        WriteAnswerView(question: selectedQ)
+        WriteAnswerView(isSheetOn: $isSheetOn, question: selectedQ)
       }
+    })
+    
+    .navigationBarBackButtonHidden(true)
+    
+    .customNavigationBar {
+      EmptyView()
+    } leftView: {
+      Button(action: {dismiss()
+      }, label: {
+        Image("angle-left")
+          .resizable()
+          .renderingMode(.template)
+          .frame(width: 18, height: 18)
+          .foregroundStyle(.purple600)
+      })
+    } rightView: {
+      EmptyView()
     }
   }
 }
@@ -38,6 +58,7 @@ extension SelectQuestionView {
   private var categoryBar: some View {
     ScrollViewReader { proxy in
       ScrollView(.horizontal, showsIndicators: false) {
+        
         HStack(spacing: 30) {
           
           ForEach(Category.allCases, id: \.self) { category in
@@ -59,7 +80,6 @@ extension SelectQuestionView {
                 .overlay(.purple700)
                 .opacity(selectQVM.selectedCategory == category ? 1 : 0)
             }
-            
             .padding(.horizontal, 10)
             .tag(category)
             .foregroundStyle(selectQVM.selectedCategory == category ? .purple700 : .gray400)
@@ -69,7 +89,7 @@ extension SelectQuestionView {
             })
           }
         }
-        .padding(.top, 36)
+        .padding(.top, 32)
         .padding(.horizontal, 20)
       }
       .onChange(of: selectQVM.selectedCategory) { new in
@@ -100,7 +120,7 @@ extension SelectQuestionView {
       .padding(.horizontal, 22)
       Divider()
         .frame(maxWidth: .infinity)
-        .frame(height: 2)
+        .frame(height: 1)
         .overlay(.purple100)
     }
     .onTapGesture {
@@ -125,6 +145,7 @@ extension SelectQuestionView {
         }
         .onChange(of: selectQVM.selectedCategory) { new in
           proxy.scrollTo("top")
+          
         }
         
       }
@@ -133,5 +154,5 @@ extension SelectQuestionView {
 }
 
 #Preview {
-  SelectQuestionView(selectedCategory: Category.communication)
+  SelectQuestionView(isSheetOn: .constant(true), selectedCategory: Category.communication)
 }

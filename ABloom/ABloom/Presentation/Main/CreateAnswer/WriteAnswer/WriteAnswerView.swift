@@ -10,6 +10,7 @@ import SwiftUI
 struct WriteAnswerView: View {
   @Environment(\.dismiss) private var dismiss
   @StateObject var writeAMV = WriteAnswerViewModel()
+  @Binding var isSheetOn: Bool
   
   var question: DBStaticQuestion
   
@@ -21,8 +22,11 @@ struct WriteAnswerView: View {
       textField
       
       textNumCheck
+      
     }
     .padding(.horizontal, 20)
+    
+    .interactiveDismissDisabled(writeAMV.ansText.isEmpty ? false : true)
     
     // 네비게이션바
     .customNavigationBar {
@@ -44,15 +48,15 @@ struct WriteAnswerView: View {
       Button(action: { writeAMV.completeClicked() }, label: {
         Text("완료")
           .customFont(.calloutB)
-          .foregroundStyle((writeAMV.ansText == "" || writeAMV.isTextOver) ? .gray400 : .purple700)
+          .foregroundStyle((writeAMV.ansText.isEmpty || writeAMV.isTextOver) ? .gray400 : .purple700)
       })
-      .disabled(writeAMV.ansText == "" || writeAMV.isTextOver)
+      .disabled(writeAMV.ansText.isEmpty || writeAMV.isTextOver)
     }
     
     // 백버튼 알림
-    .alert("작성을 종료할까요?", isPresented: $writeAMV.isCancelAlertOn,
-           actions: {
+    .alert("작성을 종료할까요?", isPresented: $writeAMV.isCancelAlertOn, actions: {
       Button {
+        UINavigationController.isSwipeBackEnabled = true
         dismiss()
       } label: {
         Text("나가기")
@@ -65,10 +69,10 @@ struct WriteAnswerView: View {
     })
     
     // 완료 알림
-    .alert("답변을 완료할까요?", isPresented: $writeAMV.isCompleteAlertOn,
-           actions: {
+    .alert("답변을 완료할까요?", isPresented: $writeAMV.isCompleteAlertOn, actions: {
       Button {
-        dismiss()
+        UINavigationController.isSwipeBackEnabled = true
+        isSheetOn.toggle()
       } label: {
         Text("완료하기")
       }
@@ -92,7 +96,7 @@ extension WriteAnswerView {
   
   private var textField: some View {
     TextField("", text: $writeAMV.ansText, axis: .vertical)
-      .placeholder(when: writeAMV.ansText == "", placeholder: {
+      .placeholder(when: writeAMV.ansText.isEmpty, placeholder: {
         Text("내 답변을 작성해보세요...")
           .customFont(.calloutR)
           .foregroundStyle(.gray400)
@@ -102,6 +106,8 @@ extension WriteAnswerView {
       .frame(maxWidth: .infinity)
       .onChange(of: writeAMV.ansText, perform: { _ in
         writeAMV.checkTextCount()
+        
+        
       })
   }
   
@@ -124,5 +130,7 @@ extension WriteAnswerView {
 }
 
 #Preview {
-  WriteAnswerView(question: .init(questionID: 3, category: "communication", content: "Helloodoododo"))
+  
+  WriteAnswerView(isSheetOn: .constant(true), question: .init(questionID: 3, category: "communication", content: "Helloodoododo"))
+  
 }
