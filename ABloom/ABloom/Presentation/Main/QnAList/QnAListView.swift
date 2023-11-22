@@ -53,6 +53,7 @@ struct QnAListView: View {
           activeSheet.kind = .signUp
         }
       }
+      qnaListVM.fetchData()
     }
   }
 }
@@ -79,14 +80,14 @@ extension QnAListView {
   private var scrollView: some View {
     ScrollView(.vertical) {
       LazyVStack(spacing: 12) {
-        ForEach(qnaListVM.questions, id: \.questionID) { question in
+        ForEach(Array(qnaListVM.coupleAnswers), id: \.key) { question, answers in
           Button {
             qnaListVM.tapQnAListItem()
           } label: {
             QnAListItem(
               question: question,
-              date: .now,
-              answerStatus: qnaListVM.checkAnswerStatus(qid: question.questionID)
+              date: answers[0].date,
+              answerStatus: qnaListVM.checkAnswerStatus(question: question)
             )
           }
           .sheet(isPresented: $qnaListVM.showQnASheet) {
@@ -152,14 +153,14 @@ extension QnAListView {
     SignInView(activeSheet: activeSheet)
       .presentationDetents([.height(302)])
       .onDisappear {
-        Task { qnaListVM.getUser() }
+        Task { await qnaListVM.fetchDataAfterSignIn() }
       }
   }
   private var signUpSheet: some View {
     SignUpView()
       .interactiveDismissDisabled()
       .onDisappear {
-        Task { qnaListVM.getUser() }
+        Task { await qnaListVM.fetchDataAfterSignIn() }
       }
   }
 }
