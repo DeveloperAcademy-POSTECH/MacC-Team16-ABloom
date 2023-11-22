@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileMenuView: View {
   @Binding var showProfileMenuSheet: Bool
+  @ObservedObject var activeSheet: ActiveSheet
   
   @StateObject var vm = ProfileMenuViewModel()
   
@@ -109,7 +110,7 @@ struct ProfileMenuView: View {
 
 #Preview {
   NavigationStack {
-    ProfileMenuView(showProfileMenuSheet: .constant(false))
+    ProfileMenuView(showProfileMenuSheet: .constant(false), activeSheet: ActiveSheet())
   }
 }
 
@@ -132,9 +133,16 @@ extension ProfileMenuView {
             .customFont(.caption1B)
             .foregroundStyle(.gray500)
         } else {
-          Text("눌러서 로그인하기 >")
-            .customFont(.caption1B)
-            .foregroundStyle(.gray500)
+          Button {
+            showProfileMenuSheet = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+              activeSheet.kind = .signIn
+            }
+          } label: {
+            Text("눌러서 로그인하기 >")
+              .customFont(.caption1B)
+              .foregroundStyle(.gray500)
+          }
         }
       }
     }
