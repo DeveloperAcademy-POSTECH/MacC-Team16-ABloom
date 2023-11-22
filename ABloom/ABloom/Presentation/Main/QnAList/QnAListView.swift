@@ -104,7 +104,7 @@ extension QnAListView {
   
   private var emptyView: some View {
     VStack(spacing: 12) {
-      Image(systemName: "stop.fill")
+      Image("LogoPurple")
         .resizable()
         .frame(width: 68, height: 68)
         .padding(.bottom, 4)
