@@ -22,13 +22,18 @@ final class StaticQuestionManager {
   }
   
   func fetchFilterQuestions() {
-    guard let myAnswers = AnswerManager.shared.myAnswers else { return }
-    guard let fianceAnswers = AnswerManager.shared.fianceAnswers else { return }
+    let myAnswers = AnswerManager.shared.myAnswers
+    let fianceAnswers = AnswerManager.shared.fianceAnswers
     
     var ids: [Int] = []
     
-    ids += myAnswers.map { $0.questionId }
-    ids += fianceAnswers.map { $0.questionId }
+    if let myAnswers = myAnswers {
+      ids += myAnswers.map { $0.questionId }
+    }
+    if let fianceAnswers = fianceAnswers {
+      ids += fianceAnswers.map { $0.questionId }
+    }
+      
     
     self.filteredQuestions = self.staticQuestions?.filter({ question in
       !ids.contains { id in
@@ -36,6 +41,8 @@ final class StaticQuestionManager {
       }
     })
   }
+  
+  
   
   // MARK: essentialQ id로 question 가지고 올 때 사용
   func getQuestionById(id: Int) async throws -> DBStaticQuestion {
