@@ -223,7 +223,7 @@ struct PurpleTextButton: View {
       .frame(height: 46)
       .frame(maxWidth: .infinity)
       .background(Color.purple600)
-      .cornerRadius(4, corners: .allCorners)
+      .cornerRadius(8, corners: .allCorners)
   }
 }
 
