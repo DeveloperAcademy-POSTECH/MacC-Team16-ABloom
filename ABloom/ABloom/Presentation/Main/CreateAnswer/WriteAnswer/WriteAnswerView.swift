@@ -15,16 +15,14 @@ struct WriteAnswerView: View {
   var question: DBStaticQuestion
   
   var body: some View {
-    ScrollView {
-      VStack(alignment: .leading, spacing: 20) {
-        
-        questionText
-        
-        textField
-        
-        textNumCheck
-        
-      }
+    VStack(alignment: .leading, spacing: 20) {
+      
+      questionText
+      
+      textField
+      
+      textNumCheck
+      
     }
     .padding(.horizontal, 20)
     .ignoresSafeArea(.keyboard)
@@ -115,25 +113,19 @@ extension WriteAnswerView {
   }
   
   private var textNumCheck: some View {
-    VStack {
+    HStack(spacing: 0) {
       Spacer()
-      HStack(spacing: 0) {
-        Spacer()
-        Text("\(writeAMV.ansText.count)")
-          .customFont(.footnoteR)
-          .foregroundStyle( writeAMV.isTextOver ? .red : .gray400)
-        
-        Text(" / 150")
-          .customFont(.footnoteR)
-          .foregroundStyle(.gray400)
-      }
+      Text("\(writeAMV.ansText.count)")
+        .customFont(.footnoteR)
+        .foregroundStyle( writeAMV.isTextOver ? .red : .gray400)
+      
+      Text(" / 150")
+        .customFont(.footnoteR)
+        .foregroundStyle(.gray400)
     }
-    .position(x: UIScreen.main.bounds.size.width/2 - 20, y: UIScreen.main.bounds.size.height/4.5)
   }
 }
 
 #Preview {
-  
   WriteAnswerView(isSheetOn: .constant(true), question: .init(questionID: 3, category: "communication", content: "Helloodoododo"))
-  
 }
