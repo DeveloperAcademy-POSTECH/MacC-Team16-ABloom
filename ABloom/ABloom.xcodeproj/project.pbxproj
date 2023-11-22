@@ -60,7 +60,6 @@
 		3DF31AEF2B04540800F0EA4E /* CategoryWaypointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31AEE2B04540800F0EA4E /* CategoryWaypointView.swift */; };
 		3DF31AF32B04544600F0EA4E /* WriteAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31AF22B04544600F0EA4E /* WriteAnswerView.swift */; };
 		3DF31AF52B04544E00F0EA4E /* ProfileMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31AF42B04544E00F0EA4E /* ProfileMenuView.swift */; };
-		3DF31AF72B04545500F0EA4E /* ShowWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31AF62B04545500F0EA4E /* ShowWebView.swift */; };
 		3DF31AF92B04546700F0EA4E /* ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31AF82B04546700F0EA4E /* ConnectionView.swift */; };
 		3DF31B022B06685F00F0EA4E /* AnswerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31B012B06685F00F0EA4E /* AnswerManager.swift */; };
 		3DF31B042B0669F900F0EA4E /* EssentialQuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31B032B0669F900F0EA4E /* EssentialQuestionManager.swift */; };
@@ -157,7 +156,6 @@
 		3DF31AF02B04541F00F0EA4E /* SelectQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionView.swift; sourceTree = "<group>"; };
 		3DF31AF22B04544600F0EA4E /* WriteAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteAnswerView.swift; sourceTree = "<group>"; };
 		3DF31AF42B04544E00F0EA4E /* ProfileMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuView.swift; sourceTree = "<group>"; };
-		3DF31AF62B04545500F0EA4E /* ShowWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowWebView.swift; sourceTree = "<group>"; };
 		3DF31AF82B04546700F0EA4E /* ConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionView.swift; sourceTree = "<group>"; };
 		3DF31B012B06685F00F0EA4E /* AnswerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerManager.swift; sourceTree = "<group>"; };
 		3DF31B032B0669F900F0EA4E /* EssentialQuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialQuestionManager.swift; sourceTree = "<group>"; };
@@ -395,6 +393,14 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
+		3DD485E82B0C91B200AF5E02 /* WithdrawalMembership */ = {
+			isa = PBXGroup;
+			children = (
+				3DD485E42B0C8B1B00AF5E02 /* WithdrawalMembershipView.swift */,
+			);
+			path = WithdrawalMembership;
+			sourceTree = "<group>";
+		};
 		3DF31AD42B044DB100F0EA4E /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
@@ -468,8 +474,8 @@
 			isa = PBXGroup;
 			children = (
 				3DF31ADF2B04503400F0EA4E /* ProfileMenu */,
-				3DF31AE02B0450A700F0EA4E /* WebView */,
 				3DF31AE12B0450AF00F0EA4E /* Connection */,
+				3DD485E82B0C91B200AF5E02 /* WithdrawalMembership */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -506,17 +512,8 @@
 			children = (
 				3DF31AF42B04544E00F0EA4E /* ProfileMenuView.swift */,
 				3DD485E02B0AFC7300AF5E02 /* ProfileMenuViewModel.swift */,
-				3DD485E42B0C8B1B00AF5E02 /* WithdrawalMembershipView.swift */,
 			);
 			path = ProfileMenu;
-			sourceTree = "<group>";
-		};
-		3DF31AE02B0450A700F0EA4E /* WebView */ = {
-			isa = PBXGroup;
-			children = (
-				3DF31AF62B04545500F0EA4E /* ShowWebView.swift */,
-			);
-			path = WebView;
 			sourceTree = "<group>";
 		};
 		3DF31AE12B0450AF00F0EA4E /* Connection */ = {
@@ -948,9 +945,7 @@
 				3D957E902AEE7F4800D565E9 /* DBAnswerModel.swift in Sources */,
 				607DA2142AEFCF93005AE11C /* ConnectionError.swift in Sources */,
 				AE8CFC192B0898BF000F452F /* OnboardingPageView.swift in Sources */,
-				3DF31AF72B04545500F0EA4E /* ShowWebView.swift in Sources */,
 				3DF31BFE2B074BB800F0EA4E /* SelectQuestionView.swift in Sources */,
-				3DF31AF72B04545500F0EA4E /* ShowWebView.swift in Sources */,
 				60797C212AF9DD7C005375DC /* Category.swift in Sources */,
 				3DF31B082B073CDE00F0EA4E /* SignUpContentView.swift in Sources */,
 				3DD485E32B0B9BA500AF5E02 /* MarriageStatus.swift in Sources */,
