@@ -38,9 +38,6 @@ struct ABloomApp: App {
           QnAListView()
         }
       }
-      .sheet(isPresented: .constant(true), content: {
-        ProfileMenuView()
-      })
     }
   }
 }

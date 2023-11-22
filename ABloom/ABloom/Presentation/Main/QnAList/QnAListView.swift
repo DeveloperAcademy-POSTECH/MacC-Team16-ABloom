@@ -66,7 +66,9 @@ extension QnAListView {
       Image("profile.circle")
     }
     .sheet(isPresented: $qnaListVM.showProfileSheet) {
-      ProfileMenuView()
+      NavigationStack {
+        ProfileMenuView(showProfileMenuSheet: $qnaListVM.showProfileSheet)
+      }
     }
   }
   
