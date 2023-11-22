@@ -15,17 +15,19 @@ struct WriteAnswerView: View {
   var question: DBStaticQuestion
   
   var body: some View {
-    VStack(alignment: .leading, spacing: 20) {
-      
-      questionText
-      
-      textField
-      
-      textNumCheck
-      
+    ScrollView {
+      VStack(alignment: .leading, spacing: 20) {
+        
+        questionText
+        
+        textField
+        
+        textNumCheck
+        
+      }
     }
     .padding(.horizontal, 20)
-    
+    .ignoresSafeArea(.keyboard)
     .interactiveDismissDisabled(writeAMV.ansText.isEmpty ? false : true)
     
     // 네비게이션바
@@ -86,10 +88,6 @@ struct WriteAnswerView: View {
       Text("완료한 답변은 수정할 수 없고,\n상대방은 내 답변을 확인할 수 있어요.")
         .multilineTextAlignment(.center)
     })
-    
-    .onChange(of: writeAMV.isSwipeEnabled) { new in
-      UINavigationController.isSwipeBackEnabled = new
-    }
   }
 }
 
@@ -113,8 +111,6 @@ extension WriteAnswerView {
       .frame(maxWidth: .infinity)
       .onChange(of: writeAMV.ansText, perform: { _ in
         writeAMV.checkTextCount()
-        
-        
       })
   }
   
@@ -132,7 +128,7 @@ extension WriteAnswerView {
           .foregroundStyle(.gray400)
       }
     }
-    .padding(.bottom, UIScreen.main.bounds.size.height/2.5)
+    .position(x: UIScreen.main.bounds.size.width/2 - 20, y: UIScreen.main.bounds.size.height/4.5)
   }
 }
 
