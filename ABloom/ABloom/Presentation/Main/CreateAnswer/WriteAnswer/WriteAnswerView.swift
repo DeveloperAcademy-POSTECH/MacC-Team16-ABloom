@@ -52,11 +52,12 @@ struct WriteAnswerView: View {
       })
       .disabled(writeAMV.ansText.isEmpty || writeAMV.isTextOver)
     }
+    .padding(.top, 21)
     
     // 백버튼 알림
     .alert("작성을 종료할까요?", isPresented: $writeAMV.isCancelAlertOn, actions: {
       Button {
-        UINavigationController.isSwipeBackEnabled = true
+        writeAMV.swipeEnable()
         dismiss()
       } label: {
         Text("나가기")
@@ -68,10 +69,12 @@ struct WriteAnswerView: View {
       Text("작성중이었던 답변은 저장되지 않아요.")
     })
     
+    
     // 완료 알림
     .alert("답변을 완료할까요?", isPresented: $writeAMV.isCompleteAlertOn, actions: {
       Button {
-        UINavigationController.isSwipeBackEnabled = true
+        writeAMV.swipeEnable()
+        try? writeAMV.saveAnswer(qid: question.questionID)
         isSheetOn.toggle()
       } label: {
         Text("완료하기")
@@ -83,6 +86,10 @@ struct WriteAnswerView: View {
       Text("완료한 답변은 수정할 수 없고,\n상대방은 내 답변을 확인할 수 있어요.")
         .multilineTextAlignment(.center)
     })
+    
+    .onChange(of: writeAMV.isSwipeEnabled) { new in
+      UINavigationController.isSwipeBackEnabled = new
+    }
   }
 }
 

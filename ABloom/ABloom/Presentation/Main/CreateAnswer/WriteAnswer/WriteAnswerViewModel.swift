@@ -13,6 +13,7 @@ class WriteAnswerViewModel: ObservableObject {
   @Published var isCompleteAlertOn = Bool()
   @Published var ansText: String = ""
   @Published var isTextOver = Bool()
+  @Published var isSwipeEnabled = Bool()
   
   func checkTextCount() {
     if self.ansText.count > 150 {
@@ -24,12 +25,16 @@ class WriteAnswerViewModel: ObservableObject {
     self.checkSwipeDisable()
   }
   
+  func swipeEnable() {
+    self.isSwipeEnabled = true
+  }
+  
   // 백스와이프 차단
   private func checkSwipeDisable() {
     if self.ansText == "" {
-      UINavigationController.isSwipeBackEnabled = true
+      self.isSwipeEnabled = true
     } else {
-      UINavigationController.isSwipeBackEnabled = false
+      self.isSwipeEnabled = false
     }
   }
   
@@ -43,5 +48,9 @@ class WriteAnswerViewModel: ObservableObject {
     self.isCompleteAlertOn.toggle()
   }
   
+  func saveAnswer(qid: Int) throws {
+    let uid = try AuthenticationManager.shared.getAuthenticatedUser().uid
+    try AnswerManager.shared.creatAnswer(userId: uid, questionId: qid, content: self.ansText)
+  }
   
 }
