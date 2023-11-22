@@ -56,7 +56,7 @@ extension ConnectingView {
         .foregroundStyle(.black)
         .padding(.bottom, 8)
       
-      CopyStrokeInputField(myCode: vm.currentUser?.invitationCode ?? "코드를 불러올 수 없음", alignment: .leading, copyAction: copyClipboard)
+      CopyStrokeInputField(myCode: vm.currentUser?.invitationCode ?? "로그인해주세요.", alignment: .leading, copyAction: copyClipboard)
         .strokeInputFieldStyle(isValueValid: true, alignment: .leading)
       
     }
