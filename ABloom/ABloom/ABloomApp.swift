@@ -15,8 +15,8 @@ struct ABloomApp: App {
   
   init() {
     Task {
-      try? await UserManager.shared.fetchFianceUser()
       try? await UserManager.shared.fetchCurrentUser()
+      try? await UserManager.shared.fetchFianceUser()
       try? await StaticQuestionManager.shared.fetchStaticQuestions()
       StaticQuestionManager.shared.fetchFilterQuestions()
       try? await EssentialQuestionManager.shared.fetchEssentialCollections()
