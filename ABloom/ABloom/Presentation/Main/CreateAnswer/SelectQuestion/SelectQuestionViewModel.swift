@@ -14,6 +14,7 @@ final class SelectQuestionViewModel: ObservableObject {
   @Published var selectedQuestion: DBStaticQuestion? = nil
   @Published var isAnswerSheetOn = Bool()
   @Published var didGetCategory = Bool()
+  @Published var isLoggedIn = Bool()
   @Published var selectedCategory: Category = Category.communication
   
   
@@ -41,11 +42,11 @@ final class SelectQuestionViewModel: ObservableObject {
   private func fetchQuestions() { 
     if let filteredQuestions = StaticQuestionManager.shared.filteredQuestions {
       self.questionLists = filteredQuestions
-      print("filtered")
+      self.isLoggedIn = true
     } else {
       // 로그인 안되어 있어서 데이터를 못받아올 경우 
       self.questionLists = previewQuestions
-      print("preview")
+      self.isLoggedIn = false
     }
     filterCategoryQuestion()
   }

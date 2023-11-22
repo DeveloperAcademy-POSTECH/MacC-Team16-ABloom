@@ -19,8 +19,13 @@ struct SelectQuestionView: View {
       categoryBar
       bottomGradient
       
-      questionListView
+      if selectQVM.isLoggedIn {
+        questionListView
+      } else {
+        staticQuestionListView
+      }
     }
+    
     .onAppear {
       if !selectQVM.didGetCategory {
         selectQVM.updateSelectedCategory(new: selectedCategory)
@@ -35,6 +40,7 @@ struct SelectQuestionView: View {
     
     .navigationBarBackButtonHidden(true)
     
+    
     .customNavigationBar {
       EmptyView()
     } leftView: {
@@ -44,11 +50,14 @@ struct SelectQuestionView: View {
           .resizable()
           .renderingMode(.template)
           .frame(width: 18, height: 18)
-          .foregroundStyle(.purple600)
+          .foregroundStyle(.purple700)
+          .padding(.top, 21)
       })
     } rightView: {
       EmptyView()
     }
+    .ignoresSafeArea(.all, edges: .bottom)
+    
   }
 }
 
@@ -125,6 +134,7 @@ extension SelectQuestionView {
     .onTapGesture {
       selectQVM.questionClicked(selectedQ: selectedQ)
     }
+    
   }
   
   private var questionListView: some View {
@@ -142,13 +152,53 @@ extension SelectQuestionView {
           Spacer()
             .frame(height: 50)
         }
+        
         .onChange(of: selectQVM.selectedCategory) { new in
           proxy.scrollTo("top")
-          
         }
+      }
+    }
+  }
+  
+  private var staticQuestionListView: some View {
+    VStack(spacing: 0) {
+      ZStack(alignment: .bottom) {
+        
+        Image(selectQVM.selectedCategory.staticImg)
+          .resizable()
+          .aspectRatio(contentMode: .fit)
+        
+        Rectangle()
+          .foregroundStyle(.clear)
+          .frame(height: UIScreen.main.bounds.size.height/1.6)
+          .overlay(
+            LinearGradient(
+              colors: [.topBlur.opacity(0), .middleBlur.opacity(0.63), .bottomBlur],
+              startPoint: .top,
+              endPoint: .bottom)
+          )
+        
+        Text("지금 로그인하면 메리의 200개가 넘는\n모든 질문들을 확인수 있어요!")
+          .customFont(.footnoteB)
+          .foregroundStyle(.gray50)
+          .multilineTextAlignment(.center)
+          .padding(.bottom, 108)
+        
+        // TODO: 로그인 팝업
+        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+          Text("로그인하기 >")
+            .customFont(.calloutB)
+            .foregroundStyle(.white)
+        })
+        .padding(.bottom, 66)
+        
+        
         
       }
     }
+    .ignoresSafeArea(.all, edges: .bottom)
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
+    
   }
 }
 
