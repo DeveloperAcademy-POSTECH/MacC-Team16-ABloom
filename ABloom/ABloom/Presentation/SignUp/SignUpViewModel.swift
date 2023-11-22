@@ -15,10 +15,14 @@ final class SignUpViewModel: ObservableObject {
   @Published var isCheckedPrivacyPolicy = false
   @Published var isCheckedTermsOfuse = false
   
+  @Published var isSuccessCreateUser = false
+
   func signUp() throws {
     let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
     
     try UserManager.shared.createUser(user: DBUser(userId: userId, name: inputName, sex: selectedSex.getBool, marriageDate: selectedDate, invitationCode: generateInviteCode(userId: userId)))
+    
+    isSuccessCreateUser = true
   }
   
   func stepToNext() {
