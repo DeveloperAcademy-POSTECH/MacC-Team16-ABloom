@@ -52,8 +52,8 @@ struct QnAListView: View {
         if dbUser == nil {
           activeSheet.kind = .signUp
         }
-        qnaListVM.getUserInfo()
       }
+      qnaListVM.fetchData()
     }
   }
 }
@@ -63,11 +63,15 @@ extension QnAListView {
     Button {
       qnaListVM.tapProfileButton()
     } label: {
-      Image("profile.circle")
+      Image(UserSexType(type: (qnaListVM.currentUser?.sex ?? true)).getAvatar())
+        .resizable()
+        .scaledToFit()
+        .clipShape(Circle())
+        .frame(width: 32)
     }
     .sheet(isPresented: $qnaListVM.showProfileSheet) {
       NavigationStack {
-        ProfileMenuView(showProfileMenuSheet: $qnaListVM.showProfileSheet)
+        ProfileMenuView(showProfileMenuSheet: $qnaListVM.showProfileSheet, activeSheet: activeSheet)
       }
     }
   }
@@ -76,14 +80,14 @@ extension QnAListView {
   private var scrollView: some View {
     ScrollView(.vertical) {
       LazyVStack(spacing: 12) {
-        ForEach(qnaListVM.questions, id: \.questionID) { question in
+        ForEach(Array(qnaListVM.coupleAnswers), id: \.key) { question, answers in
           Button {
             qnaListVM.tapQnAListItem()
           } label: {
             QnAListItem(
               question: question,
-              date: .now,
-              answerStatus: qnaListVM.checkAnswerStatus(qid: question.questionID)
+              date: answers[0].date,
+              answerStatus: qnaListVM.checkAnswerStatus(question: question)
             )
           }
           .sheet(isPresented: $qnaListVM.showQnASheet) {
@@ -100,7 +104,7 @@ extension QnAListView {
   
   private var emptyView: some View {
     VStack(spacing: 12) {
-      Image(systemName: "stop.fill")
+      Image("LogoPurple")
         .resizable()
         .frame(width: 68, height: 68)
         .padding(.bottom, 4)
@@ -149,14 +153,14 @@ extension QnAListView {
     SignInView(activeSheet: activeSheet)
       .presentationDetents([.height(302)])
       .onDisappear {
-        Task { qnaListVM.getUserInfo() }
+        Task { await qnaListVM.fetchDataAfterSignIn() }
       }
   }
   private var signUpSheet: some View {
     SignUpView()
       .interactiveDismissDisabled()
       .onDisappear {
-        Task { qnaListVM.getUserInfo() }
+        Task { await qnaListVM.fetchDataAfterSignIn() }
       }
   }
 }

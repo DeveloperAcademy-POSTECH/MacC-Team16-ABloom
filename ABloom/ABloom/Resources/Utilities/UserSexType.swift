@@ -32,7 +32,7 @@ enum UserSexType: String, CaseIterable {
     case .man:
       return "MaleAvatar"
     case .none:
-      return ""
+      return "profile.circle"
     }
   }
 }
