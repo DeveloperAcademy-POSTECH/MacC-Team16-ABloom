@@ -44,8 +44,6 @@ final class SelectQuestionViewModel: ObservableObject {
       self.questionLists = filteredQuestions
       self.isLoggedIn = true
     } else {
-      // 로그인 안되어 있어서 데이터를 못받아올 경우 
-      self.questionLists = previewQuestions
       self.isLoggedIn = false
     }
     filterCategoryQuestion()

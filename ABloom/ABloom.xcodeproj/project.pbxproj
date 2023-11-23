@@ -113,7 +113,6 @@
 		AEC260612AEA5A8000DF7CD5 /* StaticQuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */; };
 		AEC44E042AF628DF0021156E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEC44E032AF628DF0021156E /* Launch Screen.storyboard */; };
 		AEE092912B0AF5270076E7B7 /* Ex+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE092902B0AF5270076E7B7 /* Ex+Color.swift */; };
-		AEE092932B0AFCDE0076E7B7 /* PreviewQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE092922B0AFCDE0076E7B7 /* PreviewQuestions.swift */; };
 		AEEA8DD32AEB82520068550E /* ChatBubbles.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEA8DD22AEB82520068550E /* ChatBubbles.swift */; };
 /* End PBXBuildFile section */
 
@@ -232,7 +231,6 @@
 		AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticQuestionManager.swift; sourceTree = "<group>"; };
 		AEC44E032AF628DF0021156E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AEE092902B0AF5270076E7B7 /* Ex+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Color.swift"; sourceTree = "<group>"; };
-		AEE092922B0AFCDE0076E7B7 /* PreviewQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewQuestions.swift; sourceTree = "<group>"; };
 		AEEA8DCE2AEB82070068550E /* SelectQuestionViewModel1.0.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionViewModel1.0.swift; sourceTree = "<group>"; };
 		AEEA8DD02AEB82290068550E /* SelectQuestionView1.0.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionView1.0.swift; sourceTree = "<group>"; };
 		AEEA8DD22AEB82520068550E /* ChatBubbles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbles.swift; sourceTree = "<group>"; };
@@ -360,7 +358,6 @@
 				3DF31BFF2B076F7500F0EA4E /* SignUpStep.swift */,
 				3D4412592AE4F8B600FD5A51 /* WebView.swift */,
 				60528FA82B0C97A900A29E6F /* ActiveSheet.swift */,
-				AEE092922B0AFCDE0076E7B7 /* PreviewQuestions.swift */,
 				3DD485E22B0B9BA500AF5E02 /* MarriageStatus.swift */,
 			);
 			path = Utilities;
@@ -919,7 +916,6 @@
 				AE8D3C512ADE19E0009899A7 /* Ex+Font.swift in Sources */,
 				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
 				3D4412492AE4C49700FD5A51 /* AuthenticationManager.swift in Sources */,
-				AEE092932B0AFCDE0076E7B7 /* PreviewQuestions.swift in Sources */,
 				AE8D3C512ADE19E0009899A7 /* Ex+Font.swift in Sources */,
 				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
 				3DF31AED2B0453FB00F0EA4E /* CheckAnswerView.swift in Sources */,
