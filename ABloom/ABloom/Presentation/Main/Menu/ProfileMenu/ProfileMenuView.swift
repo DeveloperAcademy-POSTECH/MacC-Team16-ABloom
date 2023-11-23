@@ -135,6 +135,14 @@ extension ProfileMenuView {
           Text("\(fianceName)님의 \((vm.currentUser?.sex ?? true) ? UserSexType.man.rawValue : UserSexType.woman.rawValue)")
             .customFont(.caption1B)
             .foregroundStyle(.gray500)
+        } else if vm.isSignedIn {
+          NavigationLink {
+            ConnectionView()
+          } label: {
+            Text("눌러서 연결하기 >")
+              .customFont(.caption1B)
+              .foregroundStyle(.gray500)
+          }
         } else {
           Button {
             showProfileMenuSheet = false

@@ -21,6 +21,10 @@ final class ProfileMenuViewModel: ObservableObject {
   @Published var nameChangeTextfield = ""
   @Published var marriageDate: Date = Date()
   
+  var isSignedIn: Bool {
+    currentUser != nil
+  }
+  
   var marriageStatus: MarriageStatus? {
     guard let marriageDate = currentUser?.marriageDate else { return nil}
     
