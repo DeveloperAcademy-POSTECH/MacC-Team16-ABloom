@@ -5,6 +5,7 @@
 //  Created by 정승균 on 11/20/23.
 //
 
+import Combine
 import Foundation
 
 @MainActor
@@ -20,14 +21,28 @@ final class ProfileMenuViewModel: ObservableObject {
   @Published var nameChangeTextfield = ""
   @Published var marriageDate: Date = Date()
   
+  private var cancellables = Set<AnyCancellable>()
+  
   init() {
     getUsers()
     updateDayStatus()
   }
   
   func getUsers() {
-    self.currentUser = UserManager.shared.currentUser
-    self.fianceUser = UserManager.shared.fianceUser
+//    self.currentUser = UserManager.shared.currentUser
+//    self.fianceUser = UserManager.shared.fianceUser
+    
+    UserManager.shared.$currentUser
+      .sink { [weak self] user in
+        self?.currentUser = user
+      }
+      .store(in: &cancellables)
+    
+    UserManager.shared.$fianceUser
+      .sink { [weak self] user in
+        self?.fianceUser = user
+      }
+      .store(in: &cancellables)
   }
   
   func renewInfo() async throws {

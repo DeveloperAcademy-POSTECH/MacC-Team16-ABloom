@@ -7,6 +7,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Foundation
 
+@MainActor
 final class StaticQuestionManager {
   static let shared = StaticQuestionManager()
   

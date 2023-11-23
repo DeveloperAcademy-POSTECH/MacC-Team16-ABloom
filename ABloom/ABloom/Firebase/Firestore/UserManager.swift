@@ -9,6 +9,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Foundation
 
+@MainActor
 final class UserManager: ObservableObject {
   static let shared = UserManager()
   
@@ -58,6 +59,11 @@ final class UserManager: ObservableObject {
   func updateUserName(userId: String, name: String) throws {
     let data: [String: Any] = [DBUser.CodingKeys.name.rawValue:name]
     userDocument(userId: userId).updateData(data)
+    
+    Task {
+      try? await fetchCurrentUser()
+      print("내 이름 : \(self.fianceUser?.name)")
+    }
   }
   
   func updateMarriageDate(userId: String, date: Date) throws {

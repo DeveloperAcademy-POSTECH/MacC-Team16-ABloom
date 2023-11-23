@@ -7,6 +7,7 @@
 
 import FirebaseFirestore
 
+@MainActor
 final class ConnectionManager {
   static let shared = ConnectionManager()
   @Published var isConnected: Bool = false
