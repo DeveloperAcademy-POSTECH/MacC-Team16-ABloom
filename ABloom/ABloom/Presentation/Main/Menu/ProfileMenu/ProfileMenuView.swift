@@ -242,7 +242,7 @@ extension ProfileMenuView {
   private var exitAction: some View {
     VStack(alignment: .leading, spacing: 20) {
       Button {
-        try? vm.signOut()
+        vm.showSignOutAlert = true
       } label: {
         listRowLabel(title: "로그아웃")
       }
@@ -254,6 +254,18 @@ extension ProfileMenuView {
       }
     }
     .padding(.horizontal, 20)
+    
+    .alert("로그아웃할까요?", isPresented: $vm.showSignOutAlert, actions: {
+      Button("취소", role: .cancel) {
+        vm.showSignOutAlert = false
+      }
+      
+      Button("로그아웃", role: .destructive) {
+        try? vm.signOut()
+      }
+    }, message: {
+      Text("로그아웃하더라도 데이터는 보관되니\n안심하고 로그아웃하셔도 돼요.")
+    })
   }
   
   private var menuSeparator: some View {

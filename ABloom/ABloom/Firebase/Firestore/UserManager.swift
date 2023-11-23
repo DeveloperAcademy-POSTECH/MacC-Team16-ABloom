@@ -36,13 +36,17 @@ final class UserManager: ObservableObject {
   // MARK: Retrieve
   func fetchCurrentUser() async throws {
     // TODO: 에러처리
-    let currentUser = try AuthenticationManager.shared.getAuthenticatedUser()
-    
-    self.currentUser = try await getUser(userId: currentUser.uid)
+    do {
+      let currentUser = try AuthenticationManager.shared.getAuthenticatedUser()
+      self.currentUser = try await getUser(userId: currentUser.uid)
+    } catch {
+      self.currentUser = nil
+    }
   }
   
   func fetchFianceUser() async throws {
     guard let fianceId = self.currentUser?.fiance else {
+      self.fianceUser = nil
       return
     }
     
