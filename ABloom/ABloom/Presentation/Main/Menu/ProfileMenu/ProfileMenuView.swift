@@ -89,21 +89,24 @@ struct ProfileMenuView: View {
     
     // 결혼 일자 수정
     .sheet(isPresented: $vm.showCalendarSheet) {
-      DatePicker("", selection: $vm.marriageDate, displayedComponents: .date)
-        .datePickerStyle(.graphical)
-        .frame(width: 320)
-        .labelsHidden()
-        .presentationDetents([.medium])
-      
-      Button {
-        Task {
-          try? vm.updateMyMarriageDate()
-          try? await vm.renewInfo()
-          vm.showActionSheet = false
+      VStack {
+        DatePicker("", selection: $vm.marriageDate, displayedComponents: .date)
+          .datePickerStyle(.graphical)
+          .frame(width: 320)
+          .labelsHidden()
+          .presentationDetents([.medium])
+        
+        Button {
+          Task {
+            try? vm.updateMyMarriageDate()
+            try? await vm.renewInfo()
+            vm.showActionSheet = false
+          }
+        } label: {
+          Text("완료")
         }
-      } label: {
-        Text("완료")
       }
+      .tint(.purple700)
     }
   }
 }
