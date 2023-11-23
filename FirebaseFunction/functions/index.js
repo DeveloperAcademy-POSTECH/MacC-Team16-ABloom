@@ -3,6 +3,55 @@ const admin = require('firebase-admin');
 
 admin.initializeApp();
 
+exports.sendNotiOnCompletion = functions
+    .region('asia-northeast3')
+    .firestore
+    .document('users/{userId}/answers/{documentId}')
+    .onUpdate(async (change, context) => {
+
+        const userId = context.params.userId;
+        const documentId = context.params.documentId;
+
+        const { fianceId, myName } = await getFianceId(userId);
+
+        const recipientToken = await getRecipientToken(fianceId);
+
+        const ansQid = await getQid(userId, documentId);
+
+        console.log(`qid: ${qid}`)
+
+        const beforeData = change.before.data();
+        const afterData = change.after.data();
+        const watchedField = 'is_complete';
+
+        if (recipientToken && beforeData[watchedField] == false && afterData[watchedField] == true ) {
+          console.log(`Field ${watchedField} changed from false to ${afterData[watchedField]} in document ${context.params.documentId}`);
+
+            const message = {
+              data: {
+                viewToOpen: 'AnswerCheck',
+                qid: ansQid
+              },
+                notification: {
+                    title: `둘만의 문답이 완성됐어요!`,
+                    body: '행복한 결혼 생활에 한 걸음 더 다가갔어요 💕',
+                },
+                token: recipientToken,
+            };
+
+            try {
+                return await admin.messaging().send(message).then((results) => {
+                console.log('Successfully sent notification completion to partner user');
+                return {success: true};
+              });
+            } catch (error) {
+                console.error('Error sending noti on reaction:', error);
+            }
+        } else {
+            console.error('Recipient token not found for partner user:', fianceId);
+        }
+    });
+
 exports.sendNotiOnReaciton = functions
     .region('asia-northeast3')
     .firestore
@@ -17,6 +66,9 @@ exports.sendNotiOnReaciton = functions
         const recipientToken = await getRecipientToken(fianceId);
         console.log(`token: ${recipientToken}`);
 
+        const ansQid = await getQid(userId, documentId);
+        console.log(`qid: ${qid}`)
+
         const beforeData = change.before.data();
         const afterData = change.after.data();
         const watchedField = 'reaction';
@@ -25,9 +77,13 @@ exports.sendNotiOnReaciton = functions
           console.log(`Field ${watchedField} changed from null to ${afterData[watchedField]} in document ${context.params.documentId}`);
 
             const message = {
+              data: {
+                viewToOpen: 'AnswerCheck',
+                qid: ansQid
+              },
                 notification: {
-                    title: `${myName}님이 새로운 반응을 남겼어요.`,
-                    body: '어떤 반응을 남겼는지 확인해볼까요?',
+                    title: `${myName}님이 반응을 남겼어요.`,
+                    body: '과연 어떤 반응을 남겼을까요? 🤔',
                 },
                 token: recipientToken,
             };
@@ -59,9 +115,10 @@ exports.sendNotificationToFiance = functions
         // const userData = userDoc.data();
 
         const recipientToken = await getRecipientToken(fianceId);
-
         console.log(`token: ${recipientToken}`);
 
+        const ansQid = await getQid(userId, documentId);
+        console.log(`qid: ${qid}`)
 
         if (recipientToken) {
             // 필요시 사용 // fcm_token 이 있다는 건 파트너가 있다는 의미여서 if 문 제거
@@ -69,9 +126,13 @@ exports.sendNotificationToFiance = functions
             const partnerUserData = partnerUserDoc.data();
 
             const message = {
+              data: {
+                viewToOpen: 'AnswerCheck',
+                qid: ansQid
+              },
                 notification: {
                     title: `${myName}님이 답변을 작성했어요.`,
-                    body: '답변을 확인하고 반응을 남겨볼까요?',
+                    body: '과연 어떤 답변을 남겼을까요? 🤔',
                 },
                 token: recipientToken,
             };
@@ -124,6 +185,23 @@ async function getRecipientToken(fianceId) {
         }
     } catch (error) {
         console.error('Error fetching recipient token:', error);
+        return null;
+    }
+}
+
+async function getQid(userId, documentId) {
+    try {
+        const userAnsDoc = await admin.firestore().collection('users').doc(userId).collection('answers').doc(docId).get()
+
+        if (userAnsDoc.exists) {
+            const userAnsData = userAnsData.data();
+            return userAnsData.q_id;
+        } else {
+            console.error("no docId");
+            return null;
+        }
+    } catch (error) {
+        console.error('Error fetching qui value:', error);
         return null;
     }
 }

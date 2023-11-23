@@ -9,6 +9,12 @@ import SwiftUI
 
 @MainActor
 final class QnAListViewModel: ObservableObject {
+  static let shared = QnAListViewModel()
+  
+  @Published var showCheckAnswerView = false
+  @Published var checkAnswerQuestion: DBStaticQuestion? = nil
+  
+  
   @Published var currentUser: DBUser?
   @Published var coupleAnswers: [DBStaticQuestion: [DBAnswer]] = [:]
   

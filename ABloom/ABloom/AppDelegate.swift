@@ -55,8 +55,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   
   func scheduleDailyNotification() {
     let content = UNMutableNotificationContent()
-    content.title = "오늘의 추천 질문을 확인해보세요"
-    content.body = "답변을 작성하고 서로의 생각을 알아볼까요?"
+    content.title = "오늘의 추천 질문을 확인해보세요."
+    content.body = "답변을 남기고 서로의 생각을 알아볼까요? ✏️"
     
     var dateComponents = DateComponents()
     dateComponents.timeZone = TimeZone(identifier: "Asia/Seoul")
@@ -115,8 +115,42 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     let userInfo = notification.request.content.userInfo
     
+    handleNotificationPayload(userInfo)
+    
+    //    if let viewToOpen = userInfo["viewToOpen"] as? String {
+    //      if viewToOpen == "AnswerCheck" {
+    //        DispatchQueue.main.async async {
+    //          let question = try? await StaticQuestionManager.shared.getQuestionById(id: (userInfo["qid"] as? Int)!)
+    //          QnAListViewModel.shared.checkAnswerQuestion = question
+    //          QnAListViewModel.shared.showCheckAnswerView = true
+    //        }
+    //
+    //      }
+    //    }
+    
     completionHandler([[.banner, .badge, .sound]])
   }
+  
+  // when notification clicked => navigation
+  private func handleNotificationPayload(_ userInfo: [AnyHashable: Any]) {
+    guard let viewToOpen = userInfo["viewToOpen"] as? String,
+          viewToOpen == "AnswerCheck",
+          let questionID = userInfo["qid"] as? Int else { return }
+    
+    Task {
+      do {
+        let question = try await StaticQuestionManager.shared.getQuestionById(id: questionID)
+        DispatchQueue.main.async {
+          QnAListViewModel.shared.checkAnswerQuestion = question
+          QnAListViewModel.shared.showCheckAnswerView = true
+        }
+      } catch {
+        print("Error fetching question:", error)
+      }
+    }
+  }
+  
+  
   
   // 푸시메세지를 받았을 때
   // 메시지를 받고 앱에서 진행하는 액션
