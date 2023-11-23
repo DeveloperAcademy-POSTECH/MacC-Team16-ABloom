@@ -8,6 +8,7 @@
 import SwiftUI
 
 final class QnAListViewModel: ObservableObject {
+  @Published var currentUser: DBUser?
   @Published var answers: [DBAnswer] = []
   @Published var questions: [DBStaticQuestion] = []
   @Published var viewState: QnAListViewState = .isProgress
@@ -23,7 +24,7 @@ final class QnAListViewModel: ObservableObject {
   }
   
   init() {
-    getUserInfo()
+    getUser()
     getAnswers()
     getQuestions()
     if questions.isEmpty {
@@ -33,13 +34,8 @@ final class QnAListViewModel: ObservableObject {
     }
   }
   
-  func getUserInfo() {
-    Task {
-      try await UserManager.shared.fetchCurrentUser()
-      try await UserManager.shared.fetchFianceUser()
-      dump(UserManager.shared.currentUser)
-      dump(UserManager.shared.fianceUser)
-    }
+  func getUser() {
+    self.currentUser = UserManager.shared.currentUser
   }
   
   func tapProfileButton() {

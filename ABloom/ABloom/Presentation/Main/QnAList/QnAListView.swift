@@ -52,7 +52,6 @@ struct QnAListView: View {
         if dbUser == nil {
           activeSheet.kind = .signUp
         }
-        qnaListVM.getUserInfo()
       }
     }
   }
@@ -63,7 +62,11 @@ extension QnAListView {
     Button {
       qnaListVM.tapProfileButton()
     } label: {
-      Image("profile.circle")
+      Image(UserSexType(type: (qnaListVM.currentUser?.sex ?? true)).getAvatar())
+        .resizable()
+        .scaledToFit()
+        .clipShape(Circle())
+        .frame(width: 32)
     }
     .sheet(isPresented: $qnaListVM.showProfileSheet) {
       NavigationStack {
@@ -149,14 +152,14 @@ extension QnAListView {
     SignInView(activeSheet: activeSheet)
       .presentationDetents([.height(302)])
       .onDisappear {
-        Task { qnaListVM.getUserInfo() }
+        Task { qnaListVM.getUser() }
       }
   }
   private var signUpSheet: some View {
     SignUpView()
       .interactiveDismissDisabled()
       .onDisappear {
-        Task { qnaListVM.getUserInfo() }
+        Task { qnaListVM.getUser() }
       }
   }
 }
