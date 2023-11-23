@@ -15,6 +15,11 @@ class WriteAnswerViewModel: ObservableObject {
   @Published var isTextOver = Bool()
   
   func checkTextCount() {
+    // 맥시멈 제한
+    if self.ansText.count >= 200 {
+      self.ansText = String(self.ansText.prefix(200))
+    }
+    
     if self.ansText.count > 150 {
       self.isTextOver = true
     } else {
@@ -40,16 +45,16 @@ class WriteAnswerViewModel: ObservableObject {
   func backClicked() {
     if self.ansText != "" {
       self.isCancelAlertOn.toggle()
-    } 
+    }
   }
   
   func completeClicked() {
     self.isCompleteAlertOn.toggle()
   }
   
-  func saveAnswer(qid: Int) throws {
+  func createAnswer(qid: Int) throws {
     let uid = try AuthenticationManager.shared.getAuthenticatedUser().uid
-    try AnswerManager.shared.creatAnswer(userId: uid, questionId: qid, content: self.ansText)
+    try AnswerManager.shared.createAnswer(userId: uid, questionId: qid, content: self.ansText)
   }
   
 }

@@ -19,9 +19,13 @@ struct WriteAnswerView: View {
       
       questionText
       
-      textField
-      
-      textNumCheck
+      ZStack(alignment: .top) {
+        
+        textField
+        
+        textNumCheck
+          .position(x: UIScreen.main.bounds.size.width/2 - 20, y: UIScreen.main.bounds.size.height/3.5)
+      }
       
     }
     .padding(.horizontal, 20)
@@ -74,7 +78,7 @@ struct WriteAnswerView: View {
     .alert("답변을 완료할까요?", isPresented: $writeAMV.isCompleteAlertOn, actions: {
       Button {
         writeAMV.swipeEnable()
-        try? writeAMV.saveAnswer(qid: question.questionID)
+        try? writeAMV.createAnswer(qid: question.questionID)
         isSheetOn.toggle()
       } label: {
         Text("완료하기")
@@ -106,8 +110,9 @@ extension WriteAnswerView {
       })
       .customFont(.calloutR)
       .foregroundStyle(.gray500)
+      .multilineTextAlignment(.leading)
       .frame(maxWidth: .infinity)
-      .onChange(of: writeAMV.ansText, perform: { _ in
+      .onChange(of: writeAMV.ansText, perform: { new in
         writeAMV.checkTextCount()
       })
   }
