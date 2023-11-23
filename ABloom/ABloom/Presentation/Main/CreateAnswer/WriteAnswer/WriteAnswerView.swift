@@ -42,11 +42,7 @@ struct WriteAnswerView: View {
           dismiss()
         }
       }, label: {
-        Image("angle-left")
-          .resizable()
-          .renderingMode(.template)
-          .frame(width: 18, height: 18)
-          .foregroundStyle(.purple700)
+        NavigationArrowLeft()
       })
     } rightView: {
       Button(action: { writeAMV.completeClicked() }, label: {

@@ -35,4 +35,21 @@ enum Category: String, CaseIterable {
     case .past: return "과거"
     }
   }
+  
+  var staticImg: String {
+    switch self {
+    case .communication: return "CommunicationCategoryStatic"
+    case .values: return "ValuesCategoryStatic"
+    case .finance: return "FinanceCategoryStatic"
+    case .lifestyle: return "LifestyleCategoryStatic"
+    case .child: return "ChildCategoryStatic"
+    case .family: return "FamilyCategoryStatic"
+    case .sex: return "SexCategoryStatic"
+    case .health: return "HealthCategoryStatic"
+    case .wedding: return "WeddingCategoryStatic"
+    case .future: return "FutureCategoryStatic"
+    case .present: return "PresentCategoryStatic"
+    case .past: return "PastCategoryStatic"
+    }
+  }
 }
