@@ -41,7 +41,7 @@ struct QnAListItem: View {
 extension QnAListItem {
   private var categoryTag: some View {
     HStack {
-      Text("\(question.category)")
+      Text(Category(rawValue: question.category)?.type ?? "")
         .customFont(.caption2B)
         .foregroundStyle(.gray600)
         .padding(.horizontal, 12)
@@ -63,7 +63,7 @@ extension QnAListItem {
       .background(answerStatus.backgroundColor)
       .clipShape(RoundedRectangle(cornerRadius: 14))
       .overlay {
-        if answerStatus == .onlyMe || answerStatus == .reactOnlyMe {
+        if answerStatus.isStroke {
           RoundedRectangle(cornerRadius: 14)
             .stroke(lineWidth: 1)
             .foregroundStyle(.purple600)
@@ -73,7 +73,7 @@ extension QnAListItem {
 }
 
 #Preview {
-  VStack {
+  ScrollView {
     let content: String = "질문입니다질 문입니다질문입니다질문입니 다질문입니 다질문입니다질문입니다질문입니다질문입니다"
     let mockDBStaticQuestion = DBStaticQuestion(questionID: 1, category: "경제", content: content)
     
@@ -82,6 +82,8 @@ extension QnAListItem {
     QnAListItem(question: mockDBStaticQuestion, date: .now, answerStatus: .onlyMe)
     QnAListItem(question: mockDBStaticQuestion, date: .now, answerStatus: .reactOnlyFinace)
     QnAListItem(question: mockDBStaticQuestion, date: .now, answerStatus: .reactOnlyMe)
+    QnAListItem(question: mockDBStaticQuestion, date: .now, answerStatus: .moreCommunication)
+    QnAListItem(question: mockDBStaticQuestion, date: .now, answerStatus: .moreResearch)
   }
   .background(Color.blue)
 }
