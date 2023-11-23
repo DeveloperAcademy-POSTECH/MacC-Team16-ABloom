@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 final class ProfileMenuViewModel: ObservableObject {
   @Published var currentUser: DBUser?
   @Published var fianceUser: DBUser?
