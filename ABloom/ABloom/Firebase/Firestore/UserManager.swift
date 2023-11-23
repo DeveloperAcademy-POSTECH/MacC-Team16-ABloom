@@ -30,6 +30,9 @@ final class UserManager: ObservableObject {
   // MARK: Create
   func createUser(user: DBUser) throws {
     try userDocument(userId: user.userId).setData(from: user, merge: false)
+    Task {
+      try? await fetchCurrentUser()
+    }
   }
   
   
@@ -104,6 +107,11 @@ final class UserManager: ObservableObject {
     
     let data: [String: Any?] = [DBUser.CodingKeys.fiance.rawValue: nil]
     try await userDocument(userId: fiance).updateData(data as [AnyHashable: Any])
+    
+    Task {
+      try? await fetchCurrentUser()
+      try? await fetchFianceUser()
+    }
   }
   
   private func deleteSubCollection(userId: String) async throws {
@@ -194,6 +202,4 @@ final class UserManager: ObservableObject {
     
     userAnswerCollection(userId: userId).document(answerId).updateData(data)
   }
-  
-  // FCMToken
 }
