@@ -13,7 +13,7 @@ struct OnboardingPageView: View {
   let imageName: String
   
   var body: some View {
-    VStack(alignment: .center) {
+    VStack(alignment: .center, spacing: 0) {
       Text(title)
         .customFont(.title2R)
         .padding(.bottom, 3)
@@ -21,10 +21,10 @@ struct OnboardingPageView: View {
       Text(subtitle)
         .customFont(.title2B)
       
-      // TODO: 오류방지를 위해 시스템이미지로 임의진행
-      Image(systemName: imageName)
-        .customFont(.bodyB)
-        .frame(maxHeight: .infinity)
+      Image(imageName)
+        .resizable()
+        .aspectRatio(contentMode: .fill)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.top, 50)
     }
   }

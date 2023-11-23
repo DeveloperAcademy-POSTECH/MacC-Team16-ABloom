@@ -87,6 +87,7 @@
 		607DA2162AEFE900005AE11C /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2152AEFE900005AE11C /* ConnectionManager.swift */; };
 		607DA2182AF0B07D005AE11C /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2172AF0B07D005AE11C /* Ex+Date.swift */; };
 		6086BAA92AF130A800E2DC3A /* DBEssentialQuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6086BAA82AF130A800E2DC3A /* DBEssentialQuestionModel.swift */; };
+		AE02ABED2B0C8A08004648F9 /* FLAnimatedImage in Frameworks */ = {isa = PBXBuildFile; productRef = AE02ABEC2B0C8A08004648F9 /* FLAnimatedImage */; };
 		AE1AE9FB2AE51BF00010089F /* QnAListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AE9FA2AE51BF00010089F /* QnAListItem.swift */; };
 		AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AE2BB5F32AD650680003CD85 /* .swiftlint.yml */; };
 		AE2F915C2B0B3D7800EE9C33 /* WriteAnswerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2F915B2B0B3D7800EE9C33 /* WriteAnswerViewModel.swift */; };
@@ -264,6 +265,7 @@
 				3DB6A5A12AE0BDF800C1369F /* FirebasePerformance in Frameworks */,
 				3DB6A5992AE0BDF800C1369F /* FirebaseInAppMessagingSwift-Beta in Frameworks */,
 				3DB6A5A72AE0BDF800C1369F /* FirebaseStorage in Frameworks */,
+				AE02ABED2B0C8A08004648F9 /* FLAnimatedImage in Frameworks */,
 				3DB6A58B2AE0BDF800C1369F /* FirebaseDynamicLinks in Frameworks */,
 				3DB6A58F2AE0BDF800C1369F /* FirebaseFirestoreCombine-Community in Frameworks */,
 				3DB6A59F2AE0BDF800C1369F /* FirebaseMessaging in Frameworks */,
@@ -818,6 +820,7 @@
 				3DB6A5A42AE0BDF800C1369F /* FirebaseRemoteConfigSwift */,
 				3DB6A5A62AE0BDF800C1369F /* FirebaseStorage */,
 				3DB6A5A82AE0BDF800C1369F /* FirebaseStorageCombine-Community */,
+				AE02ABEC2B0C8A08004648F9 /* FLAnimatedImage */,
 			);
 			productName = ABloom;
 			productReference = AE7EE4DD2AD6409000E0A573 /* ABloom.app */;
@@ -850,6 +853,7 @@
 			mainGroup = AE7EE4D42AD6409000E0A573;
 			packageReferences = (
 				3DB6A5732AE0BDF800C1369F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				AE02ABEB2B0C8A08004648F9 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */,
 			);
 			productRefGroup = AE7EE4DE2AD6409000E0A573 /* Products */;
 			projectDirPath = "";
@@ -1226,6 +1230,14 @@
 				minimumVersion = 10.16.0;
 			};
 		};
+		AE02ABEB2B0C8A08004648F9 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Flipboard/FLAnimatedImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.17;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1363,6 +1375,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3DB6A5732AE0BDF800C1369F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		AE02ABEC2B0C8A08004648F9 /* FLAnimatedImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE02ABEB2B0C8A08004648F9 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */;
+			productName = FLAnimatedImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
