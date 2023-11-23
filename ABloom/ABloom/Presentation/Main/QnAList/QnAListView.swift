@@ -9,7 +9,8 @@ import SwiftUI
 
 struct QnAListView: View {
   @StateObject var qnaListVM = QnAListViewModel()
-  
+  @ObservedObject var activeSheet: ActiveSheet = ActiveSheet()
+
   var body: some View {
     ZStack(alignment: .bottom) {
       VStack(spacing: 0) {
@@ -38,6 +39,22 @@ struct QnAListView: View {
       plusButton
     }
     .background(Color.background)
+    .sheet(isPresented: $activeSheet.showSheet) { self.sheet }
+
+    .task {
+      let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
+      
+      if authUser == nil {
+        activeSheet.kind = .signIn
+      } else {
+        guard let uid = authUser?.uid else { return }
+        let dbUser = try? await UserManager.shared.getUser(userId: uid)
+        if dbUser == nil {
+          activeSheet.kind = .signUp
+        }
+      }
+      qnaListVM.fetchData()
+    }
   }
 }
 
@@ -46,10 +63,16 @@ extension QnAListView {
     Button {
       qnaListVM.tapProfileButton()
     } label: {
-      Image("profile.circle")
+      Image(UserSexType(type: (qnaListVM.currentUser?.sex ?? true)).getAvatar())
+        .resizable()
+        .scaledToFit()
+        .clipShape(Circle())
+        .frame(width: 32)
     }
     .sheet(isPresented: $qnaListVM.showProfileSheet) {
-      ProfileMenuView()
+      NavigationStack {
+        ProfileMenuView(showProfileMenuSheet: $qnaListVM.showProfileSheet, activeSheet: activeSheet)
+      }
     }
   }
   
@@ -57,14 +80,14 @@ extension QnAListView {
   private var scrollView: some View {
     ScrollView(.vertical) {
       LazyVStack(spacing: 12) {
-        ForEach(qnaListVM.questions, id: \.questionID) { question in
+        ForEach(Array(qnaListVM.coupleAnswers), id: \.key) { question, answers in
           Button {
             qnaListVM.tapQnAListItem()
           } label: {
             QnAListItem(
               question: question,
-              date: .now,
-              answerStatus: qnaListVM.checkAnswerStatus(qid: question.questionID)
+              date: answers[0].date,
+              answerStatus: qnaListVM.checkAnswerStatus(question: question)
             )
           }
           .sheet(isPresented: $qnaListVM.showQnASheet) {
@@ -81,7 +104,7 @@ extension QnAListView {
   
   private var emptyView: some View {
     VStack(spacing: 12) {
-      Image(systemName: "stop.fill")
+      Image("LogoPurple")
         .resizable()
         .frame(width: 68, height: 68)
         .padding(.bottom, 4)
@@ -116,6 +139,29 @@ extension QnAListView {
     .sheet(isPresented: $qnaListVM.showCategoryWayPointSheet) {
       CategoryWaypointView(isSheetOn: $qnaListVM.showCategoryWayPointSheet)
     }
+  }
+  
+  private var sheet: some View {
+    switch activeSheet.kind {
+    case .none: return AnyView(EmptyView())
+    case .signIn: return AnyView(signInSheet)
+    case .signUp: return AnyView(signUpSheet)
+    }
+  }
+  
+  private var signInSheet: some View {
+    SignInView(activeSheet: activeSheet)
+      .presentationDetents([.height(302)])
+      .onDisappear {
+        Task { await qnaListVM.fetchDataAfterSignIn() }
+      }
+  }
+  private var signUpSheet: some View {
+    SignUpView()
+      .interactiveDismissDisabled()
+      .onDisappear {
+        Task { await qnaListVM.fetchDataAfterSignIn() }
+      }
   }
 }
 

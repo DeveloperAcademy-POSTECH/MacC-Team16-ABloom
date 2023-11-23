@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProfileMenuView: View {
+  @Binding var showProfileMenuSheet: Bool
+  @ObservedObject var activeSheet: ActiveSheet
   
   @StateObject var vm = ProfileMenuViewModel()
   
@@ -43,7 +45,7 @@ struct ProfileMenuView: View {
       EmptyView()
     } leftView: {
       Button("취소") {
-        
+        showProfileMenuSheet = false
       }
       .customFont(.calloutB)
       .foregroundStyle(.purple700)
@@ -108,7 +110,7 @@ struct ProfileMenuView: View {
 
 #Preview {
   NavigationStack {
-    ProfileMenuView()
+    ProfileMenuView(showProfileMenuSheet: .constant(false), activeSheet: ActiveSheet())
   }
 }
 
@@ -131,36 +133,42 @@ extension ProfileMenuView {
             .customFont(.caption1B)
             .foregroundStyle(.gray500)
         } else {
-          Text("눌러서 로그인하기 >")
-            .customFont(.caption1B)
-            .foregroundStyle(.gray500)
+          Button {
+            showProfileMenuSheet = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+              activeSheet.kind = .signIn
+            }
+          } label: {
+            Text("눌러서 로그인하기 >")
+              .customFont(.caption1B)
+              .foregroundStyle(.gray500)
+          }
         }
       }
     }
   }
   
   private var marriageDday: some View {
-    ZStack {
-      HStack {
-        Label(
-          title: {
-            Text(vm.marriageStatus?.dDayMessage ?? "로그인 해주세요")
-          },
-          icon: {
-            Image("heart_calendar")
-              .resizable()
-              .scaledToFit()
-              .frame(width: 16)
-              .foregroundStyle(.gray600)
-          }
-        )
-        .padding(.horizontal, 12)
-        .padding(.vertical, 9)
-        
-        Spacer()
-      }
+    HStack {
+      Label(
+        title: {
+          Text(vm.marriageStatus?.dDayMessage ?? "지금 로그인하고 결혼예정일을 설정해보세요.")
+            .customFont(.caption1R)
+            .foregroundStyle(.gray600)
+        },
+        icon: {
+          Image("heart_calendar")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 16)
+            .foregroundStyle(.gray600)
+        }
+      )
+      .padding(.horizontal, 12)
+      .padding(.vertical, 9)
+      
+      Spacer()
     }
-    .frame(maxWidth: .infinity)
     .background(Color.gray100)
     .cornerRadius(8, corners: .allCorners)
   }
@@ -177,8 +185,8 @@ extension ProfileMenuView {
         listRowLabel(title: "내 정보 수정하기")
       }
       
-      Button {
-        // 연결 관리 뷰 연동
+      NavigationLink {
+        ConnectionView()
       } label: {
         listRowLabel(title: "상대방과 연결 관리", isIssue: (vm.currentUser?.fiance) == nil)
       }
@@ -192,26 +200,26 @@ extension ProfileMenuView {
         .foregroundStyle(.black)
         .customFont(.headlineB)
       
-      Button {
-        // 문답 연구소 웹뷰 연동
+      NavigationLink {
+        EmbedWebView(viewTitle: "문답 연구소", urlString: ServiceWebURL.questionLab.rawValue, type: .navigation, showSheet: .constant(true), checkContract: .constant(true))
       } label: {
         listRowLabel(title: "문답 연구소")
       }
       
-      Button {
-        // 고객센터 웹뷰 연동
+      NavigationLink {
+        EmbedWebView(viewTitle: "고객센터", urlString: ServiceWebURL.qna.rawValue, type: .navigation, showSheet: .constant(true), checkContract: .constant(true))
       } label: {
         listRowLabel(title: "고객센터")
       }
       
-      Button {
-        // 서비스 이용약관 수정 웹뷰 연동
+      NavigationLink {
+        EmbedWebView(viewTitle: "서비스 이용약관", urlString: ServiceWebURL.termsOfuse.rawValue, type: .navigation, showSheet: .constant(true), checkContract: .constant(true))
       } label: {
         listRowLabel(title: "서비스 이용약관")
       }
       
-      Button {
-        // 개인정보 처리방침 웹뷰 연동
+      NavigationLink {
+        EmbedWebView(viewTitle: "개인정보 처리 방침", urlString: ServiceWebURL.privacyPolicy.rawValue, type: .navigation, showSheet: .constant(true), checkContract: .constant(true))
       } label: {
         listRowLabel(title: "개인정보 처리 방침")
       }
@@ -239,8 +247,8 @@ extension ProfileMenuView {
         listRowLabel(title: "로그아웃")
       }
       
-      Button {
-        // 회원탈퇴 뷰 연동
+      NavigationLink {
+        WithdrawalMembershipView(showProfileMenuSheet: $showProfileMenuSheet)
       } label: {
         listRowLabel(title: "회원탈퇴")
       }

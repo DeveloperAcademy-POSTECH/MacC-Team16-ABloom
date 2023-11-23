@@ -15,8 +15,8 @@ struct ABloomApp: App {
   
   init() {
     Task {
-      try? await UserManager.shared.fetchFianceUser()
       try? await UserManager.shared.fetchCurrentUser()
+      try? await UserManager.shared.fetchFianceUser()
       try? await StaticQuestionManager.shared.fetchStaticQuestions()
       StaticQuestionManager.shared.fetchFilterQuestions()
       try? await EssentialQuestionManager.shared.fetchEssentialCollections()
@@ -28,31 +28,17 @@ struct ABloomApp: App {
   }
   
   @AppStorage("_isFirstLaunching") var isFirstLaunching: Bool = true
-  @State var isLoading = true
   
   var body: some Scene {
     
     WindowGroup {
       NavigationStack {
-        ZStack {
-          if isLoading {
-            SplashView()
-          } else {
-            QnAListView()
-              .fullScreenCover(isPresented: $isFirstLaunching) {
-                OnboardingTabView(isFirstLaunching: $isFirstLaunching)
-              }
-//              .sheet(isPresented: .constant(true), content: {
-//                ProfileMenuView()
-//              })
-          }
+        if isFirstLaunching {
+          OnboardingTabView(isFirstLaunching: $isFirstLaunching)
+        } else {
+          QnAListView()
         }
       }
-      .onAppear { DispatchQueue.main.asyncAfter(deadline: .now() + 4.0, execute: {
-        isLoading.toggle()
-      })
-      }
-     
     }
   }
 }

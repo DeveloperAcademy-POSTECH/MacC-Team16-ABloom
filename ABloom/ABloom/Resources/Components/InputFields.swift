@@ -10,28 +10,30 @@ import SwiftUI
 /// 연결 코드 복사 뷰
 struct CopyStrokeInputField: View {
   let myCode: String?
+  let alignment: Alignment
   var copyAction: () -> Void
 
   var body: some View {
-    HStack {
-      Image(systemName: "clipboard.fill")
-        .font(.calloutR)
-        .foregroundStyle(.stone900)
-     
-      Text(myCode ?? "코드를 불러오지 못했습니다")
-        .fontWithTracking(.calloutB, tracking: -0.4)
-        .foregroundStyle(.stone900)
+    ZStack {
+      HStack {
+        Text(myCode ?? "코드를 불러오지 못했습니다")
+        
+        if alignment == .leading {
+          Spacer()
+        }
+      }
       
-      Spacer()
-      
-      Button(action: copyAction, label: {
-        Text("복사")
-          .fontWithTracking(.caption1R, tracking: -0.4)
-          .foregroundStyle(.black)
-      })
+      HStack {
+        Spacer()
+        
+        Button(action: copyAction, label: {
+          Image("copy")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 20)
+        })
+      }
     }
-    .foregroundStyle(.purple600)
-    .strokeInputFieldStyle(isValueValid: true, alignment: .leading)
   }
 }
 
@@ -45,5 +47,16 @@ struct ConnectCodeStrokeInputField: View {
     .foregroundStyle(.stone950)
     .font(.calloutR)
     .strokeInputFieldStyle(isValueValid: isTargetCodeValid, alignment: .leading)
+  }
+}
+
+#Preview {
+  VStack {
+    CopyStrokeInputField(myCode: "fefefefs", alignment: .center) {
+      
+    }
+    .strokeInputFieldStyle(isValueValid: true, alignment: .center)
+    
+    ConnectCodeStrokeInputField(codeInputText: .constant(""), isTargetCodeValid: false)
   }
 }

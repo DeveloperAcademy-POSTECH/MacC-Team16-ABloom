@@ -216,14 +216,17 @@ struct ButtonWDescriptionB: View {
 
 struct PurpleTextButton: View {
   let title: String
+  var isDisable: Bool = false
+  
   var body: some View {
     Text(title)
       .customFont(.calloutB)
       .foregroundStyle(.purple50)
       .frame(height: 46)
       .frame(maxWidth: .infinity)
-      .background(Color.purple600)
-      .cornerRadius(4, corners: .allCorners)
+      .background(isDisable ? .gray400 : Color.purple600)
+      .cornerRadius(8, corners: .allCorners)
+      .disabled(isDisable)
   }
 }
 
