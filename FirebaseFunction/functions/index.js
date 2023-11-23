@@ -18,7 +18,7 @@ exports.sendNotiOnCompletion = functions
 
         const ansQid = await getQid(userId, documentId);
 
-        console.log(`qid: ${qid}`)
+        console.log(`qid: ${ansQid}`)
 
         const beforeData = change.before.data();
         const afterData = change.after.data();
@@ -30,7 +30,7 @@ exports.sendNotiOnCompletion = functions
             const message = {
               data: {
                 viewToOpen: 'AnswerCheck',
-                qid: ansQid
+                qid: `$(ansQid)`
               },
                 notification: {
                     title: `둘만의 문답이 완성됐어요!`,
@@ -67,7 +67,7 @@ exports.sendNotiOnReaciton = functions
         console.log(`token: ${recipientToken}`);
 
         const ansQid = await getQid(userId, documentId);
-        console.log(`qid: ${qid}`)
+        console.log(`qid: ${ansQid}`)
 
         const beforeData = change.before.data();
         const afterData = change.after.data();
@@ -79,7 +79,7 @@ exports.sendNotiOnReaciton = functions
             const message = {
               data: {
                 viewToOpen: 'AnswerCheck',
-                qid: ansQid
+                qid: `$(ansQid)`
               },
                 notification: {
                     title: `${myName}님이 반응을 남겼어요.`,
@@ -108,6 +108,7 @@ exports.sendNotificationToFiance = functions
     .document('users/{userId}/answers/{documentId}')
     .onCreate(async (snapshot, context) => {
         const userId = context.params.userId;
+        const documentId = context.params.documentId;
 
         const { fianceId, myName } = await getFianceId(userId);
 
@@ -118,7 +119,7 @@ exports.sendNotificationToFiance = functions
         console.log(`token: ${recipientToken}`);
 
         const ansQid = await getQid(userId, documentId);
-        console.log(`qid: ${qid}`)
+        console.log(`qid: ${ansQid}`)
 
         if (recipientToken) {
             // 필요시 사용 // fcm_token 이 있다는 건 파트너가 있다는 의미여서 if 문 제거
@@ -128,7 +129,7 @@ exports.sendNotificationToFiance = functions
             const message = {
               data: {
                 viewToOpen: 'AnswerCheck',
-                qid: ansQid
+                qid: `$(ansQid)`
               },
                 notification: {
                     title: `${myName}님이 답변을 작성했어요.`,
@@ -191,17 +192,19 @@ async function getRecipientToken(fianceId) {
 
 async function getQid(userId, documentId) {
     try {
-        const userAnsDoc = await admin.firestore().collection('users').doc(userId).collection('answers').doc(docId).get()
+        const userAnsDoc = await admin.firestore().collection('users').doc(userId).collection('answers').doc(documentId).get()
+
 
         if (userAnsDoc.exists) {
-            const userAnsData = userAnsData.data();
+            const userAnsData = userAnsDoc.data();
+            console.error("in userAnsDoc");
             return userAnsData.q_id;
         } else {
             console.error("no docId");
             return null;
         }
     } catch (error) {
-        console.error('Error fetching qui value:', error);
+        console.error('Error fetching qid value:', error);
         return null;
     }
 }

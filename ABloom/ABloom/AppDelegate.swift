@@ -133,13 +133,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
   
   // when notification clicked => navigation
   private func handleNotificationPayload(_ userInfo: [AnyHashable: Any]) {
-    guard let viewToOpen = userInfo["viewToOpen"] as? String,
-          viewToOpen == "AnswerCheck",
-          let questionID = userInfo["qid"] as? Int else { return }
+    guard let viewToOpen = userInfo["viewToOpen"] as? String, viewToOpen == "AnswerCheck",
+          let questionID = userInfo["qid"] as? String else { return }
     
     Task {
       do {
-        let question = try await StaticQuestionManager.shared.getQuestionById(id: questionID)
+        let question = try await StaticQuestionManager.shared.getQuestionById(id: Int(questionID)!)
         DispatchQueue.main.async {
           QnAListViewModel.shared.checkAnswerQuestion = question
           QnAListViewModel.shared.showCheckAnswerView = true
