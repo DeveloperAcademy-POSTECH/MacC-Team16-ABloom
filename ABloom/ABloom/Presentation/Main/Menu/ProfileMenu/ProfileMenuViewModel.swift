@@ -39,13 +39,9 @@ final class ProfileMenuViewModel: ObservableObject {
   
   init() {
     getUsers()
-//    updateDayStatus()
   }
   
   func getUsers() {
-//    self.currentUser = UserManager.shared.currentUser
-//    self.fianceUser = UserManager.shared.fianceUser
-    
     UserManager.shared.$currentUser
       .sink { [weak self] user in
         self?.currentUser = user
@@ -76,19 +72,6 @@ final class ProfileMenuViewModel: ObservableObject {
   func updateMyMarriageDate() throws {
     guard let myId = currentUser?.userId else { return }
     try UserManager.shared.updateMarriageDate(userId: myId, date: marriageDate)
+    showCalendarSheet = false
   }
-  
-//  private func updateDayStatus() {
-//    guard let marriageDate = currentUser?.marriageDate else { return }
-//    
-//    let dDay = Date().calculateDDay(with: marriageDate)
-//    
-//    if dDay <= 0 {
-//      marriageStatus = .married(-dDay + 1)
-//    } else if dDay == 0 {
-//      marriageStatus = .dday
-//    } else {
-//      marriageStatus = .notMarried(dDay)
-//    }
-//  }
 }

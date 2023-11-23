@@ -66,13 +66,15 @@ final class UserManager: ObservableObject {
     
     Task {
       try? await fetchCurrentUser()
-      print("내 이름 : \(self.fianceUser?.name)")
     }
   }
   
   func updateMarriageDate(userId: String, date: Date) throws {
     let data: [String: Any] = [DBUser.CodingKeys.marriageDate.rawValue:date]
     userDocument(userId: userId).updateData(data)
+    Task {
+      try? await fetchCurrentUser()
+    }
   }
   
   func updateFcmToken(userID: String, fcmToken: String) throws {
