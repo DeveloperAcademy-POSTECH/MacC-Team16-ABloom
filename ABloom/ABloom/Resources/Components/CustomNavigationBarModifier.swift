@@ -29,9 +29,6 @@ struct CustomNavigationBarModifier<C, L, R>: ViewModifier where C: View, L: View
           
           self.rightView?()
         }
-        .frame(height: 25)
-        .frame(maxWidth: .infinity)
-        .padding(.horizontal, 16)
         
         HStack {
           Spacer()
@@ -43,6 +40,10 @@ struct CustomNavigationBarModifier<C, L, R>: ViewModifier where C: View, L: View
           Spacer()
         }
       }
+      .frame(height: 25)
+      .frame(maxWidth: .infinity)
+      .padding(.horizontal, 16)
+      .padding(.top, 16)
       
       content
     }

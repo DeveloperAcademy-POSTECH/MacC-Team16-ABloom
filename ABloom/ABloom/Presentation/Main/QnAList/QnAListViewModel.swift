@@ -18,10 +18,26 @@ final class QnAListViewModel: ObservableObject {
   @Published var showQnASheet: Bool = false
   @Published var showCategoryWayPointSheet: Bool = false
   
+  @Published var showSignUpSheet: Bool = false
+  
   enum QnAListViewState {
     case isProgress
     case isEmpty
     case isSorted
+  }
+  
+  func checkNeedSignUp() async {
+    let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
+    
+    if let uid = authUser?.uid {
+      let dbUser = try? await UserManager.shared.getUser(userId: uid)
+      if authUser != nil && dbUser == nil {
+        self.showSignUpSheet = true
+      } else {
+        self.showSignUpSheet = false
+      }
+    }
+    self.showSignUpSheet = false
   }
   
   func fetchData() {
