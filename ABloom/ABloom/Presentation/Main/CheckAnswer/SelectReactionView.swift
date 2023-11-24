@@ -21,9 +21,11 @@ struct SelectReactionView: View {
         .multilineTextAlignment(.center)
       
       reactionArea
-      
+        .padding(.bottom, 22)
+
       Button {
         checkAnswerVM.showSelectReactionView = false
+        checkAnswerVM.updateReaction()
       } label: {
         PurpleTextButton(title: "완료")
       }
@@ -40,13 +42,13 @@ struct SelectReactionView: View {
 extension SelectReactionView {
   private var reactionArea: some View {
     VStack(spacing: 29) {
-      HStack {
+      HStack(spacing: 20) {
         reactionButton(reaction: .good)
         reactionButton(reaction: .knowEachOther)
       }
       .frame(height: 128)
       
-      HStack {
+      HStack(spacing: 20) {
         reactionButton(reaction: .moreCommunication)
         reactionButton(reaction: .moreResearch)
       }
@@ -56,15 +58,17 @@ extension SelectReactionView {
   
   private func reactionButton(reaction: ReactionType) -> some View {
     Button {
-      checkAnswerVM.selectedReaction = reaction
+      checkAnswerVM.selectedReaction = ReactionStatus.react(reaction)
     } label: {
-      Text(reaction.reactionContent)
-        .background(checkAnswerVM.selectedReaction == reaction ? .purple300 : .purple100)
+      Image(reaction.imageName)
+        .resizable()
+        .frame(width: 128, height: 128)
+        .opacity(checkAnswerVM.selectedReaction == ReactionStatus.react(reaction) ? 1.0 : 0.4)
     }
   }
 }
 
 #Preview {
-  SelectReactionView(checkAnswerVM: CheckAnswerViewModel())
+  SelectReactionView(checkAnswerVM: CheckAnswerViewModel(question: DBStaticQuestion(questionID: 0, category: "", content: "")))
     .background(Color.black)
 }
