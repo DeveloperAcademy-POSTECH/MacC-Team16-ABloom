@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+enum QnAListViewState {
+  case isProgress
+  case isEmpty
+  case isSorted
+}
+
 @MainActor
 final class QnAListViewModel: ObservableObject {
   @Published var currentUser: DBUser?
@@ -18,11 +24,7 @@ final class QnAListViewModel: ObservableObject {
   @Published var showQnASheet: Bool = false
   @Published var showCategoryWayPointSheet: Bool = false
   
-  enum QnAListViewState {
-    case isProgress
-    case isEmpty
-    case isSorted
-  }
+  @Published var selectedQuestion: DBStaticQuestion = DBStaticQuestion(questionID: 0, category: "", content: "")
   
   func fetchData() {
     Task {
@@ -85,16 +87,12 @@ final class QnAListViewModel: ObservableObject {
     for fianceAnswer in fianceAnswers {
 
       if let dbQuestion = getQuestions(qid: fianceAnswer.questionId) {
-        
         if var answersForQuestion = coupleAnswers[dbQuestion] {
           answersForQuestion.append(fianceAnswer)
+          answersForQuestion = answersForQuestion.sorted(by: { $0.date > $1.date })
           coupleAnswers[dbQuestion] = answersForQuestion
         } else {
           coupleAnswers[dbQuestion] = [fianceAnswer]
-        }
-        
-        if self.coupleAnswers[dbQuestion]?.count == 2 {
-          self.coupleAnswers[dbQuestion]?.sort(by: { $0.date > $1.date })
         }
       }
     }
@@ -161,7 +159,8 @@ final class QnAListViewModel: ObservableObject {
     showProfileSheet = true
   }
   
-  func tapQnAListItem() {
+  func tapQnAListItem(_ question: DBStaticQuestion) {
+    selectedQuestion = question
     showQnASheet = true
   }
   

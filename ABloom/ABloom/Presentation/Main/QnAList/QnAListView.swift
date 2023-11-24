@@ -9,7 +9,7 @@ import SwiftUI
 
 struct QnAListView: View {
   @StateObject var qnaListVM = QnAListViewModel()
-  @ObservedObject var activeSheet: ActiveSheet = ActiveSheet()
+  @StateObject var activeSheet: ActiveSheet = ActiveSheet()
 
   var body: some View {
     ZStack(alignment: .bottom) {
@@ -82,7 +82,7 @@ extension QnAListView {
       LazyVStack(spacing: 12) {
         ForEach(Array(qnaListVM.coupleAnswers), id: \.key) { question, answers in
           Button {
-            qnaListVM.tapQnAListItem()
+            qnaListVM.tapQnAListItem(question)
           } label: {
             QnAListItem(
               question: question,
@@ -91,7 +91,7 @@ extension QnAListView {
             )
           }
           .sheet(isPresented: $qnaListVM.showQnASheet) {
-            CheckAnswerView(question: question)
+            CheckAnswerView(question: qnaListVM.selectedQuestion)
           }
           .padding(.horizontal, 20)
         }
