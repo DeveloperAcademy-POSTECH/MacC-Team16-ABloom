@@ -3,6 +3,47 @@ const admin = require('firebase-admin');
 
 admin.initializeApp();
 
+exports.sendNotiConnection = functions
+    .region('asia-northeast3')
+    .firestore
+    .document('users/{userId}')
+    .onUpdate(async (change, context) => {
+
+        const userId = context.params.userId;
+        const recipientToken = await getRecipientToken(userId);
+
+        const beforeData = change.before.data();
+        const afterData = change.after.data();
+        const watchedField = 'fiance';
+
+        if (recipientToken && beforeData[watchedField] == null && afterData[watchedField] != null) {
+          console.log(`Field ${watchedField} changed from null to ${afterData[watchedField]}`);
+
+          const { fianceId, myName } = await getFianceId(userId);
+          const fianceName = await getFianceName(fianceId);
+          console.log(`fianceName: ${fianceName}`)
+
+          const message = {
+            notification: {
+                title: `${fianceName}님과 연결되었어요.`,
+                body: '행복한 결혼 생활을 위해 함께 나아가요 🧡',
+            },
+              token: recipientToken,
+          };
+
+          try {
+              return await admin.messaging().send(message).then((results) => {
+              console.log('Successfully sent connecion notification');
+              return {success: true};
+            });
+          } catch (error) {
+              console.error('Error sending noti on reaction:', error);
+          }
+        } else {
+          console.error('Recipient token not found for me:', userId);
+        }
+    });
+
 exports.sendNotiOnCompletion = functions
     .region('asia-northeast3')
     .firestore
@@ -172,16 +213,35 @@ async function getFianceId(userId) {
   }
 }
 
-async function getRecipientToken(fianceId) {
+async function getFianceName(fianceId) {
+  try {
+    const userDoc = await admin.firestore().collection('users').doc(fianceId).get();
+
+    if (!userDoc.exists) {
+        console.error(`User document with ID ${userId} does not exist`);
+        return;
+    }
+
+    const userData = userDoc.data();
+    const fianceName = userData.name;
+
+    return fianceName
+
+  }  catch (error) {
+      console.error('Error fetching fianceId:', error);
+      return null;
+  }
+}
+
+async function getRecipientToken(userId) {
     try {
-        // Retrieve the FCM token from Firestore based on the partner user's ID.
-        const userDoc = await admin.firestore().collection('users').doc(fianceId).get();
+        const userDoc = await admin.firestore().collection('users').doc(userId).get();
 
         if (userDoc.exists) {
             const userData = userDoc.data();
             return userData.fcm_token;
         } else {
-            console.error("no partner fcm_token");
+            console.error("no fcm_token");
             return null;
         }
     } catch (error) {

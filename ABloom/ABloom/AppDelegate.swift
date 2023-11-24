@@ -10,6 +10,7 @@ import FirebaseCore
 import FirebaseMessaging
 import UserNotifications
 
+@MainActor
 class AppDelegate: NSObject, UIApplicationDelegate {
   
   // 앱이 켜졌을 때 자동 실행
@@ -28,13 +29,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
           if granted {
             self.scheduleDailyNotification()
             print("granted and set up local push")
+            application.registerForRemoteNotifications()
+            Messaging.messaging().delegate = self
           }
         }
       )
-    
-    application.registerForRemoteNotifications()
-    
-    Messaging.messaging().delegate = self
     
     return true
   }
@@ -117,24 +116,13 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     handleNotificationPayload(userInfo)
     
-    //    if let viewToOpen = userInfo["viewToOpen"] as? String {
-    //      if viewToOpen == "AnswerCheck" {
-    //        DispatchQueue.main.async async {
-    //          let question = try? await StaticQuestionManager.shared.getQuestionById(id: (userInfo["qid"] as? Int)!)
-    //          QnAListViewModel.shared.checkAnswerQuestion = question
-    //          QnAListViewModel.shared.showCheckAnswerView = true
-    //        }
-    //
-    //      }
-    //    }
-    
     completionHandler([[.banner, .badge, .sound]])
   }
   
   // when notification clicked => navigation
   private func handleNotificationPayload(_ userInfo: [AnyHashable: Any]) {
     guard let viewToOpen = userInfo["viewToOpen"] as? String, viewToOpen == "AnswerCheck",
-          let questionID = userInfo["qid"] as? String else { return }
+          let questionID = userInfo["qid"] as? String else { print("error"); return }
     
     Task {
       do {
@@ -148,8 +136,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
       }
     }
   }
-  
-  
   
   // 푸시메세지를 받았을 때
   // 메시지를 받고 앱에서 진행하는 액션
