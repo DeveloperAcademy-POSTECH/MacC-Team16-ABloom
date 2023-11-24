@@ -45,10 +45,9 @@ struct CustomNavigationBarModifier<C, L, R>: ViewModifier where C: View, L: View
       }
       
       content
-      
-      Spacer()
     }
-    .padding(.top, 10)
     .navigationBarBackButtonHidden(true)
+    .ignoresSafeArea(.keyboard)
+    
   }
 }

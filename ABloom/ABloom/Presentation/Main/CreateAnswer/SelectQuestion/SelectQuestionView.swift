@@ -8,6 +8,7 @@ import SwiftUI
 
 struct SelectQuestionView: View {
   @StateObject var selectQVM = SelectQuestionViewModel()
+  @ObservedObject var activeSheet: ActiveSheet = ActiveSheet()
   @Environment(\.dismiss) private var dismiss
   @Binding var isSheetOn: Bool
   
@@ -19,13 +20,31 @@ struct SelectQuestionView: View {
       categoryBar
       bottomGradient
       
-      questionListView
+      if selectQVM.isLoggedIn {
+        questionListView
+      } else {
+        previewStaticQuesiton
+      }
     }
+    .customNavigationBar {
+      EmptyView()
+    } leftView: {
+      Button(action: {dismiss()
+      }, label: {
+        NavigationArrowLeft()
+      })
+    } rightView: {
+      EmptyView()
+    }
+    .padding(.top, 21)
+    
+    .ignoresSafeArea(.all, edges: .bottom)
+    
+    
     .onAppear {
       if !selectQVM.didGetCategory {
         selectQVM.updateSelectedCategory(new: selectedCategory)
       }
-      selectQVM.fetchQuestions()
     }
     
     .navigationDestination(isPresented: $selectQVM.isAnswerSheetOn, destination: {
@@ -36,20 +55,7 @@ struct SelectQuestionView: View {
     
     .navigationBarBackButtonHidden(true)
     
-    .customNavigationBar {
-      EmptyView()
-    } leftView: {
-      Button(action: {dismiss()
-      }, label: {
-        Image("angle-left")
-          .resizable()
-          .renderingMode(.template)
-          .frame(width: 18, height: 18)
-          .foregroundStyle(.purple600)
-      })
-    } rightView: {
-      EmptyView()
-    }
+    
   }
 }
 
@@ -126,6 +132,7 @@ extension SelectQuestionView {
     .onTapGesture {
       selectQVM.questionClicked(selectedQ: selectedQ)
     }
+    
   }
   
   private var questionListView: some View {
@@ -143,16 +150,46 @@ extension SelectQuestionView {
           Spacer()
             .frame(height: 50)
         }
+        
         .onChange(of: selectQVM.selectedCategory) { new in
           proxy.scrollTo("top")
-          
         }
-        
       }
     }
   }
-}
-
-#Preview {
-  SelectQuestionView(isSheetOn: .constant(true), selectedCategory: Category.communication)
+  
+  private var previewStaticQuesiton: some View {
+    
+    GeometryReader { geometry in
+      ZStack(alignment: .bottom) {
+        Image(selectQVM.selectedCategory.staticImg)
+          .resizable()
+          .scaledToFill()
+          .frame(width: geometry.size.width, height: geometry.size.height, alignment: .top)
+          .clipped()
+        
+        VStack {
+          Text("지금 로그인하면 메리의 200개가 넘는\n모든 질문들을 확인수 있어요!")
+            .customFont(.footnoteB)
+            .foregroundStyle(.gray50)
+            .multilineTextAlignment(.center)
+            .padding(.bottom, 15)
+          
+          // TODO: 로그인 팝업
+          Button {
+            activeSheet.kind = .signIn
+          } label: {
+            Text("로그인하기 >")
+              .padding(.bottom, 3)
+              .underline(true)
+              .customFont(.calloutB)
+              .foregroundStyle(.white)
+              .padding(.bottom, 66)
+          }
+        }
+        .padding(.horizontal, 20) // Adjust horizontal padding if needed
+      }
+    }
+    .edgesIgnoringSafeArea(.all)
+  }
 }

@@ -26,10 +26,11 @@ struct ABloomApp: App {
     
     UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(named: "Purple 600")
   }
-
+  
   @AppStorage("_isFirstLaunching") var isFirstLaunching: Bool = true
   
   var body: some Scene {
+    
     WindowGroup {
       NavigationStack {
         if isFirstLaunching {

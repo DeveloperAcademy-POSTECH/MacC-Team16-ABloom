@@ -52,6 +52,9 @@
 		3DD485E12B0AFC7300AF5E02 /* ProfileMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD485E02B0AFC7300AF5E02 /* ProfileMenuViewModel.swift */; };
 		3DD485E32B0B9BA500AF5E02 /* MarriageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD485E22B0B9BA500AF5E02 /* MarriageStatus.swift */; };
 		3DD485E52B0C8B1B00AF5E02 /* WithdrawalMembershipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD485E42B0C8B1B00AF5E02 /* WithdrawalMembershipView.swift */; };
+		3DD485F02B0D9E9E00AF5E02 /* ConnectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD485EF2B0D9E9E00AF5E02 /* ConnectedView.swift */; };
+		3DD485F22B0DAAB300AF5E02 /* ConnectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD485F12B0DAAB300AF5E02 /* ConnectionViewModel.swift */; };
+		3DD485F42B0DAC5800AF5E02 /* ConnectingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD485F32B0DAC5800AF5E02 /* ConnectingView.swift */; };
 		3DE945042AFA96C900CF7E33 /* ReactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE945032AFA96C900CF7E33 /* ReactionType.swift */; };
 		3DF31AE72B0453DF00F0EA4E /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31AE62B0453DF00F0EA4E /* SignInView.swift */; };
 		3DF31AE92B0453E700F0EA4E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31AE82B0453E700F0EA4E /* SignUpView.swift */; };
@@ -85,6 +88,7 @@
 		607DA2182AF0B07D005AE11C /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2172AF0B07D005AE11C /* Ex+Date.swift */; };
 		6086BAA92AF130A800E2DC3A /* DBEssentialQuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6086BAA82AF130A800E2DC3A /* DBEssentialQuestionModel.swift */; };
 		60A134642B103593002E0A9F /* ReactionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A134632B103593002E0A9F /* ReactionStatus.swift */; };
+		AE02ABED2B0C8A08004648F9 /* FLAnimatedImage in Frameworks */ = {isa = PBXBuildFile; productRef = AE02ABEC2B0C8A08004648F9 /* FLAnimatedImage */; };
 		AE1AE9FB2AE51BF00010089F /* QnAListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AE9FA2AE51BF00010089F /* QnAListItem.swift */; };
 		AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AE2BB5F32AD650680003CD85 /* .swiftlint.yml */; };
 		AE2F915C2B0B3D7800EE9C33 /* WriteAnswerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2F915B2B0B3D7800EE9C33 /* WriteAnswerViewModel.swift */; };
@@ -111,7 +115,6 @@
 		AEC260612AEA5A8000DF7CD5 /* StaticQuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */; };
 		AEC44E042AF628DF0021156E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEC44E032AF628DF0021156E /* Launch Screen.storyboard */; };
 		AEE092912B0AF5270076E7B7 /* Ex+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE092902B0AF5270076E7B7 /* Ex+Color.swift */; };
-		AEE092932B0AFCDE0076E7B7 /* PreviewQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE092922B0AFCDE0076E7B7 /* PreviewQuestions.swift */; };
 		AEEA8DD32AEB82520068550E /* ChatBubbles.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEA8DD22AEB82520068550E /* ChatBubbles.swift */; };
 /* End PBXBuildFile section */
 
@@ -151,6 +154,9 @@
 		3DD485E02B0AFC7300AF5E02 /* ProfileMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuViewModel.swift; sourceTree = "<group>"; };
 		3DD485E22B0B9BA500AF5E02 /* MarriageStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarriageStatus.swift; sourceTree = "<group>"; };
 		3DD485E42B0C8B1B00AF5E02 /* WithdrawalMembershipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalMembershipView.swift; sourceTree = "<group>"; };
+		3DD485EF2B0D9E9E00AF5E02 /* ConnectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedView.swift; sourceTree = "<group>"; };
+		3DD485F12B0DAAB300AF5E02 /* ConnectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewModel.swift; sourceTree = "<group>"; };
+		3DD485F32B0DAC5800AF5E02 /* ConnectingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectingView.swift; sourceTree = "<group>"; };
 		3DE945032AFA96C900CF7E33 /* ReactionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionType.swift; sourceTree = "<group>"; };
 		3DF31AE62B0453DF00F0EA4E /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		3DF31AE82B0453E700F0EA4E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -228,7 +234,6 @@
 		AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticQuestionManager.swift; sourceTree = "<group>"; };
 		AEC44E032AF628DF0021156E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AEE092902B0AF5270076E7B7 /* Ex+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Color.swift"; sourceTree = "<group>"; };
-		AEE092922B0AFCDE0076E7B7 /* PreviewQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewQuestions.swift; sourceTree = "<group>"; };
 		AEEA8DCE2AEB82070068550E /* SelectQuestionViewModel1.0.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionViewModel1.0.swift; sourceTree = "<group>"; };
 		AEEA8DD02AEB82290068550E /* SelectQuestionView1.0.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionView1.0.swift; sourceTree = "<group>"; };
 		AEEA8DD22AEB82520068550E /* ChatBubbles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbles.swift; sourceTree = "<group>"; };
@@ -262,6 +267,7 @@
 				3DB6A5A12AE0BDF800C1369F /* FirebasePerformance in Frameworks */,
 				3DB6A5992AE0BDF800C1369F /* FirebaseInAppMessagingSwift-Beta in Frameworks */,
 				3DB6A5A72AE0BDF800C1369F /* FirebaseStorage in Frameworks */,
+				AE02ABED2B0C8A08004648F9 /* FLAnimatedImage in Frameworks */,
 				3DB6A58B2AE0BDF800C1369F /* FirebaseDynamicLinks in Frameworks */,
 				3DB6A58F2AE0BDF800C1369F /* FirebaseFirestoreCombine-Community in Frameworks */,
 				3DB6A59F2AE0BDF800C1369F /* FirebaseMessaging in Frameworks */,
@@ -356,7 +362,6 @@
 				3DF31BFF2B076F7500F0EA4E /* SignUpStep.swift */,
 				3D4412592AE4F8B600FD5A51 /* WebView.swift */,
 				60528FA82B0C97A900A29E6F /* ActiveSheet.swift */,
-				AEE092922B0AFCDE0076E7B7 /* PreviewQuestions.swift */,
 				3DD485E22B0B9BA500AF5E02 /* MarriageStatus.swift */,
 				60A134632B103593002E0A9F /* ReactionStatus.swift */,
 			);
@@ -522,6 +527,9 @@
 			isa = PBXGroup;
 			children = (
 				3DF31AF82B04546700F0EA4E /* ConnectionView.swift */,
+				3DD485F12B0DAAB300AF5E02 /* ConnectionViewModel.swift */,
+				3DD485EF2B0D9E9E00AF5E02 /* ConnectedView.swift */,
+				3DD485F32B0DAC5800AF5E02 /* ConnectingView.swift */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
@@ -815,6 +823,7 @@
 				3DB6A5A42AE0BDF800C1369F /* FirebaseRemoteConfigSwift */,
 				3DB6A5A62AE0BDF800C1369F /* FirebaseStorage */,
 				3DB6A5A82AE0BDF800C1369F /* FirebaseStorageCombine-Community */,
+				AE02ABEC2B0C8A08004648F9 /* FLAnimatedImage */,
 			);
 			productName = ABloom;
 			productReference = AE7EE4DD2AD6409000E0A573 /* ABloom.app */;
@@ -847,6 +856,7 @@
 			mainGroup = AE7EE4D42AD6409000E0A573;
 			packageReferences = (
 				3DB6A5732AE0BDF800C1369F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				AE02ABEB2B0C8A08004648F9 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */,
 			);
 			productRefGroup = AE7EE4DE2AD6409000E0A573 /* Products */;
 			projectDirPath = "";
@@ -939,14 +949,15 @@
 				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
 				3D44125A2AE4F8B600FD5A51 /* WebView.swift in Sources */,
 				3DF31C002B076F7500F0EA4E /* SignUpStep.swift in Sources */,
+				3DD485F22B0DAAB300AF5E02 /* ConnectionViewModel.swift in Sources */,
 				3D4412602AE503FD00FD5A51 /* ToastView.swift in Sources */,
 				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
 				AEB502642AE5FA840056E439 /* CustomNavigationBarModifier.swift in Sources */,
+				3DD485F42B0DAC5800AF5E02 /* ConnectingView.swift in Sources */,
 				3DE945042AFA96C900CF7E33 /* ReactionType.swift in Sources */,
 				3D957E902AEE7F4800D565E9 /* DBAnswerModel.swift in Sources */,
 				607DA2142AEFCF93005AE11C /* ConnectionError.swift in Sources */,
 				AE8CFC192B0898BF000F452F /* OnboardingPageView.swift in Sources */,
-				3DF31AF72B04545500F0EA4E /* ShowWebView.swift in Sources */,
 				60678E352B0B8943009B9558 /* AppleLoginButtonViewRepresentable.swift in Sources */,
 				3DF31BFE2B074BB800F0EA4E /* SelectQuestionView.swift in Sources */,
 				60797C212AF9DD7C005375DC /* Category.swift in Sources */,
@@ -972,6 +983,7 @@
 				AEC260612AEA5A8000DF7CD5 /* StaticQuestionManager.swift in Sources */,
 				3D4412432AE388DB00FD5A51 /* UserManager.swift in Sources */,
 				3DD485E12B0AFC7300AF5E02 /* ProfileMenuViewModel.swift in Sources */,
+				3DD485F02B0D9E9E00AF5E02 /* ConnectedView.swift in Sources */,
 				AE8CFC172B089899000F452F /* OnboardingTabView.swift in Sources */,
 				3DF31B062B073CD000F0EA4E /* SignUpViewModel.swift in Sources */,
 				AE2F915C2B0B3D7800EE9C33 /* WriteAnswerViewModel.swift in Sources */,
@@ -1223,6 +1235,14 @@
 				minimumVersion = 10.16.0;
 			};
 		};
+		AE02ABEB2B0C8A08004648F9 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Flipboard/FLAnimatedImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.17;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1360,6 +1380,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3DB6A5732AE0BDF800C1369F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		AE02ABEC2B0C8A08004648F9 /* FLAnimatedImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE02ABEB2B0C8A08004648F9 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */;
+			productName = FLAnimatedImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

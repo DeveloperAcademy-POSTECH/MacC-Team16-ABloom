@@ -26,7 +26,7 @@ final class AnswerManager: ObservableObject {
   }
   
   // MARK: Create
-  func creatAnswer(userId: String, questionId: Int, content: String) throws {
+  func createAnswer(userId: String, questionId: Int, content: String) throws {
     let collection = userAnswerCollection(userId: userId)
     let document = collection.document()
     
