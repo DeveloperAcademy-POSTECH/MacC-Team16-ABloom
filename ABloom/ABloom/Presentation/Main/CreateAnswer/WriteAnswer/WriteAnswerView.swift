@@ -19,13 +19,17 @@ struct WriteAnswerView: View {
       
       questionText
       
-      textField
-      
-      textNumCheck
+      ZStack(alignment: .top) {
+        
+        textField
+        
+        textNumCheck
+          .position(x: UIScreen.main.bounds.size.width/2 - 20, y: UIScreen.main.bounds.size.height/3.5)
+      }
       
     }
     .padding(.horizontal, 20)
-    
+    .ignoresSafeArea(.keyboard)
     .interactiveDismissDisabled(writeAMV.ansText.isEmpty ? false : true)
     
     // 네비게이션바
@@ -38,11 +42,7 @@ struct WriteAnswerView: View {
           dismiss()
         }
       }, label: {
-        Image("angle-left")
-          .resizable()
-          .renderingMode(.template)
-          .frame(width: 18, height: 18)
-          .foregroundStyle(.purple700)
+        NavigationArrowLeft()
       })
     } rightView: {
       Button(action: { writeAMV.completeClicked() }, label: {
@@ -52,11 +52,12 @@ struct WriteAnswerView: View {
       })
       .disabled(writeAMV.ansText.isEmpty || writeAMV.isTextOver)
     }
+    .padding(.top, 21)
     
     // 백버튼 알림
     .alert("작성을 종료할까요?", isPresented: $writeAMV.isCancelAlertOn, actions: {
       Button {
-        UINavigationController.isSwipeBackEnabled = true
+        writeAMV.swipeEnable()
         dismiss()
       } label: {
         Text("나가기")
@@ -68,10 +69,12 @@ struct WriteAnswerView: View {
       Text("작성중이었던 답변은 저장되지 않아요.")
     })
     
+    
     // 완료 알림
     .alert("답변을 완료할까요?", isPresented: $writeAMV.isCompleteAlertOn, actions: {
       Button {
-        UINavigationController.isSwipeBackEnabled = true
+        writeAMV.swipeEnable()
+        try? writeAMV.createAnswer(qid: question.questionID)
         isSheetOn.toggle()
       } label: {
         Text("완료하기")
@@ -103,34 +106,27 @@ extension WriteAnswerView {
       })
       .customFont(.calloutR)
       .foregroundStyle(.gray500)
+      .multilineTextAlignment(.leading)
       .frame(maxWidth: .infinity)
-      .onChange(of: writeAMV.ansText, perform: { _ in
+      .onChange(of: writeAMV.ansText, perform: { new in
         writeAMV.checkTextCount()
-        
-        
       })
   }
   
   private var textNumCheck: some View {
-    VStack {
+    HStack(spacing: 0) {
       Spacer()
-      HStack(spacing: 0) {
-        Spacer()
-        Text("\(writeAMV.ansText.count)")
-          .customFont(.footnoteR)
-          .foregroundStyle( writeAMV.isTextOver ? .red : .gray400)
-        
-        Text(" / 150")
-          .customFont(.footnoteR)
-          .foregroundStyle(.gray400)
-      }
+      Text("\(writeAMV.ansText.count)")
+        .customFont(.footnoteR)
+        .foregroundStyle( writeAMV.isTextOver ? .red : .gray400)
+      
+      Text(" / 150")
+        .customFont(.footnoteR)
+        .foregroundStyle(.gray400)
     }
-    .padding(.bottom, UIScreen.main.bounds.size.height/2.5)
   }
 }
 
 #Preview {
-  
   WriteAnswerView(isSheetOn: .constant(true), question: .init(questionID: 3, category: "communication", content: "Helloodoododo"))
-  
 }

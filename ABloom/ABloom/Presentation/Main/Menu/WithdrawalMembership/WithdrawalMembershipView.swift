@@ -23,12 +23,13 @@ struct WithdrawalMembershipView: View {
     VStack(spacing: 0) {
       VStack(alignment: .leading, spacing: 0) {
         Text(title)
-          .foregroundStyle(.stone900)
-          .fontWithTracking(.title3B)
-          .padding(.bottom, 18)
+          .foregroundStyle(.gray900)
+          .customFont(.title2B)
+          .padding(.bottom, 24)
+        
         Text(content1 + content2 + content3)
-          .foregroundStyle(.stone700)
-          .fontWithTracking(.subHeadlineR, tracking: -0.4)
+          .foregroundStyle(.gray700)
+          .customFont(.subHeadlineR)
       }
       
       Spacer()
@@ -47,13 +48,7 @@ struct WithdrawalMembershipView: View {
       Button {
         dismiss()
       } label: {
-        Text("다시 사용하기")
-          .customFont(.calloutB)
-          .foregroundStyle(.purple50)
-          .frame(height: 46)
-          .frame(maxWidth: .infinity)
-          .background(Color.purple600)
-          .cornerRadius(8, corners: .allCorners)
+        PurpleTextButton(title: "다시 사용하기")
       }
     }
     .padding(.top, 54)

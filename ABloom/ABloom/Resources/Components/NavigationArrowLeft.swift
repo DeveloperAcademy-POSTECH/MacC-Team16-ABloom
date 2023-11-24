@@ -11,7 +11,9 @@ struct NavigationArrowLeft: View {
   var body: some View {
     Image("angle-left")
       .resizable()
+      .renderingMode(.template)
       .scaledToFit()
-      .frame(width: 20, height: 20)
+      .frame(width: 18)
+      .foregroundStyle(.purple700)
   }
 }

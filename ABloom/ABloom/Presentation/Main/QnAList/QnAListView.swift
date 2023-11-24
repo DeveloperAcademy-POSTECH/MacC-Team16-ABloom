@@ -71,7 +71,7 @@ extension QnAListView {
     }
     .sheet(isPresented: $qnaListVM.showProfileSheet) {
       NavigationStack {
-        ProfileMenuView(showProfileMenuSheet: $qnaListVM.showProfileSheet)
+        ProfileMenuView(showProfileMenuSheet: $qnaListVM.showProfileSheet, activeSheet: activeSheet)
       }
     }
   }

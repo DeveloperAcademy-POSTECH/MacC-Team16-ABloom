@@ -8,9 +8,32 @@
 import SwiftUI
 
 struct ConnectionView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+  @Environment(\.dismiss) private var dismiss
+  @StateObject var vm = ConnectionViewModel()
+  
+  var body: some View {
+    VStack {
+      if let fianceUser = vm.fianceUser {
+        ConnectedView(myCode: vm.currentUser?.invitationCode ?? "코드를 불러오지 못함", fianceName: fianceUser.name ?? "이름을 불러오지 못함")
+      } else {
+        ConnectingView(vm: vm)
+      }
     }
+    
+    .customNavigationBar {
+      Text("상대방과 연결 관리")
+        .customFont(.bodyB)
+    } leftView: {
+      Button {
+        dismiss()
+      } label: {
+        NavigationArrowLeft()
+      }
+    } rightView: {
+      EmptyView()
+    }
+
+  }
 }
 
 #Preview {
