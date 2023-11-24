@@ -22,7 +22,10 @@ enum ReactionStatus: Equatable {
   
   var isReacted: Bool {
     switch self {
-    case .react:
+    case .react(let reaction):
+      if reaction == .error {
+        return false
+      }
       return true
     case .noReact:
       return false
