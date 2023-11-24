@@ -68,3 +68,20 @@ enum ReactionType: Int {
     }
   }
 }
+
+enum NoReactType {
+  case lock
+  case plus
+  case wait
+  
+  var imageName: String {
+    switch self {
+    case .lock:
+      "A_Lock"
+    case .plus:
+      "B_Add"
+    case .wait:
+      "C_Wait"
+    }
+  }
+}
