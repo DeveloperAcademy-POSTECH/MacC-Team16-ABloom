@@ -52,4 +52,19 @@ enum ReactionType: Int {
       return false
     }
   }
+  
+  var imageName: String {
+    switch self {
+    case .good:
+      "1_like"
+    case .knowEachOther:
+      "2_know"
+    case .moreCommunication:
+      "3_moreCommunication"
+    case .moreResearch:
+      "4_moreResearch"
+    case .error:
+      ""
+    }
+  }
 }
