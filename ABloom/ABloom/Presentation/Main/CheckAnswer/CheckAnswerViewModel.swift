@@ -33,8 +33,8 @@ final class CheckAnswerViewModel: ObservableObject {
   private var currentUserAnswerStatus: CurrentUserAnswerStatus = .noAnswered
   private var fianceAnswerStatus: FianceAnswerStatus = .noAnswered
   
-  var currentUserReactionStatus: ReactionStatus = .noReact(.plus)
-  var fianceReactionStatus: ReactionStatus = .noReact(.lock)
+  @Published var currentUserReactionStatus: ReactionStatus = .noReact(.plus)
+  @Published var fianceReactionStatus: ReactionStatus = .noReact(.lock)
   
   var currentUserAnswerContent: String {
     switch currentUserAnswerStatus {
@@ -100,7 +100,7 @@ final class CheckAnswerViewModel: ObservableObject {
     }
   }
   
-  // MARK: 최근 날짜 불러오기
+  // MARK: - 최근 날짜 불러오기
   private func getRecentDate() {
     getcurrentUserAnswerDate()
     getFianceAnswerDate()
@@ -116,16 +116,17 @@ final class CheckAnswerViewModel: ObservableObject {
     self.recentDate = max(recentDate, fianceDate)
   }
   
-  // MARK: 유저 정보 불러오기
+  // MARK: - 유저 정보 불러오기
   private func getCurrentUser() {
     self.currentUser = UserManager.shared.currentUser
+    self.currentUserName = currentUser?.name ?? "사용자"
   }
   private func getFianceUser() {
     self.fianceUser = UserManager.shared.fianceUser
     self.fianceName = fianceUser?.name ?? "상대방"
   }
   
-  // MARK: 대답 가져오기
+  // MARK: - 대답 가져오기
   private func getMyAnswer() async throws {
     do {
       guard let userId = currentUser?.userId else { return }
@@ -158,10 +159,12 @@ final class CheckAnswerViewModel: ObservableObject {
     }
   }
   
-  // MARK: 반응 체크하기 -> 둘다 긍정적이면 true
+  // MARK: - 반응 체크하기 -> 둘 다 긍정적이면 true
   @discardableResult
   private func checkReactions() -> Bool {
-    return checkMyReaction() && checkFianceReaction()
+    let myReaction = checkMyReaction()
+    let fianceReaction = checkFianceReaction()
+    return myReaction && fianceReaction
   }
   
   private func checkMyReaction() -> Bool {
@@ -170,7 +173,7 @@ final class CheckAnswerViewModel: ObservableObject {
       return false
     }
     if myReaction == .error {
-      if currentUserAnswerStatus == .answered {
+      if currentUserAnswerStatus == .answered && fianceAnswerStatus == .answered {
         self.currentUserReactionStatus = .noReact(.plus)
       } else {
         self.currentUserReactionStatus = .noReact(.lock)
@@ -183,22 +186,16 @@ final class CheckAnswerViewModel: ObservableObject {
   }
   
   private func checkFianceReaction() -> Bool {
-    guard let fianceReaction = self.fianceAnswer?.reactionType else {
-      // 상대방 리액션이 없을 때
-      // 나의 리액션이 있으면 상대방은 기다리는 중, 리액션이 없으면 상대방은 잠겨있음
+    guard let fianceReaction = self.fianceAnswer?.reactionType, fianceReaction != .error else {
       self.fianceReactionStatus = (currentUserReactionStatus.isReacted ? .noReact(.wait) : .noReact(.lock))
       return false
     }
-    
-    if fianceReaction == .error {
-      self.fianceReactionStatus = .noReact(.lock)
-    } else {
-      self.fianceReactionStatus = (currentUserReactionStatus.isReacted ? .react(fianceReaction) : .noReact(.lock))
-      self.fianceReactionStatus = (currentUserReactionStatus.isReacted ? .react(fianceReaction) : .noReact(.lock))
-    }
+    self.fianceReactionStatus = (currentUserReactionStatus.isReacted && fianceReaction != .error ? .react(fianceReaction) : .noReact(.lock))
+
     return fianceReaction.isPositiveReact()
   }
   
+  // MARK: - 반응선택 뷰 관련
   func tapSelectReactionButton() {
     showSelectReactionView = true
   }
