@@ -80,14 +80,14 @@ extension QnAListView {
   private var scrollView: some View {
     ScrollView(.vertical) {
       LazyVStack(spacing: 12) {
-        ForEach(Array(qnaListVM.coupleAnswers), id: \.key) { question, answers in
+        ForEach(qnaListVM.coupleQnA, id: \.self) { qna in
           Button {
-            qnaListVM.tapQnAListItem(question)
+            qnaListVM.tapQnAListItem(qna.question)
           } label: {
             QnAListItem(
-              question: question,
-              date: answers[0].date,
-              answerStatus: qnaListVM.checkAnswerStatus(question: question)
+              question: qna.question,
+              date: qna.answers[0].date,
+              answerStatus: qnaListVM.checkAnswerStatus(question: qna.question)
             )
           }
           .sheet(isPresented: $qnaListVM.showQnASheet) {
