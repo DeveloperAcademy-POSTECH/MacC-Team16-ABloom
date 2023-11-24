@@ -153,14 +153,7 @@ extension QnAListView {
     SignInView(activeSheet: activeSheet)
       .presentationDetents([.height(302)])
       .onDisappear {
-        Task { await qnaListVM.fetchDataAfterSignIn()
-          await qnaListVM.checkNeedSignUp() }
-        
-        if qnaListVM.showSignUpSheet {
-          activeSheet.kind = .signUp
-        } else {
-          activeSheet.kind = .none
-        }
+        Task { await qnaListVM.fetchDataAfterSignIn() }
       }
   }
   
