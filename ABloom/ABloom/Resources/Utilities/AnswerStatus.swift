@@ -67,3 +67,14 @@ enum AnswerStatus {
     }
   }
 }
+
+enum CurrentUserAnswerStatus {
+  case noAnswered
+  case answered
+}
+
+enum FianceAnswerStatus {
+  case unconnected
+  case noAnswered
+  case answered
+}
