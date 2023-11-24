@@ -153,7 +153,10 @@ extension QnAListView {
     SignInView(activeSheet: activeSheet)
       .presentationDetents([.height(302)])
       .onDisappear {
-        Task { await qnaListVM.fetchDataAfterSignIn() }
+        Task { 
+          await qnaListVM.fetchDataAfterSignIn()
+          print("activeSheet의 상태 \(activeSheet.kind)")
+        }
       }
   }
   
