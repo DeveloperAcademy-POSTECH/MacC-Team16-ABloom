@@ -7,6 +7,7 @@
 
 import FirebaseFirestore
 
+@MainActor
 final class ConnectionManager {
   static let shared = ConnectionManager()
   @Published var isConnected: Bool = false
@@ -48,6 +49,8 @@ final class ConnectionManager {
     }
     
     try await connectionUpdate(userId: currentUser.userId, targetId: targetUserId)
+    try await UserManager.shared.fetchCurrentUser()
+    try await UserManager.shared.fetchFianceUser()
   }
   
   private func connectionUpdate(userId: String, targetId: String) async throws {

@@ -89,21 +89,24 @@ struct ProfileMenuView: View {
     
     // 결혼 일자 수정
     .sheet(isPresented: $vm.showCalendarSheet) {
-      DatePicker("", selection: $vm.marriageDate, displayedComponents: .date)
-        .datePickerStyle(.graphical)
-        .frame(width: 320)
-        .labelsHidden()
-        .presentationDetents([.medium])
-      
-      Button {
-        Task {
-          try? vm.updateMyMarriageDate()
-          try? await vm.renewInfo()
-          vm.showActionSheet = false
+      VStack {
+        DatePicker("", selection: $vm.marriageDate, displayedComponents: .date)
+          .datePickerStyle(.graphical)
+          .frame(width: 320)
+          .labelsHidden()
+          .presentationDetents([.medium])
+        
+        Button {
+          Task {
+            try? vm.updateMyMarriageDate()
+            try? await vm.renewInfo()
+            vm.showActionSheet = false
+          }
+        } label: {
+          Text("완료")
         }
-      } label: {
-        Text("완료")
       }
+      .tint(.purple700)
     }
   }
 }
@@ -132,6 +135,14 @@ extension ProfileMenuView {
           Text("\(fianceName)님의 \((vm.currentUser?.sex ?? true) ? UserSexType.man.rawValue : UserSexType.woman.rawValue)")
             .customFont(.caption1B)
             .foregroundStyle(.gray500)
+        } else if vm.isSignedIn {
+          NavigationLink {
+            ConnectionView()
+          } label: {
+            Text("눌러서 연결하기 >")
+              .customFont(.caption1B)
+              .foregroundStyle(.gray500)
+          }
         } else {
           Button {
             showProfileMenuSheet = false
@@ -242,7 +253,7 @@ extension ProfileMenuView {
   private var exitAction: some View {
     VStack(alignment: .leading, spacing: 20) {
       Button {
-        try? vm.signOut()
+        vm.showSignOutAlert = true
       } label: {
         listRowLabel(title: "로그아웃")
       }
@@ -254,6 +265,18 @@ extension ProfileMenuView {
       }
     }
     .padding(.horizontal, 20)
+    
+    .alert("로그아웃할까요?", isPresented: $vm.showSignOutAlert, actions: {
+      Button("취소", role: .cancel) {
+        vm.showSignOutAlert = false
+      }
+      
+      Button("로그아웃", role: .destructive) {
+        try? vm.signOut()
+      }
+    }, message: {
+      Text("로그아웃하더라도 데이터는 보관되니\n안심하고 로그아웃하셔도 돼요.")
+    })
   }
   
   private var menuSeparator: some View {

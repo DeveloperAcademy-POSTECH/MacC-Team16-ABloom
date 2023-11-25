@@ -9,6 +9,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Foundation
 
+@MainActor
 final class AnswerManager: ObservableObject {
   @Published var myAnswers: [DBAnswer]?
   @Published var fianceAnswers: [DBAnswer]?

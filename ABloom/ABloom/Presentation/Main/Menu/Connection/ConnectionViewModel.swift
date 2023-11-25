@@ -34,8 +34,6 @@ final class ConnectionViewModel: ObservableObject {
     Task {
       do {
         try await ConnectionManager.shared.connectFiance(connectionCode: self.inputText)
-        try? await UserManager.shared.fetchCurrentUser()
-        try? await UserManager.shared.fetchFianceUser()
         getUsers()
       } catch let error as ConnectionError {
         self.errorMessage = error.errorMessage()

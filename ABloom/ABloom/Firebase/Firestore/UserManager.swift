@@ -9,6 +9,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Foundation
 
+@MainActor
 final class UserManager: ObservableObject {
   static let shared = UserManager()
   
@@ -29,19 +30,26 @@ final class UserManager: ObservableObject {
   // MARK: Create
   func createUser(user: DBUser) throws {
     try userDocument(userId: user.userId).setData(from: user, merge: false)
+    Task {
+      try? await fetchCurrentUser()
+    }
   }
   
   
   // MARK: Retrieve
   func fetchCurrentUser() async throws {
     // TODO: 에러처리
-    let currentUser = try AuthenticationManager.shared.getAuthenticatedUser()
-    
-    self.currentUser = try await getUser(userId: currentUser.uid)
+    do {
+      let currentUser = try AuthenticationManager.shared.getAuthenticatedUser()
+      self.currentUser = try await getUser(userId: currentUser.uid)
+    } catch {
+      self.currentUser = nil
+    }
   }
   
   func fetchFianceUser() async throws {
     guard let fianceId = self.currentUser?.fiance else {
+      self.fianceUser = nil
       return
     }
     
@@ -58,11 +66,18 @@ final class UserManager: ObservableObject {
   func updateUserName(userId: String, name: String) throws {
     let data: [String: Any] = [DBUser.CodingKeys.name.rawValue:name]
     userDocument(userId: userId).updateData(data)
+    
+    Task {
+      try? await fetchCurrentUser()
+    }
   }
   
   func updateMarriageDate(userId: String, date: Date) throws {
     let data: [String: Any] = [DBUser.CodingKeys.marriageDate.rawValue:date]
     userDocument(userId: userId).updateData(data)
+    Task {
+      try? await fetchCurrentUser()
+    }
   }
   
   func updateFcmToken(userID: String, fcmToken: String) throws {
@@ -92,6 +107,11 @@ final class UserManager: ObservableObject {
     
     let data: [String: Any?] = [DBUser.CodingKeys.fiance.rawValue: nil]
     try await userDocument(userId: fiance).updateData(data as [AnyHashable: Any])
+    
+    Task {
+      try? await fetchCurrentUser()
+      try? await fetchFianceUser()
+    }
   }
   
   private func deleteSubCollection(userId: String) async throws {
@@ -182,6 +202,4 @@ final class UserManager: ObservableObject {
     
     userAnswerCollection(userId: userId).document(answerId).updateData(data)
   }
-  
-  // FCMToken
 }
