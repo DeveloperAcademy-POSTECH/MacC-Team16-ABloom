@@ -25,8 +25,8 @@ exports.sendNotiConnection = functions
 
           const message = {
             notification: {
-                title: `${fianceName}님과 연결되었어요.`,
-                body: '행복한 결혼 생활을 위해 함께 나아가요 🧡',
+                title: `${fianceName}님과 연결됐어요!`,
+                body: '이제 둘만의 첫 문답을 완성해 보세요 ✅',
             },
               token: recipientToken,
           };
@@ -124,7 +124,7 @@ exports.sendNotiOnReaciton = functions
               },
                 notification: {
                     title: `${myName}님이 반응을 남겼어요.`,
-                    body: '과연 어떤 반응을 남겼을까요? 🤔',
+                    body: '어떤 반응을 남겼는지 확인해 볼까요? 👀',
                 },
                 token: recipientToken,
             };

@@ -62,6 +62,7 @@ extension CategoryWaypointView {
   private var recommenedArea: some View {
     return Button {
       if !categoryWayVM.isLoggedIn {
+        print("로그인 안돼있음")
         dismiss()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
           activeSheet.kind = .signIn

@@ -29,7 +29,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
           if granted {
             self.scheduleDailyNotification()
             print("granted and set up local push")
-            application.registerForRemoteNotifications()
+            DispatchQueue.main.async {
+              application.registerForRemoteNotifications()
+            }
             Messaging.messaging().delegate = self
           }
         }
@@ -54,8 +56,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   
   func scheduleDailyNotification() {
     let content = UNMutableNotificationContent()
-    content.title = "오늘의 추천 질문을 확인해보세요."
-    content.body = "답변을 남기고 서로의 생각을 알아볼까요? ✏️"
+    content.title = "오늘의 추천 질문이 도착했어요."
+    content.body = "답변을 남기고 서로의 생각을 알아보세요 ✏️"
     
     var dateComponents = DateComponents()
     dateComponents.timeZone = TimeZone(identifier: "Asia/Seoul")
@@ -126,10 +128,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     Task {
       do {
-        let question = try await StaticQuestionManager.shared.getQuestionById(id: Int(questionID)!)
+        print(questionID)
+        let question = try await StaticQuestionManager.shared.getQuestionById(id: Int(questionID) ?? 0 )
         DispatchQueue.main.async {
           QnAListViewModel.shared.checkAnswerQuestion = question
           QnAListViewModel.shared.showCheckAnswerView = true
+          print("노티확인 here!!")
         }
       } catch {
         print("Error fetching question:", error)
@@ -143,6 +147,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                               didReceive response: UNNotificationResponse,
                               withCompletionHandler completionHandler: @escaping () -> Void) {
     let userInfo = response.notification.request.content.userInfo
+    
+    handleNotificationPayload(userInfo)
     
     completionHandler()
   }
