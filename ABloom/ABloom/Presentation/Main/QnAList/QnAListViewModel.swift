@@ -29,7 +29,7 @@ final class QnAListViewModel: ObservableObject {
     case isEmpty
     case isSorted
   }
-  
+
   func fetchData() {
     Task {
       getCurrentUser()
@@ -40,6 +40,7 @@ final class QnAListViewModel: ObservableObject {
   
   func fetchDataAfterSignIn() async {
     try? await UserManager.shared.fetchCurrentUser()
+    try? await UserManager.shared.fetchFianceUser()
     viewState = .isProgress
     fetchData()
   }

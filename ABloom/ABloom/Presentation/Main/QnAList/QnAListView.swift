@@ -10,7 +10,7 @@ import SwiftUI
 struct QnAListView: View {
   @StateObject var qnaListVM = QnAListViewModel()
   @ObservedObject var activeSheet: ActiveSheet = ActiveSheet()
-
+  
   var body: some View {
     ZStack(alignment: .bottom) {
       VStack(spacing: 0) {
@@ -35,12 +35,12 @@ struct QnAListView: View {
             .frame(maxHeight: .infinity)
         }
       }
-     
+      
       plusButton
     }
     .background(Color.background)
     .sheet(isPresented: $activeSheet.showSheet) { self.sheet }
-
+    
     .task {
       let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
       
@@ -142,7 +142,7 @@ extension QnAListView {
         .padding(.bottom, 7)
     }
     .sheet(isPresented: $qnaListVM.showCategoryWayPointSheet) {
-      CategoryWaypointView(isSheetOn: $qnaListVM.showCategoryWayPointSheet)
+      CategoryWaypointView(activeSheet: activeSheet, isSheetOn: $qnaListVM.showCategoryWayPointSheet)
     }
   }
   
@@ -158,9 +158,13 @@ extension QnAListView {
     SignInView(activeSheet: activeSheet)
       .presentationDetents([.height(302)])
       .onDisappear {
-        Task { await qnaListVM.fetchDataAfterSignIn() }
+        Task { 
+          await qnaListVM.fetchDataAfterSignIn()
+          print("activeSheet의 상태 \(activeSheet.kind)")
+        }
       }
   }
+  
   private var signUpSheet: some View {
     SignUpView()
       .interactiveDismissDisabled()

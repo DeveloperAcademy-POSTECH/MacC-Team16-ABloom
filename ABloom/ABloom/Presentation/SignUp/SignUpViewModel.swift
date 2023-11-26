@@ -8,6 +8,7 @@
 import FirebaseMessaging
 import SwiftUI
 
+@MainActor
 final class SignUpViewModel: ObservableObject {
   @Published var nowStep: SignUpStep = .step1
   @Published var selectedSex: UserSexType = .none

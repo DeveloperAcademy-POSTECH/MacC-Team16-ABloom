@@ -8,7 +8,7 @@ import SwiftUI
 
 struct SelectQuestionView: View {
   @StateObject var selectQVM = SelectQuestionViewModel()
-  @ObservedObject var activeSheet: ActiveSheet = ActiveSheet()
+  @ObservedObject var activeSheet: ActiveSheet
   @Environment(\.dismiss) private var dismiss
   @Binding var isSheetOn: Bool
   
@@ -36,7 +36,7 @@ struct SelectQuestionView: View {
     } rightView: {
       EmptyView()
     }
-    .padding(.top, 21)
+    .padding(.top, 5)
     
     .ignoresSafeArea(.all, edges: .bottom)
     
@@ -175,9 +175,11 @@ extension SelectQuestionView {
             .multilineTextAlignment(.center)
             .padding(.bottom, 15)
           
-          // TODO: 로그인 팝업
           Button {
-            activeSheet.kind = .signIn
+            isSheetOn.toggle()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+              activeSheet.kind = .signIn
+            }
           } label: {
             Text("로그인하기 >")
               .padding(.bottom, 3)
