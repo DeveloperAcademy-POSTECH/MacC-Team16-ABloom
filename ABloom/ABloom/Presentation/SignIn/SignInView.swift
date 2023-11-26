@@ -51,7 +51,7 @@ extension SignInView {
   private var buttonArea: some View {
     VStack(spacing: 12) {
       Button {
-        // Task { try await signInVM.signInKakao() }
+        signInVM.signInKakao()
       } label: {
         Image("signInKakao")
           .resizable()

@@ -73,6 +73,7 @@ final class AuthenticationManager {
   /// 로컬 Firebase에 저장된 유저 정보를 삭제하고 로그아웃 합니다.
   func signOut() throws {
     try Auth.auth().signOut()
+    SignInKakaoHelper().kakaoSignOut()
   }
   
   /// 회원 탈퇴를 위한 로직을 구현한 메서드입니다.
