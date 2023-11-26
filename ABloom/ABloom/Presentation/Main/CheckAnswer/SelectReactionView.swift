@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SelectReactionView: View {
-  @Environment(\.dismiss) private var dismiss
   @ObservedObject var checkAnswerVM: CheckAnswerViewModel
   
   var body: some View {
@@ -35,6 +34,18 @@ struct SelectReactionView: View {
     .padding(.horizontal, 16)
     .background(Color.white)
     .cornerRadius(16, corners: .allCorners)
+    .overlay(alignment: .topLeading) {
+      Button {
+        checkAnswerVM.showSelectReactionView = false
+      } label: {
+        Image("xmark")
+          .resizable()
+          .renderingMode(.template)
+          .frame(width: 16, height: 16)
+          .foregroundStyle(.gray400)
+          .padding(.all, 16)
+      }
+    }
     .padding(.horizontal, 20)
   }
 }
@@ -69,6 +80,6 @@ extension SelectReactionView {
 }
 
 #Preview {
-  SelectReactionView(checkAnswerVM: CheckAnswerViewModel(question: DBStaticQuestion(questionID: 0, category: "", content: "")))
+  SelectReactionView(checkAnswerVM: CheckAnswerViewModel())
     .background(Color.black)
 }

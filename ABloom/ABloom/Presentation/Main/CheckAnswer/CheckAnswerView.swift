@@ -8,16 +8,10 @@
 import SwiftUI
 
 struct CheckAnswerView: View {
-  @StateObject var checkAnswerVM: CheckAnswerViewModel
-  
-  let question: DBStaticQuestion
-  
   @Environment(\.dismiss) private var dismiss
-  
-  init(question: DBStaticQuestion) {
-    self.question = question
-    self._checkAnswerVM = StateObject(wrappedValue: CheckAnswerViewModel(question: question))
-  }
+  @StateObject var checkAnswerVM = CheckAnswerViewModel()
+
+  let question: DBStaticQuestion
   
   var body: some View {
     ScrollView {
@@ -59,6 +53,9 @@ struct CheckAnswerView: View {
         Color.black.opacity(0.4).ignoresSafeArea()
         SelectReactionView(checkAnswerVM: checkAnswerVM)
       }
+    }
+    .task {
+      checkAnswerVM.getAnswers(dbQuestion: question)
     }
   }
 }

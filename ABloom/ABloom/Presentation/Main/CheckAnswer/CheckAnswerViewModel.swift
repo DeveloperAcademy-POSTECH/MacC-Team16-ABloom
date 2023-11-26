@@ -9,7 +9,7 @@ import Foundation
 
 @MainActor
 final class CheckAnswerViewModel: ObservableObject {
-  let question: DBStaticQuestion
+  var dbQuestion: DBStaticQuestion = DBStaticQuestion(questionID: 1, category: "", content: "")
   @Published var isDataReady = false
   
   @Published var currentUser: DBUser?
@@ -75,13 +75,9 @@ final class CheckAnswerViewModel: ObservableObject {
     }
   }
   
-  init(question: DBStaticQuestion) {
-    self.question = question
-    getAnswers()
-  }
-  
-  func getAnswers() {
+  func getAnswers(dbQuestion: DBStaticQuestion) {
     self.isDataReady = false
+    self.dbQuestion = dbQuestion
     
     Task {
       getCurrentUser()
@@ -130,7 +126,7 @@ final class CheckAnswerViewModel: ObservableObject {
   private func getMyAnswer() async throws {
     do {
       guard let userId = currentUser?.userId else { return }
-      let myAnswer = try await UserManager.shared.getAnswer(userId: userId, questionId: question.questionID)
+      let myAnswer = try await UserManager.shared.getAnswer(userId: userId, questionId: self.dbQuestion.questionID)
       self.currentUserAnswer = myAnswer.answer
       self.currentUserAnswerId = myAnswer.answerId
       self.currentUserAnswerStatus = .answered
@@ -149,7 +145,7 @@ final class CheckAnswerViewModel: ObservableObject {
     }
     
     do {
-      let fianceAnswer = try await UserManager.shared.getAnswer(userId: fianceId, questionId: question.questionID)
+      let fianceAnswer = try await UserManager.shared.getAnswer(userId: fianceId, questionId: self.dbQuestion.questionID)
       self.fianceAnswer = fianceAnswer.answer
       self.fianceAnswerId = fianceAnswer.answerId
       self.fianceAnswerStatus = .answered
