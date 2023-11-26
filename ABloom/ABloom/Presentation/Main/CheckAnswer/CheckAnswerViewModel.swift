@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum SheetType: String {
+  case connect = "연결하기 >"
+  case write = "작성하기 >"
+}
+
 @MainActor
 final class CheckAnswerViewModel: ObservableObject {
   var dbQuestion: DBStaticQuestion = DBStaticQuestion(questionID: 1, category: "", content: "")
@@ -25,6 +30,9 @@ final class CheckAnswerViewModel: ObservableObject {
   
   @Published var recentDate: Date = .distantPast
     
+  @Published var showSheet: Bool = false
+  @Published var showSheetType: SheetType = .connect
+  
   @Published var showSelectReactionView: Bool = false
   @Published var selectedReaction: ReactionStatus = .noReact(.wait)
   
