@@ -7,23 +7,31 @@
 
 import SwiftUI
 
+enum QnAListViewState {
+  case isProgress
+  case isEmpty
+  case isSorted
+}
+
+struct CouplueQnA: Hashable {
+  let question: DBStaticQuestion
+  var answers: [DBAnswer]
+}
+
 @MainActor
 final class QnAListViewModel: ObservableObject {
   @Published var currentUser: DBUser?
-  @Published var coupleAnswers: [DBStaticQuestion: [DBAnswer]] = [:]
   
+  @Published var coupleQnA = [CouplueQnA]()
+    
   @Published var viewState: QnAListViewState = .isProgress
 
   @Published var showProfileSheet: Bool = false
   @Published var showQnASheet: Bool = false
   @Published var showCategoryWayPointSheet: Bool = false
   
-  enum QnAListViewState {
-    case isProgress
-    case isEmpty
-    case isSorted
-  }
-
+  @Published var selectedQuestion: DBStaticQuestion = DBStaticQuestion(questionID: 0, category: "", content: "")
+  
   func fetchData() {
     Task {
       getCurrentUser()
@@ -60,7 +68,7 @@ final class QnAListViewModel: ObservableObject {
     appendMyAnswers()
     appendFianceAnswers()
     
-    if coupleAnswers.isEmpty {
+    if coupleQnA.isEmpty {
       self.viewState = .isEmpty
     }
   }
@@ -69,34 +77,25 @@ final class QnAListViewModel: ObservableObject {
     guard let myAnswers = AnswerManager.shared.myAnswers else { return }
     
     for myAnswer in myAnswers {
-      if let dbQuestion = getQuestions(qid: myAnswer.questionId) {
-                
-        if var answersForQuestion = coupleAnswers[dbQuestion] {
-          answersForQuestion.append(myAnswer)
-          coupleAnswers[dbQuestion] = answersForQuestion
-        } else {
-          coupleAnswers[dbQuestion] = [myAnswer]
-        }
-      }
+      guard let dbQuestion = getQuestions(qid: myAnswer.questionId) else { return }
+      coupleQnA.append(CouplueQnA(question: dbQuestion, answers: [myAnswer]))
     }
   }
   
   private func appendFianceAnswers() {
     guard let fianceAnswers = AnswerManager.shared.fianceAnswers else { return }
+    
     for fianceAnswer in fianceAnswers {
-
-      if let dbQuestion = getQuestions(qid: fianceAnswer.questionId) {
-        
-        if var answersForQuestion = coupleAnswers[dbQuestion] {
-          answersForQuestion.append(fianceAnswer)
-          coupleAnswers[dbQuestion] = answersForQuestion
-        } else {
-          coupleAnswers[dbQuestion] = [fianceAnswer]
-        }
-        
-        if self.coupleAnswers[dbQuestion]?.count == 2 {
-          self.coupleAnswers[dbQuestion]?.sort(by: { $0.date > $1.date })
-        }
+      guard let dbQuestion = getQuestions(qid: fianceAnswer.questionId) else { return }
+      
+      let currentUserAnswer = coupleQnA.first { $0.question == dbQuestion }
+      
+      if currentUserAnswer == nil {
+        coupleQnA.append(CouplueQnA(question: dbQuestion, answers: [fianceAnswer]))
+      } else {
+        guard let idx = coupleQnA.firstIndex(where: { $0.question == dbQuestion }) else { return }
+        coupleQnA[idx].answers.append(fianceAnswer)
+        coupleQnA[idx].answers.sort { $0.date > $1.date }
       }
     }
   }
@@ -112,9 +111,9 @@ final class QnAListViewModel: ObservableObject {
   }
   
   private func sortAnswers() {
-    let answers = self.coupleAnswers.sorted { $0.value[0].date > $1.value[0].date }
-    self.coupleAnswers = Dictionary(uniqueKeysWithValues: answers)
-    if coupleAnswers.isEmpty {
+    self.coupleQnA = self.coupleQnA.sorted { $0.answers[0].date > $1.answers[0].date }
+    
+    if coupleQnA.isEmpty {
       viewState = .isEmpty
     } else {
       viewState = .isSorted
@@ -122,7 +121,9 @@ final class QnAListViewModel: ObservableObject {
   }
   
   func checkAnswerStatus(question: DBStaticQuestion) -> AnswerStatus {
-    guard let coupleAnswer = self.coupleAnswers[question] else { return .error }
+    guard let idx = coupleQnA.firstIndex(where: { $0.question == question }) else { return .error }
+    
+    let coupleAnswer = self.coupleQnA[idx].answers
     guard let myId = UserManager.shared.currentUser?.userId else { return .error }
     
     if coupleAnswer.count == 1 {
@@ -146,10 +147,13 @@ final class QnAListViewModel: ObservableObject {
         }
       }
       
-      if coupleAnswer[0].reaction == nil && coupleAnswer[1].reaction == nil {
+      if coupleReaction0 == .error && coupleReaction1 == .error {
         return .reactOnlyFinace
       }
-      if coupleAnswer[0].reaction != nil && coupleAnswer[0].userId == myId {
+      
+      if coupleAnswer[0].userId == myId && coupleReaction0 != .error {
+        return .reactOnlyMe
+      } else if coupleAnswer[1].userId == myId && coupleReaction1 != .error  {
         return .reactOnlyMe
       } else {
         return .reactOnlyFinace
@@ -162,7 +166,8 @@ final class QnAListViewModel: ObservableObject {
     showProfileSheet = true
   }
   
-  func tapQnAListItem() {
+  func tapQnAListItem(_ question: DBStaticQuestion) {
+    selectedQuestion = question
     showQnASheet = true
   }
   
