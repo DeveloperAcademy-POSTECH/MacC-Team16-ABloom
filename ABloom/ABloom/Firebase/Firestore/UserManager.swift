@@ -85,14 +85,40 @@ final class UserManager: ObservableObject {
     userDocument(userId: userID).updateData(fcmToken)
   }
   
-  func connectFiance(with invitationCode: String) {
-    // TODO: 에러처리
-    guard let currentUser = self.currentUser else {
-      return
+  func connectFiance(connectionCode: String) async throws {
+    let snapshot = try await userCollection.whereField(DBUser.CodingKeys.invitationCode.rawValue, isEqualTo: connectionCode).getDocuments()
+    
+    /// 없는 코드에 접근한 경우
+    guard let target = snapshot.documents.first else {
+      throw ConnectionError.invalidConnectionCode
     }
     
-    let data: [String: Any] = [DBUser.CodingKeys.fiance.rawValue:invitationCode]
-    userDocument(userId: currentUser.userId).updateData(data)
+    let targetUser = try target.data(as: DBUser.self)
+    let targetUserId = targetUser.userId
+    guard let currentUser = UserManager.shared.currentUser else {
+      throw ConnectionError.notSignIn
+    }
+    
+    /// 본인 아이디를 넣은 경우
+    if currentUser.invitationCode == targetUser.invitationCode {
+      throw ConnectionError.selfConnection
+    }
+    
+    /// 상대방이 이미 연결되어 있는 경우
+    if targetUser.fiance != nil {
+      throw ConnectionError.fianceAlreadyExists
+    }
+    
+    try await connectionUpdate(userId: currentUser.userId, targetId: targetUserId)
+    try await fetchCurrentUser()
+    try await fetchFianceUser()
+    AnswerManager.shared.addSnapshotListenerForMyAnswer()
+    AnswerManager.shared.addSnapshotListenerForFianceAnswer()
+  }
+  
+  private func connectionUpdate(userId: String, targetId: String) async throws {
+    try await self.userDocument(userId: targetId).updateData([DBUser.CodingKeys.fiance.rawValue: userId])
+    try await self.userDocument(userId: userId).updateData([DBUser.CodingKeys.fiance.rawValue: targetId])
   }
   
   // MARK: Delete
@@ -133,22 +159,6 @@ final class UserManager: ObservableObject {
   
   
   // MARK: POST Method
-  func connectFiance(connectionCode: String) async throws {
-    let snapshot = try await userCollection.whereField(DBUser.CodingKeys.invitationCode.rawValue, isEqualTo: connectionCode).getDocuments()
-    
-    guard let target = snapshot.documents.first else {
-      throw URLError(.badServerResponse)
-    }
-    
-    // TODO: 에러처리
-    // 1. 상대방이 이미 연결되어 있는 경우
-    // 2. 없는 코드에 접근한 경우
-    let targetId = try target.data(as: DBUser.self).userId
-    let myId = try AuthenticationManager.shared.getAuthenticatedUser().uid
-    
-    try await userDocument(userId: targetId).updateData([DBUser.CodingKeys.fiance.rawValue:myId])
-    try await userDocument(userId: myId).updateData([DBUser.CodingKeys.fiance.rawValue:targetId])
-  }
 
   
   // MARK: Answer

@@ -51,6 +51,8 @@ final class ConnectionManager {
     try await connectionUpdate(userId: currentUser.userId, targetId: targetUserId)
     try await UserManager.shared.fetchCurrentUser()
     try await UserManager.shared.fetchFianceUser()
+    AnswerManager.shared.addSnapshotListenerForMyAnswer()
+    AnswerManager.shared.addSnapshotListenerForFianceAnswer()
   }
   
   private func connectionUpdate(userId: String, targetId: String) async throws {

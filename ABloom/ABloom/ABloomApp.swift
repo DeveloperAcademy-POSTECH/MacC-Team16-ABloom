@@ -20,8 +20,8 @@ struct ABloomApp: App {
       try? await StaticQuestionManager.shared.fetchStaticQuestions()
       StaticQuestionManager.shared.fetchFilterQuestions()
       try? await EssentialQuestionManager.shared.fetchEssentialCollections()
-      try? await AnswerManager.shared.fetchMyAnswers()
-      try? await AnswerManager.shared.fetchFianceAnswers()
+      AnswerManager.shared.addSnapshotListenerForMyAnswer()
+      AnswerManager.shared.addSnapshotListenerForFianceAnswer()
     }
     
     UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(named: "Purple 600")

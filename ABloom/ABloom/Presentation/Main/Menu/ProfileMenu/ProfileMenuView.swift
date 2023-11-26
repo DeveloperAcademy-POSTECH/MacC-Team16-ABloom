@@ -104,6 +104,7 @@ struct ProfileMenuView: View {
           }
         } label: {
           Text("완료")
+            .customFont(.headlineB)
         }
       }
       .tint(.purple700)
