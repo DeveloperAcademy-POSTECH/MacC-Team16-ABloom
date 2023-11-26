@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CategoryWaypointView: View {
   @StateObject var categoryWayVM = CategoryWaypointViewModel()
+  @ObservedObject var activeSheet: ActiveSheet
   @Environment(\.dismiss) private var dismiss
   @Binding var isSheetOn: Bool
   
@@ -29,14 +30,9 @@ struct CategoryWaypointView: View {
         }
         .padding(.horizontal, 20)
       }
-    
-      // FIXME: 안되고 있음
-      .sheet(isPresented: $categoryWayVM.activeSheet.showSheet) {
-        categoryWayVM.activeSheet.checkSheet()
-      }
       
       .navigationDestination(isPresented: $categoryWayVM.isSelectSheetOn, destination: {
-        SelectQuestionView(isSheetOn: $isSheetOn, selectedCategory: categoryWayVM.selectedCategory)
+        SelectQuestionView(activeSheet: activeSheet, isSheetOn: $isSheetOn, selectedCategory: categoryWayVM.selectedCategory)
           .ignoresSafeArea()
       })
       
@@ -55,7 +51,6 @@ struct CategoryWaypointView: View {
       } rightView: {
         EmptyView()
       }
-      .padding(.top, 16)
       
       .ignoresSafeArea(.all, edges: .bottom)
     }
@@ -66,11 +61,11 @@ extension CategoryWaypointView {
   
   private var recommenedArea: some View {
     return Button {
-      
-      // FIXME: 로그인 팝업 .sheet가 안 뜨는 현상 해결하기
       if !categoryWayVM.isLoggedIn {
-        categoryWayVM.loginSheetOn()
-        print(categoryWayVM.activeSheet.showSheet)
+        dismiss()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+          activeSheet.kind = .signIn
+        }
       } else if categoryWayVM.isAnswered { // TODO: 내비게이션 변수 처리
         // 문답확인뷰 이동
       } else {
@@ -124,8 +119,4 @@ extension CategoryWaypointView {
       }
     }
   }
-}
-
-#Preview {
-  CategoryWaypointView(isSheetOn: .constant(true))
 }

@@ -10,8 +10,6 @@ import SwiftUI
 @MainActor
 final class CategoryWaypointViewModel: ObservableObject {
   
-  @ObservedObject var activeSheet: ActiveSheet = ActiveSheet()
-  
   @AppStorage("lastQuestionChangeDate") var lastQuestionChangeDate: Date = Calendar.current.date(byAdding: .day, value: -2, to: Date())!
   
   // TODO: 차후 user Field로 생성하기
@@ -49,10 +47,6 @@ final class CategoryWaypointViewModel: ObservableObject {
     if let answeredQuestions = StaticQuestionManager.shared.filteredQuestions {
       self.answeredQuestionsID = answeredQuestions.map {$0.questionID}
     }
-  }
-  
-  func loginSheetOn() {
-    self.activeSheet.kind = .signIn
   }
   
   func isClicked(selectedCategory: Category) {

@@ -42,6 +42,7 @@ final class QnAListViewModel: ObservableObject {
   
   func fetchDataAfterSignIn() async {
     try? await UserManager.shared.fetchCurrentUser()
+    try? await UserManager.shared.fetchFianceUser()
     viewState = .isProgress
     fetchData()
   }

@@ -9,6 +9,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Foundation
 
+@MainActor
 final class UserManager: ObservableObject {
   static let shared = UserManager()
   
@@ -29,19 +30,26 @@ final class UserManager: ObservableObject {
   // MARK: Create
   func createUser(user: DBUser) throws {
     try userDocument(userId: user.userId).setData(from: user, merge: false)
+    Task {
+      try? await fetchCurrentUser()
+    }
   }
   
   
   // MARK: Retrieve
   func fetchCurrentUser() async throws {
     // TODO: 에러처리
-    let currentUser = try AuthenticationManager.shared.getAuthenticatedUser()
-    
-    self.currentUser = try await getUser(userId: currentUser.uid)
+    do {
+      let currentUser = try AuthenticationManager.shared.getAuthenticatedUser()
+      self.currentUser = try await getUser(userId: currentUser.uid)
+    } catch {
+      self.currentUser = nil
+    }
   }
   
   func fetchFianceUser() async throws {
     guard let fianceId = self.currentUser?.fiance else {
+      self.fianceUser = nil
       return
     }
     
@@ -58,11 +66,18 @@ final class UserManager: ObservableObject {
   func updateUserName(userId: String, name: String) throws {
     let data: [String: Any] = [DBUser.CodingKeys.name.rawValue:name]
     userDocument(userId: userId).updateData(data)
+    
+    Task {
+      try? await fetchCurrentUser()
+    }
   }
   
   func updateMarriageDate(userId: String, date: Date) throws {
     let data: [String: Any] = [DBUser.CodingKeys.marriageDate.rawValue:date]
     userDocument(userId: userId).updateData(data)
+    Task {
+      try? await fetchCurrentUser()
+    }
   }
   
   func updateFcmToken(userID: String, fcmToken: String) throws {
@@ -70,14 +85,40 @@ final class UserManager: ObservableObject {
     userDocument(userId: userID).updateData(fcmToken)
   }
   
-  func connectFiance(with invitationCode: String) {
-    // TODO: 에러처리
-    guard let currentUser = self.currentUser else {
-      return
+  func connectFiance(connectionCode: String) async throws {
+    let snapshot = try await userCollection.whereField(DBUser.CodingKeys.invitationCode.rawValue, isEqualTo: connectionCode).getDocuments()
+    
+    /// 없는 코드에 접근한 경우
+    guard let target = snapshot.documents.first else {
+      throw ConnectionError.invalidConnectionCode
     }
     
-    let data: [String: Any] = [DBUser.CodingKeys.fiance.rawValue:invitationCode]
-    userDocument(userId: currentUser.userId).updateData(data)
+    let targetUser = try target.data(as: DBUser.self)
+    let targetUserId = targetUser.userId
+    guard let currentUser = UserManager.shared.currentUser else {
+      throw ConnectionError.notSignIn
+    }
+    
+    /// 본인 아이디를 넣은 경우
+    if currentUser.invitationCode == targetUser.invitationCode {
+      throw ConnectionError.selfConnection
+    }
+    
+    /// 상대방이 이미 연결되어 있는 경우
+    if targetUser.fiance != nil {
+      throw ConnectionError.fianceAlreadyExists
+    }
+    
+    try await connectionUpdate(userId: currentUser.userId, targetId: targetUserId)
+    try await fetchCurrentUser()
+    try await fetchFianceUser()
+    AnswerManager.shared.addSnapshotListenerForMyAnswer()
+    AnswerManager.shared.addSnapshotListenerForFianceAnswer()
+  }
+  
+  private func connectionUpdate(userId: String, targetId: String) async throws {
+    try await self.userDocument(userId: targetId).updateData([DBUser.CodingKeys.fiance.rawValue: userId])
+    try await self.userDocument(userId: userId).updateData([DBUser.CodingKeys.fiance.rawValue: targetId])
   }
   
   // MARK: Delete
@@ -92,6 +133,11 @@ final class UserManager: ObservableObject {
     
     let data: [String: Any?] = [DBUser.CodingKeys.fiance.rawValue: nil]
     try await userDocument(userId: fiance).updateData(data as [AnyHashable: Any])
+    
+    Task {
+      try? await fetchCurrentUser()
+      try? await fetchFianceUser()
+    }
   }
   
   private func deleteSubCollection(userId: String) async throws {
@@ -113,22 +159,6 @@ final class UserManager: ObservableObject {
   
   
   // MARK: POST Method
-  func connectFiance(connectionCode: String) async throws {
-    let snapshot = try await userCollection.whereField(DBUser.CodingKeys.invitationCode.rawValue, isEqualTo: connectionCode).getDocuments()
-    
-    guard let target = snapshot.documents.first else {
-      throw URLError(.badServerResponse)
-    }
-    
-    // TODO: 에러처리
-    // 1. 상대방이 이미 연결되어 있는 경우
-    // 2. 없는 코드에 접근한 경우
-    let targetId = try target.data(as: DBUser.self).userId
-    let myId = try AuthenticationManager.shared.getAuthenticatedUser().uid
-    
-    try await userDocument(userId: targetId).updateData([DBUser.CodingKeys.fiance.rawValue:myId])
-    try await userDocument(userId: myId).updateData([DBUser.CodingKeys.fiance.rawValue:targetId])
-  }
 
   
   // MARK: Answer
@@ -182,6 +212,4 @@ final class UserManager: ObservableObject {
     
     userAnswerCollection(userId: userId).document(answerId).updateData(data)
   }
-  
-  // FCMToken
 }

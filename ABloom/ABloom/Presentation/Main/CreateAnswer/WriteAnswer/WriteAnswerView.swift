@@ -52,7 +52,6 @@ struct WriteAnswerView: View {
       })
       .disabled(writeAMV.ansText.isEmpty || writeAMV.isTextOver)
     }
-    .padding(.top, 21)
     
     // 백버튼 알림
     .alert("작성을 종료할까요?", isPresented: $writeAMV.isCancelAlertOn, actions: {
