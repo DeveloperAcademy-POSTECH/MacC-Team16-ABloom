@@ -23,7 +23,7 @@ final class QnAListViewModel: ObservableObject {
     case isEmpty
     case isSorted
   }
-  
+
   func fetchData() {
     Task {
       getCurrentUser()
