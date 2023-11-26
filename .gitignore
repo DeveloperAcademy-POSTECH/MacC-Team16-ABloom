@@ -96,3 +96,6 @@ iOSInjectionProject/
 
 # GoogleInfo
 ABloom/ABloom/GoogleService-Info.plist
+
+# Kakao ApiKey
+ABloom/ABloom/Kakao-Info.plist
