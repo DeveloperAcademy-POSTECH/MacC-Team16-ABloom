@@ -37,6 +37,25 @@ final class AnswerManager: ObservableObject {
   }
   
   // MARK: Retrieve
+  func addSnapshotListenerForMyAnswer() {
+    guard let currentUserId = UserManager.shared.currentUser?.userId else { return }
+    userAnswerCollection(userId: currentUserId).addSnapshotListener { querySnapshot, error in
+      guard let document = querySnapshot?.documents else { return }
+      
+      self.myAnswers = document.compactMap { try? $0.data(as: DBAnswer.self) }
+    }
+  }
+  
+  func addSnapshotListenerForFianceAnswer() {
+    guard let fianceId = UserManager.shared.currentUser?.fiance else { return }
+    
+    userAnswerCollection(userId: fianceId).addSnapshotListener { querySnapshot, error in
+      guard let document = querySnapshot?.documents else { return }
+      
+      self.fianceAnswers = document.compactMap { try? $0.data(as: DBAnswer.self) }
+    }
+  }
+  
   func fetchMyAnswers() async throws {
     guard let currentUserId = UserManager.shared.currentUser?.userId else { return }
     
