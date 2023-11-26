@@ -17,7 +17,7 @@ final class SignInKakaoHelper: NSObject {
 
   func openKakaoService(withCompletionHandler completionHandler: @escaping () -> Void) {
     if UserApi.isKakaoTalkLoginAvailable() { // 카카오톡 앱 이용 가능한지
-      UserApi.shared.loginWithKakaoTalk { oauthToken, error in // 카카오톡 앱으로 로그인
+      UserApi.shared.loginWithKakaoTalk { oAuthToken, error in // 카카오톡 앱으로 로그인
         if let error = error { // 로그인 실패 -> 종료
           print("Kakao Sign In Error: \(error.localizedDescription)")
           return
@@ -29,7 +29,7 @@ final class SignInKakaoHelper: NSObject {
         }
       }
     } else {
-      UserApi.shared.loginWithKakaoAccount { oauthToken, error in // 카카오톡 계정으로 로그인
+      UserApi.shared.loginWithKakaoAccount { oAuthToken, error in // 카카오톡 계정으로 로그인
         if let error = error { // 로그인 실패 > 종료
           print("Kakao Sign In Error: \(error.localizedDescription)")
           return
