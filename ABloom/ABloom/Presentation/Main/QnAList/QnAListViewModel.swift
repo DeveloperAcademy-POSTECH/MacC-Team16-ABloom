@@ -5,6 +5,7 @@
 //  Created by Lee Jinhee on 11/19/23.
 //
 
+import Combine
 import SwiftUI
 
 enum QnAListViewState {
@@ -22,6 +23,8 @@ struct CouplueQnA: Hashable {
 final class QnAListViewModel: ObservableObject {
   @Published var currentUser: DBUser?
   
+  @Published var currentUserAnswers: [DBAnswer]?
+  @Published var fianceAnswers: [DBAnswer]?
   @Published var coupleQnA = [CouplueQnA]()
     
   @Published var viewState: QnAListViewState = .isProgress
@@ -31,6 +34,8 @@ final class QnAListViewModel: ObservableObject {
   @Published var showCategoryWayPointSheet: Bool = false
   
   @Published var selectedQuestion: DBStaticQuestion = DBStaticQuestion(questionID: 0, category: "", content: "")
+  
+  private var cancellables = Set<AnyCancellable>()
   
   func fetchData() {
     Task {
@@ -56,11 +61,37 @@ final class QnAListViewModel: ObservableObject {
   }
   
   private func getAnswers() async {
+    // TODO: 로그인 시 두 줄 삭제
     try? await AnswerManager.shared.fetchMyAnswers()
     try? await AnswerManager.shared.fetchFianceAnswers()
-
-    appendCoupleAnswers()
     
+    self.currentUserAnswers = AnswerManager.shared.myAnswers
+    self.fianceAnswers = AnswerManager.shared.fianceAnswers
+    
+    await fetchCoupleAnswers()
+    
+    sortAnswers()
+  }
+    
+  private func fetchCoupleAnswers() async {
+   
+    AnswerManager.shared.$myAnswers
+      .sink { [weak self] answers in
+        self?.currentUserAnswers = answers
+        self?.updateCoupleAnswers()
+      }
+      .store(in: &cancellables)
+    
+    AnswerManager.shared.$fianceAnswers
+      .sink { [weak self] answers in
+        self?.fianceAnswers = answers
+        self?.updateCoupleAnswers()
+      }
+      .store(in: &cancellables)
+  }
+  
+  private func updateCoupleAnswers() {
+    appendCoupleAnswers()
     sortAnswers()
   }
   
@@ -72,9 +103,11 @@ final class QnAListViewModel: ObservableObject {
       self.viewState = .isEmpty
     }
   }
-  
+    
   private func appendMyAnswers() {
-    guard let myAnswers = AnswerManager.shared.myAnswers else { return }
+    coupleQnA = []
+    
+    guard let myAnswers = currentUserAnswers else { return }
     
     for myAnswer in myAnswers {
       guard let dbQuestion = getQuestions(qid: myAnswer.questionId) else { return }
@@ -83,7 +116,7 @@ final class QnAListViewModel: ObservableObject {
   }
   
   private func appendFianceAnswers() {
-    guard let fianceAnswers = AnswerManager.shared.fianceAnswers else { return }
+    guard let fianceAnswers = fianceAnswers else { return }
     
     for fianceAnswer in fianceAnswers {
       guard let dbQuestion = getQuestions(qid: fianceAnswer.questionId) else { return }
@@ -153,7 +186,7 @@ final class QnAListViewModel: ObservableObject {
       
       if coupleAnswer[0].userId == myId && coupleReaction0 != .error {
         return .reactOnlyMe
-      } else if coupleAnswer[1].userId == myId && coupleReaction1 != .error  {
+      } else if coupleAnswer[1].userId == myId && coupleReaction1 != .error {
         return .reactOnlyMe
       } else {
         return .reactOnlyFinace
