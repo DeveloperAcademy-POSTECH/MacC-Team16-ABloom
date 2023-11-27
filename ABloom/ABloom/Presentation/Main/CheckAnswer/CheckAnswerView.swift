@@ -66,7 +66,7 @@ extension CheckAnswerView {
   private var questionArea: some View {
     HStack {
       VStack(alignment: .leading, spacing: 12) {
-        Text(question.content.useNonBreakingSpace())
+        Text(question.content.containsNumbers() ? question.content : question.content.useNonBreakingSpace())
           .customFont(.headlineB)
         Text(checkAnswerVM.recentDate.formatToYMD())
           .customFont(.caption2R)

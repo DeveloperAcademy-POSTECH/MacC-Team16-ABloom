@@ -42,7 +42,12 @@ final class AnswerManager: ObservableObject {
     userAnswerCollection(userId: currentUserId).addSnapshotListener { querySnapshot, error in
       guard let document = querySnapshot?.documents else { return }
       
-      self.myAnswers = document.compactMap { try? $0.data(as: DBAnswer.self) }
+      self.myAnswers = document.compactMap { document in
+        var answer = try? document.data(as: DBAnswer.self)
+        answer?.answerId = document.documentID
+        
+        return answer
+      }
     }
   }
   
@@ -52,7 +57,12 @@ final class AnswerManager: ObservableObject {
     userAnswerCollection(userId: fianceId).addSnapshotListener { querySnapshot, error in
       guard let document = querySnapshot?.documents else { return }
       
-      self.fianceAnswers = document.compactMap { try? $0.data(as: DBAnswer.self) }
+      self.fianceAnswers = document.compactMap { document in
+        var answer = try? document.data(as: DBAnswer.self)
+        answer?.answerId = document.documentID
+        
+        return answer
+      }
     }
   }
   
@@ -78,6 +88,7 @@ final class AnswerManager: ObservableObject {
     userAnswerCollection(userId: userId).document(answerId).updateData(data)
   }
   
+  // MARK: Not Use
   func updateAnswerComplete(userId: String, answerId: String, status: Bool) {
     let data: [String: Any] = [DBAnswer.CodingKeys.isComplete.rawValue:status]
     

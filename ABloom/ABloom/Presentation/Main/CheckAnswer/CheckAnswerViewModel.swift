@@ -5,6 +5,7 @@
 //  Created by Lee Jinhee on 11/20/23.
 //
 
+import Combine
 import Foundation
 
 enum SheetType: String {
@@ -43,6 +44,8 @@ final class CheckAnswerViewModel: ObservableObject {
   
   @Published var currentUserReactionStatus: ReactionStatus = .noReact(.plus)
   @Published var fianceReactionStatus: ReactionStatus = .noReact(.lock)
+  
+  private var cancellables = Set<AnyCancellable>()
   
   var currentUserAnswerContent: String {
     switch currentUserAnswerStatus {
@@ -91,17 +94,19 @@ final class CheckAnswerViewModel: ObservableObject {
       getCurrentUser()
       getFianceUser()
       
-      try? await getMyAnswer()
-      try? await getFianceAnswer()
+      await getMyAnswer()
+      await getFianceAnswer()
       
-      self.isAnswersDone = (currentUserAnswer != nil && fianceAnswer != nil)
-      
-      getRecentDate()
-      
-      checkReactions()
+      updateCoupleAnswers()
       
       self.isDataReady = true
     }
+  }
+  
+  private func updateCoupleAnswers() {
+    self.isAnswersDone = (currentUserAnswer != nil && fianceAnswer != nil)
+    getRecentDate()
+    checkReactions()
   }
   
   // MARK: - 최근 날짜 불러오기
@@ -131,36 +136,51 @@ final class CheckAnswerViewModel: ObservableObject {
   }
   
   // MARK: - 대답 가져오기
-  private func getMyAnswer() async throws {
-    do {
-      guard let userId = currentUser?.userId else { return }
-      let myAnswer = try await UserManager.shared.getAnswer(userId: userId, questionId: self.dbQuestion.questionID)
-      self.currentUserAnswer = myAnswer.answer
-      self.currentUserAnswerId = myAnswer.answerId
-      self.currentUserAnswerStatus = .answered
-    } catch {
-      self.currentUserAnswerStatus = .noAnswered
-      self.currentUserReactionStatus = .noReact(.lock)
-    }
+  private func getMyAnswer() async {
+    AnswerManager.shared.$myAnswers
+      .sink { [weak self] answers in
+        guard let filterdAnswer = answers?.filter({ answer in
+          answer.questionId == self?.dbQuestion.questionID
+        }).first else {
+          self?.currentUserAnswerStatus = .noAnswered
+          self?.currentUserReactionStatus = .noReact(.lock)
+          return
+        }
+        
+        self?.currentUserAnswer = filterdAnswer
+        self?.currentUserAnswerId = filterdAnswer.answerId
+        self?.currentUserAnswerStatus = .answered
+        
+        self?.updateCoupleAnswers()
+      }
+      .store(in: &cancellables)
   }
   
-  private func getFianceAnswer() async throws {
-    guard let fianceId = fianceUser?.userId else {
+  private func getFianceAnswer() async {
+    guard let _ = fianceUser?.userId else {
       self.fianceAnswerStatus = .unconnected
       self.fianceReactionStatus = .noReact(.lock)
       
       return
     }
     
-    do {
-      let fianceAnswer = try await UserManager.shared.getAnswer(userId: fianceId, questionId: self.dbQuestion.questionID)
-      self.fianceAnswer = fianceAnswer.answer
-      self.fianceAnswerId = fianceAnswer.answerId
-      self.fianceAnswerStatus = .answered
-    } catch {
-      self.fianceAnswerStatus = .noAnswered
-      self.fianceReactionStatus = .noReact(.lock)
-    }
+    AnswerManager.shared.$fianceAnswers
+      .sink { [weak self] answers in
+        guard let filterdAnswer = answers?.filter({ answer in
+          answer.questionId == self?.dbQuestion.questionID
+        }).first else {
+          self?.fianceAnswerStatus = .noAnswered
+          self?.fianceReactionStatus = .noReact(.lock)
+          return
+        }
+        
+        self?.fianceAnswer = filterdAnswer
+        self?.fianceAnswerId = filterdAnswer.answerId
+        self?.fianceAnswerStatus = .answered
+        
+        self?.updateCoupleAnswers()
+      }
+      .store(in: &cancellables)
   }
   
   // MARK: - 반응 체크하기 -> 둘 다 긍정적이면 true
@@ -211,19 +231,5 @@ final class CheckAnswerViewModel: ObservableObject {
     guard let currentUserAnswerId = currentUserAnswerId else { return }
     
     AnswerManager.shared.updateReaction(userId: currentUserId, answerId: currentUserAnswerId, reaction: selectedReactionType)
-    updateAnswerComplete()
-  }
-  
-  private func updateAnswerComplete() {
-    let positive = checkReactions()
-    
-    guard let currentUserId = currentUser?.userId else { return }
-    guard let fianceId = fianceUser?.userId else { return }
-    guard let currentUserAnswerId = self.currentUserAnswerId else { return }
-    guard let fianceAnswerId = self.fianceAnswerId else { return }
-    
-    AnswerManager.shared.updateAnswerComplete(userId: currentUserId, answerId: currentUserAnswerId, status: positive)
-    AnswerManager.shared.updateAnswerComplete(userId: fianceId, answerId: fianceAnswerId, status: positive)
-    
   }
 }
