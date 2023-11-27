@@ -71,7 +71,8 @@ extension CategoryWaypointView {
       if categoryWayVM.questionStatus == .notLoggedIn {
         dismiss()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-          activeSheet.kind = .signIn }
+          activeSheet.kind = .signIn
+        }
       } else {
         categoryWayVM.recommenedQClicked()
       }

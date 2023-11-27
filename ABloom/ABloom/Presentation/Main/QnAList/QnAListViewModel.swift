@@ -20,6 +20,8 @@ struct CouplueQnA: Hashable {
 
 @MainActor
 final class QnAListViewModel: ObservableObject {
+  static let shared = QnAListViewModel()
+  
   @Published var currentUser: DBUser?
   
   @Published var coupleQnA = [CouplueQnA]()
