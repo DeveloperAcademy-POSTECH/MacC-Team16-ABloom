@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CategoryWaypointView: View {
   @StateObject var categoryWayVM = CategoryWaypointViewModel()
-  @ObservedObject var activeSheet: ActiveSheet
+  @StateObject var activeSheet: ActiveSheet
   @Environment(\.dismiss) private var dismiss
   @Binding var isSheetOn: Bool
   
@@ -32,8 +32,15 @@ struct CategoryWaypointView: View {
       }
       
       .navigationDestination(isPresented: $categoryWayVM.isSelectSheetOn, destination: {
-        SelectQuestionView(activeSheet: activeSheet, isSheetOn: $isSheetOn, selectedCategory: categoryWayVM.selectedCategory)
-          .ignoresSafeArea()
+        SelectQuestionView(isLoggedIn: !(categoryWayVM.questionStatus == .notLoggedIn), activeSheet: activeSheet, isSheetOn: $isSheetOn, selectedCategory: categoryWayVM.selectedCategory)
+      })
+      
+      .navigationDestination(isPresented: $categoryWayVM.isRecommenedNavOn, destination: {
+        if categoryWayVM.questionStatus == .answered {
+          CheckAnswerView(question: categoryWayVM.recommendQuestion)
+        } else if categoryWayVM.questionStatus == .notAnswered {
+          WriteAnswerView(isSheetOn: $isSheetOn, question: categoryWayVM.recommendQuestion)
+        }
       })
       
       .task {
@@ -61,16 +68,12 @@ extension CategoryWaypointView {
   
   private var recommenedArea: some View {
     return Button {
-      if !categoryWayVM.isLoggedIn {
+      if categoryWayVM.questionStatus == .notLoggedIn {
         dismiss()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-          activeSheet.kind = .signIn
-        }
-      } else if categoryWayVM.isAnswered { // TODO: 내비게이션 변수 처리
-        // 문답확인뷰 이동
+          activeSheet.kind = .signIn }
       } else {
-        // 문답 작성뷰 이동 변수 처리
-        //        WriteAnswerView(isSheetOn: $isSheetOn, question: categoryWayVM.recommendQuestion)
+        categoryWayVM.recommenedQClicked()
       }
     } label: {
       VStack(alignment: .leading, spacing: 5) {
