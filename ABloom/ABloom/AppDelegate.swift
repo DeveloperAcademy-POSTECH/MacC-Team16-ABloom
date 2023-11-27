@@ -128,12 +128,11 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     Task {
       do {
-        print(questionID)
-        let question = try await StaticQuestionManager.shared.getQuestionById(id: Int(questionID) ?? 0 )
+        
+        let question = try await StaticQuestionManager.shared.getQuestionById(id: Int(questionID) ?? 1 )
         DispatchQueue.main.async {
-          QnAListViewModel.shared.checkAnswerQuestion = question
-          QnAListViewModel.shared.showCheckAnswerView = true
-          print("노티확인 here!!")
+          QnAListViewModel.shared.tapQnAListItem(question)
+          print("here 노티")
         }
       } catch {
         print("Error fetching question:", error)

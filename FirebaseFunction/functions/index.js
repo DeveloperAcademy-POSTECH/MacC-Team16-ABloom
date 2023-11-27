@@ -71,7 +71,7 @@ exports.sendNotiOnCompletion = functions
             const message = {
               data: {
                 viewToOpen: 'AnswerCheck',
-                qid: `$(ansQid)`
+                qid: `${ansQid}`
               },
                 notification: {
                     title: `둘만의 문답이 완성됐어요!`,
@@ -120,7 +120,7 @@ exports.sendNotiOnReaciton = functions
             const message = {
               data: {
                 viewToOpen: 'AnswerCheck',
-                qid: `$(ansQid)`
+                qid: `${ansQid}`
               },
                 notification: {
                     title: `${myName}님이 반응을 남겼어요.`,
@@ -170,7 +170,7 @@ exports.sendNotificationToFiance = functions
             const message = {
               data: {
                 viewToOpen: 'AnswerCheck',
-                qid: `$(ansQid)`
+                qid: `${ansQid}`
               },
                 notification: {
                     title: `${myName}님이 답변을 작성했어요.`,

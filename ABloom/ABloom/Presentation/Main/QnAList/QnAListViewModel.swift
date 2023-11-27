@@ -22,10 +22,6 @@ struct CouplueQnA: Hashable {
 final class QnAListViewModel: ObservableObject {
   static let shared = QnAListViewModel()
   
-  @Published var showCheckAnswerView = false
-  @Published var checkAnswerQuestion: DBStaticQuestion? = nil
-  
-  
   @Published var currentUser: DBUser?
   
   @Published var coupleQnA = [CouplueQnA]()
@@ -175,6 +171,7 @@ final class QnAListViewModel: ObservableObject {
   func tapQnAListItem(_ question: DBStaticQuestion) {
     selectedQuestion = question
     showQnASheet = true
+    print("int tap: \(question.content)")
   }
   
   func tapPlusButton() {

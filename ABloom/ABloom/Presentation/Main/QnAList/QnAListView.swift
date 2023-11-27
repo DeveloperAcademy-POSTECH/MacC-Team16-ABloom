@@ -55,11 +55,6 @@ struct QnAListView: View {
       }
       qnaListVM.fetchData()
     }
-    .sheet(isPresented: $qnaListVM.showCheckAnswerView, content: {
-      if let question = qnaListVM.checkAnswerQuestion {
-        CheckAnswerView(question: question)
-      }
-    })
   }
 }
 
