@@ -29,26 +29,26 @@ struct CustomNavigationBarModifier<C, L, R>: ViewModifier where C: View, L: View
           
           self.rightView?()
         }
-        .frame(height: 25)
-        .frame(maxWidth: .infinity)
-        .padding(.horizontal, 16)
         
         HStack {
           Spacer()
           
           self.centerView?()
-            .fontWithTracking(.title3R)
-            .foregroundStyle(.stone800)
+            .customFont(.bodyB)
+            .foregroundStyle(.black)
           
           Spacer()
         }
       }
+      .frame(height: 25)
+      .frame(maxWidth: .infinity)
+      .padding(.horizontal, 16)
+      .padding(.top, 16)
       
       content
-      
-      Spacer()
     }
-    .padding(.top, 10)
     .navigationBarBackButtonHidden(true)
+    .ignoresSafeArea(.keyboard)
+    
   }
 }

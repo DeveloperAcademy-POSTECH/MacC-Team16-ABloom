@@ -8,8 +8,10 @@
 import Firebase
 import FirebaseCore
 import FirebaseMessaging
+import KakaoSDKCommon
 import UserNotifications
 
+@MainActor
 class AppDelegate: NSObject, UIApplicationDelegate {
   
   // 앱이 켜졌을 때 자동 실행
@@ -18,6 +20,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     // 파이어베이스 설정
     FirebaseApp.configure()
     
+    KakaoSDK.initSDK(appKey: Bundle.main.kakaoApiKey)
+
     UNUserNotificationCenter.current().delegate = self
     
     let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
@@ -28,13 +32,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
           if granted {
             self.scheduleDailyNotification()
             print("granted and set up local push")
+            DispatchQueue.main.async {
+              application.registerForRemoteNotifications()
+            }
+            Messaging.messaging().delegate = self
           }
         }
       )
-    
-    application.registerForRemoteNotifications()
-    
-    Messaging.messaging().delegate = self
     
     return true
   }
@@ -55,8 +59,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   
   func scheduleDailyNotification() {
     let content = UNMutableNotificationContent()
-    content.title = "오늘의 추천 질문을 확인해보세요"
-    content.body = "답변을 작성하고 서로의 생각을 알아볼까요?"
+    content.title = "오늘의 추천 질문이 도착했어요."
+    content.body = "답변을 남기고 서로의 생각을 알아보세요 ✏️"
     
     var dateComponents = DateComponents()
     dateComponents.timeZone = TimeZone(identifier: "Asia/Seoul")
@@ -115,7 +119,28 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     let userInfo = notification.request.content.userInfo
     
+    handleNotificationPayload(userInfo)
+    
     completionHandler([[.banner, .badge, .sound]])
+  }
+  
+  // when notification clicked => navigation
+  private func handleNotificationPayload(_ userInfo: [AnyHashable: Any]) {
+    guard let viewToOpen = userInfo["viewToOpen"] as? String, viewToOpen == "AnswerCheck",
+          let questionID = userInfo["qid"] as? String else { print("error"); return }
+    
+    Task {
+      do {
+        
+        let question = try await StaticQuestionManager.shared.getQuestionById(id: Int(questionID) ?? 1 )
+        DispatchQueue.main.async {
+          QnAListViewModel.shared.tapQnAListItem(question)
+          print("here 노티")
+        }
+      } catch {
+        print("Error fetching question:", error)
+      }
+    }
   }
   
   // 푸시메세지를 받았을 때
@@ -124,6 +149,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                               didReceive response: UNNotificationResponse,
                               withCompletionHandler completionHandler: @escaping () -> Void) {
     let userInfo = response.notification.request.content.userInfo
+    
+    handleNotificationPayload(userInfo)
     
     completionHandler()
   }

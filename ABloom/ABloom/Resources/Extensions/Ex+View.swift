@@ -82,6 +82,27 @@ extension View {
     clipShape( RoundedCorner(radius: radius, corners: corners) )
   }
   
+  /// QnABackWall
+  func backWall() -> some View {
+    RoundedRectangle(cornerRadius: 20)
+      .glassBG1Shadow()
+      .foregroundStyle(glassGradient())
+  }
+  
+  func fontWithTracking(_ fontStyle: Font, tracking: CGFloat = 1, lineSpacing: CGFloat = 5) -> some View {
+    self
+      .font(fontStyle)
+      .lineSpacing(lineSpacing)
+      .tracking(tracking)
+  }
+  
+  func hidden(_ by: Bool) -> some View {
+    modifier(Hidden(hidden: by))
+  }
+  
+  
+  // MARK: - 2.0에서 사용
+  
   /// customNavigationBar
   func customNavigationBar<C, L, R>(
     centerView: @escaping (() -> C),
@@ -93,22 +114,12 @@ extension View {
     )
   }
   
-  /// QnABackWall
-  func backWall() -> some View {
-    RoundedRectangle(cornerRadius: 20)
-      .glassBG1Shadow()
-      .foregroundStyle(glassGradient())
-  }
   
-  /**
-   Custom Font
-   - 모든 Text는 자간이 1 혹은 -0.4 이므로 아래의 Modifier에 value가 1 혹은 -0.4로 적용되어야 함
-   */
-  func fontWithTracking(_ fontStyle: Font, tracking: CGFloat = 1, lineSpacing: CGFloat = 5) -> some View {
+  func customFont(_ fontStyle: Font) -> some View {
     self
       .font(fontStyle)
-      .lineSpacing(lineSpacing)
-      .tracking(tracking)
+      .lineSpacing(7) // 160% 적용하기
+      .tracking(-0.4)
   }
   
   /// textField Placeholder customize
@@ -122,4 +133,19 @@ extension View {
         self
       }
     }
+}
+
+
+// TODO: 이 아이는 왜 여기에 있죠..0.0
+struct Hidden: ViewModifier {
+  var hidden: Bool
+  
+  func body(content: Content) -> some View {
+    if hidden {
+      content
+        .hidden()
+    } else {
+      content
+    }
+  }
 }
