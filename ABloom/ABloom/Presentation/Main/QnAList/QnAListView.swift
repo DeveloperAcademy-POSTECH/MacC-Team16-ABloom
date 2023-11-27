@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct QnAListView: View {
-  @StateObject var qnaListVM = QnAListViewModel()
-  @ObservedObject var activeSheet: ActiveSheet = ActiveSheet()
+  @StateObject var qnaListVM = QnAListViewModel.shared
+  @StateObject var activeSheet: ActiveSheet = ActiveSheet()
 
   var body: some View {
     ZStack(alignment: .bottom) {
@@ -35,12 +35,12 @@ struct QnAListView: View {
             .frame(maxHeight: .infinity)
         }
       }
-     
+      
       plusButton
     }
     .background(Color.background)
     .sheet(isPresented: $activeSheet.showSheet) { self.sheet }
-
+    
     .task {
       let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
       
@@ -80,18 +80,18 @@ extension QnAListView {
   private var scrollView: some View {
     ScrollView(.vertical) {
       LazyVStack(spacing: 12) {
-        ForEach(Array(qnaListVM.coupleAnswers), id: \.key) { question, answers in
+        ForEach(qnaListVM.coupleQnA, id: \.self) { qna in
           Button {
-            qnaListVM.tapQnAListItem()
+            qnaListVM.tapQnAListItem(qna.question)
           } label: {
             QnAListItem(
-              question: question,
-              date: answers[0].date,
-              answerStatus: qnaListVM.checkAnswerStatus(question: question)
+              question: qna.question,
+              date: qna.answers[0].date,
+              answerStatus: qnaListVM.checkAnswerStatus(question: qna.question)
             )
           }
           .sheet(isPresented: $qnaListVM.showQnASheet) {
-            CheckAnswerView(question: question)
+            CheckAnswerView(question: qnaListVM.selectedQuestion)
           }
           .padding(.horizontal, 20)
         }
@@ -137,7 +137,7 @@ extension QnAListView {
         .padding(.bottom, 7)
     }
     .sheet(isPresented: $qnaListVM.showCategoryWayPointSheet) {
-      CategoryWaypointView(isSheetOn: $qnaListVM.showCategoryWayPointSheet)
+      CategoryWaypointView(activeSheet: activeSheet, isSheetOn: $qnaListVM.showCategoryWayPointSheet)
     }
   }
   
@@ -153,9 +153,13 @@ extension QnAListView {
     SignInView(activeSheet: activeSheet)
       .presentationDetents([.height(302)])
       .onDisappear {
-        Task { await qnaListVM.fetchDataAfterSignIn() }
+        Task { 
+          await qnaListVM.fetchDataAfterSignIn()
+          print("activeSheet의 상태 \(activeSheet.kind)")
+        }
       }
   }
+  
   private var signUpSheet: some View {
     SignUpView()
       .interactiveDismissDisabled()

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SelectReactionView: View {
-  @Environment(\.dismiss) private var dismiss
   @ObservedObject var checkAnswerVM: CheckAnswerViewModel
   
   var body: some View {
@@ -21,9 +20,11 @@ struct SelectReactionView: View {
         .multilineTextAlignment(.center)
       
       reactionArea
-      
+        .padding(.bottom, 22)
+
       Button {
         checkAnswerVM.showSelectReactionView = false
+        checkAnswerVM.updateReaction()
       } label: {
         PurpleTextButton(title: "완료")
       }
@@ -33,6 +34,18 @@ struct SelectReactionView: View {
     .padding(.horizontal, 16)
     .background(Color.white)
     .cornerRadius(16, corners: .allCorners)
+    .overlay(alignment: .topLeading) {
+      Button {
+        checkAnswerVM.showSelectReactionView = false
+      } label: {
+        Image("xmark")
+          .resizable()
+          .renderingMode(.template)
+          .frame(width: 16, height: 16)
+          .foregroundStyle(.gray400)
+          .padding(.all, 16)
+      }
+    }
     .padding(.horizontal, 20)
   }
 }
@@ -40,13 +53,13 @@ struct SelectReactionView: View {
 extension SelectReactionView {
   private var reactionArea: some View {
     VStack(spacing: 29) {
-      HStack {
+      HStack(spacing: 20) {
         reactionButton(reaction: .good)
         reactionButton(reaction: .knowEachOther)
       }
       .frame(height: 128)
       
-      HStack {
+      HStack(spacing: 20) {
         reactionButton(reaction: .moreCommunication)
         reactionButton(reaction: .moreResearch)
       }
@@ -56,10 +69,12 @@ extension SelectReactionView {
   
   private func reactionButton(reaction: ReactionType) -> some View {
     Button {
-      checkAnswerVM.selectedReaction = reaction
+      checkAnswerVM.selectedReaction = ReactionStatus.react(reaction)
     } label: {
-      Text(reaction.reactionContent)
-        .background(checkAnswerVM.selectedReaction == reaction ? .purple300 : .purple100)
+      Image(reaction.imageName)
+        .resizable()
+        .frame(width: 128, height: 128)
+        .opacity(checkAnswerVM.selectedReaction == ReactionStatus.react(reaction) ? 1.0 : 0.4)
     }
   }
 }

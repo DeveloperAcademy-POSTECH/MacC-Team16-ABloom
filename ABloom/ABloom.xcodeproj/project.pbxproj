@@ -95,6 +95,7 @@
 		60EEC2F72B1231560049DAFD /* SignInKakaoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EEC2F62B1231560049DAFD /* SignInKakaoHelper.swift */; };
 		60EEC2FA2B123A700049DAFD /* Kakao-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60EEC2F92B123A700049DAFD /* Kakao-Info.plist */; };
 		60EEC2FC2B125D210049DAFD /* Ex+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EEC2FB2B125D210049DAFD /* Ex+Bundle.swift */; };
+		60A134642B103593002E0A9F /* ReactionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A134632B103593002E0A9F /* ReactionStatus.swift */; };
 		AE02ABED2B0C8A08004648F9 /* FLAnimatedImage in Frameworks */ = {isa = PBXBuildFile; productRef = AE02ABEC2B0C8A08004648F9 /* FLAnimatedImage */; };
 		AE1AE9FB2AE51BF00010089F /* QnAListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AE9FA2AE51BF00010089F /* QnAListItem.swift */; };
 		AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AE2BB5F32AD650680003CD85 /* .swiftlint.yml */; };
@@ -203,6 +204,7 @@
 		607DA2152AEFE900005AE11C /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 		607DA2172AF0B07D005AE11C /* Ex+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Date.swift"; sourceTree = "<group>"; };
 		6086BAA82AF130A800E2DC3A /* DBEssentialQuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBEssentialQuestionModel.swift; sourceTree = "<group>"; };
+		60A134632B103593002E0A9F /* ReactionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionStatus.swift; sourceTree = "<group>"; };
 		60E05FAF2AFBB66200AC6AE8 /* TipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
 		60EEC2F62B1231560049DAFD /* SignInKakaoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInKakaoHelper.swift; sourceTree = "<group>"; };
 		60EEC2F92B123A700049DAFD /* Kakao-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Kakao-Info.plist"; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				3D4412592AE4F8B600FD5A51 /* WebView.swift */,
 				60528FA82B0C97A900A29E6F /* ActiveSheet.swift */,
 				3DD485E22B0B9BA500AF5E02 /* MarriageStatus.swift */,
+				60A134632B103593002E0A9F /* ReactionStatus.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -946,6 +949,7 @@
 				AE8D3C512ADE19E0009899A7 /* Ex+Font.swift in Sources */,
 				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
 				3D4412492AE4C49700FD5A51 /* AuthenticationManager.swift in Sources */,
+				60A134642B103593002E0A9F /* ReactionStatus.swift in Sources */,
 				AE8D3C512ADE19E0009899A7 /* Ex+Font.swift in Sources */,
 				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
 				3DF31AED2B0453FB00F0EA4E /* CheckAnswerView.swift in Sources */,

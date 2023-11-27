@@ -74,6 +74,11 @@ final class AuthenticationManager {
   func signOut() throws {
     try Auth.auth().signOut()
     SignInKakaoHelper().kakaoSignOut()
+    
+    Task {
+      try? await UserManager.shared.fetchCurrentUser()
+      try? await UserManager.shared.fetchFianceUser()
+    }
   }
   
   /// 회원 탈퇴를 위한 로직을 구현한 메서드입니다.

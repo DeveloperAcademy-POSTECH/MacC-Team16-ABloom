@@ -15,6 +15,8 @@ struct DBAnswer: Codable, Hashable {
   let isComplete: Bool?
   let reaction: Int?
   
+  var answerId: String?
+  
   var reactionType: ReactionType {
     if let reaction = self.reaction {
       return ReactionType(rawValue: reaction) ?? .error

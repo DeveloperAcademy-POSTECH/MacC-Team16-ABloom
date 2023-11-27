@@ -9,6 +9,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Foundation
 
+@MainActor
 final class AnswerManager: ObservableObject {
   @Published var myAnswers: [DBAnswer]?
   @Published var fianceAnswers: [DBAnswer]?
@@ -36,6 +37,35 @@ final class AnswerManager: ObservableObject {
   }
   
   // MARK: Retrieve
+  func addSnapshotListenerForMyAnswer() {
+    guard let currentUserId = UserManager.shared.currentUser?.userId else { return }
+    userAnswerCollection(userId: currentUserId).addSnapshotListener { querySnapshot, error in
+      guard let document = querySnapshot?.documents else { return }
+      
+      self.myAnswers = document.compactMap { document in
+        var answer = try? document.data(as: DBAnswer.self)
+        answer?.answerId = document.documentID
+        
+        return answer
+      }
+    }
+  }
+  
+  func addSnapshotListenerForFianceAnswer() {
+    guard let fianceId = UserManager.shared.currentUser?.fiance else { return }
+    
+    userAnswerCollection(userId: fianceId).addSnapshotListener { querySnapshot, error in
+      guard let document = querySnapshot?.documents else { return }
+      
+      self.fianceAnswers = document.compactMap { document in
+        var answer = try? document.data(as: DBAnswer.self)
+        answer?.answerId = document.documentID
+        
+        return answer
+      }
+    }
+  }
+  
   func fetchMyAnswers() async throws {
     guard let currentUserId = UserManager.shared.currentUser?.userId else { return }
     
@@ -58,6 +88,7 @@ final class AnswerManager: ObservableObject {
     userAnswerCollection(userId: userId).document(answerId).updateData(data)
   }
   
+  // MARK: Not Use
   func updateAnswerComplete(userId: String, answerId: String, status: Bool) {
     let data: [String: Any] = [DBAnswer.CodingKeys.isComplete.rawValue:status]
     

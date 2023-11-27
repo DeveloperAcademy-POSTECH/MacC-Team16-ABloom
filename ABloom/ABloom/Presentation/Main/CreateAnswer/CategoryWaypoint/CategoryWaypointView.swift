@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CategoryWaypointView: View {
   @StateObject var categoryWayVM = CategoryWaypointViewModel()
+  @StateObject var activeSheet: ActiveSheet
   @Environment(\.dismiss) private var dismiss
   @Binding var isSheetOn: Bool
   
@@ -29,15 +30,17 @@ struct CategoryWaypointView: View {
         }
         .padding(.horizontal, 20)
       }
-    
-      // FIXME: 안되고 있음
-      .sheet(isPresented: $categoryWayVM.activeSheet.showSheet) {
-        categoryWayVM.activeSheet.checkSheet()
-      }
       
       .navigationDestination(isPresented: $categoryWayVM.isSelectSheetOn, destination: {
-        SelectQuestionView(isSheetOn: $isSheetOn, selectedCategory: categoryWayVM.selectedCategory)
-          .ignoresSafeArea()
+        SelectQuestionView(isLoggedIn: !(categoryWayVM.questionStatus == .notLoggedIn), activeSheet: activeSheet, isSheetOn: $isSheetOn, selectedCategory: categoryWayVM.selectedCategory)
+      })
+      
+      .navigationDestination(isPresented: $categoryWayVM.isRecommenedNavOn, destination: {
+        if categoryWayVM.questionStatus == .answered {
+          CheckAnswerView(question: categoryWayVM.recommendQuestion)
+        } else if categoryWayVM.questionStatus == .notAnswered {
+          WriteAnswerView(isSheetOn: $isSheetOn, question: categoryWayVM.recommendQuestion)
+        }
       })
       
       .task {
@@ -55,7 +58,6 @@ struct CategoryWaypointView: View {
       } rightView: {
         EmptyView()
       }
-      .padding(.top, 16)
       
       .ignoresSafeArea(.all, edges: .bottom)
     }
@@ -66,16 +68,13 @@ extension CategoryWaypointView {
   
   private var recommenedArea: some View {
     return Button {
-      
-      // FIXME: 로그인 팝업 .sheet가 안 뜨는 현상 해결하기
-      if !categoryWayVM.isLoggedIn {
-        categoryWayVM.loginSheetOn()
-        print(categoryWayVM.activeSheet.showSheet)
-      } else if categoryWayVM.isAnswered { // TODO: 내비게이션 변수 처리
-        // 문답확인뷰 이동
+      if categoryWayVM.questionStatus == .notLoggedIn {
+        dismiss()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+          activeSheet.kind = .signIn
+        }
       } else {
-        // 문답 작성뷰 이동 변수 처리
-        //        WriteAnswerView(isSheetOn: $isSheetOn, question: categoryWayVM.recommendQuestion)
+        categoryWayVM.recommenedQClicked()
       }
     } label: {
       VStack(alignment: .leading, spacing: 5) {
@@ -124,8 +123,4 @@ extension CategoryWaypointView {
       }
     }
   }
-}
-
-#Preview {
-  CategoryWaypointView(isSheetOn: .constant(true))
 }
