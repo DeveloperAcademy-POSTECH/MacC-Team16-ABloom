@@ -8,25 +8,29 @@
 import SwiftUI
 
 struct CheckAnswerView: View {
-  @StateObject var checkAnswerVM = CheckAnswerViewModel()
-  
-  let question: DBStaticQuestion
   @Environment(\.dismiss) private var dismiss
+  @StateObject var checkAnswerVM = CheckAnswerViewModel()
+
+  let question: DBStaticQuestion
   
   var body: some View {
     ScrollView {
-      VStack(alignment: .leading, spacing: 40) {
-        questionArea
-        
-        myAnswerArea
-        
-        fianceAnswerArea
-        
-        reactionArea
+      if checkAnswerVM.isDataReady {
+        VStack(alignment: .leading, spacing: 40) {
+          questionArea
+          
+          myAnswerArea
+          
+          fianceAnswerArea
+          
+          reactionArea
+        }
+        .padding(.top, 46)
+        .frame(maxWidth: .infinity)
+        .multilineTextAlignment(.leading)
+      } else {
+        ProgressView()
       }
-      .padding(.top, 46)
-      .frame(maxWidth: .infinity)
-      .multilineTextAlignment(.leading)
     }
     .padding(.horizontal, 20)
     .customNavigationBar {
@@ -50,6 +54,9 @@ struct CheckAnswerView: View {
         SelectReactionView(checkAnswerVM: checkAnswerVM)
       }
     }
+    .task {
+      checkAnswerVM.getAnswers(dbQuestion: question)
+    }
   }
 }
 
@@ -59,7 +66,7 @@ extension CheckAnswerView {
       VStack(alignment: .leading, spacing: 6) {
         Text(question.content.useNonBreakingSpace())
           .customFont(.headlineB)
-        Text("\(checkAnswerVM.date.formatToYMD())")
+        Text(checkAnswerVM.recentDate.formatToYMD())
           .customFont(.caption2R)
           .foregroundStyle(.gray500)
       }
@@ -98,18 +105,35 @@ extension CheckAnswerView {
         .padding(.bottom, 30)
       
       HStack(alignment: .bottom) {
-        Circle()
+        Image(checkAnswerVM.fianceReactionStatus.reactionImgName)
+          .resizable()
           .frame(width: 84, height: 84)
+        
         Spacer()
-        Circle()
+        
+        Image(checkAnswerVM.coupleReaction)
+          .resizable()
           .frame(width: 124, height: 124)
+          .padding(.bottom, 18)
+        
         Spacer()
+        
         Button {
           checkAnswerVM.tapSelectReactionButton()
         } label: {
-          Circle()
+          Image(checkAnswerVM.currentUserReactionStatus.reactionImgName)
+            .resizable()
             .frame(width: 84, height: 84)
-        }
+            .overlay(alignment: .bottomTrailing) {
+              if checkAnswerVM.currentUserReactionStatus.isReacted {
+                // TODO: 이미지 추가
+                Image("ResponseMenu")
+                  .resizable()
+                  .frame(width: 20, height: 20)
+                  .offset(x: -1, y: -1)
+              }
+            }
+        }.disabled(!checkAnswerVM.isAnswersDone)
       }
       .foregroundStyle(.gray300)
     }
@@ -117,5 +141,7 @@ extension CheckAnswerView {
 }
 
 #Preview {
-  CheckAnswerView(question: DBStaticQuestion(questionID: 1, category: "경제", content: "question"))
+  CheckAnswerView(
+    question: DBStaticQuestion(questionID: 1, category: "경제", content: "question")
+  )
 }
