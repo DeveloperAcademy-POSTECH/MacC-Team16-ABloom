@@ -171,7 +171,6 @@ final class QnAListViewModel: ObservableObject {
   func tapQnAListItem(_ question: DBStaticQuestion) {
     selectedQuestion = question
     showQnASheet = true
-    print("int tap: \(question.content)")
   }
   
   func tapPlusButton() {

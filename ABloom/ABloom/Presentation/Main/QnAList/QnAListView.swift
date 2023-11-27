@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct QnAListView: View {
-  @StateObject var qnaListVM = QnAListViewModel()
+  @StateObject var qnaListVM = QnAListViewModel.shared
   @StateObject var activeSheet: ActiveSheet = ActiveSheet()
 
   var body: some View {
