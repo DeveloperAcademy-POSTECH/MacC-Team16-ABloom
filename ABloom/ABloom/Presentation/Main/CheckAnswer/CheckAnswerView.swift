@@ -30,8 +30,10 @@ struct CheckAnswerView: View {
         .multilineTextAlignment(.leading)
       } else {
         ProgressView()
+          .frame(maxHeight: .infinity)
       }
     }
+    .scrollIndicators(.hidden)
     .padding(.horizontal, 20)
     .customNavigationBar {
       Text("우리의 문답")
@@ -63,7 +65,7 @@ struct CheckAnswerView: View {
 extension CheckAnswerView {
   private var questionArea: some View {
     HStack {
-      VStack(alignment: .leading, spacing: 6) {
+      VStack(alignment: .leading, spacing: 12) {
         Text(question.content.containsNumbers() ? question.content : question.content.useNonBreakingSpace())
           .customFont(.headlineB)
         Text(checkAnswerVM.recentDate.formatToYMD())
@@ -76,27 +78,50 @@ extension CheckAnswerView {
   }
   
   private var myAnswerArea: some View {
-    VStack(alignment: .leading, spacing: 6) {
-      Text("\(checkAnswerVM.currentUserName)님의 대답")
-        .customFont(.calloutB)
-      Text(checkAnswerVM.currentUserAnswerContent.useNonBreakingSpace())
-        .customFont(.footnoteR)
-        .foregroundStyle(.gray500)
+    HStack {
+      VStack(alignment: .leading, spacing: 12) {
+        Text("\(checkAnswerVM.currentUserName)님의 대답")
+          .customFont(.calloutB)
+        Text(checkAnswerVM.currentUserAnswerContent.useNonBreakingSpace())
+          .customFont(.footnoteR)
+          .foregroundStyle(.gray500)
+        
+        HStack {
+          Spacer()
+          if checkAnswerVM.currentUserAnswer == nil {
+            buttonView(type: .write)
+          }
+        }
+        .padding(.top, -6)
+      }
+      Spacer(minLength: 0)
     }
   }
   
   private var fianceAnswerArea: some View {
-    VStack(alignment: .leading, spacing: 6) {
-      Text("\(checkAnswerVM.fianceName)님의 대답")
-        .customFont(.calloutB)
-      Text(checkAnswerVM.fianceAnswerContent.useNonBreakingSpace())
-        .customFont(.footnoteR)
-        .foregroundStyle(.gray500)
+    HStack {
+      VStack(alignment: .leading, spacing: 12) {
+        Text("\(checkAnswerVM.fianceName)님의 대답")
+          .customFont(.calloutB)
+        Text(checkAnswerVM.fianceAnswerContent.useNonBreakingSpace())
+          .customFont(.footnoteR)
+          .foregroundStyle(.gray500)
+        
+        HStack {
+          Spacer()
+          if checkAnswerVM.fianceUser == nil {
+            buttonView(type: .connect)
+          }
+        }
+        .padding(.top, -6)
+      }
+      Spacer(minLength: 0)
     }
+    
   }
   
   private var reactionArea: some View {
-    VStack(alignment: .leading, spacing: 6) {
+    VStack(alignment: .leading, spacing: 12) {
       Text("우리의 반응")
         .customFont(.calloutB)
       Text("둘 다 답변을 작성하면 우리만의 반응을 추가할 수 있어요.")
@@ -136,6 +161,23 @@ extension CheckAnswerView {
         }.disabled(!checkAnswerVM.isAnswersDone)
       }
       .foregroundStyle(.gray300)
+    }
+  }
+  
+  private func buttonView(type: SheetType) -> some View {
+    Button {
+      checkAnswerVM.showSheetType = type
+      checkAnswerVM.showSheet = true
+    } label: {
+      Text(type.rawValue)
+        .customFont(.footnoteB)
+        .foregroundStyle(.gray500)
+    }
+    .sheet(isPresented: $checkAnswerVM.showSheet) {
+      switch checkAnswerVM.showSheetType {
+      case .connect: ConnectionView()
+      case .write: WriteAnswerView(isSheetOn: $checkAnswerVM.showSheet, question: checkAnswerVM.dbQuestion)
+      }
     }
   }
 }
