@@ -22,16 +22,12 @@ final class CategoryWaypointViewModel: ObservableObject {
   @AppStorage("lastQuestionChangeDate") var lastQuestionChangeDate: Date = Calendar.current.date(byAdding: .day, value: -2, to: Date())!
   
   // TODO: 차후 user Field로 생성하기
-  @AppStorage("savedRecommendQuestionId") var savedRecommendQuestionId: Int = 3
+  @AppStorage("savedRecommendQuestionId") var savedRecommendQuestionId: Int = 38
+  @Published var recommendQuestion: DBStaticQuestion = .init(questionID: 38, category: "finance", content: "결혼을 하게 되면 어떤 방식으로 돈을 관리하는게 좋을까?")
   
   @Published var essentials: [Int]? = nil
-  @Published var filteredQuestionsId: [Int]? = nil
   @Published var myAnswersId: [Int]? = nil
   @Published var filteredQuestions: [DBStaticQuestion]? = nil
-  
-   
-  @Published var recommendQuestion: DBStaticQuestion = .init(questionID: 38, category: "finance", content: "결혼을 하게 되면 어떤 방식으로 돈을 관리하는게 좋을까?")
-  @Published var recommendedQid: Int = 38
   
   @Published var selectedCategory: Category = Category.communication
   @Published var isSelectSheetOn = Bool()
@@ -57,7 +53,7 @@ final class CategoryWaypointViewModel: ObservableObject {
     StaticQuestionManager.shared.$filteredQuestions
       .sink { [weak self] filteredQuestions in
         if let fileredQ = filteredQuestions {
-          self?.filteredQuestionsId = fileredQ.map { $0.questionID }
+          self?.filteredQuestions = fileredQ
         }
       }
       .store(in: &cancellables)
@@ -82,7 +78,7 @@ final class CategoryWaypointViewModel: ObservableObject {
   
   func loadRecommendedQuestion() async throws {
     let currentDate = Date.now
-  
+    
     
     if currentDate.isSameDate(lastChangedDate: lastQuestionChangeDate) {
       // 하루가 지나지 않았을 경우 그대로 가져옴
@@ -90,8 +86,13 @@ final class CategoryWaypointViewModel: ObservableObject {
     } else { // 하루가 지났을 경우 없데이트
       if self.essentials != nil {
         if self.checkAvailable() {
-          self.recommendQuestion = try await StaticQuestionManager.shared.getQuestionById(id: self.recommendedQid)
+          self.recommendQuestion = try await StaticQuestionManager.shared.getQuestionById(id: self.savedRecommendQuestionId)
           lastQuestionChangeDate = currentDate
+        } else { // 모든 추천질문을 완료하였을 때, 전체에서 랜덤하게 뽑기
+          if let filteredQ = self.filteredQuestions {
+            self.savedRecommendQuestionId = filteredQ.randomElement()!.questionID
+            self.recommendQuestion = try await StaticQuestionManager.shared.getQuestionById(id: self.savedRecommendQuestionId)
+          }
         }
       }
     }
@@ -100,12 +101,15 @@ final class CategoryWaypointViewModel: ObservableObject {
   
   // 둘 다 답변하지 않은 질문인지 확인
   private func checkAvailable() -> Bool {
-    self.recommendedQid = (self.essentials?.randomElement())!
+    self.savedRecommendQuestionId = (self.essentials?.randomElement())!
     
-    if let ids = self.filteredQuestionsId {
-      if ids.contains(recommendedQid) {
+    if let filteredQ = self.filteredQuestions {
+      let filteredQuestionsId = filteredQ.map { $0.questionID }
+      
+      if filteredQuestionsId.contains(savedRecommendQuestionId) {
         return true
       } else { return checkAvailable() }
+      
     }
     return true
   }
@@ -113,7 +117,8 @@ final class CategoryWaypointViewModel: ObservableObject {
   
   private func checkIfAnswered() {
     if let myAnswersId = self.myAnswersId {
-      if myAnswersId.contains(self.recommendedQid) {
+      
+      if myAnswersId.contains(self.savedRecommendQuestionId) {
         questionStatus = .answered
       } else {
         questionStatus = .notAnswered
