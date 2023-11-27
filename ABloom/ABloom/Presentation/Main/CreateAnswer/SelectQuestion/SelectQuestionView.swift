@@ -7,8 +7,10 @@
 import SwiftUI
 
 struct SelectQuestionView: View {
+  let isLoggedIn: Bool
+  
   @StateObject var selectQVM = SelectQuestionViewModel()
-  @ObservedObject var activeSheet: ActiveSheet
+  @StateObject var activeSheet: ActiveSheet
   @Environment(\.dismiss) private var dismiss
   @Binding var isSheetOn: Bool
   
@@ -20,7 +22,7 @@ struct SelectQuestionView: View {
       categoryBar
       bottomGradient
       
-      if selectQVM.isLoggedIn {
+      if isLoggedIn {
         questionListView
       } else {
         previewStaticQuesiton
@@ -54,8 +56,7 @@ struct SelectQuestionView: View {
     })
     
     .navigationBarBackButtonHidden(true)
-    
-    
+
   }
 }
 
