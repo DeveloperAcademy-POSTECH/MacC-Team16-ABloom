@@ -14,7 +14,7 @@ struct QnAListItem: View {
   
   var body: some View {
     VStack(alignment: .leading, spacing: 8) {
-      Text(question.content.useNonBreakingSpace())
+      Text(question.content.containsNumbers() ? question.content : question.content.useNonBreakingSpace())
         .foregroundStyle(.stone900)
         .customFont(.subHeadlineB)
         .multilineTextAlignment(.leading)
