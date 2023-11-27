@@ -51,13 +51,21 @@ extension SignInView {
   private var buttonArea: some View {
     VStack(spacing: 12) {
       Button {
-        // Task { try await signInVM.signInKakao() }
+        signInVM.signInKakao()
       } label: {
-        Image("signInKakao")
-          .resizable()
-          .scaledToFit()
+        HStack(spacing: 8) {
+          Image("KakaoLoginLogo")
+            .resizable()
+            .frame(width: 20, height: 20)
+          Text("카카오 로그인")
+            .font(.system(size: 20))
+            .foregroundStyle(.black.opacity(0.85))
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: 52)
+        .background(.kakaoYellow)
+        .cornerRadius(8, corners: .allCorners)
       }
-      .frame(height: 52)
       
       Button {
         Task { try await signInVM.signInApple() }

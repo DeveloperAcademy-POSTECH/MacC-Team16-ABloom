@@ -8,6 +8,7 @@
 import Firebase
 import FirebaseCore
 import FirebaseMessaging
+import KakaoSDKCommon
 import UserNotifications
 
 @MainActor
@@ -19,6 +20,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     // 파이어베이스 설정
     FirebaseApp.configure()
     
+    KakaoSDK.initSDK(appKey: Bundle.main.kakaoApiKey)
+
     UNUserNotificationCenter.current().delegate = self
     
     let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
