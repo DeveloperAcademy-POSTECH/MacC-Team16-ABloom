@@ -69,7 +69,6 @@ final class ProfileMenuViewModel: ObservableObject {
     Task {
       try AuthenticationManager.shared.signOut()
       await renewInfo()
-      AnswerManager.shared.disconnectListener()
     }
   }
   
