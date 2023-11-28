@@ -67,8 +67,8 @@ final class QnAListViewModel: ObservableObject {
     try? await AnswerManager.shared.fetchMyAnswers()
     try? await AnswerManager.shared.fetchFianceAnswers()
     
-    self.currentUserAnswers = AnswerManager.shared.myAnswers
-    self.fianceAnswers = AnswerManager.shared.fianceAnswers
+//    self.currentUserAnswers = AnswerManager.shared.myAnswers
+//    self.fianceAnswers = AnswerManager.shared.fianceAnswers
     
     await fetchCoupleAnswers()
     
