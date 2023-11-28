@@ -83,6 +83,8 @@ struct WithdrawalMembershipView: View {
         }
         
         showProfileMenuSheet = false
+        
+        UserDefaults.standard.setValue(true, forKey: "_isFirstLaunching")
       }
     } message: {
       Text(alertMessage)

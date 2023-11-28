@@ -42,6 +42,14 @@ final class CategoryWaypointViewModel: ObservableObject {
     self.fetchInformation()
   }
   
+  func checkLogin() {
+    do {
+      try AuthenticationManager.shared.getAuthenticatedUser()
+    } catch {
+      questionStatus = .notLoggedIn
+    }
+  }
+  
   private func fetchInformation() {
     
     if let essentials = EssentialQuestionManager.shared.essentialQuestions {

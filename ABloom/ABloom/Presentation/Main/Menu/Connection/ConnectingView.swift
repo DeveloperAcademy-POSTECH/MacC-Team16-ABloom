@@ -15,24 +15,36 @@ struct ConnectingView: View {
   @State var showToast = false
   
   var body: some View {
-    VStack(alignment: .leading) {
-      Text(explainText)
-        .customFont(.caption1R)
-        .foregroundStyle(.gray600)
-        .padding(.bottom, 40)
+    ZStack {
+      VStack(alignment: .leading) {
+        Text(explainText)
+          .customFont(.caption1R)
+          .foregroundStyle(.gray600)
+          .padding(.bottom, 40)
+        
+        myCodeSection
+          .padding(.bottom, 24)
+        
+        fianceCodeSection
+        
+        Spacer()
+        
+        connectButton
+          .padding(.bottom, 20)
+      }
       
-      myCodeSection
-        .padding(.bottom, 24)
-      
-      fianceCodeSection
-      
-      Spacer()
-      
-      connectButton
-        .padding(.bottom, 20)
+      VStack {
+        Spacer()
+        if showToast {
+          ToastView(message: "코드가 복사되었습니다")
+            .padding(.bottom, 100)
+        }
+      }
     }
     .padding(.top, 39)
     .padding(.horizontal, 20)
+    
+    .onAppear(perform: UIApplication.shared.hideKeyboard)
     
     .alert("연결에 실패했어요", isPresented: $vm.showErrorAlert, actions: {
       Button("확인") {
@@ -80,7 +92,7 @@ extension ConnectingView {
     } label: {
       PurpleTextButton(title: "연결하기", isDisable: !vm.isTargetCodeInputVaild)
     }
-
+    
   }
   
   private func copyClipboard() {

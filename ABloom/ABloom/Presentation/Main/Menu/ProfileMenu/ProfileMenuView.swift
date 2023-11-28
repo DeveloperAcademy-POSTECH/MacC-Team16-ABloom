@@ -55,59 +55,18 @@ struct ProfileMenuView: View {
     
     .ignoresSafeArea(.all, edges: .bottom)
     
-    .confirmationDialog("", isPresented: $vm.showActionSheet, titleVisibility: .hidden) {
-      Button("이름 변경하기") {
-        vm.showNameChangeAlert = true
+    .alert("로그인이 필요한 서비스예요.", isPresented: $vm.showNotLoginAlert) {
+      Button("취소", role: .cancel) {
+        vm.showNotLoginAlert = false
       }
       
-      Button("결혼예정일 수정하기") {
-        vm.showCalendarSheet = true
-      }
-    }
-    
-    // 이름 수정
-    .alert("이름 변경하기", isPresented: $vm.showNameChangeAlert) {
-      TextField(text: $vm.nameChangeTextfield) {
-        Text("홍길동")
-      }
-      
-      Button {
-        vm.showNameChangeAlert = false
-      } label: {
-        Text("취소")
-      }
-      
-      Button("확인") {
-        Task {
-          try? vm.updateMyName()
-          try? await vm.renewInfo()
+      Button("로그인") {
+        vm.showNotLoginAlert = false
+        showProfileMenuSheet = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+          activeSheet.kind = .signIn
         }
       }
-    } message: {
-      Text("변경할 이름을 입력해주세요.")
-    }
-    
-    // 결혼 일자 수정
-    .sheet(isPresented: $vm.showCalendarSheet) {
-      VStack {
-        DatePicker("", selection: $vm.marriageDate, displayedComponents: .date)
-          .datePickerStyle(.graphical)
-          .frame(width: 320)
-          .labelsHidden()
-          .presentationDetents([.medium])
-        
-        Button {
-          Task {
-            try? vm.updateMyMarriageDate()
-            try? await vm.renewInfo()
-            vm.showActionSheet = false
-          }
-        } label: {
-          Text("완료")
-            .customFont(.headlineB)
-        }
-      }
-      .tint(.purple700)
     }
   }
 }
@@ -192,18 +151,85 @@ extension ProfileMenuView {
         .customFont(.headlineB)
       
       Button {
-        vm.showActionSheet = true
+        if vm.isSignedIn {
+          vm.showActionSheet = true
+        } else {
+          vm.showNotLoginAlert = true
+        }
       } label: {
         listRowLabel(title: "내 정보 수정하기")
       }
       
-      NavigationLink {
-        ConnectionView()
-      } label: {
-        listRowLabel(title: "상대방과 연결 관리", isIssue: (vm.currentUser?.fiance) == nil)
+      if vm.isSignedIn {
+        NavigationLink {
+          ConnectionView()
+        } label: {
+          listRowLabel(title: "상대방과 연결 관리", isIssue: (vm.currentUser?.fiance) == nil)
+        }
+      } else {
+        Button {
+          vm.showNotLoginAlert = true
+        } label: {
+          listRowLabel(title: "상대방과 연결 관리")
+        }
       }
     }
     .padding(.horizontal, 20)
+    
+    .confirmationDialog("", isPresented: $vm.showActionSheet, titleVisibility: .hidden) {
+      Button("이름 변경하기") {
+        vm.showNameChangeAlert = true
+      }
+      
+      Button("결혼예정일 수정하기") {
+        vm.showCalendarSheet = true
+      }
+    }
+    
+    // 이름 수정
+    .alert("이름 변경하기", isPresented: $vm.showNameChangeAlert) {
+      TextField(text: $vm.nameChangeTextfield) {
+        Text("홍길동")
+      }
+      
+      Button {
+        vm.showNameChangeAlert = false
+      } label: {
+        Text("취소")
+      }
+      
+      Button("확인") {
+        Task {
+          try? vm.updateMyName()
+          await vm.renewInfo()
+        }
+      }
+    } message: {
+      Text("변경할 이름을 입력해주세요.")
+    }
+    
+    // 결혼 일자 수정
+    .sheet(isPresented: $vm.showCalendarSheet) {
+      VStack {
+        DatePicker("", selection: $vm.marriageDate, displayedComponents: .date)
+          .datePickerStyle(.graphical)
+          .frame(width: 320)
+          .labelsHidden()
+          .presentationDetents([.medium])
+        
+        Button {
+          Task {
+            try? vm.updateMyMarriageDate()
+            await vm.renewInfo()
+            vm.showActionSheet = false
+          }
+        } label: {
+          Text("완료")
+            .customFont(.headlineB)
+        }
+      }
+      .tint(.purple700)
+    }
   }
   
   private var serviceUse: some View {
@@ -213,9 +239,9 @@ extension ProfileMenuView {
         .customFont(.headlineB)
       
       NavigationLink {
-        EmbedWebView(viewTitle: "문답 연구소", urlString: ServiceWebURL.questionLab.rawValue, type: .navigation, showSheet: .constant(true), checkContract: .constant(true))
+        EmbedWebView(viewTitle: "질문 제작소", urlString: ServiceWebURL.questionLab.rawValue, type: .navigation, showSheet: .constant(true), checkContract: .constant(true))
       } label: {
-        listRowLabel(title: "문답 연구소")
+        listRowLabel(title: "질문 제작소")
       }
       
       NavigationLink {
@@ -257,15 +283,18 @@ extension ProfileMenuView {
         vm.showSignOutAlert = true
       } label: {
         listRowLabel(title: "로그아웃")
+          .opacity(vm.isSignedIn ? 1.0 : 0.5)
       }
       
       NavigationLink {
         WithdrawalMembershipView(showProfileMenuSheet: $showProfileMenuSheet)
       } label: {
         listRowLabel(title: "회원탈퇴")
+          .opacity(vm.isSignedIn ? 1.0 : 0.5)
       }
     }
     .padding(.horizontal, 20)
+    .disabled(!vm.isSignedIn)
     
     .alert("로그아웃할까요?", isPresented: $vm.showSignOutAlert, actions: {
       Button("취소", role: .cancel) {
@@ -274,6 +303,7 @@ extension ProfileMenuView {
       
       Button("로그아웃", role: .destructive) {
         try? vm.signOut()
+        showProfileMenuSheet = false
       }
     }, message: {
       Text("로그아웃하더라도 데이터는 보관되니\n안심하고 로그아웃하셔도 돼요.")
