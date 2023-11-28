@@ -31,6 +31,7 @@ struct WriteAnswerView: View {
     .padding(.horizontal, 20)
     .ignoresSafeArea(.keyboard)
     .interactiveDismissDisabled(writeAMV.ansText.isEmpty ? false : true)
+    .onAppear(perform: UIApplication.shared.hideKeyboard)
     
     // 네비게이션바
     .customNavigationBar {
