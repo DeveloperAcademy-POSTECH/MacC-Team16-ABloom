@@ -303,6 +303,7 @@ extension ProfileMenuView {
       
       Button("로그아웃", role: .destructive) {
         try? vm.signOut()
+        showProfileMenuSheet = false
       }
     }, message: {
       Text("로그아웃하더라도 데이터는 보관되니\n안심하고 로그아웃하셔도 돼요.")
