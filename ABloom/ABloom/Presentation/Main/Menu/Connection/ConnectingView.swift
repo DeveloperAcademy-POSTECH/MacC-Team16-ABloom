@@ -34,6 +34,8 @@ struct ConnectingView: View {
     .padding(.top, 39)
     .padding(.horizontal, 20)
     
+    .onAppear(perform: UIApplication.shared.hideKeyboard)
+    
     .alert("연결에 실패했어요", isPresented: $vm.showErrorAlert, actions: {
       Button("확인") {
         vm.showErrorAlert = false
