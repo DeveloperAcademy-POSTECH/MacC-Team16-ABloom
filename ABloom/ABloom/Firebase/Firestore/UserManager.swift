@@ -32,6 +32,8 @@ final class UserManager: ObservableObject {
     try userDocument(userId: user.userId).setData(from: user, merge: false)
     Task {
       try? await fetchCurrentUser()
+      AnswerManager.shared.addSnapshotListenerForMyAnswer()
+      AnswerManager.shared.addSnapshotListenerForFianceAnswer()
     }
   }
   
