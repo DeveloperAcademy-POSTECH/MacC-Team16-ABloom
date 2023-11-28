@@ -239,9 +239,9 @@ extension ProfileMenuView {
         .customFont(.headlineB)
       
       NavigationLink {
-        EmbedWebView(viewTitle: "문답 연구소", urlString: ServiceWebURL.questionLab.rawValue, type: .navigation, showSheet: .constant(true), checkContract: .constant(true))
+        EmbedWebView(viewTitle: "질문 제작소", urlString: ServiceWebURL.questionLab.rawValue, type: .navigation, showSheet: .constant(true), checkContract: .constant(true))
       } label: {
-        listRowLabel(title: "문답 연구소")
+        listRowLabel(title: "질문 제작소")
       }
       
       NavigationLink {
