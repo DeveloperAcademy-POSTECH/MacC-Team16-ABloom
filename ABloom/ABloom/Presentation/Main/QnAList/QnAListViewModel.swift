@@ -55,7 +55,11 @@ final class QnAListViewModel: ObservableObject {
   }
   
   private func getCurrentUser() {
-    self.currentUser = UserManager.shared.currentUser
+    UserManager.shared.$currentUser
+      .sink { [weak self] user in
+        self?.currentUser = user
+      }
+      .store(in: &cancellables)
   }
   
   private func getQuestions() async {
