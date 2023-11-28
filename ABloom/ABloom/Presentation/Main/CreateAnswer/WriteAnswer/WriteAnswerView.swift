@@ -31,6 +31,7 @@ struct WriteAnswerView: View {
     .padding(.horizontal, 20)
     .ignoresSafeArea(.keyboard)
     .interactiveDismissDisabled(writeAMV.ansText.isEmpty ? false : true)
+    .onAppear(perform: UIApplication.shared.hideKeyboard)
     
     // 네비게이션바
     .customNavigationBar {
@@ -82,7 +83,7 @@ struct WriteAnswerView: View {
         Text("취소")
       })
     }, message: {
-      Text("완료한 답변은 수정할 수 없고,\n상대방은 내 답변을 확인할 수 있어요.")
+      Text("완료한 답변은 수정할 수 없어요.\n상대방은 내 답변을 확인할 수 있어요.")
         .multilineTextAlignment(.center)
     })
   }
