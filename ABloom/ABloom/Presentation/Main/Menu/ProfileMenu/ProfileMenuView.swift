@@ -201,7 +201,7 @@ extension ProfileMenuView {
       Button("확인") {
         Task {
           try? vm.updateMyName()
-          try? await vm.renewInfo()
+          await vm.renewInfo()
         }
       }
     } message: {
@@ -220,7 +220,7 @@ extension ProfileMenuView {
         Button {
           Task {
             try? vm.updateMyMarriageDate()
-            try? await vm.renewInfo()
+            await vm.renewInfo()
             vm.showActionSheet = false
           }
         } label: {

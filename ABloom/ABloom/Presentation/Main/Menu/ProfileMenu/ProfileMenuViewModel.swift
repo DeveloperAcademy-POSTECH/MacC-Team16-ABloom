@@ -60,13 +60,17 @@ final class ProfileMenuViewModel: ObservableObject {
       .store(in: &cancellables)
   }
   
-  func renewInfo() async throws {
+  func renewInfo() async {
     try? await UserManager.shared.fetchCurrentUser()
-    getUsers()
+    try? await UserManager.shared.fetchFianceUser()
   }
   
   func signOut() throws {
-    try AuthenticationManager.shared.signOut()
+    Task {
+      try AuthenticationManager.shared.signOut()
+      await renewInfo()
+      AnswerManager.shared.disconnectListener()
+    }
   }
   
   func updateMyName() throws {

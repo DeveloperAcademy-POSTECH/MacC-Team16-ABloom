@@ -16,6 +16,9 @@ final class AnswerManager: ObservableObject {
   
   static let shared = AnswerManager()
   
+  var myAnswersListener: ListenerRegistration?
+  var fianceAnswersListener: ListenerRegistration?
+  
   private let userCollection = Firestore.firestore().collection("users")
   
   private func userDocument(userId: String) -> DocumentReference {
@@ -86,6 +89,14 @@ final class AnswerManager: ObservableObject {
     let data: [String: Any] = [DBAnswer.CodingKeys.reaction.rawValue:reaction.rawValue]
     
     userAnswerCollection(userId: userId).document(answerId).updateData(data)
+  }
+  
+  // MARK: Disconnect
+  func disconnectListener() {
+    self.myAnswersListener?.remove()
+    self.fianceAnswersListener?.remove()
+    self.myAnswers = []
+    self.fianceAnswers = []
   }
   
   // MARK: Not Use
