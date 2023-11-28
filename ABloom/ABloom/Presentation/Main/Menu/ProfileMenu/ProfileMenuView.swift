@@ -80,7 +80,7 @@ struct ProfileMenuView: View {
 extension ProfileMenuView {
   private var myInformation: some View {
     HStack(spacing: 15) {
-      Image(UserSexType(type: (vm.currentUser?.sex ?? true)).getAvatar())
+      Image(vm.currentUser != nil ? (UserSexType(type: (vm.currentUser?.sex ?? true)).getAvatar()) : UserSexType.getAvatar(.none)())
         .resizable()
         .scaledToFit()
         .clipShape(Circle())
