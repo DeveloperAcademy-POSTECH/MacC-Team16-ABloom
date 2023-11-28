@@ -283,15 +283,18 @@ extension ProfileMenuView {
         vm.showSignOutAlert = true
       } label: {
         listRowLabel(title: "로그아웃")
+          .opacity(vm.isSignedIn ? 1.0 : 0.5)
       }
       
       NavigationLink {
         WithdrawalMembershipView(showProfileMenuSheet: $showProfileMenuSheet)
       } label: {
         listRowLabel(title: "회원탈퇴")
+          .opacity(vm.isSignedIn ? 1.0 : 0.5)
       }
     }
     .padding(.horizontal, 20)
+    .disabled(!vm.isSignedIn)
     
     .alert("로그아웃할까요?", isPresented: $vm.showSignOutAlert, actions: {
       Button("취소", role: .cancel) {
