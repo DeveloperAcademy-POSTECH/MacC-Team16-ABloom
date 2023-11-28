@@ -70,8 +70,6 @@ final class ProfileMenuViewModel: ObservableObject {
       try AuthenticationManager.shared.signOut()
       await renewInfo()
       AnswerManager.shared.disconnectListener()
-      try await UserManager.shared.fetchCurrentUser()
-      try await UserManager.shared.fetchFianceUser()
     }
   }
   

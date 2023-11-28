@@ -134,6 +134,8 @@ final class UserManager: ObservableObject {
     let data: [String: Any?] = [DBUser.CodingKeys.fiance.rawValue: nil]
     try await userDocument(userId: fiance).updateData(data as [AnyHashable: Any])
     
+    AnswerManager.shared.disconnectListener()
+    
     Task {
       try? await fetchCurrentUser()
       try? await fetchFianceUser()
