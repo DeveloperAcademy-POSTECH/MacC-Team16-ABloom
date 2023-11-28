@@ -119,7 +119,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     let userInfo = notification.request.content.userInfo
     
-    handleNotificationPayload(userInfo)
     
     completionHandler([[.banner, .badge, .sound]])
   }
