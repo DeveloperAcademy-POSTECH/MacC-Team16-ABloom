@@ -17,6 +17,7 @@ final class ProfileMenuViewModel: ObservableObject {
   @Published var showNameChangeAlert = false
   @Published var showCalendarSheet = false
   @Published var showSignOutAlert = false
+  @Published var showNotLoginAlert = false
   
   @Published var nameChangeTextfield = ""
   @Published var marriageDate: Date = Date()
