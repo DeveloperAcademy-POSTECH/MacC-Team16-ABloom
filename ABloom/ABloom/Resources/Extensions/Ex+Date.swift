@@ -16,6 +16,12 @@ extension Date: RawRepresentable {
     self = Date(timeIntervalSinceReferenceDate: Double(rawValue) ?? 0.0)
   }
   
+  public func formatToYMD() -> String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy년 MM월 dd일"
+    return formatter.string(from: self)
+  }
+  
   public func isSameDate(lastChangedDate: Date) -> Bool {
     var calendar = Calendar.current
     calendar.timeZone = TimeZone(identifier: "Asia/Seoul")!

@@ -36,32 +36,20 @@ enum Category: String, CaseIterable {
     }
   }
   
-  var imgName: String {
+  var staticImg: String {
     switch self {
-    case .communication:
-      return "circleIcon_isometric_chatting"
-    case .values:
-      return "circleIcon_isometic_star"
-    case .finance:
-      return "circleIcon_isometic_money"
-    case .lifestyle:
-      return "circleIcon_isometic_rice"
-    case .child:
-      return "circleIcon_isometic_dummy"
-    case .family:
-      return "circleIcon_isometic_sofa"
-    case .sex:
-      return "circleIcon_isometic_bed"
-    case .health:
-      return "circleIcon_isometic_health"
-    case .wedding:
-      return "circleIcon_isometic_love_calender"
-    case .future:
-      return "circleIcon_isometic_target"
-    case .present:
-      return "circleIcon_isometric_location"
-    case .past:
-      return "circleIcon_isometic_reversed_timer"
+    case .communication: return "CommunicationCategoryStatic"
+    case .values: return "ValuesCategoryStatic"
+    case .finance: return "FinanceCategoryStatic"
+    case .lifestyle: return "LifestyleCategoryStatic"
+    case .child: return "ChildCategoryStatic"
+    case .family: return "FamilyCategoryStatic"
+    case .sex: return "SexCategoryStatic"
+    case .health: return "HealthCategoryStatic"
+    case .wedding: return "WeddingCategoryStatic"
+    case .future: return "FutureCategoryStatic"
+    case .present: return "PresentCategoryStatic"
+    case .past: return "PastCategoryStatic"
     }
   }
 }

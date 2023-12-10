@@ -44,12 +44,26 @@ final class AuthenticationManager {
     return AuthDataResultModel(user: authDataResult.user)
   }
   
+  // 계정으로 로그인
+  func emailAuthSignIn(email: String, password: String) async throws -> AuthDataResultModel {
+    let result = try await Auth.auth().signIn(withEmail: email, password: password)
+    return AuthDataResultModel(user: result.user)
+  }
+  
+  // 계정으로 회원가입
+  func emailAuthSignUp(email: String, password: String)  async throws -> AuthDataResultModel {
+    let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
+    let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+    return AuthDataResultModel(user: authResult.user)
+  }
+  
   /// 이미 로그인 상태인 유저 정보를 가져오는 메서드입니다.
   ///
   /// - Returns:
   ///   - AuthDataResultModel: 파이어베이스에 저장된 유저에대한 기초적인 정보를 가지고 있는 모델입니다.
   func getAuthenticatedUser() throws -> AuthDataResultModel {
     guard let user = Auth.auth().currentUser else {
+      
       throw URLError(.badServerResponse)
     }
     
@@ -59,6 +73,13 @@ final class AuthenticationManager {
   /// 로컬 Firebase에 저장된 유저 정보를 삭제하고 로그아웃 합니다.
   func signOut() throws {
     try Auth.auth().signOut()
+    SignInKakaoHelper().kakaoSignOut()
+    
+    Task {
+      await AnswerManager.shared.disconnectListener()
+      try? await UserManager.shared.fetchCurrentUser()
+      try? await UserManager.shared.fetchFianceUser()
+    }
   }
   
   /// 회원 탈퇴를 위한 로직을 구현한 메서드입니다.
