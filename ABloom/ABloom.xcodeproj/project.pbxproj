@@ -55,6 +55,7 @@
 		3DD485F02B0D9E9E00AF5E02 /* ConnectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD485EF2B0D9E9E00AF5E02 /* ConnectedView.swift */; };
 		3DD485F22B0DAAB300AF5E02 /* ConnectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD485F12B0DAAB300AF5E02 /* ConnectionViewModel.swift */; };
 		3DD485F42B0DAC5800AF5E02 /* ConnectingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD485F32B0DAC5800AF5E02 /* ConnectingView.swift */; };
+		3DD4860F2B14910200AF5E02 /* Kakao-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DD4860E2B14910200AF5E02 /* Kakao-Info.plist */; };
 		3DE945042AFA96C900CF7E33 /* ReactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE945032AFA96C900CF7E33 /* ReactionType.swift */; };
 		3DF31AE72B0453DF00F0EA4E /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31AE62B0453DF00F0EA4E /* SignInView.swift */; };
 		3DF31AE92B0453E700F0EA4E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31AE82B0453E700F0EA4E /* SignUpView.swift */; };
@@ -87,15 +88,14 @@
 		607DA2162AEFE900005AE11C /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2152AEFE900005AE11C /* ConnectionManager.swift */; };
 		607DA2182AF0B07D005AE11C /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2172AF0B07D005AE11C /* Ex+Date.swift */; };
 		6086BAA92AF130A800E2DC3A /* DBEssentialQuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6086BAA82AF130A800E2DC3A /* DBEssentialQuestionModel.swift */; };
+		60A134642B103593002E0A9F /* ReactionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A134632B103593002E0A9F /* ReactionStatus.swift */; };
 		60EEC2ED2B1223B10049DAFD /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 60EEC2EC2B1223B10049DAFD /* KakaoSDK */; };
 		60EEC2EF2B1223B10049DAFD /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 60EEC2EE2B1223B10049DAFD /* KakaoSDKAuth */; };
 		60EEC2F12B1223B10049DAFD /* KakaoSDKCert in Frameworks */ = {isa = PBXBuildFile; productRef = 60EEC2F02B1223B10049DAFD /* KakaoSDKCert */; };
 		60EEC2F32B1223B10049DAFD /* KakaoSDKCertCore in Frameworks */ = {isa = PBXBuildFile; productRef = 60EEC2F22B1223B10049DAFD /* KakaoSDKCertCore */; };
 		60EEC2F52B1223B10049DAFD /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 60EEC2F42B1223B10049DAFD /* KakaoSDKCommon */; };
 		60EEC2F72B1231560049DAFD /* SignInKakaoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EEC2F62B1231560049DAFD /* SignInKakaoHelper.swift */; };
-		60EEC2FA2B123A700049DAFD /* Kakao-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60EEC2F92B123A700049DAFD /* Kakao-Info.plist */; };
 		60EEC2FC2B125D210049DAFD /* Ex+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EEC2FB2B125D210049DAFD /* Ex+Bundle.swift */; };
-		60A134642B103593002E0A9F /* ReactionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A134632B103593002E0A9F /* ReactionStatus.swift */; };
 		AE02ABED2B0C8A08004648F9 /* FLAnimatedImage in Frameworks */ = {isa = PBXBuildFile; productRef = AE02ABEC2B0C8A08004648F9 /* FLAnimatedImage */; };
 		AE1AE9FB2AE51BF00010089F /* QnAListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1AE9FA2AE51BF00010089F /* QnAListItem.swift */; };
 		AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AE2BB5F32AD650680003CD85 /* .swiftlint.yml */; };
@@ -165,6 +165,7 @@
 		3DD485EF2B0D9E9E00AF5E02 /* ConnectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedView.swift; sourceTree = "<group>"; };
 		3DD485F12B0DAAB300AF5E02 /* ConnectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewModel.swift; sourceTree = "<group>"; };
 		3DD485F32B0DAC5800AF5E02 /* ConnectingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectingView.swift; sourceTree = "<group>"; };
+		3DD4860E2B14910200AF5E02 /* Kakao-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Kakao-Info.plist"; sourceTree = "<group>"; };
 		3DE945032AFA96C900CF7E33 /* ReactionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionType.swift; sourceTree = "<group>"; };
 		3DF31AE62B0453DF00F0EA4E /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		3DF31AE82B0453E700F0EA4E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -207,7 +208,6 @@
 		60A134632B103593002E0A9F /* ReactionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionStatus.swift; sourceTree = "<group>"; };
 		60E05FAF2AFBB66200AC6AE8 /* TipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
 		60EEC2F62B1231560049DAFD /* SignInKakaoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInKakaoHelper.swift; sourceTree = "<group>"; };
-		60EEC2F92B123A700049DAFD /* Kakao-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Kakao-Info.plist"; sourceTree = "<group>"; };
 		60EEC2FB2B125D210049DAFD /* Ex+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Bundle.swift"; sourceTree = "<group>"; };
 		AE1AE9F82AE50BBC0010089F /* QuestionMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionMainView.swift; sourceTree = "<group>"; };
 		AE1AE9FA2AE51BF00010089F /* QnAListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnAListItem.swift; sourceTree = "<group>"; };
@@ -713,7 +713,7 @@
 				3DB6A5B52AE1278D00C1369F /* ABloom.entitlements */,
 				AEC44E032AF628DF0021156E /* Launch Screen.storyboard */,
 				AE8D3C5D2ADE1A22009899A7 /* Info.plist */,
-				60EEC2F92B123A700049DAFD /* Kakao-Info.plist */,
+				3DD4860E2B14910200AF5E02 /* Kakao-Info.plist */,
 				3D4412792AEAB34000FD5A51 /* GoogleService-Info.plist */,
 				AE7EE4E02AD6409000E0A573 /* ABloomApp.swift */,
 				AE5EB9FA2AF1396C0074F361 /* AppDelegate.swift */,
@@ -902,7 +902,7 @@
 				3D44127A2AEAB34000FD5A51 /* GoogleService-Info.plist in Resources */,
 				AEBDE5692B06FC46005711BF /* NanumSquareNeo-dEb.ttf in Resources */,
 				AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */,
-				60EEC2FA2B123A700049DAFD /* Kakao-Info.plist in Resources */,
+				3DD4860F2B14910200AF5E02 /* Kakao-Info.plist in Resources */,
 				AE7EE4E82AD6409100E0A573 /* Preview Assets.xcassets in Resources */,
 				AEBDE56B2B06FC46005711BF /* NanumSquareNeo-bRg.ttf in Resources */,
 				3D44126B2AE6246100FD5A51 /* Assets.xcassets in Resources */,
@@ -1151,7 +1151,7 @@
 				CODE_SIGN_ENTITLEMENTS = ABloom/ABloom.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"ABloom/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = G7X65ZSJ3J;
@@ -1173,7 +1173,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.abloom.ABloom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1195,7 +1195,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"ABloom/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = G7X65ZSJ3J;
@@ -1217,7 +1217,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.abloom.ABloom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

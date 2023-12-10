@@ -32,6 +32,8 @@ final class UserManager: ObservableObject {
     try userDocument(userId: user.userId).setData(from: user, merge: false)
     Task {
       try? await fetchCurrentUser()
+      AnswerManager.shared.addSnapshotListenerForMyAnswer()
+      AnswerManager.shared.addSnapshotListenerForFianceAnswer()
     }
   }
   
@@ -133,11 +135,6 @@ final class UserManager: ObservableObject {
     
     let data: [String: Any?] = [DBUser.CodingKeys.fiance.rawValue: nil]
     try await userDocument(userId: fiance).updateData(data as [AnyHashable: Any])
-    
-    Task {
-      try? await fetchCurrentUser()
-      try? await fetchFianceUser()
-    }
   }
   
   private func deleteSubCollection(userId: String) async throws {

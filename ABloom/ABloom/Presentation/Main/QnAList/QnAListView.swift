@@ -63,7 +63,7 @@ extension QnAListView {
     Button {
       qnaListVM.tapProfileButton()
     } label: {
-      Image(UserSexType(type: (qnaListVM.currentUser?.sex ?? true)).getAvatar())
+      Image(qnaListVM.currentUser != nil ? (UserSexType(type: (qnaListVM.currentUser?.sex ?? true)).getAvatar()) : UserSexType.getAvatar(.none)())
         .resizable()
         .scaledToFit()
         .clipShape(Circle())

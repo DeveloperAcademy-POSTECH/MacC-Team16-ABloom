@@ -45,6 +45,7 @@ struct CategoryWaypointView: View {
       
       .task {
         try? await categoryWayVM.loadRecommendedQuestion()
+        categoryWayVM.checkLogin()
       }
       
       .customNavigationBar {

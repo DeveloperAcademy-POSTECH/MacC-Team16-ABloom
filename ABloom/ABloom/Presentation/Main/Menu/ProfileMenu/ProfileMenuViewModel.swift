@@ -17,6 +17,7 @@ final class ProfileMenuViewModel: ObservableObject {
   @Published var showNameChangeAlert = false
   @Published var showCalendarSheet = false
   @Published var showSignOutAlert = false
+  @Published var showNotLoginAlert = false
   
   @Published var nameChangeTextfield = ""
   @Published var marriageDate: Date = Date()
@@ -59,13 +60,16 @@ final class ProfileMenuViewModel: ObservableObject {
       .store(in: &cancellables)
   }
   
-  func renewInfo() async throws {
+  func renewInfo() async {
     try? await UserManager.shared.fetchCurrentUser()
-    getUsers()
+    try? await UserManager.shared.fetchFianceUser()
   }
   
   func signOut() throws {
-    try AuthenticationManager.shared.signOut()
+    Task {
+      try AuthenticationManager.shared.signOut()
+      await renewInfo()
+    }
   }
   
   func updateMyName() throws {

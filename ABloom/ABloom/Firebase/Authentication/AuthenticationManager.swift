@@ -76,6 +76,7 @@ final class AuthenticationManager {
     SignInKakaoHelper().kakaoSignOut()
     
     Task {
+      await AnswerManager.shared.disconnectListener()
       try? await UserManager.shared.fetchCurrentUser()
       try? await UserManager.shared.fetchFianceUser()
     }

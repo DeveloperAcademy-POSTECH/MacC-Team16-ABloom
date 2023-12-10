@@ -170,7 +170,7 @@ extension SelectQuestionView {
           .clipped()
         
         VStack {
-          Text("지금 로그인하면 메리의 200개가 넘는\n모든 질문들을 확인수 있어요!")
+          Text("지금 로그인하면 메리의 200개가 넘는\n모든 질문들을 확인할 수 있어요!")
             .customFont(.footnoteB)
             .foregroundStyle(.gray50)
             .multilineTextAlignment(.center)
