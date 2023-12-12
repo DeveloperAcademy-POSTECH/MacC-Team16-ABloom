@@ -107,10 +107,10 @@ final class SignInViewModel: ObservableObject {
       isOldUser = false
       MixpanelManager.signUpSocial(type: loginType.rawValue)
       
-      
       return
     }
-
+    
+    MixpanelManager.signIn(type: loginType.rawValue)
     isOldUser = true
   }
 }

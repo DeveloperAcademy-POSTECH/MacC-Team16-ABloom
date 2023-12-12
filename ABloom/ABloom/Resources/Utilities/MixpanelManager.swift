@@ -62,3 +62,11 @@ extension MixpanelManager {
     instance.track(event: "signup_complete")
   }
 }
+
+extension MixpanelManager {
+  static func signIn(type: String) {
+    let properties = ["socialLogin": type]
+    
+    instance.track(event: "signin_complete", properties: properties)
+  }
+}
