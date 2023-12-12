@@ -123,6 +123,7 @@ extension QnAListView {
   private var plusButton: some View {
     Button {
       qnaListVM.tapPlusButton()
+      MixpanelManager.qnaGenerate()
     } label: {
       Circle()
         .foregroundStyle(.white)

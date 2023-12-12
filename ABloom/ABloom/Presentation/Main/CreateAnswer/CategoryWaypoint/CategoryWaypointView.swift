@@ -120,6 +120,7 @@ extension CategoryWaypointView {
           )
           .onTapGesture {
             categoryWayVM.isClicked(selectedCategory: category)
+            MixpanelManager.qnaCategory(category: category.rawValue)
           }
       }
     }

@@ -132,6 +132,7 @@ extension SelectQuestionView {
     }
     .onTapGesture {
       selectQVM.questionClicked(selectedQ: selectedQ)
+      MixpanelManager.qnaSelectQuestion(questionId: selectedQ.questionID)
     }
     
   }

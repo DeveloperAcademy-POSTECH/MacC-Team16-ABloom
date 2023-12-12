@@ -63,10 +63,43 @@ extension MixpanelManager {
   }
 }
 
+// MARK: Track SignIn event
 extension MixpanelManager {
   static func signIn(type: String) {
     let properties = ["socialLogin": type]
     
     instance.track(event: "signin_complete", properties: properties)
+  }
+}
+
+// MARK: Track Answer event
+extension MixpanelManager {
+  static func qnaGenerate() {
+    instance.track(event: "qna_generate")
+  }
+  
+  static func qnaCategory(category: String) {
+    let properties = ["category": category]
+    
+    instance.track(event: "qna_category", properties: properties)
+  }
+  
+  static func qnaSelectQuestion(questionId: Int) {
+    let properties = ["questionId": "\(questionId)"]
+    
+    instance.track(event: "qna_select_question", properties: properties)
+  }
+  
+  static func qnaAnswer(letterCount: Int) {
+    let eventProperties = ["letterCount": "\(letterCount)"]
+    
+    instance.people.increment(property: "answeredQuestion", by: 1)
+    instance.track(event: "qna_answer", properties: eventProperties)
+  }
+  
+  static func qnaReaction(type: String) {
+    let properties = ["reactionType": "\(type)"]
+    
+    instance.track(event: "qna_reaction", properties: properties)
   }
 }
