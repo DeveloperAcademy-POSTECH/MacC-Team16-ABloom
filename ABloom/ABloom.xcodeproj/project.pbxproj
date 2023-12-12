@@ -13,6 +13,8 @@
 		3D44126B2AE6246100FD5A51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D44126A2AE6246100FD5A51 /* Assets.xcassets */; };
 		3D4412782AE9F5E600FD5A51 /* ServiceWebURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4412772AE9F5E600FD5A51 /* ServiceWebURL.swift */; };
 		3D44127A2AEAB34000FD5A51 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D4412792AEAB34000FD5A51 /* GoogleService-Info.plist */; };
+		3D7A163A2B2840C600A107E3 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A16392B2840C600A107E3 /* ToastView.swift */; };
+		3D7A163C2B2841E200A107E3 /* MixpanelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A163B2B2841E200A107E3 /* MixpanelManager.swift */; };
 		3D957E872AEE5C5800D565E9 /* Ex+Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D957E862AEE5C5800D565E9 /* Ex+Query.swift */; };
 		3D957E8C2AEE7F1000D565E9 /* DBUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D957E8B2AEE7F1000D565E9 /* DBUserModel.swift */; };
 		3D957E8E2AEE7F2E00D565E9 /* DBStaticQuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D957E8D2AEE7F2E00D565E9 /* DBStaticQuestionModel.swift */; };
@@ -134,6 +136,8 @@
 		3D44126A2AE6246100FD5A51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D4412772AE9F5E600FD5A51 /* ServiceWebURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceWebURL.swift; sourceTree = "<group>"; };
 		3D4412792AEAB34000FD5A51 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3D7A16392B2840C600A107E3 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		3D7A163B2B2841E200A107E3 /* MixpanelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixpanelManager.swift; sourceTree = "<group>"; };
 		3D957E862AEE5C5800D565E9 /* Ex+Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Query.swift"; sourceTree = "<group>"; };
 		3D957E8B2AEE7F1000D565E9 /* DBUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBUserModel.swift; sourceTree = "<group>"; };
 		3D957E8D2AEE7F2E00D565E9 /* DBStaticQuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBStaticQuestionModel.swift; sourceTree = "<group>"; };
@@ -276,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				606AA7612AFA910100CA5EA6 /* AnswerStatus.swift */,
+				3D7A163B2B2841E200A107E3 /* MixpanelManager.swift */,
 				60797C202AF9DD7C005375DC /* Category.swift */,
 				607DA2132AEFCF93005AE11C /* ConnectionError.swift */,
 				3D4412772AE9F5E600FD5A51 /* ServiceWebURL.swift */,
@@ -286,6 +291,7 @@
 				60528FA82B0C97A900A29E6F /* ActiveSheet.swift */,
 				3DD485E22B0B9BA500AF5E02 /* MarriageStatus.swift */,
 				60A134632B103593002E0A9F /* ReactionStatus.swift */,
+				3D7A16392B2840C600A107E3 /* ToastView.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -715,6 +721,7 @@
 			files = (
 				3D957E8C2AEE7F1000D565E9 /* DBUserModel.swift in Sources */,
 				AEE092912B0AF5270076E7B7 /* Ex+Color.swift in Sources */,
+				3D7A163C2B2841E200A107E3 /* MixpanelManager.swift in Sources */,
 				3D957E872AEE5C5800D565E9 /* Ex+Query.swift in Sources */,
 				3D4412782AE9F5E600FD5A51 /* ServiceWebURL.swift in Sources */,
 				AE8CFC1B2B08B242000F452F /* CategoryWaypointViewModel.swift in Sources */,
@@ -759,6 +766,7 @@
 				60678E352B0B8943009B9558 /* AppleLoginButtonViewRepresentable.swift in Sources */,
 				3DF31BFE2B074BB800F0EA4E /* SelectQuestionView.swift in Sources */,
 				60797C212AF9DD7C005375DC /* Category.swift in Sources */,
+				3D7A163A2B2840C600A107E3 /* ToastView.swift in Sources */,
 				60528FA92B0C97A900A29E6F /* ActiveSheet.swift in Sources */,
 				3DF31B082B073CDE00F0EA4E /* SignUpContentView.swift in Sources */,
 				3DD485E32B0B9BA500AF5E02 /* MarriageStatus.swift in Sources */,

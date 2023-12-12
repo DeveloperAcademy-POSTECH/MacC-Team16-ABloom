@@ -37,9 +37,9 @@ final class SignInViewModel: ObservableObject {
     self.user = authDataResult
     
     guard let user = self.user else { throw URLError(.badURL)}
-    
-    await checkOldUser(userId: user.uid)
-    
+    MixpanelManager.setIdentify(id: user.uid)
+    await checkOldUser(userId: user.uid, loginType: .apple)
+
     self.isSignInSuccess = true
   }
   
@@ -84,7 +84,8 @@ final class SignInViewModel: ObservableObject {
         let authDataResultModel = try await AuthenticationManager.shared.emailAuthSignIn(email: email, password: "\(password)")
         self.user = authDataResultModel
         guard let user = self.user else { throw URLError(.badURL)}
-        await checkOldUser(userId: user.uid)
+        MixpanelManager.setIdentify(id: user.uid)
+        await checkOldUser(userId: user.uid, loginType: .kakao)
         self.isSignInSuccess = true
 
         return
@@ -101,12 +102,20 @@ final class SignInViewModel: ObservableObject {
     }
   }
   
-  func checkOldUser(userId: String) async {
+  func checkOldUser(userId: String, loginType: LoginType) async {
     guard let dbUser = try? await UserManager.shared.getUser(userId: userId) else {
       isOldUser = false
+      MixpanelManager.signUpSocial(type: loginType.rawValue)
+      
+      
       return
     }
 
     isOldUser = true
   }
+}
+
+enum LoginType: String {
+  case kakao = "Kakao"
+  case apple = "Apple"
 }
