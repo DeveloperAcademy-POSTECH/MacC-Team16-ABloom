@@ -34,6 +34,7 @@ final class ConnectionViewModel: ObservableObject {
     Task {
       do {
         try await UserManager.shared.connectFiance(connectionCode: self.inputText)
+        MixpanelManager.connectComplete(code: self.inputText)
         getUsers()
       } catch let error as ConnectionError {
         self.errorMessage = error.errorMessage()

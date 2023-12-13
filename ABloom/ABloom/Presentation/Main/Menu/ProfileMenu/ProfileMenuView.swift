@@ -263,7 +263,7 @@ extension ProfileMenuView {
         
         Spacer()
         
-        Text("2.0.0")
+        Text("2.0.1")
           .customFont(.footnoteB)
           .foregroundStyle(.gray400)
       }

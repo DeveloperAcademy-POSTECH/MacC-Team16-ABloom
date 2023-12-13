@@ -47,7 +47,7 @@ extension MixpanelManager {
   }
   
   static func signUpName(name: String) {
-    let properties = ["Name": name]
+    let properties = ["$name": name]
     
     instance.track(event: "signup_name", properties: properties)
     instance.people.set(properties: properties)
@@ -108,5 +108,22 @@ extension MixpanelManager {
     let properties = ["Category":category, "Question ID":"\(questionId)"]
     
     instance.track(event: "qna_recommended_question", properties: properties)
+  }
+}
+
+// MARK: Track Connection event
+extension MixpanelManager {
+  static func connectCopy(code: String) {
+    let properties = ["Invitation Code":code]
+    
+    instance.people.set(properties: properties)
+    instance.track(event: "connect_copy", properties: properties)
+  }
+  
+  static func connectComplete(code: String) {
+    let properties = ["Fiance":code]
+    
+    instance.people.set(properties: properties)
+    instance.track(event: "connect_complete", properties: properties)
   }
 }
