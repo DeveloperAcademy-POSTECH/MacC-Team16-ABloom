@@ -60,6 +60,12 @@ extension MixpanelManager {
 
 // MARK: Track SignIn event
 extension MixpanelManager {
+  static func signInTry(loginPoint: String) {
+    let properties = ["Login Point": loginPoint]
+    
+    instance.track(event: "signin_try", properties: properties)
+  }
+  
   static func signIn(type: String) {
     let properties = ["Social Login": type]
     

@@ -182,6 +182,7 @@ extension SelectQuestionView {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
               activeSheet.kind = .signIn
             }
+            MixpanelManager.signInTry(loginPoint: "categoryN")
           } label: {
             Text("로그인하기 >")
               .padding(.bottom, 3)
