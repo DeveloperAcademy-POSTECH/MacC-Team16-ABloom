@@ -74,6 +74,7 @@ extension CategoryWaypointView {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
           activeSheet.kind = .signIn
         }
+        MixpanelManager.signInTry(loginPoint: "createQna")
       } else {
         categoryWayVM.recommenedQClicked()
       }
@@ -120,6 +121,7 @@ extension CategoryWaypointView {
           )
           .onTapGesture {
             categoryWayVM.isClicked(selectedCategory: category)
+            MixpanelManager.qnaCategory(category: category.rawValue)
           }
       }
     }

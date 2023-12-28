@@ -62,10 +62,7 @@ struct ProfileMenuView: View {
       
       Button("로그인") {
         vm.showNotLoginAlert = false
-        showProfileMenuSheet = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-          activeSheet.kind = .signIn
-        }
+        trySignIn()
       }
     }
   }
@@ -105,10 +102,7 @@ extension ProfileMenuView {
           }
         } else {
           Button {
-            showProfileMenuSheet = false
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-              activeSheet.kind = .signIn
-            }
+            trySignIn()
           } label: {
             Text("눌러서 로그인하기 >")
               .customFont(.caption1B)
@@ -269,7 +263,7 @@ extension ProfileMenuView {
         
         Spacer()
         
-        Text("2.0.0")
+        Text("2.0.1")
           .customFont(.footnoteB)
           .foregroundStyle(.gray400)
       }
@@ -340,5 +334,15 @@ extension ProfileMenuView {
         .scaledToFit()
         .frame(width: 10)
     }
+  }
+}
+
+extension ProfileMenuView {
+  private func trySignIn() {
+    showProfileMenuSheet = false
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+      activeSheet.kind = .signIn
+    }
+    MixpanelManager.signInTry(loginPoint: "profileMenu")
   }
 }

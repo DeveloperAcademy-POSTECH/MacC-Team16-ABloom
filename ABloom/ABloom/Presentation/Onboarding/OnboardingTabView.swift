@@ -74,7 +74,10 @@ extension OnboardingTabView {
   
   private var startButton: some View {
     return Button(
-      action: { isFirstLaunching.toggle() },
+      action: { 
+        isFirstLaunching.toggle()
+        MixpanelManager.signUpStart(pageNum: selectedTab)
+      },
       label: {
         Text("시작하기")
           .customFont(.title3B)
@@ -90,4 +93,8 @@ extension OnboardingTabView {
       }
     )
   }
+}
+
+#Preview {
+  OnboardingTabView(isFirstLaunching: .constant(false))
 }

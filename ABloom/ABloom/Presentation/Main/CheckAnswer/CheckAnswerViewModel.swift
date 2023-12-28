@@ -231,5 +231,7 @@ final class CheckAnswerViewModel: ObservableObject {
     guard let currentUserAnswerId = currentUserAnswerId else { return }
     
     AnswerManager.shared.updateReaction(userId: currentUserId, answerId: currentUserAnswerId, reaction: selectedReactionType)
+    
+    MixpanelManager.qnaReaction(type: selectedReactionType.reactionContent)
   }
 }
