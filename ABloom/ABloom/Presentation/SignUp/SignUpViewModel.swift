@@ -51,10 +51,13 @@ final class SignUpViewModel: ObservableObject {
       self.nowStep = .step2
     case .step2:
       self.nowStep = .step3
+      MixpanelManager.signUpDate(date: selectedDate)
     case .step3:
       self.nowStep = .step4
+      MixpanelManager.signUpName(name: inputName)
     case .step4:
       try? signUp()
+      MixpanelManager.signUpCompelete()
     }
   }
   

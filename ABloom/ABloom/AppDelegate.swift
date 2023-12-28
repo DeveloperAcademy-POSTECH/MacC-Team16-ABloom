@@ -9,6 +9,7 @@ import Firebase
 import FirebaseCore
 import FirebaseMessaging
 import KakaoSDKCommon
+import Mixpanel
 import UserNotifications
 
 @MainActor
@@ -21,7 +22,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     FirebaseApp.configure()
     
     KakaoSDK.initSDK(appKey: Bundle.main.kakaoApiKey)
-
+    
+    // Mixpanel 설정
+    Mixpanel.initialize(token: "38711b9399acd2e2a56944292b0fc16e", trackAutomaticEvents: true)
+    
     UNUserNotificationCenter.current().delegate = self
     
     let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]

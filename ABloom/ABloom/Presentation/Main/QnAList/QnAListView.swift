@@ -68,6 +68,13 @@ extension QnAListView {
         .scaledToFit()
         .clipShape(Circle())
         .frame(width: 32)
+        .overlay(alignment: .bottomTrailing) {
+          if let currentUser = qnaListVM.currentUser, currentUser.fiance == nil {
+              Circle()
+                .frame(width: 8)
+                .foregroundStyle(.red)
+            }
+        }
     }
     .sheet(isPresented: $qnaListVM.showProfileSheet) {
       NavigationStack {
@@ -123,6 +130,7 @@ extension QnAListView {
   private var plusButton: some View {
     Button {
       qnaListVM.tapPlusButton()
+      MixpanelManager.qnaGenerate()
     } label: {
       Circle()
         .foregroundStyle(.white)

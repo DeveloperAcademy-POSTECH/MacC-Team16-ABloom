@@ -82,6 +82,7 @@ final class CategoryWaypointViewModel: ObservableObject {
   
   func recommenedQClicked() {
     self.isRecommenedNavOn.toggle()
+    MixpanelManager.qnaRecommendedQuestion(category: recommendQuestion.category, questionId: recommendQuestion.questionID)
   }
   
   func loadRecommendedQuestion() async throws {
