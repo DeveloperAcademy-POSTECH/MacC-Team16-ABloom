@@ -15,6 +15,8 @@ import UserNotifications
 @MainActor
 class AppDelegate: NSObject, UIApplicationDelegate {
   
+  
+  
   // 앱이 켜졌을 때 자동 실행
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
     
@@ -24,7 +26,16 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     KakaoSDK.initSDK(appKey: Bundle.main.kakaoApiKey)
     
     // Mixpanel 설정
-    Mixpanel.initialize(token: "38711b9399acd2e2a56944292b0fc16e", trackAutomaticEvents: true)
+    guard let url = Bundle.main.url(forResource: "Mixpanel", withExtension: "plist") else {return false}
+    
+    guard let dictionary = NSDictionary(contentsOf: url) else { return false }
+    
+    if let token = dictionary["Token"] as? String {
+      Mixpanel.initialize(token: token, trackAutomaticEvents: true)
+      print("Mixpanel: \(token)")
+    } else {
+      print("no Mixpanel token")
+    }
     
     UNUserNotificationCenter.current().delegate = self
     
