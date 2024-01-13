@@ -87,7 +87,6 @@
 		60797C212AF9DD7C005375DC /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60797C202AF9DD7C005375DC /* Category.swift */; };
 		607DA20E2AEF48AE005AE11C /* NavigationArrowLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA20D2AEF48AE005AE11C /* NavigationArrowLeft.swift */; };
 		607DA2142AEFCF93005AE11C /* ConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2132AEFCF93005AE11C /* ConnectionError.swift */; };
-		607DA2162AEFE900005AE11C /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2152AEFE900005AE11C /* ConnectionManager.swift */; };
 		607DA2182AF0B07D005AE11C /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2172AF0B07D005AE11C /* Ex+Date.swift */; };
 		6086BAA92AF130A800E2DC3A /* DBEssentialQuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6086BAA82AF130A800E2DC3A /* DBEssentialQuestionModel.swift */; };
 		60A134642B103593002E0A9F /* ReactionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A134632B103593002E0A9F /* ReactionStatus.swift */; };
@@ -182,7 +181,6 @@
 		60797C202AF9DD7C005375DC /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		607DA20D2AEF48AE005AE11C /* NavigationArrowLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationArrowLeft.swift; sourceTree = "<group>"; };
 		607DA2132AEFCF93005AE11C /* ConnectionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionError.swift; sourceTree = "<group>"; };
-		607DA2152AEFE900005AE11C /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 		607DA2172AF0B07D005AE11C /* Ex+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Date.swift"; sourceTree = "<group>"; };
 		6086BAA82AF130A800E2DC3A /* DBEssentialQuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBEssentialQuestionModel.swift; sourceTree = "<group>"; };
 		60A134632B103593002E0A9F /* ReactionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionStatus.swift; sourceTree = "<group>"; };
@@ -269,7 +267,6 @@
 			children = (
 				3D4412422AE388DB00FD5A51 /* UserManager.swift */,
 				AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */,
-				607DA2152AEFE900005AE11C /* ConnectionManager.swift */,
 				3DF31B012B06685F00F0EA4E /* AnswerManager.swift */,
 				3DF31B032B0669F900F0EA4E /* EssentialQuestionManager.swift */,
 			);
@@ -770,7 +767,6 @@
 				60528FA92B0C97A900A29E6F /* ActiveSheet.swift in Sources */,
 				3DF31B082B073CDE00F0EA4E /* SignUpContentView.swift in Sources */,
 				3DD485E32B0B9BA500AF5E02 /* MarriageStatus.swift in Sources */,
-				607DA2162AEFE900005AE11C /* ConnectionManager.swift in Sources */,
 				AEAB19372ADF77210057BC43 /* Buttons.swift in Sources */,
 				AE7EE4E12AD6409000E0A573 /* ABloomApp.swift in Sources */,
 				3DF31B042B0669F900F0EA4E /* EssentialQuestionManager.swift in Sources */,
