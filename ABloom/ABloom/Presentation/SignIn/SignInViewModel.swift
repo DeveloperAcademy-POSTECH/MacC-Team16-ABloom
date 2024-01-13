@@ -43,6 +43,19 @@ final class SignInViewModel: ObservableObject {
     self.isSignInSuccess = true
   }
   
+  func signInGoogle() async throws {
+    let helper = SignInGoogleHelper()
+    guard let tokens = try await helper.startWithGoogle() else { return }
+    let authDataResult = try await AuthenticationManager.shared.signIn(credential: tokens)
+    self.user = authDataResult
+    
+    guard let user = self.user else { throw URLError(.badURL)}
+    MixpanelManager.setIdentify(id: user.uid)
+    await checkOldUser(userId: user.uid, loginType: .google)
+    
+    self.isSignInSuccess = true
+  }
+  
   /// Kakao로 로그인합니다
   func signInKakao() {
     let helper = SignInKakaoHelper()
@@ -118,4 +131,5 @@ final class SignInViewModel: ObservableObject {
 enum LoginType: String {
   case kakao = "Kakao"
   case apple = "Apple"
+  case google = "Google"
 }
