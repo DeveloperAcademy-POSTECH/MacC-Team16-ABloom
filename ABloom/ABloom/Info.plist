@@ -12,6 +12,14 @@
 				<string>kakaod6e0b992338638f7e33f0341e236359b</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.693233443832-b3qv75aut5poj4rcqpfcfvi5dq11olg9</string>
+			</array>
+		</dict>
 	</array>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<string>0</string>
