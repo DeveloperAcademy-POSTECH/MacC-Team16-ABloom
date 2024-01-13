@@ -13,6 +13,7 @@ import Foundation
 final class UserManager: ObservableObject {
   static let shared = UserManager()
   
+  private var listener: ListenerRegistration?
   @Published var currentUser: DBUser?
   @Published var fianceUser: DBUser?
   
@@ -52,6 +53,7 @@ final class UserManager: ObservableObject {
   func fetchFianceUser() async throws {
     guard let fianceId = self.currentUser?.fiance else {
       self.fianceUser = nil
+      self.addSnapshotListenerForFiance()
       return
     }
     
@@ -145,7 +147,33 @@ final class UserManager: ObservableObject {
     }
   }
   
+  func addSnapshotListenerForFiance() {
+    guard let userId = UserManager.shared.currentUser?.userId else { return }
+    
+    listener = userDocument(userId: userId).addSnapshotListener { [weak self] (snapShot, error) in
+      guard let data = try? snapShot?.data(as: DBUser.self), let fiance = data.fiance else { return }
+      if !fiance.isEmpty {
+        self?.updateUserStatus()
+        self?.removeSnapshotListener()
+      }
+    }
+  }
   
+  func updateUserStatus() {
+    Task {
+      try? await fetchCurrentUser()
+      try? await fetchFianceUser()
+      
+      StaticQuestionManager.shared.fetchFilterQuestions()
+      AnswerManager.shared.addSnapshotListenerForFianceAnswer()
+    }
+  }
+  
+  func removeSnapshotListener() {
+    listener?.remove()
+    listener = nil
+  }
+
   // MARK: Will be deprecated method
   // MARK: GET Method
   func getCurrentUser() async throws -> DBUser {
