@@ -74,6 +74,18 @@ extension SignInView {
           .allowsHitTesting(false)
       }
       .frame(height: 52)
+      
+      Button {
+        Task { try await signInVM.signInGoogle() }
+      } label: {
+        Text("구글 로그인")
+          .font(.system(size: 20))
+          .foregroundStyle(.black.opacity(0.85))
+          .frame(maxWidth: .infinity)
+          .frame(height: 52)
+          .background(.white)
+          .cornerRadius(8, corners: .allCorners)
+      }
     }
   }
 }
