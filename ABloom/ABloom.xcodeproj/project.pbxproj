@@ -124,6 +124,7 @@
 		AEBDE56C2B06FC46005711BF /* NanumSquareNeo-eHv.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEBDE5672B06FC46005711BF /* NanumSquareNeo-eHv.ttf */; };
 		AEC260612AEA5A8000DF7CD5 /* StaticQuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */; };
 		AEC44E042AF628DF0021156E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEC44E032AF628DF0021156E /* Launch Screen.storyboard */; };
+		AEDFFECE2B51576300386BFD /* Mixpanel.plist in Resources */ = {isa = PBXBuildFile; fileRef = AEDFFECD2B51576300386BFD /* Mixpanel.plist */; };
 		AEE092912B0AF5270076E7B7 /* Ex+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE092902B0AF5270076E7B7 /* Ex+Color.swift */; };
 		AEEA8DD32AEB82520068550E /* ChatBubbles.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEA8DD22AEB82520068550E /* ChatBubbles.swift */; };
 /* End PBXBuildFile section */
@@ -215,6 +216,7 @@
 		AEBDE5672B06FC46005711BF /* NanumSquareNeo-eHv.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NanumSquareNeo-eHv.ttf"; sourceTree = "<group>"; };
 		AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticQuestionManager.swift; sourceTree = "<group>"; };
 		AEC44E032AF628DF0021156E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		AEDFFECD2B51576300386BFD /* Mixpanel.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Mixpanel.plist; sourceTree = "<group>"; };
 		AEE092902B0AF5270076E7B7 /* Ex+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Color.swift"; sourceTree = "<group>"; };
 		AEEA8DD22AEB82520068550E /* ChatBubbles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbles.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -513,6 +515,7 @@
 				AE8D3C5D2ADE1A22009899A7 /* Info.plist */,
 				3DD4860E2B14910200AF5E02 /* Kakao-Info.plist */,
 				3D4412792AEAB34000FD5A51 /* GoogleService-Info.plist */,
+				AEDFFECD2B51576300386BFD /* Mixpanel.plist */,
 				AE7EE4E02AD6409000E0A573 /* ABloomApp.swift */,
 				AE5EB9FA2AF1396C0074F361 /* AppDelegate.swift */,
 				AEB502652AE61AD70056E439 /* Resources */,
@@ -678,6 +681,7 @@
 			files = (
 				AEBDE56A2B06FC46005711BF /* NanumSquareNeo-cBd.ttf in Resources */,
 				AEBDE5682B06FC46005711BF /* NanumSquareNeo-aLt.ttf in Resources */,
+				AEDFFECE2B51576300386BFD /* Mixpanel.plist in Resources */,
 				3D44127A2AEAB34000FD5A51 /* GoogleService-Info.plist in Resources */,
 				AEBDE5692B06FC46005711BF /* NanumSquareNeo-dEb.ttf in Resources */,
 				AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */,
