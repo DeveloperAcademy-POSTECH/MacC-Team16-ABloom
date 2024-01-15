@@ -103,7 +103,7 @@ extension QnAListView {
           .padding(.horizontal, 20)
         }
         
-        Spacer().frame(height: 30)
+        Spacer().frame(height: 110)
       }
     }
     .shadow(color: .black.opacity(0.08), radius: 16, x: 0, y: 0)
