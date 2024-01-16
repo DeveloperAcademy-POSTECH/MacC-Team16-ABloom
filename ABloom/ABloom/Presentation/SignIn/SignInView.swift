@@ -19,13 +19,13 @@ struct SignInView: View {
       Text("로그인")
         .customFont(.title1B)
       Text("간편하게 로그인해서 메리를 시작해보세요.")
-        .customFont(.caption1B)
+        .customFont(.caption1R)
         .foregroundStyle(.gray500)
-        .padding(.bottom, 10)
+        .padding(.bottom, 14)
       
       buttonArea
     }
-    .padding(.vertical, 36)
+    .padding(.vertical, 28)
     .padding(.horizontal, 20)
     
     .task {
@@ -56,35 +56,54 @@ extension SignInView {
         HStack(spacing: 8) {
           Image("KakaoLoginLogo")
             .resizable()
-            .frame(width: 20, height: 20)
+            .scaledToFit()
+            .frame(width: 18)
+          
           Text("카카오 로그인")
-            .font(.system(size: 20))
-            .foregroundStyle(.black.opacity(0.85))
+            .customFont(.calloutB)
+            .foregroundStyle(.black)
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 52)
+        .frame(height: 48)
         .background(.kakaoYellow)
-        .cornerRadius(8, corners: .allCorners)
+        .cornerRadius(12, corners: .allCorners)
       }
       
       Button {
         Task { try await signInVM.signInApple() }
       } label: {
-        SignInWithAppleButtonViewRepresentable(type: .signIn, style: .black)
-          .allowsHitTesting(false)
+        HStack(spacing: 8) {
+          Image("AppleLoginLogo")
+
+          Text("Apple로 로그인")
+            .customFont(.calloutB)
+            .foregroundStyle(.white)
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: 48)
+        .background(.black)
+        .cornerRadius(12, corners: .allCorners)
       }
-      .frame(height: 52)
       
       Button {
         Task { try await signInVM.signInGoogle() }
       } label: {
-        Text("구글 로그인")
-          .font(.system(size: 20))
-          .foregroundStyle(.black.opacity(0.85))
-          .frame(maxWidth: .infinity)
-          .frame(height: 52)
-          .background(.white)
-          .cornerRadius(8, corners: .allCorners)
+        HStack(spacing: 8) {
+          Image("GoogleLoginLogo")
+            .resizable()
+            .frame(width: 16, height: 16)
+          Text("Google로 로그인")
+            .customFont(.calloutB)
+            .foregroundStyle(.black.opacity(0.85))
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: 48)
+        .background(
+          RoundedRectangle(cornerRadius: 12)
+            .stroke(lineWidth: 1)
+            .foregroundStyle(.googleGray)
+            .background(.white)
+        )
       }
     }
   }
