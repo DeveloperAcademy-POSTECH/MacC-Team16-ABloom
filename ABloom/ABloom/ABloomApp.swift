@@ -5,6 +5,7 @@
 //  Created by yun on 10/11/23.
 //
 import Firebase
+import GoogleSignIn
 import KakaoSDKAuth
 import SwiftUI
 
@@ -41,10 +42,12 @@ struct ABloomApp: App {
         }
       }
       
-      /// 카카오톡에서 앱으로 돌아왔을 때 카카오 로그인 처리를 정상적으로 완료하기 위함
+      /// 구글웹, 카카오톡에서 앱으로 돌아왔을 때 로그인 처리를 정상적으로 완료하기 위함
       .onOpenURL { url in
         if AuthApi.isKakaoTalkLoginUrl(url) {
           _ = AuthController.handleOpenUrl(url: url)
+        } else {
+          GIDSignIn.sharedInstance.handle(url)
         }
       }
     }

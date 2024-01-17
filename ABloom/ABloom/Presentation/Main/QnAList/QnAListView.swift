@@ -159,7 +159,7 @@ extension QnAListView {
   
   private var signInSheet: some View {
     SignInView(activeSheet: activeSheet)
-      .presentationDetents([.height(302)])
+      .presentationDetents([.height(332)])
       .onDisappear {
         Task { 
           await qnaListVM.fetchDataAfterSignIn()
