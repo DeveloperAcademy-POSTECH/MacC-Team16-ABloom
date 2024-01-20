@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ReactionType: Int {
+enum ReactionType: Int, Reaction {
   case good = 0
   case knowEachOther
   case moreCommunication
@@ -29,16 +29,31 @@ enum ReactionType: Int {
     }
   }
   
+  var imageName: String {
+    switch self {
+    case .good:
+      "ReactionLike"
+    case .knowEachOther:
+      "ReactionKnow"
+    case .moreCommunication:
+      "ReactionCommunicate"
+    case .moreResearch:
+      "ReactionResearch"
+    case .error:
+      ""
+    }
+  }
+  
   var reactionContent: String {
     switch self {
     case .good:
-      return "💙 좋았어요"
+      return "좋아요"
     case .knowEachOther:
-      return "🤝 서로에 대해 더 알게 됐어요"
+      return "잘 알게 됐어요"
     case .moreCommunication:
-      return "💬 더 대화해볼래요"
+      return "대화해봐요"
     case .moreResearch:
-      return "💡 더 찾아봐야겠어요"
+      return "더 찾아봐요"
     case .error:
       return "error"
     }
@@ -52,24 +67,9 @@ enum ReactionType: Int {
       return false
     }
   }
-  
-  var imageName: String {
-    switch self {
-    case .good:
-      "1_like"
-    case .knowEachOther:
-      "2_know"
-    case .moreCommunication:
-      "3_moreCommunication"
-    case .moreResearch:
-      "4_moreResearch"
-    case .error:
-      ""
-    }
-  }
 }
 
-enum NoReactType {
+enum NoReactType: Reaction {
   case lock
   case plus
   case wait
@@ -77,11 +77,22 @@ enum NoReactType {
   var imageName: String {
     switch self {
     case .lock:
-      "A_Lock"
+      "Lock"
     case .plus:
-      "B_Add"
+      "Plus"
     case .wait:
-      "C_Wait"
+      "Wait"
+    }
+  }
+  
+  var reactionContent: String {
+    switch self {
+    case .lock:
+      "잠겨 있어요"
+    case .plus:
+      ""
+    case .wait:
+      "기다리고 있어요"
     }
   }
 }
