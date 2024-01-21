@@ -48,6 +48,8 @@ extension Font {
   static let caption2R: Font = .custom(AppFont.regular.rawValue, size: 11)
   static let caption2B: Font = .custom(AppFont.bold.rawValue, size: 11)
 
+  static let reaction14: Font = .custom("NPS-font-Regular", size: 14)
+  static let reaction16: Font = .custom("NPS-font-Regular", size: 16)
   
   // ChatBubble
   static let chatBubble: Font = .custom("SpoqaHanSansNeo-Regular", size: 14)

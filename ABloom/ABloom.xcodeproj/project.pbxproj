@@ -91,6 +91,7 @@
 		607DA20E2AEF48AE005AE11C /* NavigationArrowLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA20D2AEF48AE005AE11C /* NavigationArrowLeft.swift */; };
 		607DA2142AEFCF93005AE11C /* ConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2132AEFCF93005AE11C /* ConnectionError.swift */; };
 		607DA2182AF0B07D005AE11C /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2172AF0B07D005AE11C /* Ex+Date.swift */; };
+		608061E62B5A61FC006A7693 /* NPSfont_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 608061E52B5A61FC006A7693 /* NPSfont_regular.ttf */; };
 		6086BAA92AF130A800E2DC3A /* DBEssentialQuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6086BAA82AF130A800E2DC3A /* DBEssentialQuestionModel.swift */; };
 		60A134642B103593002E0A9F /* ReactionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A134632B103593002E0A9F /* ReactionStatus.swift */; };
 		60EEC2ED2B1223B10049DAFD /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 60EEC2EC2B1223B10049DAFD /* KakaoSDK */; };
@@ -187,6 +188,7 @@
 		607DA20D2AEF48AE005AE11C /* NavigationArrowLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationArrowLeft.swift; sourceTree = "<group>"; };
 		607DA2132AEFCF93005AE11C /* ConnectionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionError.swift; sourceTree = "<group>"; };
 		607DA2172AF0B07D005AE11C /* Ex+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Date.swift"; sourceTree = "<group>"; };
+		608061E52B5A61FC006A7693 /* NPSfont_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NPSfont_regular.ttf; sourceTree = "<group>"; };
 		6086BAA82AF130A800E2DC3A /* DBEssentialQuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBEssentialQuestionModel.swift; sourceTree = "<group>"; };
 		60A134632B103593002E0A9F /* ReactionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionStatus.swift; sourceTree = "<group>"; };
 		60EEC2F62B1231560049DAFD /* SignInKakaoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInKakaoHelper.swift; sourceTree = "<group>"; };
@@ -560,6 +562,7 @@
 		AE8D3C522ADE19F2009899A7 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				608061E52B5A61FC006A7693 /* NPSfont_regular.ttf */,
 				AEBDE5632B06FC46005711BF /* NanumSquareNeo-aLt.ttf */,
 				AEBDE5662B06FC46005711BF /* NanumSquareNeo-bRg.ttf */,
 				AEBDE5652B06FC46005711BF /* NanumSquareNeo-cBd.ttf */,
@@ -691,6 +694,7 @@
 				AEDFFECE2B51576300386BFD /* Mixpanel.plist in Resources */,
 				3D44127A2AEAB34000FD5A51 /* GoogleService-Info.plist in Resources */,
 				AEBDE5692B06FC46005711BF /* NanumSquareNeo-dEb.ttf in Resources */,
+				608061E62B5A61FC006A7693 /* NPSfont_regular.ttf in Resources */,
 				AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */,
 				3DD4860F2B14910200AF5E02 /* Kakao-Info.plist in Resources */,
 				AE7EE4E82AD6409100E0A573 /* Preview Assets.xcassets in Resources */,
