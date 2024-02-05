@@ -74,6 +74,9 @@
 		3DF31BFE2B074BB800F0EA4E /* SelectQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31AF02B04541F00F0EA4E /* SelectQuestionView.swift */; };
 		3DF31C002B076F7500F0EA4E /* SignUpStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF31BFF2B076F7500F0EA4E /* SignUpStep.swift */; };
 		3DF31C012B07729200F0EA4E /* EmbedWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44125B2AE4F91900FD5A51 /* EmbedWebView.swift */; };
+		6024772C2B517D40005A5167 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 6024772B2B517D40005A5167 /* GoogleSignIn */; };
+		6024772E2B517D40005A5167 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6024772D2B517D40005A5167 /* GoogleSignInSwift */; };
+		602477302B519927005A5167 /* SignInGoogleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024772F2B519927005A5167 /* SignInGoogleHelper.swift */; };
 		60528FA92B0C97A900A29E6F /* ActiveSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60528FA82B0C97A900A29E6F /* ActiveSheet.swift */; };
 		6053F15F2ADF6C3B0064A6E0 /* Ex+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053F15E2ADF6C3B0064A6E0 /* Ex+View.swift */; };
 		6053F1622ADF6CDE0064A6E0 /* InputFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053F1612ADF6CDE0064A6E0 /* InputFieldModifier.swift */; };
@@ -87,8 +90,8 @@
 		60797C212AF9DD7C005375DC /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60797C202AF9DD7C005375DC /* Category.swift */; };
 		607DA20E2AEF48AE005AE11C /* NavigationArrowLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA20D2AEF48AE005AE11C /* NavigationArrowLeft.swift */; };
 		607DA2142AEFCF93005AE11C /* ConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2132AEFCF93005AE11C /* ConnectionError.swift */; };
-		607DA2162AEFE900005AE11C /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2152AEFE900005AE11C /* ConnectionManager.swift */; };
 		607DA2182AF0B07D005AE11C /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607DA2172AF0B07D005AE11C /* Ex+Date.swift */; };
+		608061E62B5A61FC006A7693 /* NPSfont_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 608061E52B5A61FC006A7693 /* NPSfont_regular.ttf */; };
 		6086BAA92AF130A800E2DC3A /* DBEssentialQuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6086BAA82AF130A800E2DC3A /* DBEssentialQuestionModel.swift */; };
 		60A134642B103593002E0A9F /* ReactionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A134632B103593002E0A9F /* ReactionStatus.swift */; };
 		60EEC2ED2B1223B10049DAFD /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 60EEC2EC2B1223B10049DAFD /* KakaoSDK */; };
@@ -124,6 +127,7 @@
 		AEBDE56C2B06FC46005711BF /* NanumSquareNeo-eHv.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEBDE5672B06FC46005711BF /* NanumSquareNeo-eHv.ttf */; };
 		AEC260612AEA5A8000DF7CD5 /* StaticQuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */; };
 		AEC44E042AF628DF0021156E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEC44E032AF628DF0021156E /* Launch Screen.storyboard */; };
+		AEDFFECE2B51576300386BFD /* Mixpanel.plist in Resources */ = {isa = PBXBuildFile; fileRef = AEDFFECD2B51576300386BFD /* Mixpanel.plist */; };
 		AEE092912B0AF5270076E7B7 /* Ex+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE092902B0AF5270076E7B7 /* Ex+Color.swift */; };
 		AEEA8DD32AEB82520068550E /* ChatBubbles.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEA8DD22AEB82520068550E /* ChatBubbles.swift */; };
 /* End PBXBuildFile section */
@@ -171,6 +175,7 @@
 		3DF31B052B073CD000F0EA4E /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		3DF31B072B073CDE00F0EA4E /* SignUpContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpContentView.swift; sourceTree = "<group>"; };
 		3DF31BFF2B076F7500F0EA4E /* SignUpStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpStep.swift; sourceTree = "<group>"; };
+		6024772F2B519927005A5167 /* SignInGoogleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInGoogleHelper.swift; sourceTree = "<group>"; };
 		60528FA82B0C97A900A29E6F /* ActiveSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSheet.swift; sourceTree = "<group>"; };
 		6053F15E2ADF6C3B0064A6E0 /* Ex+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+View.swift"; sourceTree = "<group>"; };
 		6053F1612ADF6CDE0064A6E0 /* InputFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldModifier.swift; sourceTree = "<group>"; };
@@ -182,8 +187,8 @@
 		60797C202AF9DD7C005375DC /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		607DA20D2AEF48AE005AE11C /* NavigationArrowLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationArrowLeft.swift; sourceTree = "<group>"; };
 		607DA2132AEFCF93005AE11C /* ConnectionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionError.swift; sourceTree = "<group>"; };
-		607DA2152AEFE900005AE11C /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 		607DA2172AF0B07D005AE11C /* Ex+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Date.swift"; sourceTree = "<group>"; };
+		608061E52B5A61FC006A7693 /* NPSfont_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NPSfont_regular.ttf; sourceTree = "<group>"; };
 		6086BAA82AF130A800E2DC3A /* DBEssentialQuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBEssentialQuestionModel.swift; sourceTree = "<group>"; };
 		60A134632B103593002E0A9F /* ReactionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionStatus.swift; sourceTree = "<group>"; };
 		60EEC2F62B1231560049DAFD /* SignInKakaoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInKakaoHelper.swift; sourceTree = "<group>"; };
@@ -215,6 +220,7 @@
 		AEBDE5672B06FC46005711BF /* NanumSquareNeo-eHv.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NanumSquareNeo-eHv.ttf"; sourceTree = "<group>"; };
 		AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticQuestionManager.swift; sourceTree = "<group>"; };
 		AEC44E032AF628DF0021156E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		AEDFFECD2B51576300386BFD /* Mixpanel.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Mixpanel.plist; sourceTree = "<group>"; };
 		AEE092902B0AF5270076E7B7 /* Ex+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Color.swift"; sourceTree = "<group>"; };
 		AEEA8DD22AEB82520068550E /* ChatBubbles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbles.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -244,12 +250,14 @@
 				60EEC2F32B1223B10049DAFD /* KakaoSDKCertCore in Frameworks */,
 				3DB6A5A92AE0BDF800C1369F /* FirebaseStorageCombine-Community in Frameworks */,
 				60EEC2F12B1223B10049DAFD /* KakaoSDKCert in Frameworks */,
+				6024772C2B517D40005A5167 /* GoogleSignIn in Frameworks */,
 				3DB6A5A32AE0BDF800C1369F /* FirebaseRemoteConfig in Frameworks */,
 				3DB6A57F2AE0BDF800C1369F /* FirebaseAppDistribution-Beta in Frameworks */,
 				60EEC2ED2B1223B10049DAFD /* KakaoSDK in Frameworks */,
 				3DB6A5832AE0BDF800C1369F /* FirebaseAuthCombine-Community in Frameworks */,
 				3DB6A5A12AE0BDF800C1369F /* FirebasePerformance in Frameworks */,
 				3DB6A5992AE0BDF800C1369F /* FirebaseInAppMessagingSwift-Beta in Frameworks */,
+				6024772E2B517D40005A5167 /* GoogleSignInSwift in Frameworks */,
 				3DB6A5A72AE0BDF800C1369F /* FirebaseStorage in Frameworks */,
 				AE02ABED2B0C8A08004648F9 /* FLAnimatedImage in Frameworks */,
 				3DB1FF192B25EB15009DDCCF /* Mixpanel in Frameworks */,
@@ -269,7 +277,6 @@
 			children = (
 				3D4412422AE388DB00FD5A51 /* UserManager.swift */,
 				AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */,
-				607DA2152AEFE900005AE11C /* ConnectionManager.swift */,
 				3DF31B012B06685F00F0EA4E /* AnswerManager.swift */,
 				3DF31B032B0669F900F0EA4E /* EssentialQuestionManager.swift */,
 			);
@@ -321,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				3DB6A5B32AE11CCD00C1369F /* SignInAppleHelper.swift */,
+				6024772F2B519927005A5167 /* SignInGoogleHelper.swift */,
 				60EEC2F62B1231560049DAFD /* SignInKakaoHelper.swift */,
 				3D4412482AE4C49700FD5A51 /* AuthenticationManager.swift */,
 			);
@@ -513,6 +521,7 @@
 				AE8D3C5D2ADE1A22009899A7 /* Info.plist */,
 				3DD4860E2B14910200AF5E02 /* Kakao-Info.plist */,
 				3D4412792AEAB34000FD5A51 /* GoogleService-Info.plist */,
+				AEDFFECD2B51576300386BFD /* Mixpanel.plist */,
 				AE7EE4E02AD6409000E0A573 /* ABloomApp.swift */,
 				AE5EB9FA2AF1396C0074F361 /* AppDelegate.swift */,
 				AEB502652AE61AD70056E439 /* Resources */,
@@ -553,6 +562,7 @@
 		AE8D3C522ADE19F2009899A7 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				608061E52B5A61FC006A7693 /* NPSfont_regular.ttf */,
 				AEBDE5632B06FC46005711BF /* NanumSquareNeo-aLt.ttf */,
 				AEBDE5662B06FC46005711BF /* NanumSquareNeo-bRg.ttf */,
 				AEBDE5652B06FC46005711BF /* NanumSquareNeo-cBd.ttf */,
@@ -626,6 +636,8 @@
 				60EEC2F22B1223B10049DAFD /* KakaoSDKCertCore */,
 				60EEC2F42B1223B10049DAFD /* KakaoSDKCommon */,
 				3DB1FF182B25EB15009DDCCF /* Mixpanel */,
+				6024772B2B517D40005A5167 /* GoogleSignIn */,
+				6024772D2B517D40005A5167 /* GoogleSignInSwift */,
 			);
 			productName = ABloom;
 			productReference = AE7EE4DD2AD6409000E0A573 /* ABloom.app */;
@@ -661,6 +673,7 @@
 				AE02ABEB2B0C8A08004648F9 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */,
 				60EEC2EB2B1223B10049DAFD /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				3DB1FF172B25EB15009DDCCF /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
+				6024772A2B517D40005A5167 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = AE7EE4DE2AD6409000E0A573 /* Products */;
 			projectDirPath = "";
@@ -678,8 +691,10 @@
 			files = (
 				AEBDE56A2B06FC46005711BF /* NanumSquareNeo-cBd.ttf in Resources */,
 				AEBDE5682B06FC46005711BF /* NanumSquareNeo-aLt.ttf in Resources */,
+				AEDFFECE2B51576300386BFD /* Mixpanel.plist in Resources */,
 				3D44127A2AEAB34000FD5A51 /* GoogleService-Info.plist in Resources */,
 				AEBDE5692B06FC46005711BF /* NanumSquareNeo-dEb.ttf in Resources */,
+				608061E62B5A61FC006A7693 /* NPSfont_regular.ttf in Resources */,
 				AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */,
 				3DD4860F2B14910200AF5E02 /* Kakao-Info.plist in Resources */,
 				AE7EE4E82AD6409100E0A573 /* Preview Assets.xcassets in Resources */,
@@ -759,6 +774,7 @@
 				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
 				AEB502642AE5FA840056E439 /* CustomNavigationBarModifier.swift in Sources */,
 				3DD485F42B0DAC5800AF5E02 /* ConnectingView.swift in Sources */,
+				602477302B519927005A5167 /* SignInGoogleHelper.swift in Sources */,
 				3DE945042AFA96C900CF7E33 /* ReactionType.swift in Sources */,
 				3D957E902AEE7F4800D565E9 /* DBAnswerModel.swift in Sources */,
 				607DA2142AEFCF93005AE11C /* ConnectionError.swift in Sources */,
@@ -770,7 +786,6 @@
 				60528FA92B0C97A900A29E6F /* ActiveSheet.swift in Sources */,
 				3DF31B082B073CDE00F0EA4E /* SignUpContentView.swift in Sources */,
 				3DD485E32B0B9BA500AF5E02 /* MarriageStatus.swift in Sources */,
-				607DA2162AEFE900005AE11C /* ConnectionManager.swift in Sources */,
 				AEAB19372ADF77210057BC43 /* Buttons.swift in Sources */,
 				AE7EE4E12AD6409000E0A573 /* ABloomApp.swift in Sources */,
 				3DF31B042B0669F900F0EA4E /* EssentialQuestionManager.swift in Sources */,
@@ -1050,6 +1065,14 @@
 				minimumVersion = 10.16.0;
 			};
 		};
+		6024772A2B517D40005A5167 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		60EEC2EB2B1223B10049DAFD /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
@@ -1208,6 +1231,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3DB6A5732AE0BDF800C1369F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		6024772B2B517D40005A5167 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6024772A2B517D40005A5167 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		6024772D2B517D40005A5167 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6024772A2B517D40005A5167 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
 		};
 		60EEC2EC2B1223B10049DAFD /* KakaoSDK */ = {
 			isa = XCSwiftPackageProductDependency;

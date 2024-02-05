@@ -12,6 +12,14 @@
 				<string>kakaod6e0b992338638f7e33f0341e236359b</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.693233443832-b3qv75aut5poj4rcqpfcfvi5dq11olg9</string>
+			</array>
+		</dict>
 	</array>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<string>0</string>
@@ -27,6 +35,7 @@
 경고, 사운드 및 아이콘 배지가 알림에 포함될 수 있습니다. 설정에서 이를 구성할 수 있습니다.</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>NPSfont_regular.ttf</string>
 		<string>SpoqaHanSansNeo-Thin.ttf</string>
 		<string>SpoqaHanSansNeo-Regular.ttf</string>
 		<string>SpoqaHanSansNeo-Medium.ttf</string>

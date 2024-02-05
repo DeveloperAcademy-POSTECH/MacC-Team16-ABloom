@@ -15,13 +15,14 @@ struct WriteAnswerView: View {
   var question: DBStaticQuestion
   
   var body: some View {
-    VStack(alignment: .leading, spacing: 20) {
+    VStack(alignment: .leading, spacing: 15) {
       
       questionText
       
       ZStack(alignment: .top) {
         
         textField
+          .padding(.horizontal, -5)
         
         textNumCheck
           .position(x: UIScreen.main.bounds.size.width/2 - 20, y: UIScreen.main.bounds.size.height/3.5)
@@ -98,16 +99,19 @@ extension WriteAnswerView {
   }
   
   private var textField: some View {
-    TextField("", text: $writeAMV.ansText, axis: .vertical)
-      .placeholder(when: writeAMV.ansText.isEmpty, placeholder: {
-        Text("내 답변을 작성해보세요...")
-          .customFont(.calloutR)
-          .foregroundStyle(.gray400)
-      })
-      .customFont(.calloutR)
+    
+    TextEditor(text: $writeAMV.ansText)
+      .opacity(writeAMV.ansText.isEmpty ? 0.2 : 1.0)
+      .background(alignment: .topLeading) {
+        TextEditor(text: .constant(writeAMV.ansText.isEmpty ? "내 답변을 작성해보세요..." : ""))
+          .foregroundStyle(.gray500)
+      }
       .foregroundStyle(.gray500)
+      .accentColor(.biPurple)
+      .customFont(.calloutR)
       .multilineTextAlignment(.leading)
       .frame(maxWidth: .infinity)
+      .frame(maxHeight: UIScreen.main.bounds.size.height/3.5 - 10) 
       .onChange(of: writeAMV.ansText, perform: { new in
         writeAMV.checkTextCount()
       })
