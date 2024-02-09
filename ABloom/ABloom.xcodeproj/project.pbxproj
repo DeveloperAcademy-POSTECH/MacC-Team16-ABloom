@@ -111,8 +111,6 @@
 		AE6B41052AFC618B00A7483E /* Ex+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B41042AFC618B00A7483E /* Ex+String.swift */; };
 		AE7EE4E12AD6409000E0A573 /* ABloomApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7EE4E02AD6409000E0A573 /* ABloomApp.swift */; };
 		AE7EE4E82AD6409100E0A573 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE7EE4E72AD6409100E0A573 /* Preview Assets.xcassets */; };
-		AE8CFC172B089899000F452F /* OnboardingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CFC162B089899000F452F /* OnboardingTabView.swift */; };
-		AE8CFC192B0898BF000F452F /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CFC182B0898BF000F452F /* OnboardingPageView.swift */; };
 		AE8CFC1B2B08B242000F452F /* CategoryWaypointViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CFC1A2B08B242000F452F /* CategoryWaypointViewModel.swift */; };
 		AE8CFC1D2B08FFFB000F452F /* SelectQuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CFC1C2B08FFFB000F452F /* SelectQuestionViewModel.swift */; };
 		AE8D3C512ADE19E0009899A7 /* Ex+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D3C502ADE19E0009899A7 /* Ex+Font.swift */; };
@@ -203,8 +201,6 @@
 		AE7EE4DD2AD6409000E0A573 /* ABloom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ABloom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE7EE4E02AD6409000E0A573 /* ABloomApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABloomApp.swift; sourceTree = "<group>"; };
 		AE7EE4E72AD6409100E0A573 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		AE8CFC162B089899000F452F /* OnboardingTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTabView.swift; sourceTree = "<group>"; };
-		AE8CFC182B0898BF000F452F /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
 		AE8CFC1A2B08B242000F452F /* CategoryWaypointViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryWaypointViewModel.swift; sourceTree = "<group>"; };
 		AE8CFC1C2B08FFFB000F452F /* SelectQuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionViewModel.swift; sourceTree = "<group>"; };
 		AE8D3C502ADE19E0009899A7 /* Ex+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Font.swift"; sourceTree = "<group>"; };
@@ -353,15 +349,6 @@
 			path = SignIn;
 			sourceTree = "<group>";
 		};
-		3DF31AD52B044DE800F0EA4E /* Onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				AE8CFC162B089899000F452F /* OnboardingTabView.swift */,
-				AE8CFC182B0898BF000F452F /* OnboardingPageView.swift */,
-			);
-			path = Onboarding;
-			sourceTree = "<group>";
-		};
 		3DF31AD62B044DFC00F0EA4E /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -474,7 +461,6 @@
 		6053F1632ADF7F3D0064A6E0 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				3DF31AD52B044DE800F0EA4E /* Onboarding */,
 				3DF31AD42B044DB100F0EA4E /* SignIn */,
 				3DF31AD62B044DFC00F0EA4E /* SignUp */,
 				3DF31AD72B044E4B00F0EA4E /* Main */,
@@ -778,7 +764,6 @@
 				3DE945042AFA96C900CF7E33 /* ReactionType.swift in Sources */,
 				3D957E902AEE7F4800D565E9 /* DBAnswerModel.swift in Sources */,
 				607DA2142AEFCF93005AE11C /* ConnectionError.swift in Sources */,
-				AE8CFC192B0898BF000F452F /* OnboardingPageView.swift in Sources */,
 				60678E352B0B8943009B9558 /* AppleLoginButtonViewRepresentable.swift in Sources */,
 				3DF31BFE2B074BB800F0EA4E /* SelectQuestionView.swift in Sources */,
 				60797C212AF9DD7C005375DC /* Category.swift in Sources */,
@@ -805,7 +790,6 @@
 				3D4412432AE388DB00FD5A51 /* UserManager.swift in Sources */,
 				3DD485E12B0AFC7300AF5E02 /* ProfileMenuViewModel.swift in Sources */,
 				3DD485F02B0D9E9E00AF5E02 /* ConnectedView.swift in Sources */,
-				AE8CFC172B089899000F452F /* OnboardingTabView.swift in Sources */,
 				3DF31B062B073CD000F0EA4E /* SignUpViewModel.swift in Sources */,
 				AE2F915C2B0B3D7800EE9C33 /* WriteAnswerViewModel.swift in Sources */,
 				AE6ACF552AE0B49E0017088C /* Helpers.swift in Sources */,
