@@ -78,7 +78,7 @@ final class SignUpViewModel: ObservableObject {
     if nextButtonDisableStatus() {
       Color.gray400
     } else {
-      Color.purple700
+      Color.primary80
     }
   }
   

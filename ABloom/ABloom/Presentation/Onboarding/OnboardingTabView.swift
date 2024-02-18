@@ -38,7 +38,7 @@ extension OnboardingTabView {
           selectedTab = index
         } }, label: {
           Circle()
-            .fill(selectedTab == index ? .purple600 : .gray300)
+            .fill(selectedTab == index ? .primary60 : .gray300)
             .frame(width: 8, height: 8)
         })
       }
@@ -87,7 +87,7 @@ extension OnboardingTabView {
           .padding(.top, 18)
           .background(
             Rectangle()
-              .foregroundStyle(.purple700)
+              .foregroundStyle(.primary70)
           )
           .padding(0)
       }

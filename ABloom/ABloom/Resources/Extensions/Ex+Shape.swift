@@ -99,6 +99,6 @@ extension Shape {
       .shadow(.inner(color: Color.black.opacity(0.3), radius: 5, x: 0, y: -3))
       .shadow(.inner(color: Color.white.opacity(0.5), radius: 7.5, x: 3, y: 1))
     )
-    .shadow(color: Color.purple200.opacity(1), radius: 20, x: 0, y: 20)
+    .shadow(color: Color.primary20.opacity(1), radius: 20, x: 0, y: 20)
   }
 }

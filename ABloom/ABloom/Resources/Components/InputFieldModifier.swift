@@ -16,7 +16,7 @@ struct StrokeInputFieldStyle: ViewModifier {
     ZStack(alignment: alignment) {
       RoundedRectangle(cornerRadius: cornerRadius)
         .stroke(
-          isValueValid ? .purple600 : .purple400,
+          isValueValid ? .primary40 : .primary20,
           lineWidth: 4
         )
         .frame(height: 50)
@@ -28,6 +28,6 @@ struct StrokeInputFieldStyle: ViewModifier {
         .foregroundStyle(isValueValid ? .gray500 : .gray400)
         .padding(.horizontal, 15)
     }
-    .tint(.purple600)
+    .tint(.primary40)
   }
 }

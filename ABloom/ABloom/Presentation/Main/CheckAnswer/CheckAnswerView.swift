@@ -45,7 +45,7 @@ struct CheckAnswerView: View {
       } label: {
         Image("xmark")
           .renderingMode(.template)
-          .foregroundStyle(.purple700)
+          .foregroundStyle(.primary80)
       }
     } rightView: {
       EmptyView()

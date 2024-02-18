@@ -48,7 +48,6 @@ struct ProfileMenuView: View {
         showProfileMenuSheet = false
       }
       .customFont(.calloutB)
-      .foregroundStyle(.purple700)
     } rightView: {
       EmptyView()
     }
@@ -222,7 +221,7 @@ extension ProfileMenuView {
             .customFont(.headlineB)
         }
       }
-      .tint(.purple700)
+      .tint(.primary70)
     }
   }
   
