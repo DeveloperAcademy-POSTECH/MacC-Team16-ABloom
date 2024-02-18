@@ -50,7 +50,7 @@ enum AnswerStatus {
   var backgroundColor: Color {
     switch self {
     case .completed:
-      return .biSecondary
+      return .secondary40
     case .onlyMe, .reactOnlyMe, .moreResearch, .moreCommunication, .error:
       return .white
     case .onlyFinace, .reactOnlyFinace:
