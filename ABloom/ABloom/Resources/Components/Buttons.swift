@@ -230,8 +230,50 @@ struct PurpleTextButton: View {
   }
 }
 
+struct ConnectionButton: View {
+  var title: String
+  var color: Color
+  var image: String
+  var hasStroke = false
+  
+  var action: () -> Void
+  
+  var body: some View {
+    Button {
+      action()
+    } label: {
+      ZStack {
+        RoundedRectangle(cornerRadius: 8)
+          .foregroundStyle(color)
+        
+        HStack(spacing: 4) {
+          Image(image)
+            .renderingMode(.template)
+          
+          Text(title)
+            .font(.bodyB)
+        }
+        .foregroundStyle(.gray950)
+      }
+    }
+    .frame(height: 60)
+    .overlay {
+      if hasStroke {
+        RoundedRectangle(cornerRadius: 8)
+          .stroke()
+          .foregroundStyle(.gray300)
+      }
+    }
+  }
+}
+
 #Preview {
   ScrollView {
+    ConnectionButton(title: "나의 연결 코드 복사하기", color: .yellow, image: "copy", action: {
+      
+    })
+      .padding()
+    
     PurpleTextButton(title: "ButtonWithText")
       .padding()
     PurpleSingleBtn(text: "PurpleSingleBtn")

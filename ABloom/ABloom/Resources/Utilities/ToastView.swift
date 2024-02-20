@@ -11,18 +11,23 @@ struct ToastView: View {
   let message: String
   
   var body: some View {
-    Text(message)
-      .fontWithTracking(.footnoteR)
-      .padding(.horizontal, 12)
-      .padding(.vertical, 8)
-      .background(.stone400)
-      .foregroundColor(.white)
-      .cornerRadius(12)
-      .transition(AnyTransition.move(edge: .bottom).combined(with: .opacity))
-      .zIndex(1)  // Ensure the toast appears on top
+    ZStack {
+      Capsule()
+        .frame(height: 50)
+        .foregroundStyle(Color.init(hex: 0x000000, opacity: 0.7))
+      
+      Text(message)
+        .fontWithTracking(.calloutR)
+        .foregroundColor(.white)
+    }
+    .transition(AnyTransition.move(edge: .bottom).combined(with: .opacity))
+    .zIndex(1)  // Ensure the toast appears on top
   }
 }
 
 #Preview {
-  ToastView(message: "토스트임")
+  VStack {
+    ToastView(message: "토스트임")
+  }
+  .padding(.horizontal, 10)
 }
