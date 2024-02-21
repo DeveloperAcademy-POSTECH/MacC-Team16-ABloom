@@ -117,15 +117,16 @@ extension ProfileMenuView {
       Label(
         title: {
           Text(vm.marriageStatus?.dDayMessage ?? "지금 로그인하고 결혼예정일을 설정해보세요.")
-            .customFont(.caption1R)
-            .foregroundStyle(.gray600)
+            .customFont(.footnoteB)
+            .foregroundStyle(.primary40)
         },
         icon: {
           Image("heart_calendar")
             .resizable()
+            .renderingMode(.template)
             .scaledToFit()
             .frame(width: 16)
-            .foregroundStyle(.gray600)
+            .foregroundStyle(.primary40)
         }
       )
       .padding(.horizontal, 12)
@@ -133,7 +134,7 @@ extension ProfileMenuView {
       
       Spacer()
     }
-    .background(Color.gray100)
+    .background(Color.primary)
     .cornerRadius(8, corners: .allCorners)
   }
   
