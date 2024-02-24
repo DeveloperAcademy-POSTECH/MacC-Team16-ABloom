@@ -14,6 +14,7 @@ final class ActiveSheet: ObservableObject {
   enum Kind {
     case signIn
     case signUp
+    case connect
     case none
   }
   
