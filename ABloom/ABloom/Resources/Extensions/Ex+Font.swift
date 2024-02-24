@@ -54,4 +54,7 @@ extension Font {
   // ChatBubble
   static let chatBubble: Font = .custom("SpoqaHanSansNeo-Regular", size: 14)
   static let chatBubbleBtn: Font = .custom("SpoqaHanSansNeo-Medium", size: 14)
+  
+  // Invitation Code
+  static let myCode: Font = .custom(AppFont.extraBold.rawValue, size: 24)
 }

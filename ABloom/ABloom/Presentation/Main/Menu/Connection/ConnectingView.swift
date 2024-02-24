@@ -77,7 +77,7 @@ extension ConnectingView {
           .foregroundStyle(.purple100)
 
         Text(vm.currentUser?.invitationCode ?? "로그인해주세요.")
-          .font(.largeTitleB)
+          .font(.myCode)
       }
     }
   }
