@@ -26,6 +26,7 @@ struct CheckAnswerView: View {
           reactionArea
         }
         .padding(.top, 46)
+        .padding(.bottom, 30)
         .frame(maxWidth: .infinity)
         .multilineTextAlignment(.leading)
       } else {
@@ -130,38 +131,45 @@ extension CheckAnswerView {
         .padding(.bottom, 30)
       
       HStack(alignment: .bottom) {
-        Image(checkAnswerVM.fianceReactionStatus.reactionImgName)
-          .resizable()
-          .frame(width: 84, height: 84)
+        reactionLabelView(reactionStatus: checkAnswerVM.fianceReactionStatus, size: 84)
         
-        Spacer()
+        Spacer(minLength: 4)
         
-        Image(checkAnswerVM.coupleReaction)
-          .resizable()
-          .frame(width: 124, height: 124)
-          .padding(.bottom, 18)
+        reactionLabelView(reactionStatus: checkAnswerVM.coupleReactionStatus, size: 124)
         
-        Spacer()
+        Spacer(minLength: 4)
         
         Button {
           checkAnswerVM.tapSelectReactionButton()
         } label: {
-          Image(checkAnswerVM.currentUserReactionStatus.reactionImgName)
-            .resizable()
-            .frame(width: 84, height: 84)
+          reactionLabelView(reactionStatus: checkAnswerVM.currentUserReactionStatus, size: 84)
             .overlay(alignment: .bottomTrailing) {
               if checkAnswerVM.currentUserReactionStatus.isReacted {
-                // TODO: 이미지 추가
                 Image("ResponseMenu")
                   .resizable()
                   .frame(width: 20, height: 20)
-                  .offset(x: -1, y: -1)
+                  .offset(x: -10, y: -30)
               }
             }
         }.disabled(!checkAnswerVM.isAnswersDone)
       }
       .foregroundStyle(.gray300)
     }
+  }
+  
+  private func reactionLabelView<T: Reaction>(reactionStatus: T, size: CGFloat) -> some View {
+    let isCoupleReaction = reactionStatus is CoupleReactionStatus
+    
+    return VStack(spacing: 8) {
+      Image(reactionStatus.imageName)
+        .resizable()
+        .frame(width: size, height: size)
+      Text(reactionStatus.reactionContent)
+        .font(isCoupleReaction && (reactionStatus as? CoupleReactionStatus != CoupleReactionStatus.lock) ?
+          .reaction16 : .reaction14)
+        .foregroundStyle(.gray600)
+    }
+    .frame(width: isCoupleReaction ? 142 : 96)
   }
   
   private func buttonView(type: SheetType) -> some View {

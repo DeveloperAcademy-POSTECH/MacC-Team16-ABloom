@@ -59,6 +59,7 @@ extension SignUpContentView {
         withAnimation {
           signUpViewModel.selectedSex = .man
           signUpViewModel.nowStep = .step2
+          MixpanelManager.signUpSexType(type: signUpViewModel.selectedSex)
         }
       } label: {
         ButtonWDescriptionA(title: "예비신랑", subtitle: "결혼을 준비하는 예비신랑이에요.", isActive: signUpViewModel.selectedSex == .man)
@@ -69,6 +70,7 @@ extension SignUpContentView {
         withAnimation {
           signUpViewModel.selectedSex = .woman
           signUpViewModel.nowStep = .step2
+          MixpanelManager.signUpSexType(type: signUpViewModel.selectedSex)
         }
       } label: {
         ButtonWDescriptionA(title: "예비신부", subtitle: "결혼을 준비하는 예비신부예요.", isActive: signUpViewModel.selectedSex == .woman)

@@ -68,6 +68,13 @@ extension QnAListView {
         .scaledToFit()
         .clipShape(Circle())
         .frame(width: 32)
+        .overlay(alignment: .bottomTrailing) {
+          if let currentUser = qnaListVM.currentUser, currentUser.fiance == nil {
+              Circle()
+                .frame(width: 8)
+                .foregroundStyle(.red)
+            }
+        }
     }
     .sheet(isPresented: $qnaListVM.showProfileSheet) {
       NavigationStack {
@@ -96,7 +103,7 @@ extension QnAListView {
           .padding(.horizontal, 20)
         }
         
-        Spacer().frame(height: 30)
+        Spacer().frame(height: 110)
       }
     }
     .shadow(color: .black.opacity(0.08), radius: 16, x: 0, y: 0)
@@ -123,6 +130,7 @@ extension QnAListView {
   private var plusButton: some View {
     Button {
       qnaListVM.tapPlusButton()
+      MixpanelManager.qnaGenerate()
     } label: {
       Circle()
         .foregroundStyle(.white)
@@ -151,7 +159,7 @@ extension QnAListView {
   
   private var signInSheet: some View {
     SignInView(activeSheet: activeSheet)
-      .presentationDetents([.height(302)])
+      .presentationDetents([.height(332)])
       .onDisappear {
         Task { 
           await qnaListVM.fetchDataAfterSignIn()

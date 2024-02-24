@@ -55,6 +55,7 @@ class WriteAnswerViewModel: ObservableObject {
   func createAnswer(qid: Int) throws {
     let uid = try AuthenticationManager.shared.getAuthenticatedUser().uid
     try AnswerManager.shared.createAnswer(userId: uid, questionId: qid, content: self.ansText)
+    MixpanelManager.qnaAnswer(letterCount: ansText.count)
   }
   
 }

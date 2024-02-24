@@ -30,9 +30,9 @@ enum AnswerStatus {
     case .completed:
       return "완성된 문답"
     case .moreCommunication:
-      return "더 대화해보세요"
+      return "이야기를 나눠보세요"
     case .moreResearch:
-      return "더 알아보세요"
+      return "자세히 알아보세요"
     case .error:
       return ""
     }

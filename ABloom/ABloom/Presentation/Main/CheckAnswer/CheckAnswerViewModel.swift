@@ -71,19 +71,8 @@ final class CheckAnswerViewModel: ObservableObject {
     }
   }
   
-  var coupleReaction: String {
-    switch (currentUserReactionStatus, fianceReactionStatus) {
-    case (.react(let currentUserReaction), .react(let fianceReaction)):
-      if [currentUserReaction, fianceReaction].contains(.moreCommunication) {
-        return "5_Communicate"
-      } else if [currentUserReaction, fianceReaction].contains(.moreResearch) {
-        return "7_LetsKnow"
-      } else {
-        return "6_Good"
-      }
-    case (_, _):
-      return "A_Lock"
-    }
+  var coupleReactionStatus: CoupleReactionStatus {
+    CoupleReactionStatus.coupleReaction(currentUserReactionStatus, fianceReactionStatus)
   }
   
   func getAnswers(dbQuestion: DBStaticQuestion) {
@@ -231,5 +220,7 @@ final class CheckAnswerViewModel: ObservableObject {
     guard let currentUserAnswerId = currentUserAnswerId else { return }
     
     AnswerManager.shared.updateReaction(userId: currentUserId, answerId: currentUserAnswerId, reaction: selectedReactionType)
+    
+    MixpanelManager.qnaReaction(type: selectedReactionType.reactionContent)
   }
 }

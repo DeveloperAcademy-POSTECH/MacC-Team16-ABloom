@@ -5,6 +5,7 @@
 //  Created by 정승균 on 11/22/23.
 //
 
+import Combine
 import Foundation
 
 @MainActor
@@ -20,20 +21,27 @@ final class ConnectionViewModel: ObservableObject {
   }
   
   var errorMessage: String = ""
-  
+  private var cancellables = Set<AnyCancellable>()
+
   init() {
     getUsers()
   }
   
   func getUsers() {
     self.currentUser = UserManager.shared.currentUser
-    self.fianceUser = UserManager.shared.fianceUser
+    
+    UserManager.shared.$fianceUser
+      .sink { [weak self] user in
+        self?.fianceUser = user
+      }
+      .store(in: &cancellables)
   }
   
   func connectUser() {
     Task {
       do {
         try await UserManager.shared.connectFiance(connectionCode: self.inputText)
+        MixpanelManager.connectComplete(code: self.inputText)
         getUsers()
       } catch let error as ConnectionError {
         self.errorMessage = error.errorMessage()

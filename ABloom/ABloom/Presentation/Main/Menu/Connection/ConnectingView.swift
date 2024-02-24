@@ -107,5 +107,7 @@ extension ConnectingView {
         self.showToast = false
       }
     }
+    
+    MixpanelManager.connectCopy(code: vm.currentUser?.invitationCode ?? "")
   }
 }
