@@ -88,7 +88,7 @@ enum NoReactType: Reaction {
   var reactionContent: String {
     switch self {
     case .lock:
-      "잠겨 있어요"
+      "잠겨있어요"
     case .plus:
       ""
     case .wait:

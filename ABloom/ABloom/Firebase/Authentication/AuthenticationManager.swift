@@ -33,7 +33,7 @@ final class AuthenticationManager {
   ///   - AuthDataResultModel: 유저의 정보를 리턴합니다.
   @discardableResult
   func signInWithApple(tokens: SignInWithAppleResult) async throws -> AuthDataResultModel {
-    let credential = OAuthProvider.appleCredential(withIDToken: tokens.token, rawNonce: tokens.nonce, fullName: tokens.fullName)
+    let credential = OAuthProvider.appleCredential(withIDToken: tokens.token, rawNonce: tokens.nonce, fullName: nil)
     
     return try await signIn(credential: credential)
   }

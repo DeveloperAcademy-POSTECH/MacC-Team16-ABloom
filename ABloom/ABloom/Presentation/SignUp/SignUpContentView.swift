@@ -92,6 +92,7 @@ extension SignUpContentView {
           .customFont(.headlineR)
           .foregroundStyle(.gray500)
       }
+      .frame(height: 27)
       .customFont(.headlineR)
       .padding(.vertical, 20)
       .padding(.horizontal, 22)

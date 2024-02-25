@@ -13,7 +13,6 @@ import SwiftUI
 struct SignInWithAppleResult {
   let token: String
   let nonce: String
-  let fullName: PersonNameComponents?
 }
 
 @MainActor
@@ -51,7 +50,7 @@ final class SignInAppleHelper: NSObject {
     
     let appleIDProvider = ASAuthorizationAppleIDProvider()
     let request = appleIDProvider.createRequest()
-    request.requestedScopes = [.fullName, .email] // 애플 로그인을 통해 제공 받을 부분은 이름입니다.
+    request.requestedScopes = [.email] // 애플 로그인을 통해 제공 받을 부분은 이름입니다.
     request.nonce = sha256(nonce)
     
     let authorizationController = ASAuthorizationController(authorizationRequests: [request])
@@ -108,7 +107,7 @@ extension SignInAppleHelper: ASAuthorizationControllerDelegate {
       return
     }
     
-    let tokens = SignInWithAppleResult(token: idTokenString, nonce: nonce, fullName: appleIDCredential.fullName)
+    let tokens = SignInWithAppleResult(token: idTokenString, nonce: nonce)
     
     completionHandler?(.success(tokens))
   }
