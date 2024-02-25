@@ -26,7 +26,7 @@ struct ABloomApp: App {
       AnswerManager.shared.addSnapshotListenerForFianceAnswer()
     }
     
-    UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(named: "Purple 600")
+    UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(named: "Primary 60")
   }
   
   
