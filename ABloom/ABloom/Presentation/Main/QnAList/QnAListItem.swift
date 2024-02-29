@@ -66,7 +66,7 @@ extension QnAListItem {
         if answerStatus.isStroke {
           RoundedRectangle(cornerRadius: 14)
             .stroke(lineWidth: 1)
-            .foregroundStyle(.purple600)
+            .foregroundStyle(.primary40)
         }
       }
   }

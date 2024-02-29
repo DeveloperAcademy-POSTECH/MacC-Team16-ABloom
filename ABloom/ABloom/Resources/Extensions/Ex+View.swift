@@ -62,19 +62,11 @@ extension View {
   }
   /// Purple600 - Purple500 Gradient
   public func purpleGradient65() -> some ShapeStyle {
-    LinearGradient(colors: [.purple600, .purple500], startPoint: .bottomLeading, endPoint: .topTrailing)
+    LinearGradient(colors: [.primary60, .primary50], startPoint: .bottomLeading, endPoint: .topTrailing)
   }
   
   public func glassGradient() -> some ShapeStyle {
     LinearGradient(colors: [.white, .white.opacity(0.0)], startPoint: .topLeading, endPoint: .bottomTrailing)
-  }
-  
-  /// BackgroundColorView
-  public func backgroundDefault() -> some View {
-    Image("backgroundDefault")
-      .resizable()
-      .scaledToFill()
-      .ignoresSafeArea()
   }
   
   /// RoundedCorner struct를 활용하여 지정된 edge마다 지정된 radius 값으로 변환시키는 함수

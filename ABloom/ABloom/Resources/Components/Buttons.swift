@@ -150,7 +150,7 @@ struct TextBtn: View {
   var body: some View {
     Text("연결없이 시작하기")
       .fontWithTracking(.calloutB)
-      .foregroundStyle(.purple600)
+      .foregroundStyle(.primary60)
   }
 }
 
@@ -174,12 +174,12 @@ struct ButtonWDescriptionA: View {
     }
     .padding(.horizontal, 24)
     .padding(.vertical, 20)
-    .background(isActive ? Color.purple300 : Color.gray100)
+    .background(isActive ? Color.primary10 : Color.gray100)
     .cornerRadius(12, corners: .allCorners)
     .overlay {
       RoundedRectangle(cornerRadius: 12)
         .inset(by: 0.75)
-        .stroke(Color.purple700.opacity(isActive ? 1.0 : 0))
+        .stroke(Color.primary40.opacity(isActive ? 1.0 : 0))
     }
   }
 }
@@ -204,12 +204,12 @@ struct ButtonWDescriptionB: View {
     }
     .padding(.horizontal, 25)
     .padding(.vertical, 20)
-    .background(isActive ? Color.purple300 : Color.gray100)
+    .background(isActive ? Color.primary10 : Color.gray100)
     .cornerRadius(12, corners: .allCorners)
     .overlay {
       RoundedRectangle(cornerRadius: 12)
         .inset(by: 0.75)
-        .stroke(Color.purple700.opacity(isActive ? 1.0 : 0))
+        .stroke(Color.primary40.opacity(isActive ? 1.0 : 0))
     }
   }
 }
@@ -221,10 +221,10 @@ struct PurpleTextButton: View {
   var body: some View {
     Text(title)
       .customFont(.calloutB)
-      .foregroundStyle(.purple50)
+      .foregroundStyle(.gray50)
       .frame(height: 46)
       .frame(maxWidth: .infinity)
-      .background(isDisable ? .gray400 : Color.purple600)
+      .background(isDisable ? .gray400 : Color.primary80)
       .cornerRadius(8, corners: .allCorners)
       .disabled(isDisable)
   }

@@ -113,7 +113,9 @@ extension QnAListView {
     VStack(spacing: 12) {
       Image("LogoPurple")
         .resizable()
+        .renderingMode(.template)
         .frame(width: 68, height: 68)
+        .foregroundStyle(.primary30)
         .padding(.bottom, 4)
       
       Text("메리 사용 시작하기")
@@ -140,7 +142,7 @@ extension QnAListView {
           Image(systemName: "plus")
             .resizable()
             .frame(width: 22, height: 22)
-            .foregroundStyle(.purple800)
+            .foregroundStyle(.primary80)
         }
         .padding(.bottom, 7)
     }

@@ -14,6 +14,6 @@ struct NavigationArrowLeft: View {
       .renderingMode(.template)
       .scaledToFit()
       .frame(width: 18)
-      .foregroundStyle(.purple700)
+      .foregroundStyle(.primary80)
   }
 }
