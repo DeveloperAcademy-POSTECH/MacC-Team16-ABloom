@@ -155,6 +155,7 @@ extension QnAListView {
     switch activeSheet.kind {
     case .none: return AnyView(EmptyView())
     case .signIn: return AnyView(signInSheet)
+    case .connect: return AnyView(ConnectionView())
     case .signUp: return AnyView(signUpSheet)
     }
   }
@@ -174,7 +175,10 @@ extension QnAListView {
     SignUpView()
       .interactiveDismissDisabled()
       .onDisappear {
-        Task { await qnaListVM.fetchDataAfterSignIn() }
+        Task {
+          await qnaListVM.fetchDataAfterSignIn()
+          activeSheet.kind = .connect
+        }
       }
   }
 }
