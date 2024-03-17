@@ -74,7 +74,7 @@ extension ConnectingView {
       ZStack {
         RoundedRectangle(cornerRadius: 8)
           .frame(height: 84)
-          .foregroundStyle(.purple100)
+          .foregroundStyle(.primary10)
 
         Text(vm.currentUser?.invitationCode ?? "로그인해주세요.")
           .font(.myCode)
@@ -102,7 +102,7 @@ extension ConnectingView {
             .padding(.vertical, 15)
             .background {
               RoundedRectangle(cornerRadius: 8)
-                .foregroundStyle(vm.inputText.isEmpty ? .purple200 : .purple800)
+                .foregroundStyle(vm.inputText.isEmpty ? .primary20 : .primary80)
             }
         }
       }
