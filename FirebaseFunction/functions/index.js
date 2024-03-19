@@ -44,54 +44,58 @@ exports.sendNotiConnection = functions
         }
     });
 
-exports.sendNotiOnCompletion = functions
-    .region('asia-northeast3')
-    .firestore
-    .document('users/{userId}/answers/{documentId}')
-    .onUpdate(async (change, context) => {
+    exports.sendNotiOnCompletion = functions
+        .region('asia-northeast3')
+        .firestore
+        .document('users/{userId}/answers/{documentId}')
+        .onUpdate(async (change, context) => {
 
-        const userId = context.params.userId;
-        const documentId = context.params.documentId;
+            const userId = context.params.userId;
+            const documentId = context.params.documentId;
 
-        const { fianceId, myName } = await getFianceId(userId);
+            const { fianceId, myName } = await getFianceId(userId);
 
-        const recipientToken = await getRecipientToken(fianceId);
+            const recipientTokens = await Promise.all([getRecipientToken(fianceId), getRecipientToken(userId)]);
 
-        const ansQid = await getQid(userId, documentId);
+            const ansQid = await getQid(userId, documentId);
 
-        console.log(`qid: ${ansQid}`)
+            console.log(`qid: ${ansQid}`)
 
-        const beforeData = change.before.data();
-        const afterData = change.after.data();
-        const watchedField = 'is_complete';
+            const beforeData = change.before.data();
+            const afterData = change.after.data();
+            const watchedField = 'is_complete';
 
-        if (recipientToken && beforeData[watchedField] == false && afterData[watchedField] == true ) {
-          console.log(`Field ${watchedField} changed from false to ${afterData[watchedField]} in document ${context.params.documentId}`);
+            if (recipientTokens.some(token => token) && beforeData[watchedField] == false && afterData[watchedField] == true ) {
+              console.log(`Field ${watchedField} changed from false to ${afterData[watchedField]} in document ${context.params.documentId}`);
 
-            const message = {
-              data: {
-                viewToOpen: 'AnswerCheck',
-                qid: `${ansQid}`
-              },
-                notification: {
+                const messages = recipientTokens.filter(token => token).map(token => ({
+                  data: {
+                    viewToOpen: 'AnswerCheck',
+                    qid: `${ansQid}`
+                  },
+                  notification: {
                     title: `둘만의 문답이 완성됐어요!`,
                     body: '행복한 결혼 생활에 한 걸음 더 다가갔어요 💕',
-                },
-                token: recipientToken,
-            };
+                  },
+                  token: token,
+                }));
 
-            try {
-                return await admin.messaging().send(message).then((results) => {
-                console.log('Successfully sent notification completion to partner user');
-                return {success: true};
-              });
-            } catch (error) {
-                console.error('Error sending noti on reaction:', error);
+                try {
+                    const sendPromises = messages.map(message =>
+                        admin.messaging().send(message).then(() => {
+                            console.log('Successfully sent notification completion to partner user');
+                            return {success: true};
+                        })
+                    );
+                    await Promise.all(sendPromises);
+                } catch (error) {
+                    console.error('Error sending noti on completion:', error);
+                }
+            } else {
+                console.error('Recipient tokens not found for partner users:', [fianceId, userId]);
             }
-        } else {
-            console.error('Recipient token not found for partner user:', fianceId);
-        }
-    });
+        });
+
 
 exports.sendNotiOnReaciton = functions
     .region('asia-northeast3')

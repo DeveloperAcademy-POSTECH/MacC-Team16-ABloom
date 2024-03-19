@@ -96,6 +96,8 @@ final class CheckAnswerViewModel: ObservableObject {
     self.isAnswersDone = (currentUserAnswer != nil && fianceAnswer != nil)
     getRecentDate()
     
+    checkReactions()
+    
     let isCompleted = checkReactions()
     
     if let curUser = currentUser, let curAnswerId = currentUserAnswerId {
