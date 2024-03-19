@@ -30,7 +30,7 @@ final class CheckAnswerViewModel: ObservableObject {
   @Published var fianceName: String = "상대방"
   
   @Published var recentDate: Date = .distantPast
-    
+  
   @Published var showSheet: Bool = false
   @Published var showSheetType: SheetType = .connect
   
@@ -95,7 +95,13 @@ final class CheckAnswerViewModel: ObservableObject {
   private func updateCoupleAnswers() {
     self.isAnswersDone = (currentUserAnswer != nil && fianceAnswer != nil)
     getRecentDate()
-    checkReactions()
+    
+    let isCompleted = checkReactions()
+    
+    if let curUser = currentUser, let curAnswerId = currentUserAnswerId {
+      AnswerManager.shared.updateAnswerComplete(userId: curUser.userId, answerId: curAnswerId, status: isCompleted)
+    }
+    
   }
   
   // MARK: - 최근 날짜 불러오기
@@ -204,7 +210,7 @@ final class CheckAnswerViewModel: ObservableObject {
       return false
     }
     self.fianceReactionStatus = (currentUserReactionStatus.isReacted && fianceReaction != .error ? .react(fianceReaction) : .noReact(.lock))
-
+    
     return fianceReaction.isPositiveReact()
   }
   
