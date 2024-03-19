@@ -54,7 +54,6 @@ struct CategoryWaypointView: View {
         Button("취소") {
           dismiss()
         }
-        .foregroundStyle(.purple600)
         .customFont(.calloutB)
       } rightView: {
         EmptyView()
@@ -98,7 +97,7 @@ extension CategoryWaypointView {
       .frame(maxWidth: .infinity)
       .background(
         RoundedRectangle(cornerRadius: 8)
-          .foregroundStyle(.purple800)
+          .foregroundStyle(.primary90)
       )
     }
   }

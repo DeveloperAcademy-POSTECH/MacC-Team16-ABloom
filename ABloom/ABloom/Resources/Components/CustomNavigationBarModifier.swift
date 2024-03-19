@@ -24,6 +24,7 @@ struct CustomNavigationBarModifier<C, L, R>: ViewModifier where C: View, L: View
       ZStack {
         HStack {
           self.leftView?()
+            .foregroundStyle(.primary80)
           
           Spacer()
           

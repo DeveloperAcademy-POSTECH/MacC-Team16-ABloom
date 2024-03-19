@@ -84,12 +84,12 @@ extension SelectQuestionView {
               
               Divider()
                 .frame(width: 30, height: 2)
-                .overlay(.purple700)
+                .overlay(.primary70)
                 .opacity(selectQVM.selectedCategory == category ? 1 : 0)
             }
             .padding(.horizontal, 10)
             .tag(category)
-            .foregroundStyle(selectQVM.selectedCategory == category ? .purple700 : .gray400)
+            .foregroundStyle(selectQVM.selectedCategory == category ? .primary70 : .gray400)
             .opacity(selectQVM.selectedCategory == category ? 1 : 0.4)
             .onTapGesture(perform: {
               selectQVM.selectCategory(seleted: category)
@@ -128,7 +128,7 @@ extension SelectQuestionView {
       Divider()
         .frame(maxWidth: .infinity)
         .frame(height: 1)
-        .overlay(.purple100)
+        .overlay(.gray100)
     }
     .onTapGesture {
       selectQVM.questionClicked(selectedQ: selectedQ)

@@ -48,7 +48,6 @@ struct ProfileMenuView: View {
         showProfileMenuSheet = false
       }
       .customFont(.calloutB)
-      .foregroundStyle(.purple700)
     } rightView: {
       EmptyView()
     }
@@ -118,12 +117,13 @@ extension ProfileMenuView {
       Label(
         title: {
           Text(vm.marriageStatus?.dDayMessage ?? "지금 로그인하고 결혼예정일을 설정해보세요.")
-            .customFont(.caption1R)
+            .customFont(.footnoteB)
             .foregroundStyle(.gray600)
         },
         icon: {
           Image("heart_calendar")
             .resizable()
+            .renderingMode(.template)
             .scaledToFit()
             .frame(width: 16)
             .foregroundStyle(.gray600)
@@ -222,7 +222,7 @@ extension ProfileMenuView {
             .customFont(.headlineB)
         }
       }
-      .tint(.purple700)
+      .tint(.primary70)
     }
   }
   
@@ -263,7 +263,7 @@ extension ProfileMenuView {
         
         Spacer()
         
-        Text("2.0.1")
+        Text("2.0.3")
           .customFont(.footnoteB)
           .foregroundStyle(.gray400)
       }

@@ -35,7 +35,7 @@ struct EmbedWebView: View {
           .renderingMode(.template)
           .scaledToFit()
           .frame(width: 18)
-          .foregroundStyle(.purple700)
+          .foregroundStyle(.primary80)
           .hidden(type == .sheet)
       }
 
@@ -45,7 +45,7 @@ struct EmbedWebView: View {
         checkContract = true
       }
       .customFont(.calloutB)
-      .foregroundStyle(Color.purple700)
+      .foregroundStyle(Color.primary80)
       .hidden(type == .navigation)
     }
   }

@@ -150,7 +150,7 @@ struct TextBtn: View {
   var body: some View {
     Text("연결없이 시작하기")
       .fontWithTracking(.calloutB)
-      .foregroundStyle(.purple600)
+      .foregroundStyle(.primary60)
   }
 }
 
@@ -174,12 +174,12 @@ struct ButtonWDescriptionA: View {
     }
     .padding(.horizontal, 24)
     .padding(.vertical, 20)
-    .background(isActive ? Color.purple300 : Color.gray100)
+    .background(isActive ? Color.primary10 : Color.gray100)
     .cornerRadius(12, corners: .allCorners)
     .overlay {
       RoundedRectangle(cornerRadius: 12)
         .inset(by: 0.75)
-        .stroke(Color.purple700.opacity(isActive ? 1.0 : 0))
+        .stroke(Color.primary40.opacity(isActive ? 1.0 : 0))
     }
   }
 }
@@ -204,12 +204,12 @@ struct ButtonWDescriptionB: View {
     }
     .padding(.horizontal, 25)
     .padding(.vertical, 20)
-    .background(isActive ? Color.purple300 : Color.gray100)
+    .background(isActive ? Color.primary10 : Color.gray100)
     .cornerRadius(12, corners: .allCorners)
     .overlay {
       RoundedRectangle(cornerRadius: 12)
         .inset(by: 0.75)
-        .stroke(Color.purple700.opacity(isActive ? 1.0 : 0))
+        .stroke(Color.primary40.opacity(isActive ? 1.0 : 0))
     }
   }
 }
@@ -221,17 +221,59 @@ struct PurpleTextButton: View {
   var body: some View {
     Text(title)
       .customFont(.calloutB)
-      .foregroundStyle(.purple50)
+      .foregroundStyle(.gray50)
       .frame(height: 46)
       .frame(maxWidth: .infinity)
-      .background(isDisable ? .gray400 : Color.purple600)
+      .background(isDisable ? .gray400 : Color.primary80)
       .cornerRadius(8, corners: .allCorners)
       .disabled(isDisable)
   }
 }
 
+struct ConnectionButton: View {
+  var title: String
+  var color: Color
+  var image: String
+  var hasStroke = false
+  
+  var action: () -> Void
+  
+  var body: some View {
+    Button {
+      action()
+    } label: {
+      ZStack {
+        RoundedRectangle(cornerRadius: 8)
+          .foregroundStyle(color)
+        
+        HStack(spacing: 4) {
+          Image(image)
+            .renderingMode(.template)
+          
+          Text(title)
+            .font(.bodyB)
+        }
+        .foregroundStyle(.gray950)
+      }
+    }
+    .frame(height: 60)
+    .overlay {
+      if hasStroke {
+        RoundedRectangle(cornerRadius: 8)
+          .stroke()
+          .foregroundStyle(.gray300)
+      }
+    }
+  }
+}
+
 #Preview {
   ScrollView {
+    ConnectionButton(title: "나의 연결 코드 복사하기", color: .yellow, image: "copy", action: {
+      
+    })
+      .padding()
+    
     PurpleTextButton(title: "ButtonWithText")
       .padding()
     PurpleSingleBtn(text: "PurpleSingleBtn")
