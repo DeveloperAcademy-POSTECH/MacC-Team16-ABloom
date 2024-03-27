@@ -215,35 +215,4 @@ extension SignUpContentView {
       }
     }
   }
-  
-//  private var confirmContract: some View {
-//    VStack(spacing: 12) {
-//      Button {
-//        showPrivacyPolicy = true
-//      } label: {
-//        ButtonWDescriptionB(title: "개인정보 처리방침", subtitle: "확인하기", isActive: signUpViewModel.isCheckedPrivacyPolicy)
-//      }
-//      
-//      Button {
-//        showTermOfUse = true
-//      } label: {
-//        ButtonWDescriptionB(title: "서비스 이용약관", subtitle: "확인하기", isActive: signUpViewModel.isCheckedTermsOfuse)
-//      }
-//      
-//      Button {
-//        signUpViewModel.isCheckedOverFourteen.toggle()
-//      } label: {
-//        ButtonWDescriptionB(title: "만 14세 이상입니다.", subtitle: "동의하기", isActive: signUpViewModel.isCheckedOverFourteen)
-//      }
-//    }
-//    .frame(maxWidth: .infinity)
-//    
-//    .sheet(isPresented: $showPrivacyPolicy, content: {
-//      EmbedWebView(viewTitle: "개인정보 처리방침", urlString: ServiceWebURL.privacyPolicy.rawValue, type: .sheet, showSheet: $showPrivacyPolicy, checkContract: $signUpViewModel.isCheckedPrivacyPolicy)
-//    })
-//    
-//    .sheet(isPresented: $showTermOfUse, content: {
-//      EmbedWebView(viewTitle: "서비스 이용약관", urlString: ServiceWebURL.termsOfuse.rawValue, type: .sheet, showSheet: $showTermOfUse, checkContract: $signUpViewModel.isCheckedTermsOfuse)
-//    })
-//  }
 }
