@@ -163,6 +163,7 @@ extension SignUpContentView {
           .background(signUpViewModel.isAllChecked ? Color.primary80 : .gray400)
           .cornerRadius(8, corners: .allCorners)
       }
+      .padding(.bottom, 55)
       .disabled(!signUpViewModel.isAllChecked)
     }
     
