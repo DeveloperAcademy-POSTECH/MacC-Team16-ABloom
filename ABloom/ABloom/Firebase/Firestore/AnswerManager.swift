@@ -99,7 +99,7 @@ final class AnswerManager: ObservableObject {
     self.fianceAnswers = []
   }
   
-  // MARK: Not Use
+  // MARK: Update Answer Completed
   func updateAnswerComplete(userId: String, answerId: String, status: Bool) {
     let data: [String: Any] = [DBAnswer.CodingKeys.isComplete.rawValue:status]
     
