@@ -98,12 +98,6 @@ final class CheckAnswerViewModel: ObservableObject {
     
     checkReactions()
     
-    let isCompleted = checkReactions()
-    
-    if let curUser = currentUser, let curAnswerId = currentUserAnswerId {
-      AnswerManager.shared.updateAnswerComplete(userId: curUser.userId, answerId: curAnswerId, status: isCompleted)
-    }
-    
   }
   
   // MARK: - 최근 날짜 불러오기
@@ -185,6 +179,7 @@ final class CheckAnswerViewModel: ObservableObject {
   private func checkReactions() -> Bool {
     let myReaction = checkMyReaction()
     let fianceReaction = checkFianceReaction()
+    
     return myReaction && fianceReaction
   }
   
@@ -226,6 +221,14 @@ final class CheckAnswerViewModel: ObservableObject {
     guard let selectedReactionType = selectedReaction.reactionType else { return }
     guard let currentUserId = currentUser?.userId else { return }
     guard let currentUserAnswerId = currentUserAnswerId else { return }
+    guard let fianceId = fianceUser?.userId else {return}
+    
+    // 둘 다 긍정일 때, is_complete 필드 update
+    if (checkReactions()) {
+      AnswerManager.shared.updateAnswerComplete(userId: currentUserId, answerId: currentUserAnswerId, status: isCompleted)
+      
+      AnswerManager.shared.updateAnswerComplete(userId: fianceId, answerId: currentUserAnswerId, status: isCompleted)
+    }
     
     AnswerManager.shared.updateReaction(userId: currentUserId, answerId: currentUserAnswerId, reaction: selectedReactionType)
     
