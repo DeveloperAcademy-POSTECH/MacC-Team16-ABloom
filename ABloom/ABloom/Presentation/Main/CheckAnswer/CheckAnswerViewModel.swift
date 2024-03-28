@@ -38,7 +38,7 @@ final class CheckAnswerViewModel: ObservableObject {
   @Published var selectedReaction: ReactionStatus = .noReact(.wait)
   
   @Published var isAnswersDone: Bool = false
-  @Published var isCompleted: Bool = false
+  //@Published var isCompleted: Bool = false
   
   private var currentUserAnswerStatus: CurrentUserAnswerStatus = .noAnswered
   private var fianceAnswerStatus: FianceAnswerStatus = .noAnswered
@@ -97,7 +97,7 @@ final class CheckAnswerViewModel: ObservableObject {
     self.isAnswersDone = (currentUserAnswer != nil && fianceAnswer != nil)
     getRecentDate()
     
-    isCompleted = checkReactions()
+    checkReactions()
   }
   
   // MARK: - 최근 날짜 불러오기
@@ -219,14 +219,17 @@ final class CheckAnswerViewModel: ObservableObject {
   func updateReaction() {
     showSelectReactionView = false
     guard let selectedReactionType = selectedReaction.reactionType else { return }
+    guard let selectedFianceReactionType = fianceReactionStatus.reactionType else {return}
+    
     guard let currentUserId = currentUser?.userId else { return }
     guard let currentUserAnswerId = currentUserAnswerId else { return }
     guard let fianceId = fianceUser?.userId else {return}
     guard let fianceAnswerId = fianceAnswerId else {return}
     
-    // FIXME: 한번 늦게 반응
-    let isComplete = checkReactions()
-    print("isComplete 값: \(isCompleted)")
+    checkReactions()
+    
+    let isCompleted = (selectedReactionType.isPositiveReact() && selectedFianceReactionType.isPositiveReact())
+    
     
     AnswerManager.shared.updateAnswerComplete(userId: currentUserId, answerId: currentUserAnswerId, status: isCompleted)
     
