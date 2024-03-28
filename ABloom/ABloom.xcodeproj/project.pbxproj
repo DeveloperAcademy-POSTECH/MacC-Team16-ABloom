@@ -12,7 +12,6 @@
 		3D44125A2AE4F8B600FD5A51 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4412592AE4F8B600FD5A51 /* WebView.swift */; };
 		3D44126B2AE6246100FD5A51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D44126A2AE6246100FD5A51 /* Assets.xcassets */; };
 		3D4412782AE9F5E600FD5A51 /* ServiceWebURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4412772AE9F5E600FD5A51 /* ServiceWebURL.swift */; };
-		3D44127A2AEAB34000FD5A51 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D4412792AEAB34000FD5A51 /* GoogleService-Info.plist */; };
 		3D7A163A2B2840C600A107E3 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A16392B2840C600A107E3 /* ToastView.swift */; };
 		3D7A163C2B2841E200A107E3 /* MixpanelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A163B2B2841E200A107E3 /* MixpanelManager.swift */; };
 		3D957E872AEE5C5800D565E9 /* Ex+Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D957E862AEE5C5800D565E9 /* Ex+Query.swift */; };
@@ -22,6 +21,7 @@
 		3D957E9C2AEF998000D565E9 /* Ex+Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D957E9B2AEF998000D565E9 /* Ex+Sequence.swift */; };
 		3D957EA52AF6B66D00D565E9 /* Ex+UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D957EA42AF6B66D00D565E9 /* Ex+UIApplication.swift */; };
 		3D957EA72AF8E95F00D565E9 /* UserSexType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D957EA62AF8E95F00D565E9 /* UserSexType.swift */; };
+		3DAC7B5A2BB5B60F00129E8A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DAC7B592BB5B60F00129E8A /* GoogleService-Info.plist */; };
 		3DB1FF192B25EB15009DDCCF /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB1FF182B25EB15009DDCCF /* Mixpanel */; };
 		3DB58C022B824EE900F40BA3 /* KakaoShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB58C012B824EE900F40BA3 /* KakaoShareManager.swift */; };
 		3DB6A5752AE0BDF800C1369F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5742AE0BDF800C1369F /* FirebaseAnalytics */; };
@@ -138,7 +138,6 @@
 		3D44125B2AE4F91900FD5A51 /* EmbedWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbedWebView.swift; sourceTree = "<group>"; };
 		3D44126A2AE6246100FD5A51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D4412772AE9F5E600FD5A51 /* ServiceWebURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceWebURL.swift; sourceTree = "<group>"; };
-		3D4412792AEAB34000FD5A51 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D7A16392B2840C600A107E3 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		3D7A163B2B2841E200A107E3 /* MixpanelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixpanelManager.swift; sourceTree = "<group>"; };
 		3D957E862AEE5C5800D565E9 /* Ex+Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Query.swift"; sourceTree = "<group>"; };
@@ -148,6 +147,7 @@
 		3D957E9B2AEF998000D565E9 /* Ex+Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Sequence.swift"; sourceTree = "<group>"; };
 		3D957EA42AF6B66D00D565E9 /* Ex+UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+UIApplication.swift"; sourceTree = "<group>"; };
 		3D957EA62AF8E95F00D565E9 /* UserSexType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSexType.swift; sourceTree = "<group>"; };
+		3DAC7B592BB5B60F00129E8A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3DB58C012B824EE900F40BA3 /* KakaoShareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoShareManager.swift; sourceTree = "<group>"; };
 		3DB6A5AD2AE0C12B00C1369F /* AppleLoginButtonViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginButtonViewRepresentable.swift; sourceTree = "<group>"; };
 		3DB6A5B02AE11C2D00C1369F /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
@@ -517,7 +517,7 @@
 				AEC44E032AF628DF0021156E /* Launch Screen.storyboard */,
 				AE8D3C5D2ADE1A22009899A7 /* Info.plist */,
 				3DD4860E2B14910200AF5E02 /* Kakao-Info.plist */,
-				3D4412792AEAB34000FD5A51 /* GoogleService-Info.plist */,
+				3DAC7B592BB5B60F00129E8A /* GoogleService-Info.plist */,
 				AEDFFECD2B51576300386BFD /* Mixpanel.plist */,
 				AE7EE4E02AD6409000E0A573 /* ABloomApp.swift */,
 				AE5EB9FA2AF1396C0074F361 /* AppDelegate.swift */,
@@ -689,7 +689,6 @@
 				AEBDE56A2B06FC46005711BF /* NanumSquareNeo-cBd.ttf in Resources */,
 				AEBDE5682B06FC46005711BF /* NanumSquareNeo-aLt.ttf in Resources */,
 				AEDFFECE2B51576300386BFD /* Mixpanel.plist in Resources */,
-				3D44127A2AEAB34000FD5A51 /* GoogleService-Info.plist in Resources */,
 				AEBDE5692B06FC46005711BF /* NanumSquareNeo-dEb.ttf in Resources */,
 				608061E62B5A61FC006A7693 /* NPSfont_regular.ttf in Resources */,
 				AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */,
@@ -699,6 +698,7 @@
 				3D44126B2AE6246100FD5A51 /* Assets.xcassets in Resources */,
 				AEBDE56C2B06FC46005711BF /* NanumSquareNeo-eHv.ttf in Resources */,
 				AEC44E042AF628DF0021156E /* Launch Screen.storyboard in Resources */,
+				3DAC7B5A2BB5B60F00129E8A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
