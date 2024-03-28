@@ -60,9 +60,6 @@ struct SelectQuestionView: View {
         WriteAnswerView(isSheetOn: $isSheetOn, question: selectedQ)
       }
     })
-    
-    .navigationBarBackButtonHidden(true)
-
   }
 }
 
@@ -114,7 +111,7 @@ extension SelectQuestionView {
   private var bottomGradient: some View {
     Rectangle()
       .fill(LinearGradient(
-        colors: [Color(hex: 0xF6F6F6), Color(hex: 0xF6F6F6).opacity(0)],
+        colors: [.topBlur, .clear],
         startPoint: .top, endPoint: .bottom)
       )
       .frame(maxWidth: .infinity)
@@ -122,15 +119,14 @@ extension SelectQuestionView {
   }
   
   private func questionItem(selectedQ: DBStaticQuestion) -> some View {
-    return VStack {
-      HStack {
-        Text(selectedQ.content)
-          .customFont(.subHeadlineR)
-          .foregroundStyle(.gray500)
-        Spacer()
-      }
-      .padding(.vertical, 20)
-      .padding(.horizontal, 22)
+    VStack {
+      Text(selectedQ.content)
+        .customFont(.subHeadlineR)
+        .foregroundStyle(.gray500)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.vertical, 22)
+        .padding(.horizontal, 20)
+      
       Divider()
         .frame(maxWidth: .infinity)
         .frame(height: 1)
@@ -140,7 +136,6 @@ extension SelectQuestionView {
       selectQVM.questionClicked(selectedQ: selectedQ)
       MixpanelManager.qnaSelectQuestion(questionId: selectedQ.questionID)
     }
-    
   }
   
   private var questionListView: some View {
@@ -248,9 +243,13 @@ extension SelectQuestionView {
               .padding(.bottom, 66)
           }
         }
-        .padding(.horizontal, 20) // Adjust horizontal padding if needed
+        .padding(.horizontal, 20)
       }
     }
     .edgesIgnoringSafeArea(.all)
   }
+}
+
+#Preview {
+  SelectQuestionView(isLoggedIn: true, selectQVM: SelectQuestionViewModel(), activeSheet: ActiveSheet(), isSheetOn: .constant(true), selectedCategory: .child)
 }
