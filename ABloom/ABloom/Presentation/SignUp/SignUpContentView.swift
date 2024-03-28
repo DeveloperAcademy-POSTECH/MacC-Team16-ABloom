@@ -124,13 +124,11 @@ extension SignUpContentView {
       
       AgreementCheckButton(title: "만 14세 이상", hasContract: false, isActive: signUpViewModel.isCheckedOverFourteen) {
         signUpViewModel.isCheckedOverFourteen.toggle()
-        signUpViewModel.checkAllAgreementAreChecked()
       }
         .padding(.bottom, 30)
       
       AgreementCheckButton(title: "서비스 이용약관", isActive: signUpViewModel.isCheckedTermsOfuse) {
         signUpViewModel.isCheckedTermsOfuse.toggle()
-        signUpViewModel.checkAllAgreementAreChecked()
       } webButtonAction: {
         showTermOfUse = true
       }
@@ -138,7 +136,6 @@ extension SignUpContentView {
       
       AgreementCheckButton(title: "민감정보 수집 동의", isActive: signUpViewModel.isCheckedSensitiveInfo) {
         signUpViewModel.isCheckedSensitiveInfo.toggle()
-        signUpViewModel.checkAllAgreementAreChecked()
       } webButtonAction: {
         showSensitiveInfo = true
       }
@@ -146,7 +143,6 @@ extension SignUpContentView {
       
       AgreementCheckButton(title: "개인정보 처리방침", isActive: signUpViewModel.isCheckedPrivacyPolicy) {
         signUpViewModel.isCheckedPrivacyPolicy.toggle()
-        signUpViewModel.checkAllAgreementAreChecked()
       } webButtonAction: {
         showPrivacyPolicy = true
       }
@@ -189,7 +185,7 @@ extension SignUpContentView {
     var webButtonAction: (() -> Void)?
     
     var body: some View {
-      HStack(spacing: 15) {
+      HStack(spacing: 8) {
         Button {
           checkButtonAction()
         } label: {
@@ -197,6 +193,7 @@ extension SignUpContentView {
             .resizable()
             .frame(width: 13, height: 8)
             .foregroundStyle(isActive ? .primary60 : .gray300)
+            .frame(width: 28, height: 28)
         }
         
         Text("[필수] \(title)")
@@ -204,6 +201,7 @@ extension SignUpContentView {
           .foregroundStyle(.gray900)
         
         Spacer()
+        
         if hasContract {
           Button {
             webButtonAction?()

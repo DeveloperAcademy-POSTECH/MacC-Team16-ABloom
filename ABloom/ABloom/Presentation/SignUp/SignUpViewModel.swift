@@ -18,7 +18,11 @@ final class SignUpViewModel: ObservableObject {
   @Published var isCheckedTermsOfuse = false
   @Published var isCheckedOverFourteen = false
   @Published var isCheckedSensitiveInfo = false
-  @Published var isAllChecked = false
+  
+  var isAllChecked: Bool {
+    isCheckedTermsOfuse && isCheckedOverFourteen &&
+    isCheckedPrivacyPolicy && isCheckedSensitiveInfo
+  }
   
   @Published var isSuccessCreateUser = false
   
@@ -102,21 +106,11 @@ final class SignUpViewModel: ObservableObject {
       isCheckedOverFourteen = false
       isCheckedPrivacyPolicy = false
       isCheckedSensitiveInfo = false
-      checkAllAgreementAreChecked()
     } else {
       isCheckedTermsOfuse = true
       isCheckedOverFourteen = true
       isCheckedPrivacyPolicy = true
       isCheckedSensitiveInfo = true
-      checkAllAgreementAreChecked()
-    }
-  }
-  
-  func checkAllAgreementAreChecked() {
-    if isCheckedTermsOfuse, isCheckedOverFourteen, isCheckedPrivacyPolicy, isCheckedSensitiveInfo {
-      isAllChecked = true
-    } else {
-      isAllChecked = false
     }
   }
   
