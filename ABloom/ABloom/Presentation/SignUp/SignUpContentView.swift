@@ -164,7 +164,7 @@ extension SignUpContentView {
     }
     
     .sheet(isPresented: $showPrivacyPolicy, content: {
-      EmbedWebView(viewTitle: "개인정보 처리방침", urlString: ServiceWebURL.privacyPolicy.rawValue, type: .sheet, showSheet: $showPrivacyPolicy, checkContract: $signUpViewModel.isCheckedPrivacyPolicy)
+      EmbedWebView(viewTitle: "개인정보 처리 방침", urlString: ServiceWebURL.privacyPolicy.rawValue, type: .sheet, showSheet: $showPrivacyPolicy, checkContract: $signUpViewModel.isCheckedPrivacyPolicy)
     })
 
     .sheet(isPresented: $showTermOfUse, content: {
