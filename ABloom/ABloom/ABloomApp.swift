@@ -15,6 +15,7 @@ import SwiftUI
 struct ABloomApp: App {
   // TODO: Notificaiton을 위한 자료
   @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+  @AppStorage("isQuestionLabBtnActive") private var isQuestionLabBtnActive = true
   
   init() {
     Task {
@@ -28,6 +29,8 @@ struct ABloomApp: App {
     }
     
     UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(named: "Primary 60")
+    
+    isQuestionLabBtnActive = true
   }
   
   

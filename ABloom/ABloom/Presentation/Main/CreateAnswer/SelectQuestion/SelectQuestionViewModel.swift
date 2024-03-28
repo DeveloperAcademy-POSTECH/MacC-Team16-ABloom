@@ -19,6 +19,8 @@ final class SelectQuestionViewModel: ObservableObject {
   @Published var didGetCategory = Bool()
   @Published var selectedCategory: Category = Category.communication
   
+  @AppStorage("isQuestionLabBtnActive") var isQuestionLabBtnActive = true
+
   private var cancellables = Set<AnyCancellable>()
   
   
