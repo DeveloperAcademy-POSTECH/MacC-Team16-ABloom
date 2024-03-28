@@ -38,12 +38,18 @@ struct SelectQuestionView: View {
     } rightView: {
       EmptyView()
     }
-    .padding(.top, 5)
-    
     .ignoresSafeArea(.all, edges: .bottom)
     
-    
     .onAppear {
+      if selectQVM.isQuestionLabBtnActive {
+        selectQVM.isQuestionLabBtnActive = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+          withAnimation(.easeIn(duration: 0.3)) {
+            selectQVM.isQuestionLabBtnActive = true
+          }
+        }
+      }
+      
       if !selectQVM.didGetCategory {
         selectQVM.updateSelectedCategory(new: selectedCategory)
       }
@@ -138,26 +144,76 @@ extension SelectQuestionView {
   }
   
   private var questionListView: some View {
-    VStack(spacing: 0) {
-      
-      ScrollViewReader { proxy in
-        ScrollView(.vertical) {
-          Spacer()
-            .frame(height: 20)
-            .id("top")
-          
-          ForEach(selectQVM.filteredLists, id: \.self) { question in
-            questionItem(selectedQ: question)
-          }
-          Spacer()
-            .frame(height: 50)
-        }
+    ScrollViewReader { proxy in
+      ScrollView(.vertical) {
+        Spacer()
+          .frame(height: 4)
+          .id("top")
         
-        .onChange(of: selectQVM.selectedCategory) { new in
-          proxy.scrollTo("top")
+        ForEach(selectQVM.filteredLists, id: \.self) { question in
+          questionItem(selectedQ: question)
         }
+        Spacer(minLength: 0)
+          .frame(height: 50)
+      }
+      
+      .onChange(of: selectQVM.selectedCategory) { new in
+        proxy.scrollTo("top")
       }
     }
+    .frame(maxWidth: .infinity)
+    .overlay(alignment: .bottom) {
+      questionLabButton
+    }
+  }
+  
+  private var questionLabButton: some View {
+    NavigationLink {
+      EmbedWebView(viewTitle: "질문 제작소", urlString: ServiceWebURL.questionLab.rawValue, type: .navigation, showSheet: .constant(true), checkContract: .constant(true))
+    } label: {
+      VStack(alignment: .leading, spacing: 12) {
+        Text("마음에 드는 질문을 찾지 못하셨나요?")
+          .customFont(.caption1R)
+        HStack(spacing: 13) {
+          Text("메리 질문 제작소에서 직접 질문 만들기")
+            .customFont(.calloutB)
+          Image("chevron.right")
+        }
+      }
+      .padding(.vertical, 24)
+      .padding(.leading, 32)
+      .frame(maxWidth: .infinity, alignment: .leading)
+      .foregroundStyle(.white)
+      .background(
+        RoundedRectangle(cornerRadius: 16)
+          .foregroundStyle(.primary80)
+      )
+    }
+    .padding(.horizontal, 24)
+    .overlay(alignment: .topTrailing) {
+      Button {
+        selectQVM.isQuestionLabBtnActive.toggle()
+      } label: {
+        Circle()
+          .foregroundStyle(.primary80)
+          .frame(width: 32, height: 32)
+          .overlay {
+            Image("xmark")
+              .resizable()
+              .renderingMode(.template)
+              .frame(width: 14, height: 14)
+              .foregroundStyle(.white)
+          }
+          .background(
+            Circle().stroke(style: StrokeStyle(lineWidth: 2))
+              .foregroundStyle(.white)
+          )
+      }
+      .padding(.trailing, 16)
+      .padding(.top, -8)
+    }
+    .opacity(selectQVM.isQuestionLabBtnActive ? 1 : 0)
+    .padding(.bottom, 52)
   }
   
   private var previewStaticQuesiton: some View {
