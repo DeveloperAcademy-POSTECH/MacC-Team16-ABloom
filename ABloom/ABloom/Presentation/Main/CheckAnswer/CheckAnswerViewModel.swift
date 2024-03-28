@@ -225,9 +225,9 @@ final class CheckAnswerViewModel: ObservableObject {
     
     // 둘 다 긍정일 때, is_complete 필드 update
     if (checkReactions()) {
-      AnswerManager.shared.updateAnswerComplete(userId: currentUserId, answerId: currentUserAnswerId, status: isCompleted)
+      AnswerManager.shared.updateAnswerComplete(userId: currentUserId, answerId: currentUserAnswerId, status: checkReactions())
       
-      AnswerManager.shared.updateAnswerComplete(userId: fianceId, answerId: currentUserAnswerId, status: isCompleted)
+      AnswerManager.shared.updateAnswerComplete(userId: fianceId, answerId: currentUserAnswerId, status: checkReactions())
     }
     
     AnswerManager.shared.updateReaction(userId: currentUserId, answerId: currentUserAnswerId, reaction: selectedReactionType)
