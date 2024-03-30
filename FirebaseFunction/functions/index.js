@@ -53,9 +53,7 @@ exports.sendNotiConnection = functions
             const userId = context.params.userId;
             const documentId = context.params.documentId;
 
-            const { fianceId, myName } = await getFianceId(userId);
-
-            const recipientTokens = await Promise.all([getRecipientToken(fianceId), getRecipientToken(userId)]);
+            const recipientToken = await getRecipientToken(userId);
 
             const ansQid = await getQid(userId, documentId);
 
@@ -65,36 +63,32 @@ exports.sendNotiConnection = functions
             const afterData = change.after.data();
             const watchedField = 'is_complete';
 
-            if (recipientTokens.some(token => token) && beforeData[watchedField] == false && afterData[watchedField] == true ) {
-              console.log(`Field ${watchedField} changed from false to ${afterData[watchedField]} in document ${context.params.documentId}`);
+            if (recipientToken && beforeData[watchedField] == false && afterData[watchedField] == true ) {
+                console.log(`Field ${watchedField} changed from false to ${afterData[watchedField]} in document ${context.params.documentId}`);
 
-                const messages = recipientTokens.filter(token => token).map(token => ({
-                  data: {
-                    viewToOpen: 'AnswerCheck',
-                    qid: `${ansQid}`
-                  },
-                  notification: {
-                    title: `둘만의 문답이 완성됐어요!`,
-                    body: '행복한 결혼 생활에 한 걸음 더 다가갔어요 💕',
-                  },
-                  token: token,
-                }));
+                const message = {
+                    data: {
+                        viewToOpen: 'AnswerCheck',
+                        qid: `${ansQid}`
+                    },
+                    notification: {
+                        title: `둘만의 문답이 완성됐어요!`,
+                        body: '행복한 결혼 생활에 한 걸음 더 다가갔어요 💕',
+                    },
+                    token: recipientToken,
+                };
 
                 try {
-                    const sendPromises = messages.map(message =>
-                        admin.messaging().send(message).then(() => {
-                            console.log('Successfully sent notification completion to partner user');
-                            return {success: true};
-                        })
-                    );
-                    await Promise.all(sendPromises);
+                    await admin.messaging().send(message);
+                    console.log('Successfully sent notification completion to yourself');
                 } catch (error) {
-                    console.error('Error sending noti on completion:', error);
+                    console.error('Error sending notification on completion:', error);
                 }
             } else {
-                console.error('Recipient tokens not found for partner users:', [fianceId, userId]);
+                console.error('Recipient token not found or answer already marked as complete:', userId);
             }
         });
+
 
 
 exports.sendNotiOnReaciton = functions
@@ -118,7 +112,7 @@ exports.sendNotiOnReaciton = functions
         const afterData = change.after.data();
         const watchedField = 'reaction';
 
-        if (recipientToken && beforeData[watchedField] == null && afterData[watchedField] !== null ) {
+        if (recipientToken && beforeData[watchedField] == null && afterData[watchedField] !== null && !afterData.is_complete) {
           console.log(`Field ${watchedField} changed from null to ${afterData[watchedField]} in document ${context.params.documentId}`);
 
             const message = {
