@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13CEA1A92BB993E300940AA9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13CEA1A82BB993E300940AA9 /* GoogleService-Info.plist */; };
 		3D4412432AE388DB00FD5A51 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4412422AE388DB00FD5A51 /* UserManager.swift */; };
 		3D4412492AE4C49700FD5A51 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4412482AE4C49700FD5A51 /* AuthenticationManager.swift */; };
 		3D44125A2AE4F8B600FD5A51 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4412592AE4F8B600FD5A51 /* WebView.swift */; };
@@ -132,6 +133,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13CEA1A82BB993E300940AA9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D4412422AE388DB00FD5A51 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		3D4412482AE4C49700FD5A51 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		3D4412592AE4F8B600FD5A51 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 				AE8D3C5D2ADE1A22009899A7 /* Info.plist */,
 				3DD4860E2B14910200AF5E02 /* Kakao-Info.plist */,
 				AE7C26AE2BBC43C100427C54 /* GoogleService-Info.plist */,
+				13CEA1A82BB993E300940AA9 /* GoogleService-Info.plist */,
 				AEDFFECD2B51576300386BFD /* Mixpanel.plist */,
 				AE7EE4E02AD6409000E0A573 /* ABloomApp.swift */,
 				AE5EB9FA2AF1396C0074F361 /* AppDelegate.swift */,
@@ -699,6 +702,7 @@
 				AEBDE56C2B06FC46005711BF /* NanumSquareNeo-eHv.ttf in Resources */,
 				AEC44E042AF628DF0021156E /* Launch Screen.storyboard in Resources */,
 				AE7C26AF2BBC43C100427C54 /* GoogleService-Info.plist in Resources */,
+				13CEA1A92BB993E300940AA9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
