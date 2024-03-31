@@ -54,14 +54,14 @@ struct SignUpView: View {
       }
       .customFont(.calloutB)
     }, rightView: {
-      Button(vm.nowStep == .step4 ? "완료": "다음") {
+      Button("다음") {
         withAnimation {
           vm.stepToNext()
         }
       }
       .customFont(.calloutB)
       .foregroundStyle(vm.nextButtonColor())
-      .hidden(vm.nowStep == .step1)
+      .hidden(vm.nowStep == .step1 || vm.nowStep == .step4)
       .disabled(vm.nextButtonDisableStatus())
     })
   }
