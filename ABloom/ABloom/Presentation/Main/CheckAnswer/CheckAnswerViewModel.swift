@@ -47,6 +47,10 @@ final class CheckAnswerViewModel: ObservableObject {
   
   private var cancellables = Set<AnyCancellable>()
   
+  init() {
+    AnswerManager.shared.addSnapshotListenerForFianceAnswer()
+  }
+  
   var currentUserAnswerContent: String {
     switch currentUserAnswerStatus {
     case .noAnswered:
@@ -216,23 +220,24 @@ final class CheckAnswerViewModel: ObservableObject {
   func updateReaction() {
     showSelectReactionView = false
     guard let selectedReactionType = selectedReaction.reactionType else { return }
-    guard let selectedFianceReactionType = fianceReactionStatus.reactionType else {return}
-    
     guard let currentUserId = currentUser?.userId else { return }
     guard let currentUserAnswerId = currentUserAnswerId else { return }
-    guard let fianceId = fianceUser?.userId else {return}
-    guard let fianceAnswerId = fianceAnswerId else {return}
-    
     
     AnswerManager.shared.updateReaction(userId: currentUserId, answerId: currentUserAnswerId, reaction: selectedReactionType)
+    
+    MixpanelManager.qnaReaction(type: selectedReactionType.reactionContent)
+    
+    // 상대방의 반응이 없을 시 return
+    // is_complete Default 값은 false
+    guard let selectedFianceReactionType = fianceReactionStatus.reactionType else {return}
+    guard let fianceId = fianceUser?.userId else {return}
+    guard let fianceAnswerId = fianceAnswerId else {return}
     
     let isCompleted = (selectedReactionType.isPositiveReact() && selectedFianceReactionType.isPositiveReact())
     
     AnswerManager.shared.updateAnswerComplete(userId: currentUserId, answerId: currentUserAnswerId, status: isCompleted)
-    
     AnswerManager.shared.updateAnswerComplete(userId: fianceId, answerId: fianceAnswerId, status: isCompleted)
     
-    
-    MixpanelManager.qnaReaction(type: selectedReactionType.reactionContent)
+    print("all stored")
   }
 }
