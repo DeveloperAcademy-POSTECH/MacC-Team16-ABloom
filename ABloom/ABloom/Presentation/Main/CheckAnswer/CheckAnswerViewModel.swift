@@ -47,10 +47,6 @@ final class CheckAnswerViewModel: ObservableObject {
   
   private var cancellables = Set<AnyCancellable>()
   
-  init() {
-    AnswerManager.shared.addSnapshotListenerForFianceAnswer()
-  }
-  
   var currentUserAnswerContent: String {
     switch currentUserAnswerStatus {
     case .noAnswered:
@@ -236,8 +232,6 @@ final class CheckAnswerViewModel: ObservableObject {
     let isCompleted = (selectedReactionType.isPositiveReact() && selectedFianceReactionType.isPositiveReact())
     
     AnswerManager.shared.updateAnswerComplete(userId: currentUserId, answerId: currentUserAnswerId, status: isCompleted)
-    AnswerManager.shared.updateAnswerComplete(userId: fianceId, answerId: fianceAnswerId, status: isCompleted)
-    
-    print("all stored")
+    AnswerManager.shared.updateAnswerComplete(userId: fianceId, answerId: fianceAnswerId, status: isCompleted) 
   }
 }
