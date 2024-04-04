@@ -81,7 +81,14 @@ final class AnswerManager: ObservableObject {
     guard let fianceId = UserManager.shared.currentUser?.fiance else { return }
     
     let collection = userAnswerCollection(userId: fianceId)
-    self.fianceAnswers = try await collection.getDocuments(as: DBAnswer.self)
+    let snapshot = try await collection.getDocuments()
+    
+    self.fianceAnswers = snapshot.documents.compactMap { document in
+      var answer = try? document.data(as: DBAnswer.self)
+      answer?.answerId = document.documentID
+      
+      return answer
+    }
   }
   
   // MARK: Update

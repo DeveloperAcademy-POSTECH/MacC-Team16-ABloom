@@ -38,7 +38,6 @@ final class CheckAnswerViewModel: ObservableObject {
   @Published var selectedReaction: ReactionStatus = .noReact(.wait)
   
   @Published var isAnswersDone: Bool = false
-  //@Published var isCompleted: Bool = false
   
   private var currentUserAnswerStatus: CurrentUserAnswerStatus = .noAnswered
   private var fianceAnswerStatus: FianceAnswerStatus = .noAnswered
@@ -96,7 +95,6 @@ final class CheckAnswerViewModel: ObservableObject {
   private func updateCoupleAnswers() {
     self.isAnswersDone = (currentUserAnswer != nil && fianceAnswer != nil)
     getRecentDate()
-    
     checkReactions()
   }
   
@@ -179,7 +177,6 @@ final class CheckAnswerViewModel: ObservableObject {
   private func checkReactions() -> Bool {
     let myReaction = checkMyReaction()
     let fianceReaction = checkFianceReaction()
-    
     return myReaction && fianceReaction
   }
   
@@ -219,25 +216,22 @@ final class CheckAnswerViewModel: ObservableObject {
   func updateReaction() {
     showSelectReactionView = false
     guard let selectedReactionType = selectedReaction.reactionType else { return }
-    guard let selectedFianceReactionType = fianceReactionStatus.reactionType else {return}
-    
     guard let currentUserId = currentUser?.userId else { return }
     guard let currentUserAnswerId = currentUserAnswerId else { return }
-    guard let fianceId = fianceUser?.userId else {return}
-    guard let fianceAnswerId = fianceAnswerId else {return}
-    
-    checkReactions()
-    
-    let isCompleted = (selectedReactionType.isPositiveReact() && selectedFianceReactionType.isPositiveReact())
-    
-    
-    AnswerManager.shared.updateAnswerComplete(userId: currentUserId, answerId: currentUserAnswerId, status: isCompleted)
-    
-    AnswerManager.shared.updateAnswerComplete(userId: fianceId, answerId: fianceAnswerId, status: isCompleted)
-    
     
     AnswerManager.shared.updateReaction(userId: currentUserId, answerId: currentUserAnswerId, reaction: selectedReactionType)
     
     MixpanelManager.qnaReaction(type: selectedReactionType.reactionContent)
+    
+    // 상대방의 반응이 없을 시 return
+    // is_complete Default 값은 false
+    guard let selectedFianceReactionType = fianceReactionStatus.reactionType else {return}
+    guard let fianceId = fianceUser?.userId else {return}
+    guard let fianceAnswerId = fianceAnswerId else {return}
+    
+    let isCompleted = (selectedReactionType.isPositiveReact() && selectedFianceReactionType.isPositiveReact())
+    
+    AnswerManager.shared.updateAnswerComplete(userId: currentUserId, answerId: currentUserAnswerId, status: isCompleted)
+    AnswerManager.shared.updateAnswerComplete(userId: fianceId, answerId: fianceAnswerId, status: isCompleted) 
   }
 }
