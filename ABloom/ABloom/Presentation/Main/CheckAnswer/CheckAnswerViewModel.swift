@@ -223,15 +223,13 @@ final class CheckAnswerViewModel: ObservableObject {
     
     MixpanelManager.qnaReaction(type: selectedReactionType.reactionContent)
     
-    // 상대방의 반응이 없을 시 return
-    // is_complete Default 값은 false
-    guard let selectedFianceReactionType = fianceReactionStatus.reactionType else {return}
-    guard let fianceId = fianceUser?.userId else {return}
-    guard let fianceAnswerId = fianceAnswerId else {return}
+    // 문답 완성(is_complete)필드 업데이트
+    guard let fianceId = fianceUser?.userId else { return }
+    guard let fianceAnswerId = fianceAnswerId else { return}
     
-    let isCompleted = (selectedReactionType.isPositiveReact() && selectedFianceReactionType.isPositiveReact())
+    let isCompleted = (selectedReactionType.isPositiveReact() && checkFianceReaction())
     
     AnswerManager.shared.updateAnswerComplete(userId: currentUserId, answerId: currentUserAnswerId, status: isCompleted)
-    AnswerManager.shared.updateAnswerComplete(userId: fianceId, answerId: fianceAnswerId, status: isCompleted) 
+    AnswerManager.shared.updateAnswerComplete(userId: fianceId, answerId: fianceAnswerId, status: isCompleted)
   }
 }
