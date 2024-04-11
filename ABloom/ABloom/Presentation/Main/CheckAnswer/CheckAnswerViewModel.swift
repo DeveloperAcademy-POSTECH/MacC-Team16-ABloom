@@ -30,7 +30,7 @@ final class CheckAnswerViewModel: ObservableObject {
   @Published var fianceName: String = "상대방"
   
   @Published var recentDate: Date = .distantPast
-    
+  
   @Published var showSheet: Bool = false
   @Published var showSheetType: SheetType = .connect
   
@@ -204,7 +204,7 @@ final class CheckAnswerViewModel: ObservableObject {
       return false
     }
     self.fianceReactionStatus = (currentUserReactionStatus.isReacted && fianceReaction != .error ? .react(fianceReaction) : .noReact(.lock))
-
+    
     return fianceReaction.isPositiveReact()
   }
   
@@ -222,5 +222,14 @@ final class CheckAnswerViewModel: ObservableObject {
     AnswerManager.shared.updateReaction(userId: currentUserId, answerId: currentUserAnswerId, reaction: selectedReactionType)
     
     MixpanelManager.qnaReaction(type: selectedReactionType.reactionContent)
+    
+    // 문답 완성(is_complete)필드 업데이트
+    guard let fianceId = fianceUser?.userId else { return }
+    guard let fianceAnswerId = fianceAnswerId else { return}
+    
+    let isCompleted = (selectedReactionType.isPositiveReact() && checkFianceReaction())
+    
+    AnswerManager.shared.updateAnswerComplete(userId: currentUserId, answerId: currentUserAnswerId, status: isCompleted)
+    AnswerManager.shared.updateAnswerComplete(userId: fianceId, answerId: fianceAnswerId, status: isCompleted)
   }
 }

@@ -16,6 +16,13 @@ final class SignUpViewModel: ObservableObject {
   @Published var inputName: String = ""
   @Published var isCheckedPrivacyPolicy = false
   @Published var isCheckedTermsOfuse = false
+  @Published var isCheckedOverFourteen = false
+  @Published var isCheckedSensitiveInfo = false
+  
+  var isAllChecked: Bool {
+    isCheckedTermsOfuse && isCheckedOverFourteen &&
+    isCheckedPrivacyPolicy && isCheckedSensitiveInfo
+  }
   
   @Published var isSuccessCreateUser = false
   
@@ -78,7 +85,7 @@ final class SignUpViewModel: ObservableObject {
     if nextButtonDisableStatus() {
       Color.gray400
     } else {
-      Color.purple700
+      Color.primary80
     }
   }
   
@@ -89,7 +96,21 @@ final class SignUpViewModel: ObservableObject {
     case .step3:
       self.inputName.isEmpty
     case .step4:
-      !self.isCheckedPrivacyPolicy || !self.isCheckedTermsOfuse
+      !self.isCheckedPrivacyPolicy || !self.isCheckedTermsOfuse || !self.isCheckedOverFourteen
+    }
+  }
+  
+  func checkAllAgreement() {
+    if isAllChecked {
+      isCheckedTermsOfuse = false
+      isCheckedOverFourteen = false
+      isCheckedPrivacyPolicy = false
+      isCheckedSensitiveInfo = false
+    } else {
+      isCheckedTermsOfuse = true
+      isCheckedOverFourteen = true
+      isCheckedPrivacyPolicy = true
+      isCheckedSensitiveInfo = true
     }
   }
   

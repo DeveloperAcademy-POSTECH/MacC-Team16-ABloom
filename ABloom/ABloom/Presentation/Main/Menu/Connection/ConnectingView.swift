@@ -16,28 +16,31 @@ struct ConnectingView: View {
   
   var body: some View {
     ZStack {
-      VStack(alignment: .leading) {
+      VStack(alignment: .leading, spacing: 0) {
         Text(explainText)
           .customFont(.caption1R)
           .foregroundStyle(.gray600)
-          .padding(.bottom, 40)
+          .padding(.bottom, 28)
         
         myCodeSection
           .padding(.bottom, 24)
         
         fianceCodeSection
+          .padding(.bottom, 76)
+        
+        codeCopyButton
+          .padding(.bottom, 8)
+        
+        shareByKakaoButton
         
         Spacer()
-        
-        connectButton
-          .padding(.bottom, 20)
       }
       
       VStack {
         Spacer()
         if showToast {
-          ToastView(message: "코드가 복사되었습니다")
-            .padding(.bottom, 100)
+          ToastView(message: "연결 코드가 복사되었습니다")
+            .padding(.bottom, 36)
         }
       }
     }
@@ -68,31 +71,55 @@ extension ConnectingView {
         .foregroundStyle(.black)
         .padding(.bottom, 8)
       
-      CopyStrokeInputField(myCode: vm.currentUser?.invitationCode ?? "로그인해주세요.", alignment: .leading, copyAction: copyClipboard)
-        .strokeInputFieldStyle(isValueValid: true, alignment: .leading)
-      
+      ZStack {
+        RoundedRectangle(cornerRadius: 8)
+          .frame(height: 84)
+          .foregroundStyle(.primary10)
+
+        Text(vm.currentUser?.invitationCode ?? "로그인해주세요.")
+          .font(.myCode)
+      }
     }
   }
   
   private var fianceCodeSection: some View {
     VStack(alignment: .leading) {
-      Text("상대방의 연결코드")
+      Text("상대방의 연결 코드로 연결")
         .customFont(.calloutB)
         .foregroundStyle(.black)
         .padding(.bottom, 8)
       
-      ConnectCodeStrokeInputField(codeInputText: $vm.inputText, isTargetCodeValid: vm.isTargetCodeInputVaild)
+      HStack(spacing: 4) {
+        ConnectCodeStrokeInputField(codeInputText: $vm.inputText, isTargetCodeValid: vm.isTargetCodeInputVaild)
+          
+        Button {
+          vm.connectUser()
+        } label: {
+          Text("연결")
+            .font(.calloutB)
+            .foregroundStyle(.white)
+            .padding(.horizontal, 24)
+            .padding(.vertical, 15)
+            .background {
+              RoundedRectangle(cornerRadius: 8)
+                .foregroundStyle(vm.inputText.isEmpty ? .primary20 : .primary80)
+            }
+        }
+      }
       
     }
   }
   
-  private var connectButton: some View {
-    Button {
-      vm.connectUser()
-    } label: {
-      PurpleTextButton(title: "연결하기", isDisable: !vm.isTargetCodeInputVaild)
-    }
-    
+  private var codeCopyButton: some View {
+    ConnectionButton(title: "나의 연결 코드 복사하기", color: .white, image: "copy", hasStroke: true, action: {
+      copyClipboard()
+    })
+  }
+  
+  private var shareByKakaoButton: some View {
+    ConnectionButton(title: "카카오톡 공유하기", color: .init(hex: 0xFAE100), image: "kakaotalksymbol", action: {
+      KakaoShareManager().shareMyCode()
+    })
   }
   
   private func copyClipboard() {

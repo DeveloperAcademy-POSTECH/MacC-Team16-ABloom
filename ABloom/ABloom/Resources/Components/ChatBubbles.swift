@@ -29,7 +29,7 @@ struct LeftGrayChatBubble: View {
         .background(
           Rectangle()
             .clayMorpMDShadow()
-            .foregroundStyle(.purple50)
+            .foregroundStyle(.primary100)
             .cornerRadius(cornerV, corners: [.topRight, .bottomRight, .bottomLeft])
         )
         .frame(maxWidth: 271, alignment: .leading)
@@ -55,7 +55,7 @@ struct RightPurpleChatBubble: View {
         .background(
           Rectangle()
             .clayMorpMDShadow()
-            .foregroundStyle(.purple300)
+            .foregroundStyle(.primary30)
             .cornerRadius(cornerV, corners: [.topLeft, .bottomRight, .bottomLeft])
         )
         .frame(maxWidth: 271, alignment: .trailing)
@@ -84,7 +84,7 @@ struct QuestionChatBubble: View {
         .background(
           Rectangle()
             .clayMorpMDShadow()
-            .foregroundStyle(.purple300)
+            .foregroundStyle(.primary30)
             .cornerRadius(cornerV, corners: [.topRight, .bottomRight, .bottomLeft])
         )
         .frame(minHeight: 41, alignment: .center)
@@ -113,7 +113,7 @@ struct ChatBubbleBtn: View {
         .background(
           Rectangle()
             .clayMorpMDShadow()
-            .foregroundStyle(.purple300)
+            .foregroundStyle(.primary30)
             .cornerRadius(cornerV, corners: [.topLeft, .bottomRight, .bottomLeft])
         )
         .frame(maxWidth: 271, alignment: .trailing)
@@ -165,7 +165,7 @@ struct ChatBubbleTextField: View {
       .background(
         Rectangle()
           .clayMorpMDShadow()
-          .foregroundStyle(.purple600)
+          .foregroundStyle(.primary60)
           .cornerRadius(cornerV, corners: [.topLeft, .bottomRight, .bottomLeft])
       )
   }

@@ -38,12 +38,18 @@ struct SelectQuestionView: View {
     } rightView: {
       EmptyView()
     }
-    .padding(.top, 5)
-    
     .ignoresSafeArea(.all, edges: .bottom)
     
-    
     .onAppear {
+      if selectQVM.isQuestionLabBtnActive {
+        selectQVM.isQuestionLabBtnActive = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+          withAnimation(.easeIn(duration: 0.3)) {
+            selectQVM.isQuestionLabBtnActive = true
+          }
+        }
+      }
+      
       if !selectQVM.didGetCategory {
         selectQVM.updateSelectedCategory(new: selectedCategory)
       }
@@ -54,9 +60,6 @@ struct SelectQuestionView: View {
         WriteAnswerView(isSheetOn: $isSheetOn, question: selectedQ)
       }
     })
-    
-    .navigationBarBackButtonHidden(true)
-
   }
 }
 
@@ -84,12 +87,12 @@ extension SelectQuestionView {
               
               Divider()
                 .frame(width: 30, height: 2)
-                .overlay(.purple700)
+                .overlay(.primary70)
                 .opacity(selectQVM.selectedCategory == category ? 1 : 0)
             }
             .padding(.horizontal, 10)
             .tag(category)
-            .foregroundStyle(selectQVM.selectedCategory == category ? .purple700 : .gray400)
+            .foregroundStyle(selectQVM.selectedCategory == category ? .primary70 : .gray400)
             .opacity(selectQVM.selectedCategory == category ? 1 : 0.4)
             .onTapGesture(perform: {
               selectQVM.selectCategory(seleted: category)
@@ -108,7 +111,7 @@ extension SelectQuestionView {
   private var bottomGradient: some View {
     Rectangle()
       .fill(LinearGradient(
-        colors: [Color(hex: 0xF6F6F6), Color(hex: 0xF6F6F6).opacity(0)],
+        colors: [.topBlur, .clear],
         startPoint: .top, endPoint: .bottom)
       )
       .frame(maxWidth: .infinity)
@@ -116,48 +119,96 @@ extension SelectQuestionView {
   }
   
   private func questionItem(selectedQ: DBStaticQuestion) -> some View {
-    return VStack {
-      HStack {
-        Text(selectedQ.content)
-          .customFont(.subHeadlineR)
-          .foregroundStyle(.gray500)
-        Spacer()
-      }
-      .padding(.vertical, 20)
-      .padding(.horizontal, 22)
+    VStack {
+      Text(selectedQ.content.containsNumbers() ? selectedQ.content : selectedQ.content.useNonBreakingSpace())
+        .customFont(.subHeadlineR)
+        .foregroundStyle(.gray500)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.vertical, 22)
+        .padding(.horizontal, 20)
+      
       Divider()
         .frame(maxWidth: .infinity)
         .frame(height: 1)
-        .overlay(.purple100)
+        .overlay(.gray100)
     }
     .onTapGesture {
       selectQVM.questionClicked(selectedQ: selectedQ)
       MixpanelManager.qnaSelectQuestion(questionId: selectedQ.questionID)
     }
-    
   }
   
   private var questionListView: some View {
-    VStack(spacing: 0) {
-      
-      ScrollViewReader { proxy in
-        ScrollView(.vertical) {
-          Spacer()
-            .frame(height: 20)
-            .id("top")
-          
-          ForEach(selectQVM.filteredLists, id: \.self) { question in
-            questionItem(selectedQ: question)
-          }
-          Spacer()
-            .frame(height: 50)
-        }
+    ScrollViewReader { proxy in
+      ScrollView(.vertical) {
+        Spacer()
+          .frame(height: 4)
+          .id("top")
         
-        .onChange(of: selectQVM.selectedCategory) { new in
-          proxy.scrollTo("top")
+        ForEach(selectQVM.filteredLists, id: \.self) { question in
+          questionItem(selectedQ: question)
         }
+        Spacer()
+          .frame(height: 50)
+      }
+      
+      .onChange(of: selectQVM.selectedCategory) { new in
+        proxy.scrollTo("top")
       }
     }
+    .frame(maxWidth: .infinity)
+    .overlay(alignment: .bottom) {
+      questionLabButton
+    }
+  }
+  
+  private var questionLabButton: some View {
+    NavigationLink {
+      EmbedWebView(viewTitle: "질문 제작소", urlString: ServiceWebURL.questionLab.rawValue, type: .navigation, showSheet: .constant(true), checkContract: .constant(true))
+    } label: {
+      VStack(alignment: .leading, spacing: 12) {
+        Text("마음에 드는 질문을 찾지 못하셨나요?")
+          .customFont(.caption1R)
+        HStack(spacing: 13) {
+          Text("메리 질문 제작소에서 직접 질문 만들기")
+            .customFont(.calloutB)
+          Image("chevron.right")
+        }
+      }
+      .padding(.vertical, 24)
+      .padding(.leading, 32)
+      .frame(maxWidth: .infinity, alignment: .leading)
+      .foregroundStyle(.white)
+      .background(
+        RoundedRectangle(cornerRadius: 16)
+          .foregroundStyle(.primary80)
+      )
+    }
+    .padding(.horizontal, 24)
+    .overlay(alignment: .topTrailing) {
+      Button {
+        selectQVM.isQuestionLabBtnActive.toggle()
+      } label: {
+        Circle()
+          .foregroundStyle(.primary80)
+          .frame(width: 32, height: 32)
+          .overlay {
+            Image("xmark")
+              .resizable()
+              .renderingMode(.template)
+              .frame(width: 14, height: 14)
+              .foregroundStyle(.white)
+          }
+          .background(
+            Circle().stroke(style: StrokeStyle(lineWidth: 2))
+              .foregroundStyle(.white)
+          )
+      }
+      .padding(.trailing, 16)
+      .padding(.top, -8)
+    }
+    .opacity(selectQVM.isQuestionLabBtnActive ? 1 : 0)
+    .padding(.bottom, 52)
   }
   
   private var previewStaticQuesiton: some View {
@@ -192,9 +243,13 @@ extension SelectQuestionView {
               .padding(.bottom, 66)
           }
         }
-        .padding(.horizontal, 20) // Adjust horizontal padding if needed
+        .padding(.horizontal, 20)
       }
     }
     .edgesIgnoringSafeArea(.all)
   }
+}
+
+#Preview {
+  SelectQuestionView(isLoggedIn: true, selectQVM: SelectQuestionViewModel(), activeSheet: ActiveSheet(), isSheetOn: .constant(true), selectedCategory: .child)
 }

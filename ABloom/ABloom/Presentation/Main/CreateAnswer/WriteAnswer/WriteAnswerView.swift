@@ -50,7 +50,7 @@ struct WriteAnswerView: View {
       Button(action: { writeAMV.completeClicked() }, label: {
         Text("완료")
           .customFont(.calloutB)
-          .foregroundStyle((writeAMV.ansText.isEmpty || writeAMV.isTextOver) ? .gray400 : .purple700)
+          .foregroundStyle((writeAMV.ansText.isEmpty || writeAMV.isTextOver) ? .gray400 : .primary80)
       })
       .disabled(writeAMV.ansText.isEmpty || writeAMV.isTextOver)
     }

@@ -65,7 +65,7 @@ struct WithdrawalMembershipView: View {
           .renderingMode(.template)
           .scaledToFit()
           .frame(width: 18)
-          .foregroundStyle(.purple700)
+          .foregroundStyle(.primary80)
       }
     }, rightView: {
       EmptyView()
@@ -83,8 +83,6 @@ struct WithdrawalMembershipView: View {
         }
         
         showProfileMenuSheet = false
-        
-        UserDefaults.standard.setValue(true, forKey: "_isFirstLaunching")
       }
     } message: {
       Text(alertMessage)

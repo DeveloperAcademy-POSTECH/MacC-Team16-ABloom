@@ -81,7 +81,14 @@ final class AnswerManager: ObservableObject {
     guard let fianceId = UserManager.shared.currentUser?.fiance else { return }
     
     let collection = userAnswerCollection(userId: fianceId)
-    self.fianceAnswers = try await collection.getDocuments(as: DBAnswer.self)
+    let snapshot = try await collection.getDocuments()
+    
+    self.fianceAnswers = snapshot.documents.compactMap { document in
+      var answer = try? document.data(as: DBAnswer.self)
+      answer?.answerId = document.documentID
+      
+      return answer
+    }
   }
   
   // MARK: Update
@@ -99,7 +106,7 @@ final class AnswerManager: ObservableObject {
     self.fianceAnswers = []
   }
   
-  // MARK: Not Use
+  // MARK: Update Answer Completed
   func updateAnswerComplete(userId: String, answerId: String, status: Bool) {
     let data: [String: Any] = [DBAnswer.CodingKeys.isComplete.rawValue:status]
     

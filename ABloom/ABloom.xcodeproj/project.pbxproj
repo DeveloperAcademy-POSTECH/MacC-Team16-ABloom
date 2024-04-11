@@ -12,7 +12,6 @@
 		3D44125A2AE4F8B600FD5A51 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4412592AE4F8B600FD5A51 /* WebView.swift */; };
 		3D44126B2AE6246100FD5A51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D44126A2AE6246100FD5A51 /* Assets.xcassets */; };
 		3D4412782AE9F5E600FD5A51 /* ServiceWebURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4412772AE9F5E600FD5A51 /* ServiceWebURL.swift */; };
-		3D44127A2AEAB34000FD5A51 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D4412792AEAB34000FD5A51 /* GoogleService-Info.plist */; };
 		3D7A163A2B2840C600A107E3 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A16392B2840C600A107E3 /* ToastView.swift */; };
 		3D7A163C2B2841E200A107E3 /* MixpanelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A163B2B2841E200A107E3 /* MixpanelManager.swift */; };
 		3D957E872AEE5C5800D565E9 /* Ex+Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D957E862AEE5C5800D565E9 /* Ex+Query.swift */; };
@@ -23,6 +22,7 @@
 		3D957EA52AF6B66D00D565E9 /* Ex+UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D957EA42AF6B66D00D565E9 /* Ex+UIApplication.swift */; };
 		3D957EA72AF8E95F00D565E9 /* UserSexType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D957EA62AF8E95F00D565E9 /* UserSexType.swift */; };
 		3DB1FF192B25EB15009DDCCF /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB1FF182B25EB15009DDCCF /* Mixpanel */; };
+		3DB58C022B824EE900F40BA3 /* KakaoShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB58C012B824EE900F40BA3 /* KakaoShareManager.swift */; };
 		3DB6A5752AE0BDF800C1369F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5742AE0BDF800C1369F /* FirebaseAnalytics */; };
 		3DB6A5772AE0BDF800C1369F /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5762AE0BDF800C1369F /* FirebaseAnalyticsOnDeviceConversion */; };
 		3DB6A5792AE0BDF800C1369F /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB6A5782AE0BDF800C1369F /* FirebaseAnalyticsSwift */; };
@@ -109,10 +109,9 @@
 		AE5EB9FB2AF1396C0074F361 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5EB9FA2AF1396C0074F361 /* AppDelegate.swift */; };
 		AE6ACF552AE0B49E0017088C /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6ACF542AE0B49E0017088C /* Helpers.swift */; };
 		AE6B41052AFC618B00A7483E /* Ex+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B41042AFC618B00A7483E /* Ex+String.swift */; };
+		AE7C26AF2BBC43C100427C54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE7C26AE2BBC43C100427C54 /* GoogleService-Info.plist */; };
 		AE7EE4E12AD6409000E0A573 /* ABloomApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7EE4E02AD6409000E0A573 /* ABloomApp.swift */; };
 		AE7EE4E82AD6409100E0A573 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE7EE4E72AD6409100E0A573 /* Preview Assets.xcassets */; };
-		AE8CFC172B089899000F452F /* OnboardingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CFC162B089899000F452F /* OnboardingTabView.swift */; };
-		AE8CFC192B0898BF000F452F /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CFC182B0898BF000F452F /* OnboardingPageView.swift */; };
 		AE8CFC1B2B08B242000F452F /* CategoryWaypointViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CFC1A2B08B242000F452F /* CategoryWaypointViewModel.swift */; };
 		AE8CFC1D2B08FFFB000F452F /* SelectQuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CFC1C2B08FFFB000F452F /* SelectQuestionViewModel.swift */; };
 		AE8D3C512ADE19E0009899A7 /* Ex+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D3C502ADE19E0009899A7 /* Ex+Font.swift */; };
@@ -139,7 +138,6 @@
 		3D44125B2AE4F91900FD5A51 /* EmbedWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbedWebView.swift; sourceTree = "<group>"; };
 		3D44126A2AE6246100FD5A51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D4412772AE9F5E600FD5A51 /* ServiceWebURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceWebURL.swift; sourceTree = "<group>"; };
-		3D4412792AEAB34000FD5A51 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D7A16392B2840C600A107E3 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		3D7A163B2B2841E200A107E3 /* MixpanelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixpanelManager.swift; sourceTree = "<group>"; };
 		3D957E862AEE5C5800D565E9 /* Ex+Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Query.swift"; sourceTree = "<group>"; };
@@ -149,6 +147,7 @@
 		3D957E9B2AEF998000D565E9 /* Ex+Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Sequence.swift"; sourceTree = "<group>"; };
 		3D957EA42AF6B66D00D565E9 /* Ex+UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+UIApplication.swift"; sourceTree = "<group>"; };
 		3D957EA62AF8E95F00D565E9 /* UserSexType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSexType.swift; sourceTree = "<group>"; };
+		3DB58C012B824EE900F40BA3 /* KakaoShareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoShareManager.swift; sourceTree = "<group>"; };
 		3DB6A5AD2AE0C12B00C1369F /* AppleLoginButtonViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginButtonViewRepresentable.swift; sourceTree = "<group>"; };
 		3DB6A5B02AE11C2D00C1369F /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		3DB6A5B32AE11CCD00C1369F /* SignInAppleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAppleHelper.swift; sourceTree = "<group>"; };
@@ -200,11 +199,10 @@
 		AE5EB9FA2AF1396C0074F361 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE6ACF542AE0B49E0017088C /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		AE6B41042AFC618B00A7483E /* Ex+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+String.swift"; sourceTree = "<group>"; };
+		AE7C26AE2BBC43C100427C54 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AE7EE4DD2AD6409000E0A573 /* ABloom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ABloom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE7EE4E02AD6409000E0A573 /* ABloomApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABloomApp.swift; sourceTree = "<group>"; };
 		AE7EE4E72AD6409100E0A573 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		AE8CFC162B089899000F452F /* OnboardingTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTabView.swift; sourceTree = "<group>"; };
-		AE8CFC182B0898BF000F452F /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
 		AE8CFC1A2B08B242000F452F /* CategoryWaypointViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryWaypointViewModel.swift; sourceTree = "<group>"; };
 		AE8CFC1C2B08FFFB000F452F /* SelectQuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionViewModel.swift; sourceTree = "<group>"; };
 		AE8D3C502ADE19E0009899A7 /* Ex+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Font.swift"; sourceTree = "<group>"; };
@@ -314,9 +312,18 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		3DB58C002B824ED300F40BA3 /* ConnectionShare */ = {
+			isa = PBXGroup;
+			children = (
+				3DB58C012B824EE900F40BA3 /* KakaoShareManager.swift */,
+			);
+			path = ConnectionShare;
+			sourceTree = "<group>";
+		};
 		3DB6A5AC2AE0C0B700C1369F /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				3DB58C002B824ED300F40BA3 /* ConnectionShare */,
 				3D4412412AE388CC00FD5A51 /* Firestore */,
 				3DB6A5B22AE11CBA00C1369F /* Authentication */,
 				3D957E8A2AEE7EF300D565E9 /* Model */,
@@ -351,15 +358,6 @@
 				3DB6A5AD2AE0C12B00C1369F /* AppleLoginButtonViewRepresentable.swift */,
 			);
 			path = SignIn;
-			sourceTree = "<group>";
-		};
-		3DF31AD52B044DE800F0EA4E /* Onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				AE8CFC162B089899000F452F /* OnboardingTabView.swift */,
-				AE8CFC182B0898BF000F452F /* OnboardingPageView.swift */,
-			);
-			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		3DF31AD62B044DFC00F0EA4E /* SignUp */ = {
@@ -474,7 +472,6 @@
 		6053F1632ADF7F3D0064A6E0 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				3DF31AD52B044DE800F0EA4E /* Onboarding */,
 				3DF31AD42B044DB100F0EA4E /* SignIn */,
 				3DF31AD62B044DFC00F0EA4E /* SignUp */,
 				3DF31AD72B044E4B00F0EA4E /* Main */,
@@ -520,7 +517,7 @@
 				AEC44E032AF628DF0021156E /* Launch Screen.storyboard */,
 				AE8D3C5D2ADE1A22009899A7 /* Info.plist */,
 				3DD4860E2B14910200AF5E02 /* Kakao-Info.plist */,
-				3D4412792AEAB34000FD5A51 /* GoogleService-Info.plist */,
+				AE7C26AE2BBC43C100427C54 /* GoogleService-Info.plist */,
 				AEDFFECD2B51576300386BFD /* Mixpanel.plist */,
 				AE7EE4E02AD6409000E0A573 /* ABloomApp.swift */,
 				AE5EB9FA2AF1396C0074F361 /* AppDelegate.swift */,
@@ -692,7 +689,6 @@
 				AEBDE56A2B06FC46005711BF /* NanumSquareNeo-cBd.ttf in Resources */,
 				AEBDE5682B06FC46005711BF /* NanumSquareNeo-aLt.ttf in Resources */,
 				AEDFFECE2B51576300386BFD /* Mixpanel.plist in Resources */,
-				3D44127A2AEAB34000FD5A51 /* GoogleService-Info.plist in Resources */,
 				AEBDE5692B06FC46005711BF /* NanumSquareNeo-dEb.ttf in Resources */,
 				608061E62B5A61FC006A7693 /* NPSfont_regular.ttf in Resources */,
 				AE2BB5F42AD650680003CD85 /* .swiftlint.yml in Resources */,
@@ -702,6 +698,7 @@
 				3D44126B2AE6246100FD5A51 /* Assets.xcassets in Resources */,
 				AEBDE56C2B06FC46005711BF /* NanumSquareNeo-eHv.ttf in Resources */,
 				AEC44E042AF628DF0021156E /* Launch Screen.storyboard in Resources */,
+				AE7C26AF2BBC43C100427C54 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -771,6 +768,7 @@
 				3D44125A2AE4F8B600FD5A51 /* WebView.swift in Sources */,
 				3DF31C002B076F7500F0EA4E /* SignUpStep.swift in Sources */,
 				3DD485F22B0DAAB300AF5E02 /* ConnectionViewModel.swift in Sources */,
+				3DB58C022B824EE900F40BA3 /* KakaoShareManager.swift in Sources */,
 				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
 				AEB502642AE5FA840056E439 /* CustomNavigationBarModifier.swift in Sources */,
 				3DD485F42B0DAC5800AF5E02 /* ConnectingView.swift in Sources */,
@@ -778,7 +776,6 @@
 				3DE945042AFA96C900CF7E33 /* ReactionType.swift in Sources */,
 				3D957E902AEE7F4800D565E9 /* DBAnswerModel.swift in Sources */,
 				607DA2142AEFCF93005AE11C /* ConnectionError.swift in Sources */,
-				AE8CFC192B0898BF000F452F /* OnboardingPageView.swift in Sources */,
 				60678E352B0B8943009B9558 /* AppleLoginButtonViewRepresentable.swift in Sources */,
 				3DF31BFE2B074BB800F0EA4E /* SelectQuestionView.swift in Sources */,
 				60797C212AF9DD7C005375DC /* Category.swift in Sources */,
@@ -805,7 +802,6 @@
 				3D4412432AE388DB00FD5A51 /* UserManager.swift in Sources */,
 				3DD485E12B0AFC7300AF5E02 /* ProfileMenuViewModel.swift in Sources */,
 				3DD485F02B0D9E9E00AF5E02 /* ConnectedView.swift in Sources */,
-				AE8CFC172B089899000F452F /* OnboardingTabView.swift in Sources */,
 				3DF31B062B073CD000F0EA4E /* SignUpViewModel.swift in Sources */,
 				AE2F915C2B0B3D7800EE9C33 /* WriteAnswerViewModel.swift in Sources */,
 				AE6ACF552AE0B49E0017088C /* Helpers.swift in Sources */,
@@ -946,7 +942,7 @@
 				CODE_SIGN_ENTITLEMENTS = ABloom/ABloom.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ABloom/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = G7X65ZSJ3J;
@@ -968,7 +964,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.1;
+				MARKETING_VERSION = 2.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.abloom.ABloom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -990,7 +986,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ABloom/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = G7X65ZSJ3J;
@@ -1012,7 +1008,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.1;
+				MARKETING_VERSION = 2.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.abloom.ABloom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
