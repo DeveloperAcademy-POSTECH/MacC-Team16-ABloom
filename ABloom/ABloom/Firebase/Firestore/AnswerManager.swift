@@ -92,15 +92,13 @@ final class AnswerManager: ObservableObject {
   }
   
   // MARK: Update Reaction & Completion
-  func updateReactionNCompletion(userId: String, answerId: String, reaction: ReactionType?, isComplete: Bool?) {
+  func updateReactionNCompletion(userId: String, answerId: String, reaction: ReactionType?, isComplete: Bool) {
     var data: [String: Any] = [:]
+    
+    data[DBAnswer.CodingKeys.isComplete.rawValue] = isComplete
     
     if let reaction = reaction {
       data[DBAnswer.CodingKeys.reaction.rawValue] = reaction.rawValue
-    }
-    
-    if let isComplete = isComplete {
-      data[DBAnswer.CodingKeys.isComplete.rawValue] = isComplete
     }
     
     userAnswerCollection(userId: userId).document(answerId).updateData(data)
