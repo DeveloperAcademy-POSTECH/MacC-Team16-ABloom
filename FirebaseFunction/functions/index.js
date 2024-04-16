@@ -44,7 +44,7 @@ exports.sendNotiConnection = functions
         }
     });
 
-    exports.sendNotiOnCompletion = functions
+    exports.sendReactionNCompletionNotification = functions
         .region('asia-northeast3')
         .firestore
         .document('users/{userId}/answers/{documentId}')
@@ -55,16 +55,21 @@ exports.sendNotiConnection = functions
 
             const recipientToken = await getRecipientToken(userId);
 
-            const ansQid = await getQid(userId, documentId);
+            const { fianceId, myName } = await getFianceId(userId);
+            const partnerRecipientToken = await getRecipientToken(fianceId);
+            console.log(`token: ${recipientToken}`);
+            console.log(`partner token: ${partnerRecipientToken}`);
 
-            console.log(`qid: ${ansQid}`)
+            const ansQid = await getQid(userId, documentId);
+            console.log(`qid: ${ansQid}`);
 
             const beforeData = change.before.data();
             const afterData = change.after.data();
-            const watchedField = 'is_complete';
+            const watchedFieldReaction = 'reaction';
+            const watchedFieldCompletion = 'is_complete';
 
-            if (recipientToken && beforeData[watchedField] == false && afterData[watchedField] == true ) {
-                console.log(`Field ${watchedField} changed from false to ${afterData[watchedField]} in document ${context.params.documentId}`);
+            if (recipientToken && beforeData[watchedFieldCompletion] == false && afterData[watchedFieldCompletion] == true) {
+                console.log(`Field ${watchedFieldCompletion} changed from false to ${afterData[watchedFieldCompletion]} in document ${context.params.documentId}`);
 
                 const message = {
                     data: {
@@ -84,61 +89,31 @@ exports.sendNotiConnection = functions
                 } catch (error) {
                     console.error('Error sending notification on completion:', error);
                 }
+            } else if (partnerRecipientToken && !afterData[watchedFieldCompletion] && beforeData[watchedFieldReaction] == null && afterData[watchedFieldReaction] != null) {
+                console.log(`Field ${watchedFieldReaction} changed from null to ${afterData[watchedFieldReaction]} in document ${context.params.documentId}`);
+
+                const message = {
+                    data: {
+                        viewToOpen: 'AnswerCheck',
+                        qid: `${ansQid}`
+                    },
+                    notification: {
+                        title: `${myName}님이 반응을 남겼어요.`,
+                        body: '어떤 반응을 남겼는지 확인해 볼까요? 👀',
+                    },
+                    token: partnerRecipientToken,
+                };
+
+                try {
+                    await admin.messaging().send(message);
+                    console.log('Successfully sent notification action to partner user');
+                } catch (error) {
+                    console.error('Error sending notification on reaction:', error);
+                }
             } else {
-                console.error('Recipient token not found or answer already marked as complete:', userId);
+                console.error('Notification condition not met:', context.params.documentId);
             }
         });
-
-
-
-exports.sendNotiOnReaciton = functions
-    .region('asia-northeast3')
-    .firestore
-    .document('users/{userId}/answers/{documentId}')
-    .onUpdate(async (change, context) => {
-
-        const userId = context.params.userId;
-        const documentId = context.params.documentId;
-
-        const { fianceId, myName } = await getFianceId(userId);
-
-        const recipientToken = await getRecipientToken(fianceId);
-        console.log(`token: ${recipientToken}`);
-
-        const ansQid = await getQid(userId, documentId);
-        console.log(`qid: ${ansQid}`)
-
-        const beforeData = change.before.data();
-        const afterData = change.after.data();
-        const watchedField = 'reaction';
-
-        if (recipientToken && beforeData[watchedField] == null && afterData[watchedField] !== null && !afterData.is_complete) {
-          console.log(`Field ${watchedField} changed from null to ${afterData[watchedField]} in document ${context.params.documentId}`);
-
-            const message = {
-              data: {
-                viewToOpen: 'AnswerCheck',
-                qid: `${ansQid}`
-              },
-                notification: {
-                    title: `${myName}님이 반응을 남겼어요.`,
-                    body: '어떤 반응을 남겼는지 확인해 볼까요? 👀',
-                },
-                token: recipientToken,
-            };
-
-            try {
-                return await admin.messaging().send(message).then((results) => {
-                console.log('Successfully sent notification action to partner user');
-                return {success: true};
-              });
-            } catch (error) {
-                console.error('Error sending noti on reaction:', error);
-            }
-        } else {
-            console.error('Recipient token not found for partner user:', fianceId);
-        }
-    });
 
 
 exports.sendNotificationToFiance = functions
@@ -189,6 +164,11 @@ exports.sendNotificationToFiance = functions
             console.error('Recipient token not found for partner user:', fianceId);
         }
     });
+
+
+async function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 async function getFianceId(userId) {
   try {
