@@ -219,17 +219,17 @@ final class CheckAnswerViewModel: ObservableObject {
     guard let currentUserId = currentUser?.userId else { return }
     guard let currentUserAnswerId = currentUserAnswerId else { return }
     
-    AnswerManager.shared.updateReaction(userId: currentUserId, answerId: currentUserAnswerId, reaction: selectedReactionType)
-    
-    MixpanelManager.qnaReaction(type: selectedReactionType.reactionContent)
-    
     // 문답 완성(is_complete)필드 업데이트
     guard let fianceId = fianceUser?.userId else { return }
     guard let fianceAnswerId = fianceAnswerId else { return}
     
     let isCompleted = (selectedReactionType.isPositiveReact() && checkFianceReaction())
     
-    AnswerManager.shared.updateAnswerComplete(userId: currentUserId, answerId: currentUserAnswerId, status: isCompleted)
-    AnswerManager.shared.updateAnswerComplete(userId: fianceId, answerId: fianceAnswerId, status: isCompleted)
+    AnswerManager.shared.updateReactionNCompletion(userId: currentUserId, answerId: currentUserAnswerId, reaction: selectedReactionType, isComplete: isCompleted)
+    
+    AnswerManager.shared.updateReactionNCompletion(userId: fianceId, answerId: fianceAnswerId, reaction: nil, isComplete: isCompleted)
+    
+
+    MixpanelManager.qnaReaction(type: selectedReactionType.reactionContent)
   }
 }

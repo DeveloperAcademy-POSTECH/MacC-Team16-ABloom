@@ -91,12 +91,19 @@ final class AnswerManager: ObservableObject {
     }
   }
   
-  // MARK: Update
-  func updateReaction(userId: String, answerId: String, reaction: ReactionType) {
-    let data: [String: Any] = [DBAnswer.CodingKeys.reaction.rawValue:reaction.rawValue]
+  // MARK: Update Reaction & Completion
+  func updateReactionNCompletion(userId: String, answerId: String, reaction: ReactionType?, isComplete: Bool) {
+    var data: [String: Any] = [:]
+    
+    data[DBAnswer.CodingKeys.isComplete.rawValue] = isComplete
+    
+    if let reaction = reaction {
+      data[DBAnswer.CodingKeys.reaction.rawValue] = reaction.rawValue
+    }
     
     userAnswerCollection(userId: userId).document(answerId).updateData(data)
   }
+  
   
   // MARK: Disconnect
   func disconnectListener() {
@@ -106,10 +113,5 @@ final class AnswerManager: ObservableObject {
     self.fianceAnswers = []
   }
   
-  // MARK: Update Answer Completed
-  func updateAnswerComplete(userId: String, answerId: String, status: Bool) {
-    let data: [String: Any] = [DBAnswer.CodingKeys.isComplete.rawValue:status]
-    
-    userAnswerCollection(userId: userId).document(answerId).updateData(data)
-  }
+  
 }
