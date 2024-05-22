@@ -75,7 +75,7 @@ struct WriteAnswerView: View {
     .alert("답변을 완료할까요?", isPresented: $writeAMV.isCompleteAlertOn, actions: {
       Button {
         writeAMV.swipeEnable()
-        try? writeAMV.createAnswer(qid: question.questionID)
+        try? writeAMV.createAnswer(qid: question.questionID, category: question.category)
         isSheetOn.toggle()
       } label: {
         Text("완료하기")

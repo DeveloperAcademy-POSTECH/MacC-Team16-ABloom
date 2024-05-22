@@ -91,8 +91,12 @@ extension MixpanelManager {
     instance.track(event: "qna_select_question", properties: properties)
   }
   
-  static func qnaAnswer(letterCount: Int) {
-    let eventProperties = ["Letter Count": "\(letterCount)"]
+  static func qnaAnswer(letterCount: Int, category: String, questionId: Int) {
+    // 1. 카테고리
+    // 2. 질문의 번호
+    let eventProperties = ["Letter Count": "\(letterCount)",
+                           "Category": category,
+                           "Question ID": "\(questionId)"]
     
     instance.people.increment(property: "answeredQuestion", by: 1)
     instance.track(event: "qna_answer", properties: eventProperties)
