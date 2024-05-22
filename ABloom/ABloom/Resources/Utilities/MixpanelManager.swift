@@ -138,3 +138,10 @@ extension MixpanelManager {
     instance.track(event: "connect_kakao", properties: properties)
   }
 }
+
+// MARK: Track Notification Event
+extension MixpanelManager {
+  static func recommendedQuestionNotification() {
+    instance.track(event: "recommended_question_notification")
+  }
+}
