@@ -126,4 +126,11 @@ extension MixpanelManager {
     instance.people.set(properties: properties)
     instance.track(event: "connect_complete", properties: properties)
   }
+  
+  static func connectKakao(code: String) {
+    let properties = ["Invitation Code":code]
+    
+    instance.people.set(properties: properties)
+    instance.track(event: "connect_kakao", properties: properties)
+  }
 }
