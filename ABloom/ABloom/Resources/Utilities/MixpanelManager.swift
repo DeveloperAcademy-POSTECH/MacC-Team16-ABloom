@@ -92,8 +92,6 @@ extension MixpanelManager {
   }
   
   static func qnaAnswer(letterCount: Int, category: String, questionId: Int) {
-    // 1. 카테고리
-    // 2. 질문의 번호
     let eventProperties = ["Letter Count": "\(letterCount)",
                            "Category": category,
                            "Question ID": "\(questionId)"]

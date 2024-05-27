@@ -14,9 +14,7 @@ import UserNotifications
 
 @MainActor
 class AppDelegate: NSObject, UIApplicationDelegate {
-  
-  
-  
+
   // 앱이 켜졌을 때 자동 실행
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
     
@@ -139,9 +137,19 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
   }
   
   // when notification clicked => navigation
-  private func handleNotificationPayload(_ userInfo: [AnyHashable: Any]) {
+  private func handleNotificationPayload(_ content: UNNotificationContent) {
+    let title = content.title
+    let userInfo = content.userInfo
+    
     guard let viewToOpen = userInfo["viewToOpen"] as? String, viewToOpen == "AnswerCheck",
-          let questionID = userInfo["qid"] as? String else { print("error"); return }
+          let questionID = userInfo["qid"] as? String else {
+
+      if title == "오늘의 추천 질문이 도착했어요." {
+        MixpanelManager.recommendedQuestionNotification()
+      }
+      
+      return
+    }
     
     Task {
       do {
@@ -162,9 +170,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
   func userNotificationCenter(_ center: UNUserNotificationCenter,
                               didReceive response: UNNotificationResponse,
                               withCompletionHandler completionHandler: @escaping () -> Void) {
-    let userInfo = response.notification.request.content.userInfo
+    let content = response.notification.request.content
     
-    handleNotificationPayload(userInfo)
+    handleNotificationPayload(content)
     
     completionHandler()
   }
