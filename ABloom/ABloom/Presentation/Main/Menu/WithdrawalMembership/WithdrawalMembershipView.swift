@@ -60,12 +60,7 @@ struct WithdrawalMembershipView: View {
       Button {
         dismiss()
       } label: {
-        Image("angle-left")
-          .resizable()
-          .renderingMode(.template)
-          .scaledToFit()
-          .frame(width: 18)
-          .foregroundStyle(.primary80)
+        NavigationArrowLeft()
       }
     }, rightView: {
       EmptyView()

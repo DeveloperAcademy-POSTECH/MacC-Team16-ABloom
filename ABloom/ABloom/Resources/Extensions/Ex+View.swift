@@ -30,55 +30,9 @@ extension View {
     modifier(StrokeInputFieldStyle(isValueValid: isValueValid, alignment: alignment, cornerRadius: cornerRadius))
   }
   
-  /***
-   Customized GradientColors
-   - ShapeStyle의 형태를 지님
-   
-   총 4개의 함수 존재
-   1. blueGradient54()
-   2. blueGradient40()
-   3. pinkGradient54()
-   4. pinkGradient40()
-   
-   사용예제
-   -
-   .background(blueGradient54())
-   */
-  /// Blue500 - Blue400 Gradient
-  public func blueGradient54() -> some ShapeStyle {
-    LinearGradient(colors: [.blue500, .blue400], startPoint: .bottomLeading, endPoint: .topTrailing)
-  }
-  /// Blue400 - Blue300 Gradient
-  public func blueGradient43() -> some ShapeStyle {
-    LinearGradient(colors: [.blue400, .biBlue], startPoint: .bottomLeading, endPoint: .topTrailing)
-  }
-  /// Pink500 - Pink400 Gradient
-  public func pinkGradient54() -> some ShapeStyle {
-    LinearGradient(colors: [.pink500, .pink400], startPoint: .bottomLeading, endPoint: .topTrailing)
-  }
-  /// Pink400 - Pink300 Gradient
-  public func pinkGradient43() -> some ShapeStyle {
-    LinearGradient(colors: [.pink400, .biPink], startPoint: .bottomLeading, endPoint: .topTrailing)
-  }
-  /// Purple600 - Purple500 Gradient
-  public func purpleGradient65() -> some ShapeStyle {
-    LinearGradient(colors: [.primary60, .primary50], startPoint: .bottomLeading, endPoint: .topTrailing)
-  }
-  
-  public func glassGradient() -> some ShapeStyle {
-    LinearGradient(colors: [.white, .white.opacity(0.0)], startPoint: .topLeading, endPoint: .bottomTrailing)
-  }
-  
   /// RoundedCorner struct를 활용하여 지정된 edge마다 지정된 radius 값으로 변환시키는 함수
   func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
     clipShape( RoundedCorner(radius: radius, corners: corners) )
-  }
-  
-  /// QnABackWall
-  func backWall() -> some View {
-    RoundedRectangle(cornerRadius: 20)
-      .glassBG1Shadow()
-      .foregroundStyle(glassGradient())
   }
   
   func fontWithTracking(_ fontStyle: Font, tracking: CGFloat = 1, lineSpacing: CGFloat = 5) -> some View {
@@ -91,9 +45,6 @@ extension View {
   func hidden(_ by: Bool) -> some View {
     modifier(Hidden(hidden: by))
   }
-  
-  
-  // MARK: - 2.0에서 사용
   
   /// customNavigationBar
   func customNavigationBar<C, L, R>(
@@ -127,8 +78,6 @@ extension View {
     }
 }
 
-
-// TODO: 이 아이는 왜 여기에 있죠..0.0
 struct Hidden: ViewModifier {
   var hidden: Bool
   
