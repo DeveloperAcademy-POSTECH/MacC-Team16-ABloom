@@ -44,7 +44,6 @@ struct ConnectCodeStrokeInputField: View {
   
   var body: some View {
     TextField("상대방의 연결코드를 입력해주세요", text: $codeInputText)
-    .foregroundStyle(.stone950)
     .font(.calloutR)
     .strokeInputFieldStyle(isValueValid: isTargetCodeValid, alignment: .leading)
   }

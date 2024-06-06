@@ -38,7 +38,7 @@ struct ABloomApp: App {
     
     WindowGroup {
       NavigationStack {
-          QnAListView()
+        QnAListView()
       }
       
       /// 구글웹, 카카오톡에서 앱으로 돌아왔을 때 로그인 처리를 정상적으로 완료하기 위함

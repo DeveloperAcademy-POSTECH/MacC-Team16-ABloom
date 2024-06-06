@@ -1,6 +1,5 @@
 import SwiftUI
 
-
 enum AppFont: String {
   case regular = "NanumSquareNeoTTF-bRg"
   case bold = "NanumSquareNeoTTF-cBd"
@@ -8,9 +7,7 @@ enum AppFont: String {
 }
 
 extension Font {
-  
-  // MARK: - 새로 바뀐 폰트
-  
+    
   // LargeTitle
   static let largeTitleR: Font = .custom(AppFont.regular.rawValue, size: 34)
   static let largeTitleB: Font = .custom(AppFont.bold.rawValue, size: 34)
@@ -50,10 +47,6 @@ extension Font {
 
   static let reaction14: Font = .custom("NPS-font-Regular", size: 14)
   static let reaction16: Font = .custom("NPS-font-Regular", size: 16)
-  
-  // ChatBubble
-  static let chatBubble: Font = .custom("SpoqaHanSansNeo-Regular", size: 14)
-  static let chatBubbleBtn: Font = .custom("SpoqaHanSansNeo-Medium", size: 14)
   
   // Invitation Code
   static let myCode: Font = .custom(AppFont.extraBold.rawValue, size: 24)

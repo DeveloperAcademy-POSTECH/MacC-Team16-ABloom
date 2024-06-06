@@ -112,6 +112,4 @@ final class AnswerManager: ObservableObject {
     self.myAnswers = []
     self.fianceAnswers = []
   }
-  
-  
 }

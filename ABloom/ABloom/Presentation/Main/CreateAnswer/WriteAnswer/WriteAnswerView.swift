@@ -107,7 +107,7 @@ extension WriteAnswerView {
           .foregroundStyle(.gray500)
       }
       .foregroundStyle(.gray500)
-      .accentColor(.biPurple)
+      .accentColor(.primary60)
       .customFont(.calloutR)
       .multilineTextAlignment(.leading)
       .frame(maxWidth: .infinity)

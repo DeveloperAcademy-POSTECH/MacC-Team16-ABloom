@@ -115,10 +115,8 @@
 		AE8CFC1B2B08B242000F452F /* CategoryWaypointViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CFC1A2B08B242000F452F /* CategoryWaypointViewModel.swift */; };
 		AE8CFC1D2B08FFFB000F452F /* SelectQuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CFC1C2B08FFFB000F452F /* SelectQuestionViewModel.swift */; };
 		AE8D3C512ADE19E0009899A7 /* Ex+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D3C502ADE19E0009899A7 /* Ex+Font.swift */; };
-		AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D3C602ADE3C73009899A7 /* Ex+Shape.swift */; };
 		AEAB19372ADF77210057BC43 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAB19362ADF77210057BC43 /* Buttons.swift */; };
 		AEB502642AE5FA840056E439 /* CustomNavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB502632AE5FA840056E439 /* CustomNavigationBarModifier.swift */; };
-		AEB5026B2AE64B8D0056E439 /* CategoryQuestionBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB5026A2AE64B8D0056E439 /* CategoryQuestionBox.swift */; };
 		AEBDE5682B06FC46005711BF /* NanumSquareNeo-aLt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEBDE5632B06FC46005711BF /* NanumSquareNeo-aLt.ttf */; };
 		AEBDE5692B06FC46005711BF /* NanumSquareNeo-dEb.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEBDE5642B06FC46005711BF /* NanumSquareNeo-dEb.ttf */; };
 		AEBDE56A2B06FC46005711BF /* NanumSquareNeo-cBd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEBDE5652B06FC46005711BF /* NanumSquareNeo-cBd.ttf */; };
@@ -128,7 +126,6 @@
 		AEC44E042AF628DF0021156E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEC44E032AF628DF0021156E /* Launch Screen.storyboard */; };
 		AEDFFECE2B51576300386BFD /* Mixpanel.plist in Resources */ = {isa = PBXBuildFile; fileRef = AEDFFECD2B51576300386BFD /* Mixpanel.plist */; };
 		AEE092912B0AF5270076E7B7 /* Ex+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE092902B0AF5270076E7B7 /* Ex+Color.swift */; };
-		AEEA8DD32AEB82520068550E /* ChatBubbles.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEA8DD22AEB82520068550E /* ChatBubbles.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -207,10 +204,8 @@
 		AE8CFC1C2B08FFFB000F452F /* SelectQuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionViewModel.swift; sourceTree = "<group>"; };
 		AE8D3C502ADE19E0009899A7 /* Ex+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Font.swift"; sourceTree = "<group>"; };
 		AE8D3C5D2ADE1A22009899A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		AE8D3C602ADE3C73009899A7 /* Ex+Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Shape.swift"; sourceTree = "<group>"; };
 		AEAB19362ADF77210057BC43 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		AEB502632AE5FA840056E439 /* CustomNavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBarModifier.swift; sourceTree = "<group>"; };
-		AEB5026A2AE64B8D0056E439 /* CategoryQuestionBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryQuestionBox.swift; sourceTree = "<group>"; };
 		AEBDE5632B06FC46005711BF /* NanumSquareNeo-aLt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NanumSquareNeo-aLt.ttf"; sourceTree = "<group>"; };
 		AEBDE5642B06FC46005711BF /* NanumSquareNeo-dEb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NanumSquareNeo-dEb.ttf"; sourceTree = "<group>"; };
 		AEBDE5652B06FC46005711BF /* NanumSquareNeo-cBd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NanumSquareNeo-cBd.ttf"; sourceTree = "<group>"; };
@@ -220,7 +215,6 @@
 		AEC44E032AF628DF0021156E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AEDFFECD2B51576300386BFD /* Mixpanel.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Mixpanel.plist; sourceTree = "<group>"; };
 		AEE092902B0AF5270076E7B7 /* Ex+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Color.swift"; sourceTree = "<group>"; };
-		AEEA8DD22AEB82520068550E /* ChatBubbles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbles.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -483,8 +477,6 @@
 			isa = PBXGroup;
 			children = (
 				AEAB19362ADF77210057BC43 /* Buttons.swift */,
-				AEB5026A2AE64B8D0056E439 /* CategoryQuestionBox.swift */,
-				AEEA8DD22AEB82520068550E /* ChatBubbles.swift */,
 				AEB502632AE5FA840056E439 /* CustomNavigationBarModifier.swift */,
 				607DA20D2AEF48AE005AE11C /* NavigationArrowLeft.swift */,
 				6053F1752AE899320064A6E0 /* InputFields.swift */,
@@ -544,7 +536,6 @@
 				60EEC2FB2B125D210049DAFD /* Ex+Bundle.swift */,
 				6053F15E2ADF6C3B0064A6E0 /* Ex+View.swift */,
 				AE8D3C502ADE19E0009899A7 /* Ex+Font.swift */,
-				AE8D3C602ADE3C73009899A7 /* Ex+Shape.swift */,
 				3D957E862AEE5C5800D565E9 /* Ex+Query.swift */,
 				3D957E9B2AEF998000D565E9 /* Ex+Sequence.swift */,
 				607DA2172AF0B07D005AE11C /* Ex+Date.swift */,
@@ -739,15 +730,12 @@
 				AE8CFC1B2B08B242000F452F /* CategoryWaypointViewModel.swift in Sources */,
 				3DF31AEB2B0453F400F0EA4E /* QnAListView.swift in Sources */,
 				AE8D3C512ADE19E0009899A7 /* Ex+Font.swift in Sources */,
-				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
 				3D4412492AE4C49700FD5A51 /* AuthenticationManager.swift in Sources */,
 				60A134642B103593002E0A9F /* ReactionStatus.swift in Sources */,
 				AE8D3C512ADE19E0009899A7 /* Ex+Font.swift in Sources */,
-				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
 				3DF31AED2B0453FB00F0EA4E /* CheckAnswerView.swift in Sources */,
 				3DF31AF32B04544600F0EA4E /* WriteAnswerView.swift in Sources */,
 				3DF31AEF2B04540800F0EA4E /* CategoryWaypointView.swift in Sources */,
-				AEEA8DD32AEB82520068550E /* ChatBubbles.swift in Sources */,
 				606AA7622AFA910100CA5EA6 /* AnswerStatus.swift in Sources */,
 				3DF31AE72B0453DF00F0EA4E /* SignInView.swift in Sources */,
 				60EEC2FC2B125D210049DAFD /* Ex+Bundle.swift in Sources */,
@@ -763,13 +751,10 @@
 				3DF31B022B06685F00F0EA4E /* AnswerManager.swift in Sources */,
 				AE8D3C512ADE19E0009899A7 /* Ex+Font.swift in Sources */,
 				607DA2182AF0B07D005AE11C /* Ex+Date.swift in Sources */,
-				AEB5026B2AE64B8D0056E439 /* CategoryQuestionBox.swift in Sources */,
-				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
 				3D44125A2AE4F8B600FD5A51 /* WebView.swift in Sources */,
 				3DF31C002B076F7500F0EA4E /* SignUpStep.swift in Sources */,
 				3DD485F22B0DAAB300AF5E02 /* ConnectionViewModel.swift in Sources */,
 				3DB58C022B824EE900F40BA3 /* KakaoShareManager.swift in Sources */,
-				AE8D3C612ADE3C73009899A7 /* Ex+Shape.swift in Sources */,
 				AEB502642AE5FA840056E439 /* CustomNavigationBarModifier.swift in Sources */,
 				3DD485F42B0DAC5800AF5E02 /* ConnectingView.swift in Sources */,
 				602477302B519927005A5167 /* SignInGoogleHelper.swift in Sources */,
