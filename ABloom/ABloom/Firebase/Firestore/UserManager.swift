@@ -126,9 +126,9 @@ final class UserManager: ObservableObject {
   }
   
   // MARK: Delete
-  
   func deleteUser() async throws {
-    let user = try await UserManager.shared.getCurrentUser()
+    try await self.fetchCurrentUser()
+    guard let user = self.currentUser else { return }
     
     try await deleteSubCollection(userId: user.userId)
     try await userDocument(userId: user.userId).delete()
@@ -173,63 +173,4 @@ final class UserManager: ObservableObject {
     listener?.remove()
     listener = nil
   }
-
-  // MARK: Will be deprecated method
-  // MARK: GET Method
-  func getCurrentUser() async throws -> DBUser {
-    let currentUser = try AuthenticationManager.shared.getAuthenticatedUser()
-    
-    return try await getUser(userId: currentUser.uid)
-  }
-  
-  
-  // MARK: POST Method
-
-  
-  // MARK: Answer
-  func creatAnswer(userId: String, questionId: Int, content: String) throws {
-    let collection = userAnswerCollection(userId: userId)
-    let document = collection.document()
-    
-    let data = DBAnswer(questionId: questionId, userId: userId, answerContent: content, isComplete: false, reaction: nil)
-    
-    try? document.setData(from: data, merge: false)
-  }
-  
-  func getAnswers(userId: String) async throws -> [DBAnswer] {
-    let collection = userAnswerCollection(userId: userId)
-    return try await collection.getDocuments(as: DBAnswer.self)
-  }
-  
-  func getAnswerWithId(userId: String, filter: [Any]) async throws -> [DBAnswer] {
-    let collection = userAnswerCollection(userId: userId)
-    
-    if filter.isEmpty {
-      return []
-    } else {
-      return try await collection
-        .whereField(DBAnswer.CodingKeys.questionId.rawValue, in: filter)
-        .getDocuments(as: DBAnswer.self)
-    }
-  }
-  
-  func getAnswer(userId: String, questionId: Int) async throws -> (answer: DBAnswer, answerId: String) {
-    let collection = userAnswerCollection(userId: userId)
-    let userAnswerSnapshot = try await collection
-      .whereField(DBAnswer.CodingKeys.questionId.rawValue, isEqualTo: questionId)
-      .getDocuments()
-    
-    guard let answerDocumentSnapshot = userAnswerSnapshot.documents.first else { throw URLError(.badServerResponse) }
-    
-    let answer = try answerDocumentSnapshot.data(as: DBAnswer.self)
-    
-    return (answer, answerId: answerDocumentSnapshot.documentID)
-  }
-  
-  func updateReaction(userId: String, answerId: String, reaction: ReactionType) {
-    let data: [String: Any] = [DBAnswer.CodingKeys.reaction.rawValue:reaction.rawValue]
-    
-    userAnswerCollection(userId: userId).document(answerId).updateData(data)
-  }
-
 }

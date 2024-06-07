@@ -75,7 +75,7 @@ struct WriteAnswerView: View {
     .alert("답변을 완료할까요?", isPresented: $writeAMV.isCompleteAlertOn, actions: {
       Button {
         writeAMV.swipeEnable()
-        try? writeAMV.createAnswer(qid: question.questionID)
+        try? writeAMV.createAnswer(qid: question.questionID, category: question.category)
         isSheetOn.toggle()
       } label: {
         Text("완료하기")
@@ -107,7 +107,7 @@ extension WriteAnswerView {
           .foregroundStyle(.gray500)
       }
       .foregroundStyle(.gray500)
-      .accentColor(.biPurple)
+      .accentColor(.primary60)
       .customFont(.calloutR)
       .multilineTextAlignment(.leading)
       .frame(maxWidth: .infinity)

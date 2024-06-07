@@ -25,6 +25,9 @@ final class KakaoShareManager: NSObject {
         }
         else {
           print("shareCustom() success.")
+          
+          MixpanelManager.connectKakao(code: code)
+          
           if let sharingResult = sharingResult {
             UIApplication.shared.open(sharingResult.url, options: [:], completionHandler: nil)
           }
