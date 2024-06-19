@@ -76,6 +76,7 @@ struct WriteAnswerView: View {
       Button {
         writeAMV.swipeEnable()
         try? writeAMV.createAnswer(qid: question.questionID, category: question.category)
+        writeAMV.observeAnswerCount()
         isSheetOn.toggle()
       } label: {
         Text("완료하기")
