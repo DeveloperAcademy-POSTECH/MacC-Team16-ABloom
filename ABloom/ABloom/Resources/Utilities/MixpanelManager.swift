@@ -85,8 +85,9 @@ extension MixpanelManager {
     instance.track(event: "qna_category", properties: properties)
   }
   
-  static func qnaSelectQuestion(questionId: Int) {
-    let properties = ["Question ID": "\(questionId)"]
+  static func qnaSelectQuestion(questionId: Int, category: String) {
+    let properties = ["Question ID": "\(questionId)",
+                      "Category": category]
     
     instance.track(event: "qna_select_question", properties: properties)
   }
