@@ -175,7 +175,7 @@ final class QnAListViewModel: ObservableObject {
   }
   
   private func checkReviewRequest(totalCount: Int) {
-    if totalCount == 22 || totalCount == 20 || totalCount == 50 {
+    if totalCount == 5 || totalCount == 20 || totalCount == 50 {
       requestReview()
     }
   }
