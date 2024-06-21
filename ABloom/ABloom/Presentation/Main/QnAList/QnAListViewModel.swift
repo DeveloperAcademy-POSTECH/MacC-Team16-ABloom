@@ -6,6 +6,7 @@
 //
 
 import Combine
+import StoreKit
 import SwiftUI
 
 enum QnAListViewState {
@@ -25,7 +26,14 @@ final class QnAListViewModel: ObservableObject {
   
   @Published var currentUser: DBUser?
   
-  @Published var currentUserAnswers: [DBAnswer]?
+  @Published var currentUserAnswers: [DBAnswer]? {
+    didSet {
+      myAnswerCount = currentUserAnswers?.count ?? 0
+      checkReviewRequest(totalCount: myAnswerCount)
+    }
+  }
+  @Published var myAnswerCount: Int = 0
+  
   @Published var fianceAnswers: [DBAnswer]?
   @Published var coupleQnA = [CouplueQnA]()
     
@@ -158,6 +166,21 @@ final class QnAListViewModel: ObservableObject {
       viewState = .isSorted
     }
   }
+  // MARK: - 리뷰팝업 함수
+  
+  private func requestReview() {
+    if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+      SKStoreReviewController.requestReview(in: scene)
+    }
+  }
+  
+  private func checkReviewRequest(totalCount: Int) {
+    if totalCount == 22 || totalCount == 20 || totalCount == 50 {
+      requestReview()
+    }
+  }
+  
+  // MARK: - 상태확인
   
   func checkAnswerStatus(question: DBStaticQuestion) -> AnswerStatus {
     guard let idx = coupleQnA.firstIndex(where: { $0.question == question }) else { return .error }

@@ -4,9 +4,6 @@
 //
 //  Created by yun on 11/20/23.
 //
-import Combine
-import Foundation
-import StoreKit
 import SwiftUI
 
 
@@ -17,13 +14,6 @@ class WriteAnswerViewModel: ObservableObject {
   @Published var ansText: String = ""
   @Published var isTextOver = Bool()
   
-  private var cancellables = Set<AnyCancellable>()
-    
-  private func requestReview() {
-    if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-      SKStoreReviewController.requestReview(in: scene)
-    }
-  }
   
   func checkTextCount() {
     // 맥시멈 제한
@@ -68,23 +58,4 @@ class WriteAnswerViewModel: ObservableObject {
     try AnswerManager.shared.createAnswer(userId: uid, questionId: qid, content: self.ansText)
     MixpanelManager.qnaAnswer(letterCount: ansText.count, category: category, questionId: qid)
   }
-  
-  // MARK: - ReviewPopUp 관련
-  
-  // '나'가 작성한 문답 갯수 카운트
-  func observeAnswerCount() {
-    AnswerManager.shared.$myAnswers
-      .sink { [weak self] myAnswers in
-        let totalCount = myAnswers?.count ?? 0
-        self?.checkReviewRequest(totalCount: totalCount)
-      }
-      .store(in: &cancellables)
-  }
-  
-  private func checkReviewRequest(totalCount: Int) {
-    if totalCount == 5 || totalCount == 20 || totalCount == 50 {
-      requestReview()
-    }
-  }
-  
 }
