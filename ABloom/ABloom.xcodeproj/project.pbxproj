@@ -77,6 +77,8 @@
 		6024772C2B517D40005A5167 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 6024772B2B517D40005A5167 /* GoogleSignIn */; };
 		6024772E2B517D40005A5167 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6024772D2B517D40005A5167 /* GoogleSignInSwift */; };
 		602477302B519927005A5167 /* SignInGoogleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024772F2B519927005A5167 /* SignInGoogleHelper.swift */; };
+		603F040F2C25EFE3008A2332 /* DBAnnouncementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603F040E2C25EFE3008A2332 /* DBAnnouncementModel.swift */; };
+		603F04112C25F124008A2332 /* AnnouncementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603F04102C25F124008A2332 /* AnnouncementManager.swift */; };
 		60528FA92B0C97A900A29E6F /* ActiveSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60528FA82B0C97A900A29E6F /* ActiveSheet.swift */; };
 		6053F15F2ADF6C3B0064A6E0 /* Ex+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053F15E2ADF6C3B0064A6E0 /* Ex+View.swift */; };
 		6053F1622ADF6CDE0064A6E0 /* InputFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053F1612ADF6CDE0064A6E0 /* InputFieldModifier.swift */; };
@@ -172,6 +174,8 @@
 		3DF31B072B073CDE00F0EA4E /* SignUpContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpContentView.swift; sourceTree = "<group>"; };
 		3DF31BFF2B076F7500F0EA4E /* SignUpStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpStep.swift; sourceTree = "<group>"; };
 		6024772F2B519927005A5167 /* SignInGoogleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInGoogleHelper.swift; sourceTree = "<group>"; };
+		603F040E2C25EFE3008A2332 /* DBAnnouncementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBAnnouncementModel.swift; sourceTree = "<group>"; };
+		603F04102C25F124008A2332 /* AnnouncementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementManager.swift; sourceTree = "<group>"; };
 		60528FA82B0C97A900A29E6F /* ActiveSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSheet.swift; sourceTree = "<group>"; };
 		6053F15E2ADF6C3B0064A6E0 /* Ex+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+View.swift"; sourceTree = "<group>"; };
 		6053F1612ADF6CDE0064A6E0 /* InputFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldModifier.swift; sourceTree = "<group>"; };
@@ -271,6 +275,7 @@
 				AEC260602AEA5A8000DF7CD5 /* StaticQuestionManager.swift */,
 				3DF31B012B06685F00F0EA4E /* AnswerManager.swift */,
 				3DF31B032B0669F900F0EA4E /* EssentialQuestionManager.swift */,
+				603F04102C25F124008A2332 /* AnnouncementManager.swift */,
 			);
 			path = Firestore;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 				3D957E8D2AEE7F2E00D565E9 /* DBStaticQuestionModel.swift */,
 				3D957E8F2AEE7F4800D565E9 /* DBAnswerModel.swift */,
 				6086BAA82AF130A800E2DC3A /* DBEssentialQuestionModel.swift */,
+				603F040E2C25EFE3008A2332 /* DBAnnouncementModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -772,6 +778,7 @@
 				AE7EE4E12AD6409000E0A573 /* ABloomApp.swift in Sources */,
 				3DF31B042B0669F900F0EA4E /* EssentialQuestionManager.swift in Sources */,
 				3D957EA52AF6B66D00D565E9 /* Ex+UIApplication.swift in Sources */,
+				603F04112C25F124008A2332 /* AnnouncementManager.swift in Sources */,
 				6053F15F2ADF6C3B0064A6E0 /* Ex+View.swift in Sources */,
 				AE5EB9FB2AF1396C0074F361 /* AppDelegate.swift in Sources */,
 				3DF31AF92B04546700F0EA4E /* ConnectionView.swift in Sources */,
@@ -779,6 +786,7 @@
 				3DF31C012B07729200F0EA4E /* EmbedWebView.swift in Sources */,
 				3D957EA72AF8E95F00D565E9 /* UserSexType.swift in Sources */,
 				60678E342B0B8843009B9558 /* SignInViewModel.swift in Sources */,
+				603F040F2C25EFE3008A2332 /* DBAnnouncementModel.swift in Sources */,
 				3DB6A5B42AE11CCD00C1369F /* SignInAppleHelper.swift in Sources */,
 				AE3BF1142AF49986009A2FB1 /* Ex+UINavigation.swift in Sources */,
 				607DA20E2AEF48AE005AE11C /* NavigationArrowLeft.swift in Sources */,
