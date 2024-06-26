@@ -85,14 +85,17 @@ extension MixpanelManager {
     instance.track(event: "qna_category", properties: properties)
   }
   
-  static func qnaSelectQuestion(questionId: Int) {
-    let properties = ["Question ID": "\(questionId)"]
+  static func qnaSelectQuestion(questionId: Int, category: String) {
+    let properties = ["Question ID": "\(questionId)",
+                      "Category": category]
     
     instance.track(event: "qna_select_question", properties: properties)
   }
   
-  static func qnaAnswer(letterCount: Int) {
-    let eventProperties = ["Letter Count": "\(letterCount)"]
+  static func qnaAnswer(letterCount: Int, category: String, questionId: Int) {
+    let eventProperties = ["Letter Count": "\(letterCount)",
+                           "Category": category,
+                           "Question ID": "\(questionId)"]
     
     instance.people.increment(property: "answeredQuestion", by: 1)
     instance.track(event: "qna_answer", properties: eventProperties)
@@ -125,5 +128,19 @@ extension MixpanelManager {
     
     instance.people.set(properties: properties)
     instance.track(event: "connect_complete", properties: properties)
+  }
+  
+  static func connectKakao(code: String) {
+    let properties = ["Invitation Code":code]
+    
+    instance.people.set(properties: properties)
+    instance.track(event: "connect_kakao", properties: properties)
+  }
+}
+
+// MARK: Track Notification Event
+extension MixpanelManager {
+  static func recommendedQuestionNotification() {
+    instance.track(event: "recommended_question_notification")
   }
 }

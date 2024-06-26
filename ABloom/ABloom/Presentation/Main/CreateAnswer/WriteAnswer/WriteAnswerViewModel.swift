@@ -52,10 +52,10 @@ class WriteAnswerViewModel: ObservableObject {
     self.isCompleteAlertOn.toggle()
   }
   
-  func createAnswer(qid: Int) throws {
+  func createAnswer(qid: Int, category: String) throws {
     let uid = try AuthenticationManager.shared.getAuthenticatedUser().uid
     try AnswerManager.shared.createAnswer(userId: uid, questionId: qid, content: self.ansText)
-    MixpanelManager.qnaAnswer(letterCount: ansText.count)
+    MixpanelManager.qnaAnswer(letterCount: ansText.count, category: category, questionId: qid)
   }
   
 }
