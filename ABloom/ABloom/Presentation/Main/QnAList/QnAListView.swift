@@ -83,10 +83,42 @@ extension QnAListView {
     }
   }
   
-  // TODO: 날짜 연결
+  private func announcementButton(announcement: DBAnnouncement) -> some View {
+    Button {
+      qnaListVM.showAnnouncementSheet = true
+    } label: {
+      HStack {
+        Image(.notice)
+          .resizable()
+          .frame(width: 24, height: 24)
+        Text(announcement.title)
+          .foregroundStyle(.gray600)
+          .customFont(.notice)
+          .lineLimit(1)
+          .truncationMode(.tail)
+        Spacer(minLength: 0)
+        Image(.angleRightGray)
+          .resizable()
+          .renderingMode(.template)
+          .foregroundStyle(.gray500)
+          .scaledToFit()
+          .frame(height: 13)
+      }
+    }
+    .frame(maxWidth: .infinity)
+    .padding(.horizontal, 20)
+    .sheet(isPresented: $qnaListVM.showAnnouncementSheet, content: {
+      EmbedWebView(viewTitle: "", urlString: announcement.url, type: .navigation, showSheet: $qnaListVM.showAnnouncementSheet, checkContract: .constant(true))
+    })
+  }
+
   private var scrollView: some View {
     ScrollView(.vertical) {
       LazyVStack(spacing: 12) {
+        if let announcement = qnaListVM.announcement, UserManager.shared.currentUser != nil {
+          announcementButton(announcement: announcement)
+        }
+        
         ForEach(qnaListVM.coupleQnA, id: \.self) { qna in
           Button {
             qnaListVM.tapQnAListItem(qna.question)
@@ -126,7 +158,12 @@ extension QnAListView {
     }
     .padding(.bottom, 100)
     .foregroundStyle(.black)
-    .frame(maxHeight: .infinity)
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
+    .overlay(alignment: .top) {
+      if let announcement = qnaListVM.announcement, UserManager.shared.currentUser != nil {
+        announcementButton(announcement: announcement)
+      }
+    }
   }
   
   private var plusButton: some View {
