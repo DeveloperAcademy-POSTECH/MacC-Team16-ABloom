@@ -48,6 +48,8 @@ extension Font {
   static let reaction14: Font = .custom("NPS-font-Regular", size: 14)
   static let reaction16: Font = .custom("NPS-font-Regular", size: 16)
   
+  static let notice: Font = .custom(AppFont.regular.rawValue, size: 14)
+
   // Invitation Code
   static let myCode: Font = .custom(AppFont.extraBold.rawValue, size: 24)
 }
