@@ -116,7 +116,6 @@ final class UserManager: ObservableObject {
     try await connectionUpdate(userId: currentUser.userId, targetId: targetUserId)
     try await fetchCurrentUser()
     try await fetchFianceUser()
-    AnswerManager.shared.addSnapshotListenerForMyAnswer()
     AnswerManager.shared.addSnapshotListenerForFianceAnswer()
   }
   
