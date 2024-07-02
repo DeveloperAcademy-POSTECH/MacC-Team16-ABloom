@@ -4,8 +4,8 @@
 //
 //  Created by yun on 11/20/23.
 //
-
 import SwiftUI
+
 
 @MainActor
 class WriteAnswerViewModel: ObservableObject {
@@ -13,6 +13,7 @@ class WriteAnswerViewModel: ObservableObject {
   @Published var isCompleteAlertOn = Bool()
   @Published var ansText: String = ""
   @Published var isTextOver = Bool()
+  
   
   func checkTextCount() {
     // 맥시멈 제한
@@ -57,5 +58,4 @@ class WriteAnswerViewModel: ObservableObject {
     try AnswerManager.shared.createAnswer(userId: uid, questionId: qid, content: self.ansText)
     MixpanelManager.qnaAnswer(letterCount: ansText.count, category: category, questionId: qid)
   }
-  
 }
